@@ -152,22 +152,29 @@ CREATE TABLE COMPRA
 	FOREIGN KEY (id_calificacion) references CALIFICACION(id_calificacion)
 )
 
--- Procedemientos
+-- Procedemiento para busqueda de un producto, se puede filtrar por id_rubro ( o no , segun que decida el usuario)
+-- te devuelve 10 productos por paginas
 
 create procedure st_buscar_publicaciones
 @descripcion nvarchar(255) = null,
-@rubroId nvarchar(255)= null
+@rubroId nvarchar(255)= null,
+@pagina int
 AS
 begin
 
- select * 
- from PUBLICACION
- inner join VISIBILIDAD on id_visibilidad = visibilidad
- inner join ESTADO_PUBLICACION on id_estado = estado_publicacion
- inner join TIPO_PUBLICACION on id_tipo = tipo_publicacion
- inner join RUBRO on id_rubro = rubro
- where (descripcion like '%' + @descripcion + '%') and estado_nombre <> 'BORRADOR' and estado_nombre <> 'FINALIZADO' and
- (id_rubro = @rubroId OR @rubroId IS NULL)
- order by precio_visibilidad desc
+ select*
+ from(
+      select *,(row_number() over (order by id_publicacion desc) ) as publicaciones
+      from PUBLICACION
+      inner join VISIBILIDAD on id_visibilidad = visibilidad
+      inner join ESTADO_PUBLICACION on id_estado = estado_publicacion
+      inner join TIPO_PUBLICACION on id_tipo = tipo_publicacion
+      inner join RUBRO on id_rubro = rubro
+      where (descripcion like '%' + @descripcion + '%') and 
+      estado_nombre <> 'BORRADOR' and estado_nombre <> 'FINALIZADO' and
+      (id_rubro = @rubroId OR @rubroId IS NULL)
+      order by precio_visibilidad desc
+      ) gg_vieja
+ where publicaciones between (@pagina*10)-9 and (@pagina*10)
 
 end
