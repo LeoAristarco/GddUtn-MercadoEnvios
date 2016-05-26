@@ -66,18 +66,18 @@ create table RUBRO
 create table VISIBILIDAD
 (
 	id_visibilidad      numeric(10,0) identity (0,1),
-	nombre              nvarchar(255),
+	visibilidad_nombre              nvarchar(255),
 	precio_visibilidad  numeric(10,2),
 	porcentaje_venta    numeric(10,2),
 
-	UNIQUE (nombre),
+	UNIQUE (visibilidad_nombre),
 	PRIMARY KEY (id_visibilidad)
 )
 
 create table ESTADO_PUBLICACION
 (
 	id_estado  numeric(10,0) identity (0,1),
-	nombre     nvarchar(255),
+	estado_nombre     nvarchar(255),
 
 	PRIMARY KEY (id_estado)
 )
@@ -152,3 +152,22 @@ CREATE TABLE COMPRA
 	FOREIGN KEY (id_calificacion) references CALIFICACION(id_calificacion)
 )
 
+-- Procedemientos
+
+create procedure st_buscar_publicaciones
+@descripcion nvarchar(255) = null,
+@rubroId nvarchar(255)= null
+AS
+begin
+
+ select * 
+ from PUBLICACION
+ inner join VISIBILIDAD on id_visibilidad = visibilidad
+ inner join ESTADO_PUBLICACION on id_estado = estado_publicacion
+ inner join TIPO_PUBLICACION on id_tipo = tipo_publicacion
+ inner join RUBRO on id_rubro = rubro
+ where (descripcion like '%' + @descripcion + '%') and estado_nombre <> 'BORRADOR' and estado_nombre <> 'FINALIZADO' and
+ (id_rubro = @rubroId OR @rubroId IS NULL)
+ order by precio_visibilidad desc
+
+end
