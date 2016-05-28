@@ -51,21 +51,22 @@ create table USUARIO
 
 CREATE TABLE CLIENTE
 (
-	id_cliente			NUMERIC(10,0) IDENTITY
-	id_usuario			NUMERIC(10,0)
+	id_cliente			numeric(10,0) IDENTITY
+	id_usuario			numeric(10,0)
 	nombre				nvarchar(255)
 	apellido			nvarchar(255)
-	numero_documento	nvarchar(255) (UNIQUE)
+	numero_documento	nvarchar(255)
 	tipo_documento		nvarchar(255)
 	
+	UNIQUE(numero_documento),
 	PRIMARY KEY(id_cliente),
 	FOREIGN KEY(id_usuario) REFERENCES USUARIO(id_usuario)
 )
 
 CREATE TABLE EMPRESA
 (
-	id_empresa		NUMERIC(10,0) IDENTITY,
-	id_usuario		NUMERIC(10,0),
+	id_empresa		numeric(10,0) IDENTITY,
+	id_usuario		numeric(10,0),
 	razon_social	nvarchar(255),
 	cuit			nvarchar(50),
 	nombre_contacto nvarchar(255)
