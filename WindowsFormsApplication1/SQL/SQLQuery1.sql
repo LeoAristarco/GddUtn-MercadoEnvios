@@ -29,16 +29,57 @@ create table FUNCIONALIDAD_POR_ROL
 
 create table USUARIO
 (
-	id_usuario       numeric(10,0) identity (1,1),
-	username         nvarchar(255),
-	password         nvarchar(255),
-	intentos_login   int,
-	primer_ingreso   bit,
-	baja_logica      bit,
-	--faltan mas campos
+	id_usuario      numeric(10,0) identity (1,1),
+	username        nvarchar(255),
+	password        nvarchar(255),
+	intentos_login  int,
+	primer_ingreso  bit,
+	baja_logica		bit,
+	fecha_creacion	datetime,
+	mail			nvarchar(255),
+	telefono		nvarchar(60),
+	calle			nvarchar(255),
+	numero_piso		nvarchar(30),
+	departamento	nvarchar(50),
+	localidad		nvarchar(255),
+	codigo_postal	nvarchar(50),
+
 
 	UNIQUE (username),
 	PRIMARY KEY(id_usuario)
+)
+
+CREATE TABLE CLIENTE
+(
+	id_cliente			NUMERIC(10,0) IDENTITY
+	id_usuario			NUMERIC(10,0)
+	nombre				nvarchar(255)
+	apellido			nvarchar(255)
+	numero_documento	nvarchar(255) (UNIQUE)
+	tipo_documento		nvarchar(255)
+	
+	PRIMARY KEY(id_cliente),
+	FOREIGN KEY(id_usuario) REFERENCES USUARIO(id_usuario)
+)
+
+CREATE TABLE EMPRESA
+(
+	id_empresa		NUMERIC(10,0) IDENTITY,
+	id_usuario		NUMERIC(10,0),
+	razon_social	nvarchar(255),
+	cuit			nvarchar(50),
+	nombre_contacto nvarchar(255)
+	ciudad			nvarchar(255),
+	reputacion		numeric(18,2),
+
+	rubro			nvarchar(255),
+	cantidad_votos	numeric(18,0),
+
+	UNIQUE(razon_social),
+	UNIQUE(cuit),
+	PRIMARY KEY(id_empresa),
+	FOREIGN KEY(id_usuario) REFERENCES USUARIO(id_usuario)
+
 )
 
 
