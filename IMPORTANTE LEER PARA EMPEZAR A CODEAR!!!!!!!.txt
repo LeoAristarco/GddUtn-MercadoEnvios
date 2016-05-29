@@ -10,10 +10,10 @@ nombre nvarchar(30)
 
 insert into negro(nombre) values ('lobezzzno'),('ronanmanco')
 
-//////////////////////////////////////////////////////////////////////////////      
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-PARA LEER EL PRIMER NOMBRE DE LA PRIMERA FILA HARIA:
+PARA LEER LA PRIMERA FILA:
 
             DataBase db = DataBase.Instance;//obtengo instancia de db
 
@@ -27,4 +27,24 @@ PARA LEER EL PRIMER NOMBRE DE LA PRIMERA FILA HARIA:
             }
         }
 
-////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+PARA LEER LA PRIMERA FILA CON UNA CONSULTA CON PARAMETROS:
+
+
+            DataBase db = DataBase.Instance;
+
+            int id = 2;
+            string nombre= "ronanmanco";
+
+            List<SqlParameter> parametros = new List<SqlParameter>();
+            db.agregarParametro(parametros, "@id", id);
+            db.agregarParametro(parametros, "@nombre", nombre);
+
+            string consulta = "select * from negro where id_negro=@id and nombre=@nombre";
+
+            List<Dictionary<string, object>> tabla = db.ejecutarConsulta(consulta, parametros);
+
+            MessageBox.Show("el registro de id: " + tabla.ElementAt(0)["id_negro"] + " tiene nombre " + tabla.ElementAt(0)["nombre"]);//muestro la 1era fila
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
