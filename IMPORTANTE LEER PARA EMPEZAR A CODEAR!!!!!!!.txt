@@ -1,0 +1,36 @@
+SUPONIENDO QUE TENGO ESTO EN LA BASE DE DATOS:
+
+create table negro(
+id_negro int
+not null
+primary key
+identity(1,1),
+nombre nvarchar(30)
+)
+
+insert into negro(nombre) values ('lobezzzno'),('ronanmanco')
+
+//////////////////////////////////////////////////////////////////////////////      
+
+
+PARA LEER EL PRIMER NOMBRE DE LA PRIMERA FILA HARIA:
+
+
+	    DataBase db = DataBase.Instance;//Me da una instancia de la base de datos
+
+            db.abrirConexion();//abre conexion (esto por ahi lo cambio para q lo haga dentro de cada consulta)
+
+            string consulta = "select * from negro";//El string de la consulta
+
+            SqlDataReader reader = db.ejecutarConsulta(consulta);//guardo un reader todas las filas que retorno la consulta
+
+            if (db.contieneFilas(reader))
+            {
+                reader.Read();//Esto lee la primera fila y deja un puntero en la siguiente
+
+                MessageBox.Show((string)db.getValue(reader, "nombre"));//obtengo el valor de la propiedad nombre (siempre hay q castear al tipo q quiero)
+            }
+
+            db.cerrarConexion();//cierro conexion
+
+////////////////////////////////////////////////////////////////////////////
