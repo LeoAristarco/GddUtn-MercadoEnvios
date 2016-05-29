@@ -276,3 +276,59 @@ begin
 	    
 	  return @tipoError	  
 end
+
+
+-- Procedimientos que usa el tr_insertarCompra
+create procedure st_actualizarEstadoPublicacion
+@publicacion numeric(10,0)
+as begin
+ declare @stock int
+ 
+      select @stock= stock
+	  from PUBLICACION
+	  where id_publicacion = @publicacion
+
+	  if (@stock = 0)
+	   	update PUBLICACION SET estado_publicacion = 4 -- le cambio el estado finalizado
+	    where id_publicacion = @publicacion
+ 
+end
+-- Procedimientos que usa el tr_insertarCompra
+create procedure st_agregarCalificacion(@id_calificacion numeric(10,0) output )
+as begin
+		insert into CALIFICACION (calif_estrellas,calif_detalle)
+		values (null, null)
+		set @id_calificacion = scope_identity()
+end
+
+
+-- Se dispara cada vez q se inserta una compra ( post-migracion)
+create trigger tr_insertarCompra
+	on COMPRA
+	instead of insert
+
+	as begin
+	declare @id_calificacion numeric(10,0)
+
+	exec st_agregarCalificacion @id_calificacion output 
+	
+	declare @id_compra numeric(10,0), @comprador numeric(10,0), @publicacion numeric(10,0), 
+	    @fecha_operacion datetime, @monto numeric(10,2), @cantidad int
+			
+	select  @id_compra =i.id_compra,@comprador=i.comprador,@publicacion=i.publicacion,@fecha_operacion=i.fecha_operacion,
+	        @monto=i.monto, @cantidad=i.cantidad
+	from inserted i
+
+	insert into COMPRA (id_compra, comprador, publicacion, fecha_operacion,monto, cantidad,calificacion )
+	values ( @id_compra , @comprador , @publicacion , @fecha_operacion , @monto ,
+			 @cantidad, @id_calificacion )
+	
+	update PUBLICACION SET stock = stock - @cantidad
+	 where id_publicacion = @publicacion
+	 
+	exec st_actualizarEstadoPublicacion @publicacion
+	
+	 
+	-- updetear la tabla facturas ?SSAs
+
+	end 
