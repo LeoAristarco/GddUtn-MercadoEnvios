@@ -1,5 +1,3 @@
-
-
 create table FUNCIONALIDAD
 (
 	id_funcionalidad        numeric(10,0) identity (1,1),
@@ -51,25 +49,25 @@ create table USUARIO
 
 CREATE TABLE CLIENTE
 (
-	id_cliente			numeric(10,0) IDENTITY
-	id_usuario			numeric(10,0)
-	nombre				nvarchar(255)
-	apellido			nvarchar(255)
-	numero_documento	nvarchar(255)
-	tipo_documento		nvarchar(255)
+	id_cliente			numeric(10,0) IDENTITY,
+	usuario			    numeric(10,0),
+	nombre				nvarchar(255),
+	apellido			nvarchar(255),
+	numero_documento	nvarchar(255),
+	tipo_documento		nvarchar(255),
 	
-	UNIQUE(numero_documento),
+	
 	PRIMARY KEY(id_cliente),
-	FOREIGN KEY(id_usuario) REFERENCES USUARIO(id_usuario)
+	FOREIGN KEY(usuario) references USUARIO(id_usuario)
 )
 
 CREATE TABLE EMPRESA
 (
 	id_empresa		numeric(10,0) IDENTITY,
-	id_usuario		numeric(10,0),
+	usuario		    numeric(10,0),
 	razon_social	nvarchar(255),
 	cuit			nvarchar(50),
-	nombre_contacto nvarchar(255)
+	nombre_contacto nvarchar(255),
 	ciudad			nvarchar(255),
 	reputacion		numeric(18,2),
 
@@ -79,7 +77,7 @@ CREATE TABLE EMPRESA
 	UNIQUE(razon_social),
 	UNIQUE(cuit),
 	PRIMARY KEY(id_empresa),
-	FOREIGN KEY(id_usuario) REFERENCES USUARIO(id_usuario)
+	FOREIGN KEY(usuario) REFERENCES USUARIO(id_usuario)
 
 )
 
@@ -157,23 +155,23 @@ create table PUBLICACION
 create table OFERTA
 (
 	id_oferta      numeric(10,0) identity (1,1),
-	id_ofertante   numeric(10,0),
-	id_publicacion numeric(10,0),
+	ofertante      numeric(10,0),
+	publicacion    numeric(10,0),
 	fecha_oferta   datetime,
 	concretada     bit,
 	monto_ofertado numeric(10,2),
 
 	PRIMARY KEY (id_oferta),
-	FOREIGN KEY (id_ofertante)	 references USUARIO(id_usuario),
-	FOREIGN KEY (id_publicacion) references PUBLICACION(id_publicacion)
+	FOREIGN KEY (ofertante)	  references USUARIO(id_usuario),
+	FOREIGN KEY (publicacion) references PUBLICACION(id_publicacion)
 
 )
 
 create table CALIFICACION
 (
 	id_calificacion     numeric(10,0) identity (1,1),
-	calif_estrellas     int,
-	calif_detalle       nvarchar(255),
+	calif_estrellas     int           NULL, 
+	calif_detalle       nvarchar(255) NULL,
 
 	PRIMARY KEY (id_calificacion)
 )
@@ -181,19 +179,18 @@ create table CALIFICACION
 CREATE TABLE COMPRA
 (
 	id_compra		   numeric(10,0) identity (1,1),
-	id_comprador	   numeric(10,0) NOT NULL,
-	id_publicacion	   numeric(10,0) NOT NULL,
+	comprador	       numeric(10,0) NOT NULL,
+	publicacion	       numeric(10,0) NOT NULL,
 	fecha_operacion	   datetime	     NOT NULL,
 	monto		       numeric(10,2) NOT NULL,
     cantidad           int,
-	id_calificacion	   numeric(10,0) NULL, 
+	calificacion	   numeric(10,0) NULL, 
 	
 	PRIMARY KEY (id_compra),
-	FOREIGN KEY (id_comprador)	  references USUARIO(id_usuario),
-	FOREIGN KEY (id_publicacion)  references PUBLICACION(id_publicacion),
-	FOREIGN KEY (id_calificacion) references CALIFICACION(id_calificacion)
+	FOREIGN KEY (comprador)	  references USUARIO(id_usuario),
+	FOREIGN KEY (publicacion)  references PUBLICACION(id_publicacion),
+	FOREIGN KEY (calificacion) references CALIFICACION(id_calificacion)
 )
-
 -- Procedemiento para busqueda de un producto, se puede filtrar por id_rubro ( o no , segun que decida el usuario)
 -- te devuelve 10 productos por paginas
 
