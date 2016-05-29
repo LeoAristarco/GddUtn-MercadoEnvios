@@ -15,22 +15,16 @@ insert into negro(nombre) values ('lobezzzno'),('ronanmanco')
 
 PARA LEER EL PRIMER NOMBRE DE LA PRIMERA FILA HARIA:
 
+            DataBase db = DataBase.Instance;//obtengo instancia de db
 
-	    DataBase db = DataBase.Instance;//Me da una instancia de la base de datos
+            string consulta = "select* from negro";//consulta a realizar
 
-            db.abrirConexion();//abre conexion (esto por ahi lo cambio para q lo haga dentro de cada consulta)
+            List<Dictionary<string, object>> tabla = db.ejecutarConsulta(consulta);//ejecuta la consulta y retorna una lista de diccionarios
 
-            string consulta = "select * from negro";//El string de la consulta
-
-            SqlDataReader reader = db.ejecutarConsulta(consulta);//guardo un reader todas las filas que retorno la consulta
-
-            if (db.contieneFilas(reader))
+            if (tabla.Count > 0)
             {
-                reader.Read();//Esto lee la primera fila y deja un puntero en la siguiente
-
-                MessageBox.Show((string)db.getValue(reader, "nombre"));//obtengo el valor de la propiedad nombre (siempre hay q castear al tipo q quiero)
+                MessageBox.Show("el registro de id: " + tabla.ElementAt(0)["id_negro"] + " tiene nombre " + tabla.ElementAt(0)["nombre"]);//muestro la 1era fila
             }
-
-            db.cerrarConexion();//cierro conexion
+        }
 
 ////////////////////////////////////////////////////////////////////////////

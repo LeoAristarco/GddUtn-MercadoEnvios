@@ -36,25 +36,19 @@ namespace WindowsFormsApplication1.Clases
                                 + "Initial Catalog=GD1C2016;Integrated Security=false;"
                                 + "UID=gd;PWD=gd2016;";
 
-        private SqlConnection conexion;
-
         private DataBase()
         {
-            conexion = new SqlConnection();
+        }
+
+        private SqlConnection abrirConexion()
+        {
+            SqlConnection conexion = new SqlConnection();
             conexion.ConnectionString = datosConexion;
-        }
-
-        public void abrirConexion()
-        {
             conexion.Open();
+            return conexion;
         }
 
-        public void cerrarConexion()
-        {
-            conexion.Close();
-        }
-
-        private SqlDataReader getDataReader(string consulta,char tipoConsulta,List<SqlParameter> parametros)
+        private SqlDataReader getDataReader(string consulta,char tipoConsulta,List<SqlParameter> parametros,SqlConnection conexion)
         {
             SqlCommand comando = new SqlCommand();
             comando.Connection = conexion;
@@ -78,7 +72,9 @@ namespace WindowsFormsApplication1.Clases
                 comando.Parameters.Add(parametro);
             }
 
-            return comando.ExecuteReader();
+            SqlDataReader reader= comando.ExecuteReader();
+
+            return reader;
         }
 
         public void agregarParametro(List<SqlParameter> lista, string parametro, object valor)
@@ -86,22 +82,33 @@ namespace WindowsFormsApplication1.Clases
             lista.Add(new SqlParameter(parametro, valor));
         }
 
-        public SqlDataReader ejecutarStoredProcedure(string storedProcedure,List<SqlParameter> parametros)
+        private List<Dictionary<string, object>> executeQueryableCommand(string command, List<SqlParameter> parameters,char commandType)
         {
-            return getDataReader(storedProcedure, 'P', parametros);
+            SqlConnection connection = abrirConexion();
+
+            List<Dictionary<string, object>> rows = adapterDiccionario(getDataReader(command, commandType, parameters, connection));
+
+            connection.Close();
+
+            return rows;
         }
 
-        public SqlDataReader ejecutarConsulta(string consulta, List<SqlParameter> parametros)
+        public List<Dictionary<string, object>> ejecutarStoredProcedure(string storedProcedure,List<SqlParameter> parametros)
         {
-            return getDataReader(consulta, 'T', parametros);
+            return executeQueryableCommand(storedProcedure, parametros, 'P');
         }
 
-        public SqlDataReader ejecutarConsulta(string consulta)
+        public List<Dictionary<string, object>> ejecutarConsulta(string consulta, List<SqlParameter> parametros)
         {
-            return getDataReader(consulta, 'T', new List<SqlParameter>());
+            return executeQueryableCommand(consulta, parametros, 'T');
         }
 
-        public object getValue(SqlDataReader dataReader,string nombreCampo)//hay que castear al valor pedido
+        public List<Dictionary<string, object>> ejecutarConsulta(string consulta)
+        {
+            return ejecutarConsulta(consulta, new List<SqlParameter>());
+        }
+
+        /*public object getValue(SqlDataReader dataReader,string nombreCampo)//hay que castear al valor pedido
         {
             return dataReader[nombreCampo];
         }
@@ -109,7 +116,40 @@ namespace WindowsFormsApplication1.Clases
         public bool contieneFilas(SqlDataReader reader)
         {
             return reader.HasRows;
+        }*/
+
+        public List<Dictionary<string, object>> adapterDiccionario(SqlDataReader reader)
+        {
+            List<Dictionary<string, object>> lista = new List<Dictionary<string, object>>();
+
+            if (reader.HasRows)
+            {
+                bool notEnded = reader.Read();
+
+                string columna = "";
+
+                while (notEnded)
+                {
+                    Dictionary < string, object> filaDiccionario=new Dictionary<string, object>();
+
+                    for (int i = 0; i < reader.FieldCount; i++)
+                    { 
+
+                    columna = reader.GetName(i);
+
+                    filaDiccionario.Add(columna, reader[columna]);
+                    }
+
+                    lista.Add(filaDiccionario);
+
+                    notEnded = reader.Read();
+                    }
+                }
+
+                return lista;
+            }
+
+
         }
 
     }
-}
