@@ -218,3 +218,61 @@ begin
  where publicaciones between (@pagina*10)-9 and (@pagina*10)
 
 end
+
+--validaciones
+create function mas_de_tres_sin_calificar(@id_cliente numeric(10,0))
+returns bit
+as
+begin
+declare @cant int,@bool bit
+
+      select @cant= count(isnull (calif_estrellas,1))
+	  from COMPRA inner join CALIFICACION on id_calificacion =calificacion
+	  where @id_cliente = @id_cliente
+	  group by @id_cliente
+
+	  if (@cant > 3)
+	   SET @bool=1
+      ELSE
+	   SET @bool=0
+
+      return @bool
+
+end
+
+
+create function publicacion_en_estado_pausado(@id_publicacion numeric(10,0))
+returns bit
+as
+begin
+declare @cant int,@bool bit
+
+      select @cant= count(id_publicacion)
+	  from PUBLICACION inner join ESTADO_PUBLICACION on estado_publicacion = id_estado
+	  where id_publicacion = @id_publicacion and estado_nombre = 'PAUSADO'
+
+	  if (@cant <> 0)
+	   SET @bool=1
+      ELSE
+	   SET @bool=0
+
+      return @bool
+
+end
+
+--procedemiento para validar antes de comprar, segun el @tipoError deriba en distintas ventas de c#
+create procedure st_validacion_de_compra_oferta
+@id_cliente numeric(10,0),
+@id_publicacion numeric(10,0),
+@tipoError varchar(50) out
+as
+begin
+      if(@id_cliente = @id_publicacion)
+	    set @tipoError = 'error, cliente es el mismo'
+	  if(dbo.publicacion_en_estado_pausado(@id_publicacion) =1)
+	    set @tipoError = 'error, publicacion pausada'
+	  if(dbo.mas_de_tres_sin_calificar(@id_cliente) =1)
+	   set @tipoError = 'error, el cliente debe calificar sus compras'
+	    
+	  return @tipoError	  
+end
