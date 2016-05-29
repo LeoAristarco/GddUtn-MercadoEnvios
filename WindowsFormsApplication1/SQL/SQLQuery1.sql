@@ -2,6 +2,7 @@ create table FUNCIONALIDAD
 (
 	id_funcionalidad        numeric(10,0) identity (1,1),
 	funcionalidad_nombre    nvarchar(255),
+	habilitado   bit,
 
 	PRIMARY KEY (id_funcionalidad)
 )
