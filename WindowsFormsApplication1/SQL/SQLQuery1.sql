@@ -30,7 +30,7 @@ create table USUARIO
 (
 	id_usuario      numeric(10,0) identity (1,1),
 	username        nvarchar(255),
-	password        nvarchar(255),
+	contrasenia     nvarchar(255),
 	intentos_login  int,
 	primer_ingreso  bit,
 	baja_logica		bit,
