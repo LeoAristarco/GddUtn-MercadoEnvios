@@ -30,7 +30,7 @@ create table USUARIO
 (
 	id_usuario      numeric(10,0) identity (1,1),
 	username        nvarchar(255),
-	password        nvarchar(255),
+	contraseña        nvarchar(255),
 	intentos_login  int,
 	primer_ingreso  bit,
 	baja_logica		bit,
@@ -54,7 +54,7 @@ CREATE TABLE CLIENTE
 	usuario			    numeric(10,0),
 	nombre				nvarchar(255),
 	apellido			nvarchar(255),
-	numero_documento	nvarchar(255),
+	dni	                nvarchar(255),
 	tipo_documento		nvarchar(255),
 	
 	
@@ -193,6 +193,9 @@ CREATE TABLE COMPRA
 	FOREIGN KEY (publicacion)  references PUBLICACION(id_publicacion),
 	FOREIGN KEY (calificacion) references CALIFICACION(id_calificacion)
 )
+
+--------------COMIENZO funcionalidad Comprar/Ofertar----------------------------------------------------------------------
+
 -- Procedemiento para busqueda de un producto, se puede filtrar por id_rubro ( o no , segun que decida el usuario)
 -- te devuelve 10 productos por paginas
 
@@ -262,26 +265,26 @@ declare @cant int,@bool bit
 
 end
 
---procedemiento para validar antes de comprar, segun el @tipoError deriba en distintas ventas de c#
+--procedemiento para validar antes de comprar, segun el @tipoError deriba en distintas ventanas de c#
 create procedure st_validacion_de_compra_oferta
 @id_cliente numeric(10,0),
+@usuario_responsable numeric(10,0),
 @id_publicacion numeric(10,0),
 @tipoError varchar(50) out
 as
 begin
-      if(@id_cliente = @id_publicacion)
+      if(@id_cliente = @usuario_responsable )
 	    set @tipoError = 'error, cliente es el mismo'
 	  if(dbo.publicacion_en_estado_pausado(@id_publicacion) =1)
 	    set @tipoError = 'error, publicacion pausada'
 	  if(dbo.mas_de_tres_sin_calificar(@id_cliente) =1)
 	   set @tipoError = 'error, el cliente debe calificar sus compras'
 	    
-	  return @tipoError	  
 end
 
 
 -- Procedimientos que usa el tr_insertarCompra
-create procedure st_actualizarEstadoPublicacion
+create procedure st_actualizar_Estado_Publicacion_a_Finalizado
 @publicacion numeric(10,0)
 as begin
  declare @stock int
@@ -321,8 +324,8 @@ create trigger tr_insertarCompra
 	        @monto=i.monto, @cantidad=i.cantidad
 	from inserted i
 
-	insert into COMPRA (id_compra, comprador, publicacion, fecha_operacion,monto, cantidad,calificacion )
-	values ( @id_compra , @comprador , @publicacion , @fecha_operacion , @monto ,
+	insert into COMPRA ( comprador, publicacion, fecha_operacion,monto, cantidad,calificacion )
+	values (  @comprador , @publicacion , @fecha_operacion , @monto ,
 			 @cantidad, @id_calificacion )
 	
 	update PUBLICACION SET stock = stock - @cantidad
@@ -333,7 +336,65 @@ create trigger tr_insertarCompra
 	 
 	-- updetear la tabla facturas ?SSAs
 
-	end 
+	end
+	
+-------------- FIN  funcionalidad Comprar/Ofertar----------------------------------------------------------------------
+
+
+-------------- Comienzo de Calificar al vendedor----------------------------------------------------------------------
+
+create procedure st_mostrarPublicacionesSinCalificar(@id_usuario numeric(10,0))
+as begin  
+	  select  *
+	  from COMPRA
+	  inner join PUBLICACION on publicacion = id_publicacion
+	  inner join CALIFICACION on id_calificacion =calificacion
+	  where comprador = @id_usuario and calif_estrellas is null
+end
+
+
+create procedure st_insertarCalificacion(
+@id_calificacion numeric(10,0),
+@calif_estrellas int,
+@calif_detalle nvarchar(255) )
+as begin  
+        update CALIFICACION set calif_estrellas= @calif_estrellas,calif_detalle =@calif_detalle
+		where id_calificacion=@id_calificacion
+end
+
+create procedure st_resumenDeEstrellasDadas(@id_usuario numeric(10,0))
+as begin
+
+select * into #TablaTemporal --Tabla Temporal
+from COMPRA
+inner join CALIFICACION on id_calificacion =calificacion	
+where comprador = @id_usuario
+
+select 
+(select count(calif_estrellas) from #TablaTemporal where calif_estrellas = 1) as [1 estrella],
+(select count(calif_estrellas) from #TablaTemporal where calif_estrellas = 2) as [2 estrella],
+(select count(calif_estrellas) from #TablaTemporal where calif_estrellas = 3) as [3 estrella],
+(select count(calif_estrellas) from #TablaTemporal where calif_estrellas = 4) as [4 estrella],
+(select count(calif_estrellas) from #TablaTemporal where calif_estrellas = 5) as [5 estrella]
+
+drop table #TablaTemporal
+end
+
+create procedure st_ultimas5compras(@id_usuario numeric(10,0))
+as begin  
+	  select top 5 *
+	  from COMPRA
+	  inner join PUBLICACION on publicacion = id_publicacion
+	  inner join CALIFICACION on id_calificacion =calificacion
+	  where comprador = @id_usuario
+	  order by fecha_operacion desc
+end
+
+
+
+
+
+
 
 
 		/************ABM de usuario*************/
