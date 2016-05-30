@@ -214,9 +214,10 @@ begin
       where (descripcion like '%' + @descripcion + '%') and 
       estado_nombre <> 'BORRADOR' and estado_nombre <> 'FINALIZADO' and
       (id_rubro = @rubroId OR @rubroId IS NULL)
-      order by precio_visibilidad desc
+      
       ) gg_vieja
  where publicaciones between (@pagina*10)-9 and (@pagina*10)
+ order by precio_visibilidad desc
 
 end
 
