@@ -334,3 +334,34 @@ create trigger tr_insertarCompra
 	-- updetear la tabla facturas ?SSAs
 
 	end 
+
+
+		/************ABM de usuario*************/
+
+	CREATE PROCEDURE sp_crear_cliente
+		@user			nvarchar(255),
+		@pass			nvarchar(255),
+		@rol			nvarchar(255),
+		@mail			nvarchar(255),
+		@telefono		nvarchar(60),
+		@calle			nvarchar(255),
+		@numero_calle	numeric(18,0),
+		@numero_piso	nvarchar(30),
+		@departamento	nvarchar(50),
+		@localidad		nvarchar(255),
+		@codigo_postal	nvarchar(50),
+		@nombre			nvarchar(255),
+		@apellido		nvarchar(255),
+		@dni			nvarchar(255),
+		@tipo_dni		nvarchar(255)
+	AS BEGIN
+		INSERT INTO USUARIO(username,contrasenia,baja_logica,fecha_creacion,mail,telefono,calle,numero_calle,departamento,localidad,codigo_postal)
+		VALUES (@user,@pass,0,GETDATE(),@mail,@telefono,@calle,@numero_calle,@numero_piso,@departamento,@localidad,@codigo_postal)
+
+		INSERT INTO CLIENTE
+		VALUES ((SELECT id_usuario FROM USUARIO WHERE username = @user),@nombre,@apellido,@dni,@tipo_dni)
+
+		INSERT INTO ROL_POR_USUARIO
+		VALUES ((SELECT id_usuario FROM USUARIO WHERE username = @user), (SELECT id_rol FROM ROL WHERE rol_nombre =  @rol))
+	END
+	--Falta validar la existencia del usuario
