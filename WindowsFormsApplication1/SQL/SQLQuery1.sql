@@ -30,7 +30,7 @@ create table USUARIO
 (
 	id_usuario      numeric(10,0) identity (1,1),
 	username        nvarchar(255),
-	contrasenia     nvarchar(255),
+	password        nvarchar(255),
 	intentos_login  int,
 	primer_ingreso  bit,
 	baja_logica		bit,
@@ -38,7 +38,6 @@ create table USUARIO
 	mail			nvarchar(255),
 	telefono		nvarchar(60),
 	calle			nvarchar(255),
-	numero_calle	numeric(18,0),
 	numero_piso		nvarchar(30),
 	departamento	nvarchar(50),
 	localidad		nvarchar(255),
@@ -55,7 +54,7 @@ CREATE TABLE CLIENTE
 	usuario			    numeric(10,0),
 	nombre				nvarchar(255),
 	apellido			nvarchar(255),
-	dni					numeric(18,0),
+	numero_documento	nvarchar(255),
 	tipo_documento		nvarchar(255),
 	
 	
@@ -153,6 +152,7 @@ create table PUBLICACION
 	FOREIGN KEY	(usuario_responsable)   references USUARIO(id_usuario),
 	FOREIGN KEY (rubro)                 references RUBRO(id_rubro)
 )
+
 
 create table OFERTA
 (
