@@ -16,4 +16,4 @@
 
 ###Facturacion:
 
-- Como dice en el enunciado, cuando una factura pasa a estar activa se debe generar en ese mismo instante la facturacion correspondiente al tipo de visibilidad elejida
+- Como dice en el enunciado, cuando una factura pasa a estar activa se debe generar en ese mismo instante la facturacion correspondiente al tipo de visibilidad elejida. Luego, cuando se realiza una venta , hay una factura por la compra que se hizo, y que la misma factura tenga dos items. Uno para la comision por la venta y otro de costo de envio (si corresponde).
