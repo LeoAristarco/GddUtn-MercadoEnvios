@@ -1,3 +1,5 @@
+USE GD1C2016
+
 create table FUNCIONALIDAD
 (
 	id_funcionalidad        numeric(10,0) identity (1,1),
@@ -33,8 +35,7 @@ create table USUARIO
 	contrasenia     nvarchar(255),
 	intentos_login  int,
 	primer_ingreso  bit,
-	baja_logica		bit,
-	fecha_creacion	datetime,
+	baja_logica		bit,	
 	mail			nvarchar(255),
 	telefono		nvarchar(60),
 	calle			nvarchar(255),
@@ -57,6 +58,8 @@ CREATE TABLE CLIENTE
 	apellido			nvarchar(255),
 	dni					numeric(18,0),
 	tipo_documento		nvarchar(255),
+	fecha_nacimiento	datetime,
+	fecha_creacion		datetime
 	
 	
 	PRIMARY KEY(id_cliente),
@@ -338,7 +341,7 @@ create trigger tr_insertarCompra
 
 		/************ABM de usuario*************/
 
-	CREATE PROCEDURE sp_crear_cliente
+	CREATE PROCEDURE sp_crearUsuario
 		@user			nvarchar(255),
 		@pass			nvarchar(255),
 		@rol			nvarchar(255),
@@ -349,19 +352,40 @@ create trigger tr_insertarCompra
 		@numero_piso	nvarchar(30),
 		@departamento	nvarchar(50),
 		@localidad		nvarchar(255),
-		@codigo_postal	nvarchar(50),
-		@nombre			nvarchar(255),
-		@apellido		nvarchar(255),
-		@dni			nvarchar(255),
-		@tipo_dni		nvarchar(255)
+		@codigo_postal	nvarchar(50)
+		
 	AS BEGIN
-		INSERT INTO USUARIO(username,contrasenia,baja_logica,fecha_creacion,mail,telefono,calle,numero_calle,departamento,localidad,codigo_postal)
-		VALUES (@user,@pass,0,GETDATE(),@mail,@telefono,@calle,@numero_calle,@numero_piso,@departamento,@localidad,@codigo_postal)
-
-		INSERT INTO CLIENTE
-		VALUES ((SELECT id_usuario FROM USUARIO WHERE username = @user),@nombre,@apellido,@dni,@tipo_dni)
-
-		INSERT INTO ROL_POR_USUARIO
-		VALUES ((SELECT id_usuario FROM USUARIO WHERE username = @user), (SELECT id_rol FROM ROL WHERE rol_nombre =  @rol))
+		INSERT INTO USUARIO(username,contrasenia,baja_logica,mail,telefono,calle,numero_calle,departamento,localidad,codigo_postal)
+		VALUES (@user,@pass,0,@mail,@telefono,@calle,@numero_calle,@numero_piso,@departamento,@localidad,@codigo_postal)		
 	END
+	GO
 	--Falta validar la existencia del usuario
+
+	CREATE PROCEDURE sp_crearCliente
+		@nombre				nvarchar(255),
+		@apellido			nvarchar(255),
+		@dni				numeric(18,0),
+		@tipo_documento		nvarchar(255),
+		@fecha_nacimiento	datetime
+
+	AS BEGIN
+		INSERT INTO CLIENTE(nombre,apellido,dni,tipo_documento,fecha_nacimiento,fecha_creacion)
+		VALUES (@nombre,@apellido,@dni,@tipo_documento,@fecha_nacimiento,GETDATE())
+	END
+	GO
+
+	CREATE PROCEDURE sp_crearEmpresa
+		@razon_social	nvarchar(255),
+		@cuit			nvarchar(50),
+		@nombre_contacto nvarchar(255),
+		@ciudad			nvarchar(255),
+		@rubro			nvarchar(255)
+	AS BEGIN
+		INSERT INTO EMPRESA(razon_social,cuit,nombre_contacto,ciudad,rubro)	
+		VALUES (@razon_social,@cuit,@nombre_contacto,@ciudad,@rubro)
+	END
+	GO
+
+
+
+	
