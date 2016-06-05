@@ -1,6 +1,6 @@
-﻿namespace WindowsFormsApplication1.ABM_Rubro
+﻿namespace WindowsFormsApplication1.ABM_Usuario.Cliente
 {
-    partial class Modificar
+    partial class BuscarCliente
     {
         /// <summary>
         /// Required designer variable.
@@ -29,49 +29,43 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.dgResultados = new System.Windows.Forms.DataGridView();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgResultados)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Controls.Add(this.dgResultados);
+            this.groupBox1.Location = new System.Drawing.Point(13, 13);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(474, 73);
-            this.groupBox1.TabIndex = 0;
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox1.Size = new System.Drawing.Size(560, 246);
+            this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Cambiar nombre";
+            this.groupBox1.Text = "Clientes encontrados";
             // 
-            // textBox1
+            // dgResultados
             // 
-            this.textBox1.Location = new System.Drawing.Point(18, 21);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(281, 34);
-            this.textBox1.TabIndex = 0;
+            this.dgResultados.BackgroundColor = System.Drawing.SystemColors.Menu;
+            this.dgResultados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgResultados.Location = new System.Drawing.Point(12, 25);
+            this.dgResultados.Margin = new System.Windows.Forms.Padding(4);
+            this.dgResultados.Name = "dgResultados";
+            this.dgResultados.Size = new System.Drawing.Size(535, 209);
+            this.dgResultados.TabIndex = 0;
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(336, 22);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(121, 34);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Modificar";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // Modificar
+            // BuscarCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(504, 100);
+            this.ClientSize = new System.Drawing.Size(592, 276);
             this.Controls.Add(this.groupBox1);
-            this.Name = "Modificar";
-            this.Text = "Modificar";
+            this.Name = "BuscarCliente";
+            this.Text = "BuscarCliente";
             this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgResultados)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -79,7 +73,6 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.DataGridView dgResultados;
     }
 }
