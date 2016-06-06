@@ -171,6 +171,15 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Clases\DataBase.cs" />
+    <Compile Include="Clases\EstadoPublicacion.cs" />
+    <Compile Include="Clases\Publicacion.cs" />
+    <Compile Include="Clases\PublicacionRepository.cs" />
+    <Compile Include="Clases\Repository.cs" />
+    <Compile Include="Clases\Rubro.cs" />
+    <Compile Include="Clases\TipoPublicacion.cs" />
+    <Compile Include="Clases\Usuario.cs" />
+    <Compile Include="Clases\Visibilidad.cs" />
+    <Compile Include="Clases\VisibilidadRepository.cs" />
     <Compile Include="ComprarOfertar\AgregarRubros.cs">
       <SubType>Form</SubType>
     </Compile>
