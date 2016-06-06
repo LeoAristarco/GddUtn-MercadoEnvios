@@ -88,9 +88,9 @@
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(36, 460);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(125, 17);
+            this.label9.Size = new System.Drawing.Size(43, 17);
             this.label9.TabIndex = 20;
-            this.label9.Text = "Permitir Preguntas";
+            this.label9.Text = "Envio";
             // 
             // label8
             // 
@@ -196,9 +196,9 @@
             this.checkBox1.AutoSize = true;
             this.checkBox1.Location = new System.Drawing.Point(195, 460);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(98, 21);
+            this.checkBox1.Size = new System.Drawing.Size(88, 21);
             this.checkBox1.TabIndex = 8;
-            this.checkBox1.Text = "checkBox1";
+            this.checkBox1.Text = "hayEnvio";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // precio
