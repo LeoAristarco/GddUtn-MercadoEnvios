@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApplication1.Clases
 {
-    class Visibilidad
+    public class Visibilidad
     {
-        public long id { get; }
+        public long id;// { get; }
 
-        private string nombre;
+        public string nombre;
 
-        private double precio;
+        public double precio;
 
-	    private double porcentajeVenta;
+	    public double porcentajeVenta;
 
         public Visibilidad(long id,string nombre,double precio,double porcentajeVenta)
         {

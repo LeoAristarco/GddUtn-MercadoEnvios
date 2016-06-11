@@ -1,7 +1,7 @@
 ﻿namespace WindowsFormsApplication1.Clases
 {
-    internal class Rubro
+    public class Rubro
     {
-        public long id { get; }
+        public long id;//{ get; }
     }
 }

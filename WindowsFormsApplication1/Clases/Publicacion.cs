@@ -6,21 +6,22 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApplication1.Clases
 {
-    class Publicacion
+    public class Publicacion
     {
-        public long id { get; }
-        public string descripcion { get; }
-        public double stock { get; }
-        public DateTime fechaInicio { get; }
-        public DateTime fechaVencimiento { get; }
-        public double precio { get; }
-        public Rubro rubro { get; }
-        public Visibilidad visibilidad { get; }
-        public EstadoPublicacion estado { get; }
-        public Usuario responsable { get; }
-        public TipoPublicacion tipo { get; }
+        public long id;// { get; }
+        public string descripcion;// { get; }
+        public double stock ;//{ get; }
+        public DateTime fechaInicio;// { get; }
+        public DateTime fechaVencimiento;// { get; }
+        public double precio;// { get; }
+        public Rubro rubro ;//{ get; }
+        public Visibilidad visibilidad;// { get; }
+        public EstadoPublicacion estado ;//{ get; }
+        public Usuario responsable ;//{ get; }
+        public TipoPublicacion tipo;// { get; }
+        public bool hayEnvio;
 
-        public Publicacion(long id, string descripcion, double stock, DateTime fechaInicio, DateTime fechaVencimiento, double precio, Rubro rubro, Visibilidad visibilidad, EstadoPublicacion estado, Usuario responsable,TipoPublicacion tipo)
+        public Publicacion(long id, string descripcion, double stock, DateTime fechaInicio, DateTime fechaVencimiento, double precio, Rubro rubro, Visibilidad visibilidad, EstadoPublicacion estado, Usuario responsable,TipoPublicacion tipo,bool hayEnvio)
         {
             this.id = id;
             this.descripcion = descripcion;
@@ -33,6 +34,7 @@ namespace WindowsFormsApplication1.Clases
             this.estado = estado;
             this.responsable = responsable;
             this.tipo = tipo;
+            this.hayEnvio = hayEnvio;
         }
     }
 }

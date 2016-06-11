@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApplication1.Clases
 {
-    internal class TipoPublicacion
+    public class TipoPublicacion
     {
         internal object id;
     }

@@ -1,7 +1,7 @@
 ﻿namespace WindowsFormsApplication1.Clases
 {
-    internal class Usuario
+    public class Usuario
     {
-        public long id { get; }
+        public long id;//{ get; }
     }
 }

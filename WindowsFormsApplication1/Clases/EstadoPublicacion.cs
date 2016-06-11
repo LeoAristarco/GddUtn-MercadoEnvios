@@ -1,7 +1,14 @@
 ﻿namespace WindowsFormsApplication1.Clases
 {
-    internal class EstadoPublicacion
+    public class EstadoPublicacion
     {
-        public long id { get; }
+        public long id;// { get; }
+        public string nombre;
+
+        public EstadoPublicacion(long id,string nombre)
+        {
+            this.id = id;
+            this.nombre = nombre;
+        }
     }
 }

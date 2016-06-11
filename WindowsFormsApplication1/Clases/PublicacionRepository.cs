@@ -12,9 +12,23 @@ namespace WindowsFormsApplication1.Clases
 
         public void agregarPublicacion(Publicacion publicacion)
         {
-            List<SqlParameter> parametros = new List<SqlParameter>();
+            Dictionary<string, object> filaPublicacion = serializarConId(publicacion);
 
-            Dictionary<string, object> filaPublicacion = serializarPublicacion(publicacion);
+            hacerInsert(filaPublicacion);
+        }
+
+        public void agregarPublicacion()
+        {
+            Dictionary<string, object> filaPublicacion = new Dictionary<string, object>();
+
+            //zdfadfsdfsf
+
+            hacerInsert(filaPublicacion);
+        }
+
+        private void hacerInsert(Dictionary<string, object> filaPublicacion)
+        {
+            List<SqlParameter> parametros = new List<SqlParameter>();
 
             string insert = "insert into publicacion (";
 
@@ -23,8 +37,8 @@ namespace WindowsFormsApplication1.Clases
             foreach (string clave in filaPublicacion.Keys)
             {
                 db.agregarParametro(parametros, "@" + clave, filaPublicacion[clave]);
-                insert += clave+",";
-                valores += "@" + clave+",";
+                insert += clave + ",";
+                valores += "@" + clave + ",";
             }
 
             insert = insert.Remove(insert.Length - 1);
@@ -34,26 +48,35 @@ namespace WindowsFormsApplication1.Clases
             valores += ")";
 
             db.ejecutarConsulta(insert + valores, parametros);
-
         }
 
-        private Dictionary<string, object> serializarPublicacion(Publicacion publicacion)
+        private Dictionary<string, object> serializarSinId(Publicacion publicacion)
         {
             Dictionary<string, object> fila = new Dictionary<string, object>();
 
-            fila.Add("id_publicacion",publicacion.id);
-            fila.Add("descripcion",publicacion.descripcion);
-            fila.Add("stock",publicacion.stock);
+            //fila.Add("id_publicacion",publicacion.id);//ESTO LO SACO PORQUE ES LA PK
+            fila.Add("descripcion", publicacion.descripcion);
+            fila.Add("stock", publicacion.stock);
             //fila.Add("fecha_inicio",publicacion.fechaInicio);
             //fila.Add("fecha_vencimiento",publicacion.fechaVencimiento);//EWsto hay q ver cmo se mapea
-            fila.Add("precio",publicacion.precio);
-            fila.Add("rubro",publicacion.rubro.id);
-            fila.Add("visibilidad",publicacion.visibilidad.id);
-            fila.Add("estado_publicacion",publicacion.estado.id);
-            fila.Add("usuario_responsable",publicacion.responsable.id);
-            fila.Add("tipo_publicacion",publicacion.tipo.id);
+            fila.Add("precio", publicacion.precio);
+            fila.Add("rubro", publicacion.rubro.id);
+            fila.Add("visibilidad", publicacion.visibilidad.id);
+            fila.Add("estado_publicacion", publicacion.estado.id);
+            fila.Add("usuario_responsable", publicacion.responsable.id);
+            fila.Add("tipo_publicacion", publicacion.tipo.id);
 
             return fila;
         }
+
+        private Dictionary<string, object> serializarConId(Publicacion publicacion)
+        {
+            Dictionary<string, object> fila = serializarSinId(publicacion);
+
+            fila.Add("id_publicacion", publicacion.id);
+
+            return fila;
+        }
+
     }
 }

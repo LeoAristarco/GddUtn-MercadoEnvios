@@ -8,7 +8,7 @@ using System.Data;
 
 namespace WindowsFormsApplication1.Clases
 {
-    class DataBase
+    public class DataBase
     {
         #region Singleton
         private static volatile DataBase instancia = null;
