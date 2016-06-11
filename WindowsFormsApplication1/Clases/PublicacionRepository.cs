@@ -32,7 +32,7 @@ namespace WindowsFormsApplication1.Clases
 
             string insert = "insert into publicacion (";
 
-            string valores = "value(";
+            string valores = "values(";
 
             foreach (string clave in filaPublicacion.Keys)
             {
@@ -71,7 +71,7 @@ namespace WindowsFormsApplication1.Clases
 
         internal void updatePublicacion(Publicacion publicacion)
         {
-            Dictionary<string, object> filaPublicacion = serializarConId(publicacion);
+            Dictionary<string, object> filaPublicacion = serializarSinId(publicacion);
 
             List<SqlParameter> parametros = new List<SqlParameter>();
 
@@ -84,19 +84,19 @@ namespace WindowsFormsApplication1.Clases
             }
 
             update = update.Remove(update.Length - 1);
-            update += " where id_publicacion = " + filaPublicacion["id_publicacion"];
+            update += " where id_publicacion = " + publicacion.id.ToString();
 
             db.ejecutarConsulta(update , parametros);
         }
 
-        private Dictionary<string, object> serializarConId(Publicacion publicacion)
+        /*private Dictionary<string, object> serializarConId(Publicacion publicacion)
         {
             Dictionary<string, object> fila = serializarSinId(publicacion);
 
             fila.Add("id_publicacion", publicacion.id);
 
             return fila;
-        }
+        }*/
 
     }
 }
