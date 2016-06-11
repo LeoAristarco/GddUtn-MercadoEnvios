@@ -10,7 +10,7 @@ namespace WindowsFormsApplication1.Clases
     {
         public long id;// { get; }
         public string descripcion;// { get; }
-        public double stock ;//{ get; }
+        public long stock ;//{ get; }
         public DateTime fechaInicio;// { get; }
         public DateTime fechaVencimiento;// { get; }
         public double precio;// { get; }
@@ -21,7 +21,7 @@ namespace WindowsFormsApplication1.Clases
         public TipoPublicacion tipo;// { get; }
         public bool hayEnvio;
 
-        public Publicacion(long id, string descripcion, double stock, DateTime fechaInicio, DateTime fechaVencimiento, double precio, Rubro rubro, Visibilidad visibilidad, EstadoPublicacion estado, Usuario responsable,TipoPublicacion tipo,bool hayEnvio)
+        public Publicacion(long id, string descripcion, long stock, DateTime fechaInicio, DateTime fechaVencimiento, double precio, Rubro rubro, Visibilidad visibilidad, EstadoPublicacion estado, Usuario responsable,TipoPublicacion tipo,bool hayEnvio)
         {
             this.id = id;
             this.descripcion = descripcion;
@@ -35,6 +35,10 @@ namespace WindowsFormsApplication1.Clases
             this.responsable = responsable;
             this.tipo = tipo;
             this.hayEnvio = hayEnvio;
+        }
+
+        public Publicacion()
+        {
         }
     }
 }

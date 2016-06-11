@@ -234,13 +234,15 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Generar Publicación\EstadoPublicacionRepository.cs" />
+    <Compile Include="Clases\EstadoPublicacionRepository.cs" />
     <Compile Include="Generar Publicación\GenerarPubliForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Generar Publicación\GenerarPubliForm.Designer.cs">
       <DependentUpon>GenerarPubliForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Generar Publicación\RubroRepository.cs" />
+    <Compile Include="Generar Publicación\TipoPublicacionRepository.cs" />
     <Compile Include="Historial Cliente\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
