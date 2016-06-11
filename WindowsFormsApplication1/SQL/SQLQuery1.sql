@@ -427,3 +427,46 @@ end
 		VALUES ((SELECT id_usuario FROM USUARIO WHERE username = @user), (SELECT id_rol FROM ROL WHERE rol_nombre =  @rol))
 	END
 	--Falta validar la existencia del usuario
+
+
+
+--------------------------------------------------COMIENZO ABM VISIBILIDAD----------------------------------------------------------------
+
+/* SP Agregar VISIBILIDAD */
+
+CREATE PROCEDURE sp_AgregarVisibilidad
+	(@visibilidad_nombre nvarchar(255), @precio_visibilidad numeric(10,0), @porcentaje_venta  numeric(10,0),
+	  @retorno numeric(10,0) output)
+AS BEGIN
+	INSERT INTO VISIBILIDAD
+		(visibilidad_nombre, precio_visibilidad, porcentaje_venta)
+	VALUES
+		(@visibilidad_nombre, @precio_visibilidad, @porcentaje_venta)
+
+	SET @retorno = SCOPE_IDENTITY();
+END
+GO
+
+/* SP Editar VISIBILIDAD */
+
+CREATE PROCEDURE sp_EditarVisibilidad
+	(@id_visibilidad numeric(10,0), @visibilidad_nombre nvarchar(255), @precio_visibilidad numeric(10,0), 
+		@porcentaje_venta  numeric(10,0))
+AS BEGIN
+	UPDATE Visibilidades 
+	SET visibilidad_nombre = @visibilidad_nombre, precio_visibilidad = @precio_visibilidad,
+	porcentaje_venta = @porcentaje_venta
+	WHERE id_visibilidad = @id_visibilidad
+END
+GO
+
+/* SP Eliminar VISIBILIDAD */
+
+CREATE PROCEDURE sp_EliminarVisibilidad
+	(@id_visibilidad numeric(10,0))
+AS BEGIN
+	DELETE FROM VISIBILIDAD WHERE id_visibilidad = @id_visibilidad
+END
+GO
+
+--------------------------------------------------FIN VISIBILIDAD----------------------------------------------------------------
