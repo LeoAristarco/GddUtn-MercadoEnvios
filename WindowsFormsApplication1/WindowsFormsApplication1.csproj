@@ -234,6 +234,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Generar Publicación\EstadoPublicacionRepository.cs" />
     <Compile Include="Generar Publicación\GenerarPubliForm.cs">
       <SubType>Form</SubType>
     </Compile>
