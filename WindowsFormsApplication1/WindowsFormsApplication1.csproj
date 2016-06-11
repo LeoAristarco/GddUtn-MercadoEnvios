@@ -241,8 +241,8 @@
     <Compile Include="Generar Publicación\GenerarPubliForm.Designer.cs">
       <DependentUpon>GenerarPubliForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Generar Publicación\RubroRepository.cs" />
-    <Compile Include="Generar Publicación\TipoPublicacionRepository.cs" />
+    <Compile Include="Clases\RubroRepository.cs" />
+    <Compile Include="Clases\TipoPublicacionRepository.cs" />
     <Compile Include="Historial Cliente\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
