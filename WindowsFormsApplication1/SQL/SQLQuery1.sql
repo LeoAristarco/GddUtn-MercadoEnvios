@@ -56,6 +56,7 @@ CREATE TABLE CLIENTE
 	apellido			nvarchar(255),
 	dni	                nvarchar(255),
 	tipo_documento		nvarchar(255),
+	fecha_nacimiento	date,
 	
 	
 	PRIMARY KEY(id_cliente),
