@@ -27,7 +27,7 @@ create procedure MIGRAR_TABLA_USUARIO_CLIENTE
 as begin 
 
 	insert into USUARIO
-		select dni, dni, 0, 0, 0, GETDATE(), mail, null, UPPER(calle), calle_numero, piso, depto, null, postal
+		select dni, dni, 0, 0, 0, nacimiento, mail, null, UPPER(calle), calle_numero, piso, depto, null, postal
 		from vista_usuarios_clientes_filtrados;
 	
 	insert into CLIENTE
