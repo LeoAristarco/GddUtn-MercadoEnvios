@@ -146,6 +146,7 @@ create table PUBLICACION
 	estado_publicacion  numeric(10,0),
 	usuario_responsable numeric(10,0),
 	tipo_publicacion    numeric(10,0),
+	envio               bit,
 
 	PRIMARY KEY (id_publicacion),
 	FOREIGN KEY (visibilidad)           references VISIBILIDAD(id_visibilidad),
