@@ -29,8 +29,8 @@ create table FUNCIONALIDAD_POR_ROL
 create table USUARIO
 (
 	id_usuario      numeric(10,0) identity (1,1),
-	username        nvarchar(255),
-	contraseña        nvarchar(255),
+	nick			nvarchar(255),
+	pass			nvarchar(255),
 	intentos_login  int,
 	primer_ingreso  bit,
 	baja_logica		bit,
@@ -38,20 +38,21 @@ create table USUARIO
 	mail			nvarchar(255),
 	telefono		nvarchar(60),
 	calle			nvarchar(255),
+	numero_calle	nvarchar(30),
 	numero_piso		nvarchar(30),
 	departamento	nvarchar(50),
 	localidad		nvarchar(255),
 	codigo_postal	nvarchar(50),
 
 
-	UNIQUE (username),
+	UNIQUE (nick),
 	PRIMARY KEY(id_usuario)
 )
 
 CREATE TABLE CLIENTE
 (
 	id_cliente			numeric(10,0) IDENTITY,
-	usuario			    numeric(10,0),
+	id_usuario			numeric(10,0),
 	nombre				nvarchar(255),
 	apellido			nvarchar(255),
 	dni	                nvarchar(255),
@@ -60,7 +61,7 @@ CREATE TABLE CLIENTE
 	
 	
 	PRIMARY KEY(id_cliente),
-	FOREIGN KEY(usuario) references USUARIO(id_usuario)
+	FOREIGN KEY(id_usuario) references USUARIO(id_usuario)
 )
 
 CREATE TABLE EMPRESA
