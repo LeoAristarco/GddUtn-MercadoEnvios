@@ -197,6 +197,32 @@ CREATE TABLE COMPRA
 	FOREIGN KEY (calificacion) references CALIFICACION(id_calificacion)
 )
 
+CREATE TABLE FACTURA
+(
+	id_factura		  numeric(10,0) identity (1,1),
+	forma_pago		  nvarchar(255) NOT NULL,
+	tipo_visibilidad  nvarchar(255),
+	factura_fecha	  datetime,
+	total_facturar    numeric(10,2) NOT NULL,
+	fact_publicacion  numeric(10,0),
+	
+	PRIMARY KEY (id_factura)
+	FOREIGN KEY (fact_publicacion)  references PUBLICACION(id_publicacion),
+)
+
+CREATE TABLE ITEM_FACTURA
+(
+	id_item			 numeric(10,0) identity (1,1), 
+	nro_factura		 numeric(10,0) NOT NULL,
+	descripcion		 nvarchar(255) NOT NULL,
+	cantidad_vendida numeric(10,0) NOT NULL,
+	precio_unitario  numeric(10,2) NOT NULL,
+	precio_envio     int,
+	
+	PRIMARY KEY (id_item),
+	FOREIGN KEY(nro_factura) REFERENCES FACTURA(id_factura)
+)
+
 --------------COMIENZO funcionalidad Comprar/Ofertar----------------------------------------------------------------------
 
 -- Procedemiento para busqueda de un producto, se puede filtrar por id_rubro ( o no , segun que decida el usuario)
