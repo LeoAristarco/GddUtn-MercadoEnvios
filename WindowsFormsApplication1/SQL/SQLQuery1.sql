@@ -67,7 +67,7 @@ CREATE TABLE CLIENTE
 CREATE TABLE EMPRESA
 (
 	id_empresa		numeric(10,0) IDENTITY,
-	usuario		    numeric(10,0),
+	id_usuario		    numeric(10,0),
 	razon_social	nvarchar(255),
 	cuit			nvarchar(50),
 	nombre_contacto nvarchar(255),
@@ -80,7 +80,7 @@ CREATE TABLE EMPRESA
 	UNIQUE(razon_social),
 	UNIQUE(cuit),
 	PRIMARY KEY(id_empresa),
-	FOREIGN KEY(usuario) REFERENCES USUARIO(id_usuario)
+	FOREIGN KEY(id_usuario) REFERENCES USUARIO(id_usuario)
 
 )
 
