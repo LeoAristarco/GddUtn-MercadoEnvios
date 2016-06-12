@@ -1,5 +1,8 @@
 #Estrategias
 
+###Hipotesis inicial:
+-Seteamos la fecha de inicio del sistema como la máxima encontrada en la tabla maestra.
+
 ###Visibilidad:
 
 -Tomamos los nombres de las visibilidades, los precios y los porcentajes como se encontraban en la tabla maestra:
@@ -12,8 +15,12 @@
 
 -Además agregamos la funcionalidad de envío haciendo que se pueda elegir habilitar la opción desde la creación de la publicación y cada vez que se genera una compra u oferta elegir si es o no con envío.
 -La comisión por el mismo la elegimos como un valor constante de $50.
--Con respecto al ABM de visibilidad decidimos hacer una baja logica de la misma.
 
 ###Facturacion:
 
 - Como dice en el enunciado, cuando una factura pasa a estar activa se debe generar en ese mismo instante la facturacion correspondiente al tipo de visibilidad elejida. Luego, cuando se realiza una venta , hay una factura por la compra que se hizo, y que la misma factura tenga dos items. Uno para la comision por la venta y otro de costo de envio (si corresponde).
+
+
+###Migracion
+-En el momento de la migración cambiamos los códigos de los clientes, las publicaciones, las visibilidades, etc. para resetearlos en el nuevo sistema.
+-El rubro al cual se dedica la empresa lo tomamos aleatoriamente.
