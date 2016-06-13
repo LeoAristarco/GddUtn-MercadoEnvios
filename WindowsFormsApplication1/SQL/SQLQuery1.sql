@@ -231,7 +231,7 @@ CREATE TABLE COMPRA
 
 
 
---------------COMIENZO funcionalidad Comprar/Ofertar----------------------------------------------------------------------
+--------------------------------------COMIENZO funcionalidad Comprar/Ofertar----------------------------------------------------------------------
 
 -- Procedemiento para busqueda de un producto, se puede filtrar por id_rubro ( o no , segun que decida el usuario)
 -- te devuelve 10 productos por paginas
