@@ -439,6 +439,7 @@ as begin
 	  order by fecha_operacion desc
 end
 
+------------------------------------------------ FIN de Calificar al vendedor----------------------------------------------------------------------
 
 
 
