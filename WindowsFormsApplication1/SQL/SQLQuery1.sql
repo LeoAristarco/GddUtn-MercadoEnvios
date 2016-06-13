@@ -137,13 +137,15 @@ create table TIPO_PUBLICACION
 CREATE TABLE FACTURA
 (
 	id_factura		  numeric(10,0) identity (1,1),
+	id_publicacion	  numeric(10,0),
 	forma_pago		  nvarchar(255) NOT NULL,
 	tipo_visibilidad  nvarchar(255),
 	factura_fecha	  datetime,
 	total_facturar    numeric(10,2) NOT NULL,
 	
 	
-	PRIMARY KEY (id_factura)
+	PRIMARY KEY (id_factura),
+	FOREIGN KEY(id_publicacion) REFERENCES PUBLICACION(id_publicacion)
 
 )
 
@@ -174,7 +176,7 @@ create table PUBLICACION
 	usuario_responsable numeric(10,0),
 	tipo_publicacion    numeric(10,0),
 	envio               bit,
-	factura             numeric(10,0),
+	--factura             numeric(10,0),
 		
 
 	PRIMARY KEY (id_publicacion),
@@ -183,7 +185,7 @@ create table PUBLICACION
 	FOREIGN KEY (tipo_publicacion)      references TIPO_PUBLICACION(id_tipo),
 	FOREIGN KEY	(usuario_responsable)   references USUARIO(id_usuario),
 	FOREIGN KEY (rubro)                 references RUBRO(id_rubro),
-	FOREIGN KEY (factura)  references FACTURA(id_factura)
+	--FOREIGN KEY (factura)  references FACTURA(id_factura)
 )
 
 
