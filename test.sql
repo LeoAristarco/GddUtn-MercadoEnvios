@@ -1,7 +1,4 @@
-
------------test---------------------------------------
-
-insert into USUARIO(username)
+insert into USUARIO(nick)
 values('pepe49')
 
 
