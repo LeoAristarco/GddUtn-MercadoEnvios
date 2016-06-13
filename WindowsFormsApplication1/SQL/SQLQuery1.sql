@@ -137,7 +137,7 @@ create table TIPO_PUBLICACION
 CREATE TABLE FACTURA
 (
 	id_factura		  numeric(10,0) identity (1,1),
-	id_publicacion	  numeric(10,0),
+	id_publicacion	  numeric(10,0) NOT NULL,
 	forma_pago		  nvarchar(255) NOT NULL,
 	tipo_visibilidad  nvarchar(255),
 	factura_fecha	  datetime,

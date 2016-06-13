@@ -123,6 +123,7 @@ go
 /********************************************************************************************************************************/
 /*VISIBILIDAD, ESTADO_PUBLICACION, TIPO_PUBLICACION Y RUBRO*/
 /********************************************************************************************************************************/
+
 insert into VISIBILIDAD
 	values 
 		('PLATA', 100, 0.20),
@@ -206,12 +207,72 @@ end
 go
 
 --ejecuto procedimiento
-exec MIGRAR_PUBLICACIONES_DE_CLIENTES
+exec MIGRAR_PUBLICACIONES_DE_CLIENTES;
 
 go
 
 --libero todo
 drop view vista_publicaciones_de_clientes;
 drop procedure MIGRAR_PUBLICACIONES_DE_CLIENTES;
+
+go
+
+/********************************************************************************************************************************/
+/*PUBLICACIONES DE EMPRESAS*/
+/********************************************************************************************************************************/
+
+--creo vista para recorrer
+create view vista_publicaciones_de_empresas
+as
+select 
+	Publ_Empresa_Cuit as cuit,	
+	Publicacion_Cod as codigo,
+	Publicacion_Descripcion as descripcion,
+	Publicacion_Stock as stock,
+	Publicacion_Fecha as creacion,
+	Publicacion_Fecha_Venc as vencimiento,
+	Publicacion_Precio as precio,
+	Publicacion_Tipo as tipo,
+	UPPER(Publicacion_Visibilidad_Desc) as vis_nombre,
+	Publicacion_Visibilidad_Precio as vis_precio,
+	Publicacion_Visibilidad_Porcentaje as vis_porcentaje,
+	Publicacion_Estado as estado,
+	Publicacion_Rubro_Descripcion as rubro
+from gd_esquema.Maestra
+where 
+	Publ_Cli_Dni is null and
+	Cli_Dni is null and
+	Item_Factura_Monto is null;
+
+go
+
+--creo procedimiento
+create procedure MIGRAR_PUBLICACIONES_DE_EMPRESAS
+as begin 
+
+	insert into PUBLICACION
+		select v.descripcion, v.stock, v.creacion, v.vencimiento, v.precio, RUBRO.id_rubro, VISIBILIDAD.id_visibilidad, CAST(2 as decimal(10,2)), USUARIO.id_usuario, TIPO_PUBLICACION.id_tipo, 0
+		from vista_publicaciones_de_empresas as v
+		inner join RUBRO
+		on v.rubro = RUBRO.descripción_corta
+		inner join VISIBILIDAD
+		on v.vis_nombre = VISIBILIDAD.visibilidad_nombre
+		inner join USUARIO
+		on v.cuit = USUARIO.nick
+		inner join TIPO_PUBLICACION
+		on v.tipo = TIPO_PUBLICACION.tipo;
+
+end
+
+go
+
+--ejecuto procedimiento
+exec MIGRAR_PUBLICACIONES_DE_EMPRESAS;
+
+go
+
+--libero todo
+drop view vista_publicaciones_de_empresas;
+drop procedure MIGRAR_PUBLICACIONES_DE_EMPRESAS;
 
 go
