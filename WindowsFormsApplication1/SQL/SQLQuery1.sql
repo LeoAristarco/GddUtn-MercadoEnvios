@@ -468,8 +468,6 @@ end
 
 --------------------------------------------------COMIENZO ABM VISIBILIDAD----------------------------------------------------------------
 
-/* SP Agregar VISIBILIDAD */
-
 CREATE PROCEDURE sp_AgregarVisibilidad
 	(@visibilidad_nombre nvarchar(255), @precio_visibilidad numeric(10,0), @porcentaje_venta  numeric(10,0),
 	  @retorno numeric(10,0) output)
@@ -489,7 +487,7 @@ CREATE PROCEDURE sp_EditarVisibilidad
 	(@id_visibilidad numeric(10,0), @visibilidad_nombre nvarchar(255), @precio_visibilidad numeric(10,0), 
 		@porcentaje_venta  numeric(10,0))
 AS BEGIN
-	UPDATE Visibilidades 
+	UPDATE VISIBILIDAD 
 	SET visibilidad_nombre = @visibilidad_nombre, precio_visibilidad = @precio_visibilidad,
 	porcentaje_venta = @porcentaje_venta
 	WHERE id_visibilidad = @id_visibilidad
