@@ -261,6 +261,7 @@ begin
 
 end
 
+
 --validaciones
 create function mas_de_tres_sin_calificar(@id_cliente numeric(10,0))
 returns bit
@@ -270,8 +271,8 @@ declare @cant int,@bool bit
 
       select @cant= count(isnull (calif_estrellas,1))
 	  from COMPRA inner join CALIFICACION on id_calificacion =calificacion
-	  where @id_cliente = @id_cliente
-	  group by @id_cliente
+	  where @id_cliente = comprador
+
 
 	  if (@cant > 3)
 	   SET @bool=1
@@ -368,15 +369,26 @@ create trigger tr_insertarCompra
 	update PUBLICACION SET stock = stock - @cantidad
 	 where id_publicacion = @publicacion
 	 
-	exec st_actualizarEstadoPublicacion @publicacion
-	
-	 
-	-- updetear la tabla facturas ?SSAs
+	exec st_actualizar_Estado_Publicacion_a_Finalizado @publicacion
 
 	end
 	
--------------- FIN  funcionalidad Comprar/Ofertar----------------------------------------------------------------------
+	create procedure st_insertarCompraSubasta(@comprador numeric(10,0), 
+	    @publicacion numeric(10,0), 
+	    @fecha_operacion datetime, @monto numeric(10,2), @cantidad int,
+		@precio_envio int,@factura numeric(10,0),@descripcion nvarchar(255))
+	as begin
+	        
+			insert into COMPRA ( comprador, publicacion, fecha_operacion,monto, cantidad )
+	           values (@comprador , @publicacion , @fecha_operacion , @monto ,@cantidad )
+			   
+			insert into ITEM_FACTURA(nro_factura ,descripcion,cantidad_vendida ,precio_unitario,precio_envio )
+			   values (@factura , @descripcion, @cantidad, @monto ,@precio_envio )
+			
+	end
 
+	
+-------------- FIN  funcionalidad Comprar/Ofertar----------------------------------------------------------------------
 
 -------------- Comienzo de Calificar al vendedor----------------------------------------------------------------------
 
