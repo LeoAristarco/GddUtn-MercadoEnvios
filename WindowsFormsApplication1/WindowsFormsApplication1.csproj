@@ -140,17 +140,11 @@
     <Compile Include="ABM Visibilidad\ABMVisibilidad.Designer.cs">
       <DependentUpon>ABMVisibilidad.cs</DependentUpon>
     </Compile>
-    <Compile Include="ABM Visibilidad\EditorDeVisibilidades.cs">
+    <Compile Include="ABM Visibilidad\GenerarVisibilidad.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Visibilidad\EditorDeVisibilidades.Designer.cs">
-      <DependentUpon>EditorDeVisibilidades.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ABM Visibilidad\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ABM Visibilidad\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="ABM Visibilidad\GenerarVisibilidad.Designer.cs">
+      <DependentUpon>GenerarVisibilidad.cs</DependentUpon>
     </Compile>
     <Compile Include="Calificar\CalificarDlg.cs">
       <SubType>Form</SubType>
@@ -365,8 +359,8 @@
     <EmbeddedResource Include="ABM Visibilidad\ABMVisibilidad.resx">
       <DependentUpon>ABMVisibilidad.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Visibilidad\EditorDeVisibilidades.resx">
-      <DependentUpon>EditorDeVisibilidades.cs</DependentUpon>
+    <EmbeddedResource Include="ABM Visibilidad\GenerarVisibilidad.resx">
+      <DependentUpon>GenerarVisibilidad.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Calificar\CalificarDlg.resx">
       <DependentUpon>CalificarDlg.cs</DependentUpon>
