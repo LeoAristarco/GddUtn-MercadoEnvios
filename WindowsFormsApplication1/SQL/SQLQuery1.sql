@@ -157,7 +157,7 @@ create table PUBLICACION
 	FOREIGN KEY	(estado_publicacion)    references ESTADO_PUBLICACION(id_estado),
 	FOREIGN KEY (tipo_publicacion)      references TIPO_PUBLICACION(id_tipo),
 	FOREIGN KEY	(usuario_responsable)   references USUARIO(id_usuario),
-	FOREIGN KEY (rubro)                 references RUBRO(id_rubro)
+	FOREIGN KEY (rubro)                 references RUBRO(id_rubro),
         FOREIGN KEY (factura)  references FACTURA(id_factura)
 )
 
