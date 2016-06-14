@@ -569,3 +569,25 @@ SELECT * FROM USUARIO
 SELECT * FROM OFERTA
 
 --------FIN DE HISTORIAL DEL CLIENTE-----------------------
+
+-------------- GENERAR PUBLICACION----------------------------------------------------------------------
+
+	  CREATE PROCEDURE sp_AgregarPublicacion
+	(@descripcion nvarchar(255),@stock numeric(10,0), @fecha_inicio datetime, 
+	 @fecha_vencimiento datetime,@precio numeric(10,2), @rubro numeric(10,0), 
+	 @visibilidad numeric(10,0), @estado_publicacion numeric(10,0), @usuario_responsable numeric(10,0),
+	 @tipo_publicacion numeric(10,0), @envio bit, @factura numeric (10,0))
+AS BEGIN
+		INSERT INTO PUBLICACION
+			(descripcion, stock, fecha_inicio,fecha_vencimiento, precio, rubro, visibilidad,
+			 estado_publicacion, usuario_responsable, tipo_publicacion, envio, factura)
+			VALUES
+			(@descripcion, @stock, @fecha_inicio, @fecha_vencimiento, @precio, @rubro, @visibilidad,
+			 @estado_publicacion, @usuario_responsable, @tipo_publicacion, @envio, @factura)
+
+END
+
+
+----------------------  FIN DE GENERAR PUBLICACION----------------------------------------------------------------------
+
+
