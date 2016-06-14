@@ -58,12 +58,9 @@ CREATE TABLE CLIENTE
 	apellido			nvarchar(255),
 	dni	                nvarchar(255),
 	tipo_documento		nvarchar(255),
-<<<<<<< HEAD
-	fecha_nacimiento	datetime,
-	fecha_creacion		datetime
-=======
+	fecha_creacion		date,
 	fecha_nacimiento	date,
->>>>>>> master
+
 	
 	
 	PRIMARY KEY(id_cliente),
@@ -123,6 +120,8 @@ create table VISIBILIDAD
 	PRIMARY KEY (id_visibilidad)
 )
 
+
+
 create table ESTADO_PUBLICACION
 (
 	id_estado  numeric(10,0) identity (1,1),
@@ -137,6 +136,32 @@ create table TIPO_PUBLICACION
 	tipo     nvarchar(255),
 	
 	PRIMARY KEY (id_tipo)
+)
+
+create table PUBLICACION
+(
+	id_publicacion      numeric(10,0) identity (1,1),
+	descripcion         nvarchar(255),
+	stock               numeric(10,0),
+	fecha_inicio        datetime,
+	fecha_vencimiento   datetime,
+	precio              numeric(10,2),
+	rubro               numeric(10,0),
+	visibilidad         numeric(10,0),
+	estado_publicacion  numeric(10,0),
+	usuario_responsable numeric(10,0),
+	tipo_publicacion    numeric(10,0),
+	envio               bit,
+	--factura             numeric(10,0),
+		
+
+	PRIMARY KEY (id_publicacion),
+	FOREIGN KEY (visibilidad)           references VISIBILIDAD(id_visibilidad),
+	FOREIGN KEY	(estado_publicacion)    references ESTADO_PUBLICACION(id_estado),
+	FOREIGN KEY (tipo_publicacion)      references TIPO_PUBLICACION(id_tipo),
+	FOREIGN KEY	(usuario_responsable)   references USUARIO(id_usuario),
+	FOREIGN KEY (rubro)                 references RUBRO(id_rubro),
+	--FOREIGN KEY (factura)  references FACTURA(id_factura)
 )
 
 
@@ -168,31 +193,6 @@ CREATE TABLE ITEM_FACTURA
 	FOREIGN KEY(nro_factura) REFERENCES FACTURA(id_factura)
 )
 
-create table PUBLICACION
-(
-	id_publicacion      numeric(10,0) identity (1,1),
-	descripcion         nvarchar(255),
-	stock               numeric(10,0),
-	fecha_inicio        datetime,
-	fecha_vencimiento   datetime,
-	precio              numeric(10,2),
-	rubro               numeric(10,0),
-	visibilidad         numeric(10,0),
-	estado_publicacion  numeric(10,0),
-	usuario_responsable numeric(10,0),
-	tipo_publicacion    numeric(10,0),
-	envio               bit,
-	--factura             numeric(10,0),
-		
-
-	PRIMARY KEY (id_publicacion),
-	FOREIGN KEY (visibilidad)           references VISIBILIDAD(id_visibilidad),
-	FOREIGN KEY	(estado_publicacion)    references ESTADO_PUBLICACION(id_estado),
-	FOREIGN KEY (tipo_publicacion)      references TIPO_PUBLICACION(id_tipo),
-	FOREIGN KEY	(usuario_responsable)   references USUARIO(id_usuario),
-	FOREIGN KEY (rubro)                 references RUBRO(id_rubro),
-	--FOREIGN KEY (factura)  references FACTURA(id_factura)
-)
 
 
 create table OFERTA
@@ -351,7 +351,7 @@ as begin
 		values (null, null)
 		set @id_calificacion = scope_identity()
 end
-
+go
 
 -- Se dispara cada vez q se inserta una compra ( post-migracion)
 create trigger tr_insertarCompra
@@ -471,7 +471,7 @@ end
 		@codigo_postal	nvarchar(50)
 		
 	AS BEGIN
-		INSERT INTO USUARIO(username,contrasenia,baja_logica,mail,telefono,calle,numero_calle,departamento,localidad,codigo_postal)
+		INSERT INTO USUARIO(nick,pass,baja_logica,mail,telefono,calle,numero_calle,departamento,localidad,codigo_postal)
 		VALUES (@user,@pass,0,@mail,@telefono,@calle,@numero_calle,@numero_piso,@departamento,@localidad,@codigo_postal)		
 	END
 	GO
@@ -500,13 +500,8 @@ end
 		INSERT INTO EMPRESA(razon_social,cuit,nombre_contacto,ciudad,rubro)	
 		VALUES (@razon_social,@cuit,@nombre_contacto,@ciudad,@rubro)
 	END
-<<<<<<< HEAD
 	GO
 
-
-
-	
-=======
 	--Falta validar la existencia del usuario
 
 
