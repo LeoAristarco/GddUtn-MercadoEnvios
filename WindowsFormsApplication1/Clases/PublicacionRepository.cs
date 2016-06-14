@@ -17,15 +17,6 @@ namespace WindowsFormsApplication1.Clases
             hacerInsert(filaPublicacion);
         }
 
-        public void agregarPublicacion()
-        {
-            Dictionary<string, object> filaPublicacion = new Dictionary<string, object>();
-
-            //zdfadfsdfsf
-
-            hacerInsert(filaPublicacion);
-        }
-
         private void hacerInsert(Dictionary<string, object> filaPublicacion)
         {
             List<SqlParameter> parametros = new List<SqlParameter>();
@@ -57,8 +48,8 @@ namespace WindowsFormsApplication1.Clases
             //fila.Add("id_publicacion",publicacion.id);//ESTO LO SACO PORQUE ES LA PK
             fila.Add("descripcion", publicacion.descripcion);
             fila.Add("stock", publicacion.stock);
-            fila.Add("fecha_inicio",publicacion.fechaInicio);
-            fila.Add("fecha_vencimiento",publicacion.fechaVencimiento);//EWsto hay q ver cmo se mapea
+            fila.Add("fecha_inicio",publicacion.fechaInicio.Date);//Aca hay que obtener la fecha de un archivo
+            fila.Add("fecha_vencimiento",publicacion.fechaVencimiento.Date);//Esto al parecer se mapea asi
             fila.Add("precio", publicacion.precio);
             fila.Add("rubro", publicacion.rubro.id);
             fila.Add("visibilidad", publicacion.visibilidad.id);

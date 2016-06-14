@@ -11,7 +11,7 @@ using WindowsFormsApplication1.Clases;
 
 namespace WindowsFormsApplication1.Generar_Publicación
 {
-    public partial class GenerarPubliForm : Form
+    public partial class GenerarPublicacion : Form
     {
         private Publicacion publicacion;
 
@@ -20,7 +20,7 @@ namespace WindowsFormsApplication1.Generar_Publicación
         private List<Rubro> rubros;
         private List<TipoPublicacion> tipos;
 
-        public GenerarPubliForm(Publicacion publicacion, Form formularioAnterior)
+        public GenerarPublicacion(Publicacion publicacion, Form formularioAnterior)
         {
 
             this.publicacion = publicacion;
@@ -29,10 +29,10 @@ namespace WindowsFormsApplication1.Generar_Publicación
 
             this.formularioAnterior = formularioAnterior;
 
-            inicializarFormulario();
+            //inicializarFormulario();
         }
 
-        public GenerarPubliForm(Usuario usuario,Form formularioAnterior)
+        public GenerarPublicacion(Usuario usuario,Form formularioAnterior)
         {
 
             publicacion = new Publicacion();
@@ -43,16 +43,11 @@ namespace WindowsFormsApplication1.Generar_Publicación
 
             this.formularioAnterior = formularioAnterior;
 
-            inicializarFormulario();
-        }
-
-        private void GenerarPubliForm_Load(object sender, EventArgs e)
-        {
+            InitializeComponent();
         }
 
         private void inicializarFormulario()
         {
-            InitializeComponent();
 
             VisibilidadRepository repoVisibilidad = new VisibilidadRepository();
             visibilidades = repoVisibilidad.obtenerVisibilidades();
@@ -136,6 +131,7 @@ namespace WindowsFormsApplication1.Generar_Publicación
             publicacion.fechaVencimiento = fechaFinalizacion.Value;
             publicacion.hayEnvio = hayEnvio.Checked;
             publicacion.precio = Convert.ToDouble(precio.Text);
+            publicacion.visibilidad = visibilidades[visibilidad.SelectedIndex];
             publicacion.rubro = rubros[rubro.SelectedIndex];
             publicacion.stock = Convert.ToInt64(stock.Text);
             publicacion.tipo = tipos[tipo.SelectedIndex];
@@ -169,6 +165,12 @@ namespace WindowsFormsApplication1.Generar_Publicación
             {
                 stock.ReadOnly = false;
             }
+        }
+
+        private void GenerarPublicacion_Load(object sender, EventArgs e)
+        {
+            inicializarFormulario();
+            tipo_SelectedIndexChanged(new object(), new EventArgs());
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApplication1.Generar_Publicación
 {
-    partial class GenerarPubliForm
+    partial class GenerarPublicacion
     {
         /// <summary>
         /// Required designer variable.
@@ -281,16 +281,16 @@
             this.visibilidad.Size = new System.Drawing.Size(232, 24);
             this.visibilidad.TabIndex = 0;
             // 
-            // GenerarPubliForm
+            // GenerarPublicacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(527, 586);
             this.Controls.Add(this.groupBox1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Name = "GenerarPubliForm";
+            this.Name = "GenerarPublicacion";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.GenerarPubliForm_Load);
+            this.Load += new System.EventHandler(this.GenerarPublicacion_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
