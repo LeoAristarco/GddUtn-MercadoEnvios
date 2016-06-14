@@ -173,6 +173,12 @@ go
 /*PUBLICACIONES*/
 /********************************************************************************************************************************/
 
+--agrego un campo necesario para las demas migraciones que voy a eliminar al final
+alter table PUBLICACION 
+add codigo_publicacion numeric(18,0); 
+
+go
+
 --creo vista para recorrer
 create view vista_publicaciones
 as
@@ -203,7 +209,7 @@ create procedure MIGRAR_PUBLICACIONES
 as begin 
 
 	insert into PUBLICACION
-		select v.descripcion, v.stock, v.creacion, v.vencimiento, v.precio, RUBRO.id_rubro, VISIBILIDAD.id_visibilidad, CAST(2 as decimal(10,2)), USUARIO.id_usuario, TIPO_PUBLICACION.id_tipo, 0
+		select v.descripcion, v.stock, v.creacion, v.vencimiento, v.precio, RUBRO.id_rubro, VISIBILIDAD.id_visibilidad, CAST(2 as decimal(10,2)), USUARIO.id_usuario, TIPO_PUBLICACION.id_tipo, 0, v.codigo
 		from vista_publicaciones as v
 		inner join RUBRO
 		on v.rubro = RUBRO.descripción_corta
