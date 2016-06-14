@@ -16,7 +16,7 @@
 
 ###Facturacion:
 
-- Como dice en el enunciado, cuando una publicacion pasa a estar activa se debe generar en ese mismo instante la facturacion correspondiente al tipo de visibilidad elejida. Entonces, cuando se realiza una venta , se crea un item_factura por la compra que se hizo, y el mismo item_factura pertenece a la factura propia de publicacion. 
+- Como dice en el enunciado, cuando una publicacion pasa a estar activa se debe generar en ese mismo instante la facturacion correspondiente al tipo de visibilidad elejida (El total_facturar es el costo de la visibilidad, que al mismo se va a ir sumando comiciones por ventas, a medida q se realicen las compras). Entonces, cuando se realiza una venta , se crea un item_factura por la compra que se hizo, y el mismo item_factura pertenece a la factura propia de publicacion (a cada publicacion le corresponde un unica factura). 
 
 -Además agregamos la funcionalidad de envío haciendo que se pueda elegir habilitar la opción desde la creación de la publicación y cada vez que se genera una compra u oferta elegir si es o no con envío. La comisión por el mismo la elegimos como un valor constante de $100.
 

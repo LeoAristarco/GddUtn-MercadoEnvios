@@ -11,9 +11,9 @@ create table FUNCIONALIDAD
 
 create table ROL
 (
-	id_rol       numeric(10,0) identity (1,1),
-	rol_nombre   nvarchar(255),
-	habilitado   bit,
+	id_rol                 numeric(10,0) identity (1,1),
+	rol_nombre             nvarchar(255),
+	habilitado             bit,
 
 	PRIMARY KEY (id_rol)
 )
@@ -30,22 +30,22 @@ create table FUNCIONALIDAD_POR_ROL
 
 create table USUARIO
 (
-	id_usuario      numeric(10,0) identity (1,1),
-	nick			nvarchar(255),
-	pass			nvarchar(255),
-	intentos_login  int,
-	primer_ingreso  bit,
-	baja_logica		bit,
-	fecha_alta_sistema	date,
-	fecha_nacimiento	date,		
-	mail			nvarchar(255),
-	telefono		nvarchar(60),
-	calle			nvarchar(255),
-	numero_calle	nvarchar(30),
-	numero_piso		nvarchar(30),
-	departamento	nvarchar(50),
-	localidad		nvarchar(255),
-	codigo_postal	nvarchar(50),
+	id_usuario             numeric(10,0) identity (1,1),
+	nick			       nvarchar(255),
+	pass			       nvarchar(255),
+	intentos_login         int,
+	primer_ingreso         bit,
+	baja_logica		       bit,
+	fecha_alta_sistema	   date,
+	fecha_nacimiento	   date,		
+	mail			       nvarchar(255),
+	telefono		       nvarchar(60),
+	calle			       nvarchar(255),
+	numero_calle	       nvarchar(30),
+	numero_piso		       nvarchar(30),
+	departamento	       nvarchar(50),
+	localidad		       nvarchar(255),
+	codigo_postal	       nvarchar(50),
 
 
 	UNIQUE (nick),
@@ -54,12 +54,12 @@ create table USUARIO
 
 CREATE TABLE CLIENTE
 (
-	id_cliente			numeric(10,0) IDENTITY,
-	id_usuario			numeric(10,0),
-	nombre				nvarchar(255),
-	apellido			nvarchar(255),
-	dni	                nvarchar(255),
-	tipo_documento		nvarchar(255),
+	id_cliente			  numeric(10,0) IDENTITY,
+	id_usuario			  numeric(10,0),
+	nombre				  nvarchar(255),
+	apellido			  nvarchar(255),
+	dni	                  nvarchar(255),
+	tipo_documento		  nvarchar(255),
 		
 	
 	PRIMARY KEY(id_cliente),
@@ -68,15 +68,15 @@ CREATE TABLE CLIENTE
 
 CREATE TABLE EMPRESA
 (
-	id_empresa		numeric(10,0) IDENTITY,
-	id_usuario		    numeric(10,0),
-	razon_social	nvarchar(255),
-	cuit			nvarchar(50),
-	nombre_contacto nvarchar(255),
-	ciudad			nvarchar(255),
-	reputacion		numeric(18,2),
-	rubro			nvarchar(255),
-	cantidad_votos	numeric(18,0),
+	id_empresa		      numeric(10,0) IDENTITY,
+	id_usuario		      numeric(10,0),
+	razon_social	      nvarchar(255),
+	cuit			      nvarchar(50),
+	nombre_contacto       nvarchar(255),
+	ciudad			      nvarchar(255),
+	reputacion		      numeric(18,2),
+	rubro			      nvarchar(255),
+	cantidad_votos	      numeric(18,0),
 
 	UNIQUE(razon_social),
 	UNIQUE(cuit),
@@ -136,45 +136,16 @@ create table TIPO_PUBLICACION
 	PRIMARY KEY (id_tipo)
 )
 
-create table PUBLICACION
-(
-	id_publicacion      numeric(10,0) identity (1,1),
-	descripcion         nvarchar(255),
-	stock               numeric(10,0),
-	fecha_inicio        datetime,
-	fecha_vencimiento   datetime,
-	precio              numeric(10,2),
-	rubro               numeric(10,0),
-	visibilidad         numeric(10,0),
-	estado_publicacion  numeric(10,0),
-	usuario_responsable numeric(10,0),
-	tipo_publicacion    numeric(10,0),
-	envio               bit,
-	--factura             numeric(10,0),
-		
-
-	PRIMARY KEY (id_publicacion),
-	FOREIGN KEY (visibilidad)           references VISIBILIDAD(id_visibilidad),
-	FOREIGN KEY	(estado_publicacion)    references ESTADO_PUBLICACION(id_estado),
-	FOREIGN KEY (tipo_publicacion)      references TIPO_PUBLICACION(id_tipo),
-	FOREIGN KEY	(usuario_responsable)   references USUARIO(id_usuario),
-	FOREIGN KEY (rubro)                 references RUBRO(id_rubro),
-	--FOREIGN KEY (factura)  references FACTURA(id_factura)
-)
-
-
 CREATE TABLE FACTURA
 (
 	id_factura		  numeric(10,0) identity (1,1),
-	id_publicacion	  numeric(10,0) NOT NULL,
 	forma_pago		  nvarchar(255) NOT NULL,
 	tipo_visibilidad  nvarchar(255),
 	factura_fecha	  datetime,
 	total_facturar    numeric(10,2) NOT NULL,
 	
 	
-	PRIMARY KEY (id_factura),
-	FOREIGN KEY(id_publicacion) REFERENCES PUBLICACION(id_publicacion)
+	PRIMARY KEY (id_factura)
 
 )
 
@@ -189,6 +160,32 @@ CREATE TABLE ITEM_FACTURA
 	
 	PRIMARY KEY (id_item),
 	FOREIGN KEY(nro_factura) REFERENCES FACTURA(id_factura)
+)
+
+create table PUBLICACION
+(
+	id_publicacion      numeric(10,0) identity (1,1),
+	descripcion         nvarchar(255),
+	stock               numeric(10,0),
+	fecha_inicio        datetime,
+	fecha_vencimiento   datetime,
+	precio              numeric(10,2),
+	rubro               numeric(10,0),
+	visibilidad         numeric(10,0),
+	estado_publicacion  numeric(10,0),
+	usuario_responsable numeric(10,0),
+	tipo_publicacion    numeric(10,0),
+	envio               bit,
+	factura             numeric(10,0),
+		
+
+	PRIMARY KEY (id_publicacion),
+	FOREIGN KEY (visibilidad)           references VISIBILIDAD(id_visibilidad),
+	FOREIGN KEY	(estado_publicacion)    references ESTADO_PUBLICACION(id_estado),
+	FOREIGN KEY (tipo_publicacion)      references TIPO_PUBLICACION(id_tipo),
+	FOREIGN KEY	(usuario_responsable)   references USUARIO(id_usuario),
+	FOREIGN KEY (rubro)                 references RUBRO(id_rubro),
+	FOREIGN KEY (factura)  references FACTURA(id_factura)
 )
 
 
@@ -232,7 +229,6 @@ CREATE TABLE COMPRA
 	FOREIGN KEY (publicacion)  references PUBLICACION(id_publicacion),
 	FOREIGN KEY (calificacion) references CALIFICACION(id_calificacion)
 )
-
 
 
 
