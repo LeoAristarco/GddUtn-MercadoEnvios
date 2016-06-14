@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WindowsFormsApplication1.ABM_Rubro
+namespace WindowsFormsApplication1.Historial_Cliente
 {
-    public partial class Form1 : Form
+    public partial class HistorialSubastas : Form
     {
-        public Form1()
+        public HistorialSubastas()
         {
             InitializeComponent();
         }

@@ -1,6 +1,6 @@
-﻿namespace WindowsFormsApplication1.ABM_Rubro
+﻿namespace WindowsFormsApplication1.Historial_Cliente
 {
-    partial class Form1
+    partial class HistorialCompras
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "Form1";
+            this.Text = "HistorialCompras";
         }
 
         #endregion
