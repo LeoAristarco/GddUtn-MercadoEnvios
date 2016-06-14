@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
+using System.Windows.Forms;
 
 namespace WindowsFormsApplication1.Clases
 {
@@ -103,20 +104,24 @@ namespace WindowsFormsApplication1.Clases
             return executeQueryableCommand(consulta, parametros, 'T');
         }
 
+        public DataGridView obtenerDataGridView(string consulta)
+        {
+            SqlConnection conexion = abrirConexion();
+            SqlCommand comando = new SqlCommand(consulta, conexion);
+            SqlDataAdapter adapter = new SqlDataAdapter(comando);
+            DataTable dataTable = new DataTable();
+            adapter.Fill(dataTable);
+            DataGridView dataGrid = new DataGridView();
+            dataGrid.DataSource = dataTable;
+            conexion.Close();
+
+            return dataGrid;
+        }
+
         public List<Dictionary<string, object>> ejecutarConsulta(string consulta)
         {
             return ejecutarConsulta(consulta, new List<SqlParameter>());
         }
-
-        /*public object getValue(SqlDataReader dataReader,string nombreCampo)//hay que castear al valor pedido
-        {
-            return dataReader[nombreCampo];
-        }
-
-        public bool contieneFilas(SqlDataReader reader)
-        {
-            return reader.HasRows;
-        }*/
 
         public List<Dictionary<string, object>> adapterDiccionario(SqlDataReader reader)
         {

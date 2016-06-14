@@ -23,7 +23,7 @@ namespace WindowsFormsApplication1.Generar_Publicación
 
         private Rubro deserializarRubro(Dictionary<string, object> fila)
         {
-            return new Rubro((long)fila["id_rubro"], (string)fila["descripción_corta"], (string)fila["descripción_larga"]);
+            return new Rubro(toLong(fila["id_rubro"]), (string)fila["descripción_corta"], (string)fila["descripción_larga"]);
         }
 
         internal void updateRubro(Rubro rubroAModificar)

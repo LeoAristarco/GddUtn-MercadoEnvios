@@ -12,7 +12,7 @@ namespace WindowsFormsApplication1.Clases
 
         public void agregarPublicacion(Publicacion publicacion)
         {
-            Dictionary<string, object> filaPublicacion = serializarConId(publicacion);
+            Dictionary<string, object> filaPublicacion = serializarSinId(publicacion);
 
             hacerInsert(filaPublicacion);
         }

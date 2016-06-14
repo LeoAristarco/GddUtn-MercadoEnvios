@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace WindowsFormsApplication1.Clases
 {
@@ -26,15 +27,30 @@ namespace WindowsFormsApplication1.Clases
 
         private Visibilidad deserializarVisibilidad(Dictionary<string, object> fila)
         {
-            long id = (long)fila["id_visibilidad"];
+            long id = toLong(fila["id_visibilidad"]);
 
             string nombre =(string) fila["visibilidad_nombre"];
 
-            double precio = (double)fila["precio_visibilidad"];
+            double precio = toDouble(fila["precio_visibilidad"]);
 
-            double porcentajeVenta = (double)fila["porcentaje_venta"];
+            double porcentajeVenta = toDouble(fila["porcentaje_venta"]);
 
             return new Visibilidad(id, nombre, precio, porcentajeVenta);
+        }
+
+        internal void agregarVisibilidad(Visibilidad visibilidad)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void updateVisibilidad(Visibilidad visibilidad)
+        {
+            throw new NotImplementedException();
+        }
+
+        public DataGridView llenarDataGrid()
+        {
+            return db.obtenerDataGridView("select visibilidad_nombre,precio_visibilidad,porcentaje_venta from VISIBILIDAD");
         }
     }
 }

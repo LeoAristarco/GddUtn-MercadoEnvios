@@ -24,7 +24,7 @@ namespace WindowsFormsApplication1.Generar_Publicación
 
         private EstadoPublicacion deserializarEstadoPublicacion(Dictionary<string, object> fila)
         {
-            long id = (long)fila["id_estado"];
+            long id = toLong(fila["id_estado"]);
             string nombre =(string) fila["estado_nombre"];
 
             return new EstadoPublicacion(id, nombre);

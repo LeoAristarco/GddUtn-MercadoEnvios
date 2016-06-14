@@ -9,7 +9,7 @@ namespace WindowsFormsApplication1.Generar_Publicación
 
         private TipoPublicacion deserializarTipoPublicacion(Dictionary<string, object> fila)
         {
-            long id = (long)fila["id_tipo"];
+            long id = toLong(fila["id_tipo"]);
             string nombre = (string)fila["tipo"];
 
             return new TipoPublicacion(id, nombre);
