@@ -35,7 +35,9 @@ create table USUARIO
 	pass			nvarchar(255),
 	intentos_login  int,
 	primer_ingreso  bit,
-	baja_logica		bit,	
+	baja_logica		bit,
+	fecha_alta_sistema	date,
+	fecha_nacimiento	date,		
 	mail			nvarchar(255),
 	telefono		nvarchar(60),
 	calle			nvarchar(255),
@@ -58,10 +60,7 @@ CREATE TABLE CLIENTE
 	apellido			nvarchar(255),
 	dni	                nvarchar(255),
 	tipo_documento		nvarchar(255),
-	fecha_creacion		date,
-	fecha_nacimiento	date,
-
-	
+		
 	
 	PRIMARY KEY(id_cliente),
 	FOREIGN KEY(id_usuario) references USUARIO(id_usuario)
@@ -76,7 +75,6 @@ CREATE TABLE EMPRESA
 	nombre_contacto nvarchar(255),
 	ciudad			nvarchar(255),
 	reputacion		numeric(18,2),
-
 	rubro			nvarchar(255),
 	cantidad_votos	numeric(18,0),
 
