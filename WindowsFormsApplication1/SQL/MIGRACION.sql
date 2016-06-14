@@ -121,7 +121,7 @@ drop procedure MIGRAR_TABLA_USUARIO_EMPRESA;
 go
 
 /********************************************************************************************************************************/
-/*VISIBILIDAD, ESTADO_PUBLICACION, TIPO_PUBLICACION Y RUBRO*/
+/*VISIBILIDAD*/
 /********************************************************************************************************************************/
 
 insert into VISIBILIDAD
@@ -133,6 +133,10 @@ insert into VISIBILIDAD
 		('GRATIS', 0, 0);
 go
 
+/********************************************************************************************************************************/
+/*ESTADO_PUBLICACION*/
+/********************************************************************************************************************************/
+
 insert into ESTADO_PUBLICACION
 	values 
 		('BORRADOR'),
@@ -141,11 +145,19 @@ insert into ESTADO_PUBLICACION
 		('FINALIZADA');
 go
 
+/********************************************************************************************************************************/
+/*TIPO_PUBLICACION*/
+/********************************************************************************************************************************/
+
 insert into TIPO_PUBLICACION
 	values 
 		('COMPRA INMEDIATA'),
 		('SUBASTA');
 go
+
+/********************************************************************************************************************************/
+/*RUBRO*/
+/********************************************************************************************************************************/
 
 insert into RUBRO
 	select distinct Publicacion_Rubro_Descripcion, null
@@ -158,73 +170,14 @@ insert into RUBRO
 go
 
 /********************************************************************************************************************************/
-/*PUBLICACIONES DE CLIENTES*/
+/*PUBLICACIONES*/
 /********************************************************************************************************************************/
 
 --creo vista para recorrer
-create view vista_publicaciones_de_clientes
+create view vista_publicaciones
 as
 select 
 	Publ_Cli_Dni as dni,
-	Publicacion_Cod as codigo,
-	Publicacion_Descripcion as descripcion,
-	Publicacion_Stock as stock,
-	Publicacion_Fecha as creacion,
-	Publicacion_Fecha_Venc as vencimiento,
-	Publicacion_Precio as precio,
-	Publicacion_Tipo as tipo,
-	UPPER(Publicacion_Visibilidad_Desc) as vis_nombre,
-	Publicacion_Visibilidad_Precio as vis_precio,
-	Publicacion_Visibilidad_Porcentaje as vis_porcentaje,
-	Publicacion_Estado as estado,
-	Publicacion_Rubro_Descripcion as rubro
-from gd_esquema.Maestra
-where 
-	Publ_Empresa_Cuit is null and
-	Cli_Dni is null and
-	Item_Factura_Monto is null;
-
-go
-
---creo procedimiento
-create procedure MIGRAR_PUBLICACIONES_DE_CLIENTES
-as begin 
-
-	insert into PUBLICACION
-		select v.descripcion, v.stock, v.creacion, v.vencimiento, v.precio, RUBRO.id_rubro, VISIBILIDAD.id_visibilidad, CAST(2 as decimal(10,2)), USUARIO.id_usuario, TIPO_PUBLICACION.id_tipo, 0
-		from vista_publicaciones_de_clientes as v
-		inner join RUBRO
-		on v.rubro = RUBRO.descripción_corta
-		inner join VISIBILIDAD
-		on v.vis_nombre = VISIBILIDAD.visibilidad_nombre
-		inner join USUARIO
-		on CAST(v.dni as nvarchar(255)) = USUARIO.nick
-		inner join TIPO_PUBLICACION
-		on v.tipo = TIPO_PUBLICACION.tipo
-
-end
-
-go
-
---ejecuto procedimiento
-exec MIGRAR_PUBLICACIONES_DE_CLIENTES;
-
-go
-
---libero todo
-drop view vista_publicaciones_de_clientes;
-drop procedure MIGRAR_PUBLICACIONES_DE_CLIENTES;
-
-go
-
-/********************************************************************************************************************************/
-/*PUBLICACIONES DE EMPRESAS*/
-/********************************************************************************************************************************/
-
---creo vista para recorrer
-create view vista_publicaciones_de_empresas
-as
-select 
 	Publ_Empresa_Cuit as cuit,	
 	Publicacion_Cod as codigo,
 	Publicacion_Descripcion as descripcion,
@@ -240,25 +193,29 @@ select
 	Publicacion_Rubro_Descripcion as rubro
 from gd_esquema.Maestra
 where 
-	Publ_Cli_Dni is null and
 	Cli_Dni is null and
 	Item_Factura_Monto is null;
 
 go
 
 --creo procedimiento
-create procedure MIGRAR_PUBLICACIONES_DE_EMPRESAS
+create procedure MIGRAR_PUBLICACIONES
 as begin 
 
 	insert into PUBLICACION
 		select v.descripcion, v.stock, v.creacion, v.vencimiento, v.precio, RUBRO.id_rubro, VISIBILIDAD.id_visibilidad, CAST(2 as decimal(10,2)), USUARIO.id_usuario, TIPO_PUBLICACION.id_tipo, 0
-		from vista_publicaciones_de_empresas as v
+		from vista_publicaciones as v
 		inner join RUBRO
 		on v.rubro = RUBRO.descripción_corta
 		inner join VISIBILIDAD
 		on v.vis_nombre = VISIBILIDAD.visibilidad_nombre
 		inner join USUARIO
-		on v.cuit = USUARIO.nick
+		on 
+			case 
+				when v.dni is not null then CAST(v.dni as nvarchar(255))
+				else CAST(v.cuit as nvarchar(255))
+			end
+			 = USUARIO.nick
 		inner join TIPO_PUBLICACION
 		on v.tipo = TIPO_PUBLICACION.tipo;
 
@@ -267,12 +224,12 @@ end
 go
 
 --ejecuto procedimiento
-exec MIGRAR_PUBLICACIONES_DE_EMPRESAS;
+exec MIGRAR_PUBLICACIONES;
 
 go
 
 --libero todo
-drop view vista_publicaciones_de_empresas;
-drop procedure MIGRAR_PUBLICACIONES_DE_EMPRESAS;
+drop view vista_publicaciones;
+drop procedure MIGRAR_PUBLICACIONES;
 
 go
