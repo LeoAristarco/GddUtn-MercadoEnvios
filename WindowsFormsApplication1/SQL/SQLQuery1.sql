@@ -559,7 +559,7 @@ AS BEGIN
 
 	UNION
 
-	SELECT descripcion
+	SELECT DISTINCT descripcion
 	FROM PUBLICACION INNER JOIN OFERTA ON id_publicacion = publicacion
 		INNER JOIN USUARIO U ON U.id_usuario = ofertante
 		INNER JOIN CLIENTE C On U.id_usuario = C.id_usuario
