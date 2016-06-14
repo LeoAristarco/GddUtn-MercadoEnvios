@@ -15,25 +15,25 @@ namespace WindowsFormsApplication1.Generar_Publicación
     {
         private Publicacion publicacion;
 
-        private PublicacionRepository repositorio;
+        private PublicacionRepository repositorio = new PublicacionRepository();
         private Form formularioAnterior;
         private List<Rubro> rubros;
         private List<TipoPublicacion> tipos;
 
         public GenerarPubliForm(Publicacion publicacion, Form formularioAnterior)
         {
-            InitializeComponent();
 
             this.publicacion = publicacion;
 
             update = true;
 
             this.formularioAnterior = formularioAnterior;
+
+            inicializarFormulario();
         }
 
         public GenerarPubliForm(Usuario usuario,Form formularioAnterior)
         {
-            InitializeComponent();
 
             publicacion = new Publicacion();
 
@@ -42,17 +42,18 @@ namespace WindowsFormsApplication1.Generar_Publicación
             update = false;
 
             this.formularioAnterior = formularioAnterior;
-        }
-
-        private void GenerarPubliForm_Load(object sender, EventArgs e)
-        {
-            repositorio = new PublicacionRepository();
 
             inicializarFormulario();
         }
 
+        private void GenerarPubliForm_Load(object sender, EventArgs e)
+        {
+        }
+
         private void inicializarFormulario()
         {
+            InitializeComponent();
+
             VisibilidadRepository repoVisibilidad = new VisibilidadRepository();
             visibilidades = repoVisibilidad.obtenerVisibilidades();
 
@@ -108,7 +109,7 @@ namespace WindowsFormsApplication1.Generar_Publicación
 
         private void limpiarFormulario()
         {
-            InitializeComponent();
+            //InitializeComponent();
             inicializarFormulario();
         }
 
@@ -155,6 +156,19 @@ namespace WindowsFormsApplication1.Generar_Publicación
         {
             formularioAnterior.Show();
             Hide();
+        }
+
+        private void tipo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tipos[tipo.SelectedIndex].sosSubasta())
+            {
+                stock.Text = "1";
+                stock.ReadOnly = true;
+            }
+            else
+            {
+                stock.ReadOnly = false;
+            }
         }
     }
 }

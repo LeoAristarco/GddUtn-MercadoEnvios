@@ -14,9 +14,9 @@ namespace WindowsFormsApplication1.Clases
             this.nombre = nombre;
         }
 
-        internal List<Rubro> obtenerTiposPublicacion()
+        internal bool sosSubasta()
         {
-            throw new NotImplementedException();
+            return nombre.ToLower() == "subasta";
         }
     }
 }

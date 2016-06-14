@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rubro = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -49,7 +50,6 @@
             this.stock = new System.Windows.Forms.TextBox();
             this.descripcion = new System.Windows.Forms.TextBox();
             this.visibilidad = new System.Windows.Forms.ComboBox();
-            this.rubro = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -84,6 +84,14 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Creación o Modificación de Publicación";
+            // 
+            // rubro
+            // 
+            this.rubro.FormattingEnabled = true;
+            this.rubro.Location = new System.Drawing.Point(195, 290);
+            this.rubro.Name = "rubro";
+            this.rubro.Size = new System.Drawing.Size(232, 24);
+            this.rubro.TabIndex = 21;
             // 
             // label9
             // 
@@ -235,6 +243,7 @@
             this.tipo.Name = "tipo";
             this.tipo.Size = new System.Drawing.Size(232, 24);
             this.tipo.TabIndex = 4;
+            this.tipo.SelectedIndexChanged += new System.EventHandler(this.tipo_SelectedIndexChanged);
             // 
             // estado
             // 
@@ -271,14 +280,6 @@
             this.visibilidad.Name = "visibilidad";
             this.visibilidad.Size = new System.Drawing.Size(232, 24);
             this.visibilidad.TabIndex = 0;
-            // 
-            // rubro
-            // 
-            this.rubro.FormattingEnabled = true;
-            this.rubro.Location = new System.Drawing.Point(195, 290);
-            this.rubro.Name = "rubro";
-            this.rubro.Size = new System.Drawing.Size(232, 24);
-            this.rubro.TabIndex = 21;
             // 
             // GenerarPubliForm
             // 

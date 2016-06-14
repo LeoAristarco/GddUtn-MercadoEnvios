@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,12 +41,23 @@ namespace WindowsFormsApplication1.Clases
 
         internal void agregarVisibilidad(Visibilidad visibilidad)
         {
-            throw new NotImplementedException();
+            List<SqlParameter> parametros = new List<SqlParameter>();
+            db.agregarParametro(parametros, "@visibilidad_nombre", visibilidad.nombre);
+            db.agregarParametro(parametros, "@precio_visibilidad", visibilidad.precio);
+            db.agregarParametro(parametros, "@porcentaje_venta", visibilidad.porcentajeVenta);
+
+            db.ejecutarStoredProcedure("sp_AgregarVisibilidad", parametros);
         }
 
         internal void updateVisibilidad(Visibilidad visibilidad)
         {
-            throw new NotImplementedException();
+            List<SqlParameter> parametros = new List<SqlParameter>();
+            db.agregarParametro(parametros, "@id_visibilidad", visibilidad.id);
+            db.agregarParametro(parametros, "@visibilidad_nombre", visibilidad.nombre);
+            db.agregarParametro(parametros, "@precio_visibilidad", visibilidad.precio);
+            db.agregarParametro(parametros, "@porcentaje_venta", visibilidad.porcentajeVenta);
+
+            db.ejecutarStoredProcedure("sp_EditarVisibilidad", parametros);
         }
 
         public DataGridView llenarDataGrid()
