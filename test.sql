@@ -73,6 +73,10 @@ values('maquinita de cortar madera',6,getdate(),getdate(),500,1,3,2,1,1)
 	insert into PUBLICACION(descripcion,stock,fecha_inicio,fecha_vencimiento,precio,
 rubro,visibilidad,estado_publicacion,usuario_responsable,tipo_publicacion)
 values('maquinita de cortar ropa',6,getdate(),getdate(),500,4,4,2,1,1)
+
+insert into PUBLICACION(descripcion,stock,fecha_inicio,fecha_vencimiento,precio,
+rubro,visibilidad,estado_publicacion,usuario_responsable,tipo_publicacion)
+values('Subasta de manaos',6,getdate(),getdate(),500,4,4,2,1,1)
 	
 	
 	insert into CALIFICACION(calif_estrellas)
@@ -88,3 +92,8 @@ values(5)
 	values(1,'Barcangel',666)
 
 	
+insert into OFERTA(ofertante,publicacion)
+values(1,1)
+
+insert into OFERTA(ofertante,publicacion)
+values(1,5)

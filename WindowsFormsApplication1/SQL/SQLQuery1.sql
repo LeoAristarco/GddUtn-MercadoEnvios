@@ -555,7 +555,16 @@ AS BEGIN
 	FROM PUBLICACION INNER JOIN COMPRA ON id_publicacion = publicacion
 		INNER JOIN USUARIO U ON U.id_usuario = comprador
 		INNER JOIN CLIENTE C ON U.id_usuario = C.id_usuario 
-	WHERE dni = @dni--666 hardcodeo para probar
+	WHERE dni = @dni
+
+	UNION
+
+	SELECT descripcion
+	FROM PUBLICACION INNER JOIN OFERTA ON id_publicacion = publicacion
+		INNER JOIN USUARIO U ON U.id_usuario = ofertante
+		INNER JOIN CLIENTE C On U.id_usuario = C.id_usuario
+	WHERE dni = @dni
+
 END
 GO
 
@@ -563,6 +572,6 @@ SELECT * FROM PUBLICACION
 SELECT * FROM COMPRA
 SELECT * FROM CLIENTE
 SELECT * FROM USUARIO
-
+SELECT * FROM OFERTA
 
 --------FIN DE HISTORIAL DEL CLIENTE-----------------------
