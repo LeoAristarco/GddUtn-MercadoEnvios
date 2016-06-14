@@ -482,11 +482,12 @@ end
 		@apellido			nvarchar(255),
 		@dni				numeric(18,0),
 		@tipo_documento		nvarchar(255),
-		@fecha_nacimiento	datetime
+		@fecha_nacimiento	date,
+		@fecha_creacion		date
 
 	AS BEGIN
 		INSERT INTO CLIENTE(nombre,apellido,dni,tipo_documento,fecha_nacimiento,fecha_creacion)
-		VALUES (@nombre,@apellido,@dni,@tipo_documento,@fecha_nacimiento,GETDATE())
+		VALUES (@nombre,@apellido,@dni,@tipo_documento,@fecha_nacimiento,@fecha_creacion)
 	END
 	GO
 
@@ -544,4 +545,24 @@ END
 GO
 
 --------------------------------------------------FIN VISIBILIDAD----------------------------------------------------------------
->>>>>>> master
+
+
+--------------HISTORIAL DE CLIENTE------------
+
+CREATE PROCEDURE sp_HistorialDelCliente (@dni varchar(255))
+AS BEGIN
+	SELECT descripcion
+	FROM PUBLICACION INNER JOIN COMPRA ON id_publicacion = publicacion
+		INNER JOIN USUARIO U ON U.id_usuario = comprador
+		INNER JOIN CLIENTE C ON U.id_usuario = C.id_usuario 
+	WHERE dni = @dni--666 hardcodeo para probar
+END
+GO
+
+SELECT * FROM PUBLICACION
+SELECT * FROM COMPRA
+SELECT * FROM CLIENTE
+SELECT * FROM USUARIO
+
+
+--------FIN DE HISTORIAL DEL CLIENTE-----------------------

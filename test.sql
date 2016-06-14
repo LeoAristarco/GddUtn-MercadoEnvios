@@ -1,3 +1,5 @@
+USE GD1C2016
+
 insert into USUARIO(nick)
 values('pepe49')
 
@@ -78,3 +80,11 @@ values(5)
 	
 		insert into COMPRA ( comprador, publicacion, fecha_operacion,monto, cantidad,calificacion )
 	values (  1 , 1 , getdate() , 79 ,1, 1 )
+
+	insert into COMPRA( comprador, publicacion, fecha_operacion,monto, cantidad,calificacion )
+	values (1, 2, getdate(),5,1,1)
+
+	insert into CLIENTE(id_usuario,nombre,dni)
+	values(1,'Barcangel',666)
+
+	
