@@ -325,7 +325,10 @@ end
 
 -- Procedimientos que usa el tr_insertarCompra
 create procedure st_actualizar_Estado_Publicacion_a_Finalizado
-@publicacion numeric(10,0)
+@publicacion numeric(10,0),
+@factura numeric(10,0),
+@fecha_operacion datetime
+
 as begin
  declare @stock int
  
@@ -334,8 +337,13 @@ as begin
 	  where id_publicacion = @publicacion
 
 	  if (@stock = 0)
-	   	update PUBLICACION SET estado_publicacion = 4 -- le cambio el estado finalizado
-	    where id_publicacion = @publicacion
+	  begin
+	   	    update PUBLICACION SET estado_publicacion = 4 -- le cambio el estado finalizado
+	        where id_publicacion = @publicacion
+			--cierro la factura   
+		    update FACTURA SET factura_fecha = @fecha_operacion 
+	           where id_factura = @factura
+	  end
  
 end
 -- Procedimientos que usa el tr_insertarCompra
@@ -370,9 +378,7 @@ create trigger tr_insertarCompra
 	
 	update PUBLICACION SET stock = stock - @cantidad
 	 where id_publicacion = @publicacion
-	 
-	exec st_actualizar_Estado_Publicacion_a_Finalizado @publicacion
-
+	 	 
 	end
 	
 	create procedure st_insertarCompraSubasta(@comprador numeric(10,0), 
@@ -386,7 +392,10 @@ create trigger tr_insertarCompra
 			   
 			insert into ITEM_FACTURA(nro_factura ,descripcion,cantidad_vendida ,precio_unitario,precio_envio )
 			   values (@factura , @descripcion, @cantidad, @monto ,@precio_envio )
-			
+			   
+			exec st_actualizar_Estado_Publicacion_a_Finalizado @publicacion,@factura,@fecha_operacion
+
+			   
 	end
 
 	
