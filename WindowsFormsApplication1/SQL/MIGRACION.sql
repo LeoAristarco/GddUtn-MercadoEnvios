@@ -170,12 +170,142 @@ insert into RUBRO
 go
 
 /********************************************************************************************************************************/
+/*CALIFICACION*/
+/********************************************************************************************************************************/
+
+--agrego un campo necesario para las demas migraciones que voy a eliminar al final
+alter table CALIFICACION 
+add codigo_calificacion numeric(18,0); 
+
+go
+
+--creo vista para recorrer la CALIFICACION y la COMPRA
+create view vista_calificaciones
+as
+select
+	Calificacion_Codigo as codigo,
+	Calificacion_Cant_Estrellas as estrellas,
+	Calificacion_Descripcion as descripcion 
+from gd_esquema.Maestra
+where 
+	Compra_Fecha is not null and
+	Calificacion_Codigo is not null;
+
+go
+
+insert into CALIFICACION
+	select estrellas, descripcion, codigo
+	from vista_calificaciones
+
+go
+
+--borro todo
+drop view vista_calificaciones
+
+go
+
+/********************************************************************************************************************************/
+/*FACTURA*/
+/********************************************************************************************************************************/
+
+--agrego campo que necesito para la migracion, al final la elimino
+alter table FACTURA
+add factura_numero numeric(18,0);
+
+go
+
+--creo vista para recorrer
+create view vista_facturas
+as
+select distinct
+	UPPER(Forma_Pago_Desc) as forma_pago,
+	UPPER(Publicacion_Visibilidad_Desc) as vis_descripcion,
+	Factura_Fecha as fecha,
+	Factura_Nro as factura_numero
+from gd_esquema.Maestra
+where 
+	Factura_Nro is not null;
+
+go
+
+insert into FACTURA
+	select forma_pago, vis_descripcion, fecha, factura_numero
+	from vista_facturas
+
+go
+
+--borro todo
+drop view vista_facturas;
+
+go
+
+/********************************************************************************************************************************/
+/*ITEM_FACTURA*/
+/********************************************************************************************************************************/
+
+--creo vista de items porque la necesito ahora
+create view vista_items_factura
+as
+select 
+	Item_Factura_Cantidad as cantidad,
+	Item_Factura_Monto as precio,
+	Factura_Nro as factura_numero
+from gd_esquema.Maestra
+where 
+	Item_Factura_Monto is not null;
+
+go
+
+--creo procedimiento
+create procedure MIGRAR_TABLA_ITEM_FACTURA
+as begin
+
+	insert into ITEM_FACTURA
+		select FACTURA.id_factura, '', v.cantidad, v.precio, 0
+		from vista_items_factura as v
+		inner join FACTURA
+		on v.factura_numero = FACTURA.factura_numero;
+
+end
+
+go
+
+--ejecuto procedimiento
+exec MIGRAR_TABLA_ITEM_FACTURA;
+
+go
+
+--borro todo
+drop view vista_items_factura;
+drop procedure MIGRAR_TABLA_ITEM_FACTURA;
+
+go
+
+/*
+/********************************************************************************************************************************/
 /*PUBLICACIONES*/
 /********************************************************************************************************************************/
 
 --agrego un campo necesario para las demas migraciones que voy a eliminar al final
 alter table PUBLICACION 
 add codigo_publicacion numeric(18,0); 
+
+--agrego un campo necesario para las demas migraciones que voy a eliminar al final
+create view vista_compras_calificadas
+as
+select  
+	Cli_Dni as dni,
+	Publicacion_Cod as codigo_publicacion,
+	Compra_Fecha as fecha,
+	/*el monto lo obtengo sumando las facturas*/
+	Compra_Cantidad as cantidad,
+	Calificacion_Codigo as codigo_calificacion,
+	Calificacion_Cant_Estrellas as estrellas,
+	Calificacion_Descripcion as descripcion 
+from gd_esquema.Maestra
+where 
+	Compra_Fecha is not null and
+	Calificacion_Codigo is not null
 
 go
 
@@ -239,3 +369,36 @@ drop view vista_publicaciones;
 drop procedure MIGRAR_PUBLICACIONES;
 
 go
+
+/********************************************************************************************************************************/
+/*COMPRAS*/
+/********************************************************************************************************************************/
+
+--creo procedimiento
+create procedure MIGRAR_COMPRAS_CALIFICADAS
+as begin 
+
+	insert into COMPRA /*POR AHORA METO EL MONTO EN 0*/
+		select USUARIO.id_usuario, PUBLICACION.id_publicacion, v.fecha, 0, v.cantidad, CALIFICACION.id_calificacion
+		from vista_compras_calificadas as v
+		inner join USUARIO
+		on CAST(v.dni as nvarchar(255)) = USUARIO.nick
+		inner join PUBLICACION
+		on v.codigo_publicacion = PUBLICACION.codigo_publicacion
+		inner join CALIFICACION
+		on v.codigo_calificacion = CALIFICACION.codigo_calificacion
+
+end
+
+go
+
+--ejecuto procedimiento
+exec MIGRAR_COMPRAS_CALIFICADAS;
+
+go
+
+--libero todo
+drop view vista_compras_calificadas;
+drop procedure MIGRAR_COMPRAS_CALIFICADAS;
+
+go*/

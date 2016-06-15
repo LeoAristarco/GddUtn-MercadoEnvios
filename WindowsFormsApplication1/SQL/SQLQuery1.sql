@@ -141,9 +141,7 @@ CREATE TABLE FACTURA
 	id_factura		  numeric(10,0) identity (1,1),
 	forma_pago		  nvarchar(255) NOT NULL,
 	tipo_visibilidad  nvarchar(255),
-	factura_fecha	  datetime,
-	total_facturar    numeric(10,2) NOT NULL,
-	
+	factura_fecha	  datetime,	
 	
 	PRIMARY KEY (id_factura)
 
@@ -152,14 +150,14 @@ CREATE TABLE FACTURA
 CREATE TABLE ITEM_FACTURA
 (
 	id_item			 numeric(10,0) identity (1,1), 
-	nro_factura		 numeric(10,0) NOT NULL,
+	id_factura		 numeric(10,0) NOT NULL,
 	descripcion		 nvarchar(255) NOT NULL,
 	cantidad_vendida numeric(10,0) NOT NULL,
 	precio_unitario  numeric(10,2) NOT NULL,
-	precio_envio     int,
+	precio_envio     numeric(10,2),
 	
 	PRIMARY KEY (id_item),
-	FOREIGN KEY(nro_factura) REFERENCES FACTURA(id_factura)
+	FOREIGN KEY(id_factura) REFERENCES FACTURA(id_factura)
 )
 
 create table PUBLICACION
