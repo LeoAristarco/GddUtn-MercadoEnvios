@@ -1,6 +1,4 @@
-USE GD1C2016
 
-go
 
 --------------------------------------COMIENZO funcionalidad Comprar/Ofertar----------------------------------------------------------------------
 
@@ -31,6 +29,66 @@ begin
  order by precio_visibilidad desc
 
 end
+
+
+-- Procedimientos que usa el store st_insertarCompraSubasta
+create procedure st_actualizar_Estado_Publicacion_a_Finalizado
+@publicacion numeric(10,0),
+@factura numeric(10,0),
+@fecha_operacion datetime
+
+as begin
+ declare @stock int
+ 
+      select @stock= stock
+	  from PUBLICACION
+	  where id_publicacion = @publicacion
+
+	  if (@stock = 0)
+	  begin
+	   	    update PUBLICACION SET estado_publicacion = 4 -- le cambio el estado finalizado
+	        where id_publicacion = @publicacion
+			--cierro la factura   
+		    update FACTURA SET factura_fecha = @fecha_operacion 
+	           where id_factura = @factura
+	  end
+ 
+end
+
+
+
+create PROCEDURE sp_AgregarOferta(@ofertante numeric(10,0),@publicacion numeric(10,0),
+                                  @fecha_oferta datetime,
+                                  @monto_ofertado numeric(10,2))
+AS BEGIN
+
+		INSERT INTO OFERTA
+			(ofertante, publicacion, fecha_oferta,concretada, monto_ofertado)
+			VALUES
+			(@ofertante, @publicacion, @fecha_oferta, 0, @monto_ofertado)
+			
+		update PUBLICACION SET precio = @monto_ofertado
+	       where id_publicacion = @publicacion
+
+END		
+
+
+	create procedure st_insertarCompraSubasta(@comprador numeric(10,0), 
+	    @publicacion numeric(10,0), 
+	    @fecha_operacion datetime, @monto numeric(10,2), @cantidad int,
+		@precio_envio int,@factura numeric(10,0),@descripcion nvarchar(255))
+	as begin
+	        
+			insert into COMPRA ( comprador, publicacion, fecha_operacion,monto, cantidad )
+	           values (@comprador , @publicacion , @fecha_operacion , @monto ,@cantidad )
+			   
+			insert into ITEM_FACTURA(nro_factura ,descripcion,cantidad_vendida ,precio_unitario,precio_envio )
+			   values (@factura , @descripcion, @cantidad, @monto ,@precio_envio )
+			   
+			exec st_actualizar_Estado_Publicacion_a_Finalizado @publicacion,@factura,@fecha_operacion
+
+			   
+	end
 
 
 --validaciones
@@ -79,7 +137,7 @@ create procedure st_validacion_de_compra_oferta
 @id_cliente numeric(10,0),
 @usuario_responsable numeric(10,0),
 @id_publicacion numeric(10,0),
-@tipoError varchar(50) out
+@tipoError varchar(50) out = 'todo piolaa',
 as
 begin
       if(@id_cliente = @usuario_responsable )
@@ -93,29 +151,6 @@ end
 
 
 -- Procedimientos que usa el tr_insertarCompra
-create procedure st_actualizar_Estado_Publicacion_a_Finalizado
-@publicacion numeric(10,0),
-@factura numeric(10,0),
-@fecha_operacion datetime
-
-as begin
- declare @stock int
- 
-      select @stock= stock
-	  from PUBLICACION
-	  where id_publicacion = @publicacion
-
-	  if (@stock = 0)
-	  begin
-	   	    update PUBLICACION SET estado_publicacion = 4 -- le cambio el estado finalizado
-	        where id_publicacion = @publicacion
-			--cierro la factura   
-		    update FACTURA SET factura_fecha = @fecha_operacion 
-	           where id_factura = @factura
-	  end
- 
-end
--- Procedimientos que usa el tr_insertarCompra
 create procedure st_agregarCalificacion(@id_calificacion numeric(10,0) output )
 as begin
 		insert into CALIFICACION (calif_estrellas,calif_detalle)
@@ -123,6 +158,7 @@ as begin
 		set @id_calificacion = scope_identity()
 end
 go
+
 
 -- Se dispara cada vez q se inserta una compra ( post-migracion)
 create trigger tr_insertarCompra
@@ -150,22 +186,7 @@ create trigger tr_insertarCompra
 	 	 
 	end
 	
-	create procedure st_insertarCompraSubasta(@comprador numeric(10,0), 
-	    @publicacion numeric(10,0), 
-	    @fecha_operacion datetime, @monto numeric(10,2), @cantidad int,
-		@precio_envio int,@factura numeric(10,0),@descripcion nvarchar(255))
-	as begin
-	        
-			insert into COMPRA ( comprador, publicacion, fecha_operacion,monto, cantidad )
-	           values (@comprador , @publicacion , @fecha_operacion , @monto ,@cantidad )
-			   
-			insert into ITEM_FACTURA(nro_factura ,descripcion,cantidad_vendida ,precio_unitario,precio_envio )
-			   values (@factura , @descripcion, @cantidad, @monto ,@precio_envio )
-			   
-			exec st_actualizar_Estado_Publicacion_a_Finalizado @publicacion,@factura,@fecha_operacion
 
-			   
-	end
 
 	
 -------------- FIN  funcionalidad Comprar/Ofertar----------------------------------------------------------------------
@@ -174,7 +195,9 @@ create trigger tr_insertarCompra
 
 create procedure st_mostrarPublicacionesSinCalificar(@id_usuario numeric(10,0))
 as begin  
-	  select  *
+	  select  id_publicacion,descripcion,stock,fecha_inicio,
+	          fecha_vencimiento,precio,rubro,visibilidad,estado_publicacion,
+			  usuario_responsable ,tipo_publicacion,envio,factura,id_calificacion
 	  from COMPRA
 	  inner join PUBLICACION on publicacion = id_publicacion
 	  inner join CALIFICACION on id_calificacion =calificacion
