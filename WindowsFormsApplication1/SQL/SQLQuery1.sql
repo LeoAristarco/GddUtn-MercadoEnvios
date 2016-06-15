@@ -139,9 +139,11 @@ create table TIPO_PUBLICACION
 CREATE TABLE FACTURA
 (
 	id_factura		  numeric(10,0) identity (1,1),
-	forma_pago		  nvarchar(255) NOT NULL,
-	tipo_visibilidad  nvarchar(255),
-	factura_fecha	  datetime,	
+	forma_pago		  nvarchar(255) ,
+	tipo_visibilidad  nvarchar(255) NOT NULL,
+	costo_visibilidad numeric(10,2) NOT NULL,
+	factura_fecha	  datetime,
+	total_facturar    numeric(10,2),
 	
 	PRIMARY KEY (id_factura)
 
@@ -560,11 +562,7 @@ AS BEGIN
 END
 GO
 
-SELECT * FROM PUBLICACION
-SELECT * FROM COMPRA
-SELECT * FROM CLIENTE
-SELECT * FROM USUARIO
-SELECT * FROM OFERTA
+
 
 --------FIN DE HISTORIAL DEL CLIENTE-----------------------
 
@@ -611,9 +609,9 @@ AS BEGIN
 	   if (@estado_publicacion <> 1)
 	       begin
 		        INSERT INTO FACTURA 
-		          (forma_pago , tipo_visibilidad,total_facturar)
+		          ( tipo_visibilidad,costo_visibilidad)
 			       values
-			      ('efectivo',dbo.fu_nombre_visibilidad(@visibilidad),dbo.fu_precio_visibilidad(@visibilidad))
+			      (dbo.fu_nombre_visibilidad(@visibilidad),dbo.fu_precio_visibilidad(@visibilidad))
 			    SET @factura = SCOPE_IDENTITY();
 		   end
 		
