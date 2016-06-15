@@ -572,12 +572,55 @@ SELECT * FROM OFERTA
 
 -------------- GENERAR PUBLICACION----------------------------------------------------------------------
 
-	  CREATE PROCEDURE sp_AgregarPublicacion
+create function fu_nombre_visibilidad(@visibilidad numeric(10,0))
+returns nvarchar(255)
+as
+begin
+declare @visibilidad_nombre nvarchar(255)
+
+      select @visibilidad_nombre= visibilidad_nombre
+	  from VISIBILIDAD 
+	  where id_visibilidad = @visibilidad
+
+      return @visibilidad_nombre
+
+end
+
+create function fu_precio_visibilidad(@visibilidad numeric(10,0))
+returns numeric(10,2)
+as
+begin
+declare @precio_visibilidad numeric(10,2)
+
+      select @precio_visibilidad= precio_visibilidad
+	  from VISIBILIDAD 
+	  where id_visibilidad = @visibilidad
+
+      return @precio_visibilidad
+
+end
+
+
+create PROCEDURE sp_AgregarPublicacion
 	(@descripcion nvarchar(255),@stock numeric(10,0), @fecha_inicio datetime, 
 	 @fecha_vencimiento datetime,@precio numeric(10,2), @rubro numeric(10,0), 
 	 @visibilidad numeric(10,0), @estado_publicacion numeric(10,0), @usuario_responsable numeric(10,0),
-	 @tipo_publicacion numeric(10,0), @envio bit, @factura numeric (10,0))
+	 @tipo_publicacion numeric(10,0), @envio bit)
 AS BEGIN
+
+        declare @factura numeric (10,0)
+		
+	   if (@estado_publicacion <> 1)
+	       begin
+		        INSERT INTO FACTURA 
+		          (forma_pago , tipo_visibilidad,total_facturar)
+			       values
+			      ('efectivo',dbo.fu_tipo_visibilidad(@visibilidad),dbo.fu_precio_visibilidad(@visibilidad))
+			    SET @factura = SCOPE_IDENTITY();
+		   end
+		
+
+		
 		INSERT INTO PUBLICACION
 			(descripcion, stock, fecha_inicio,fecha_vencimiento, precio, rubro, visibilidad,
 			 estado_publicacion, usuario_responsable, tipo_publicacion, envio, factura)
