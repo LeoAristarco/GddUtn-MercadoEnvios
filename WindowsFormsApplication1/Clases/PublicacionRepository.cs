@@ -12,9 +12,24 @@ namespace WindowsFormsApplication1.Clases
 
         public void agregarPublicacion(Publicacion publicacion)
         {
-            Dictionary<string, object> filaPublicacion = serializarSinId(publicacion);
+            //Dictionary<string, object> filaPublicacion = serializarSinId(publicacion);
 
-            hacerInsert(filaPublicacion);
+            List<SqlParameter> parametros = new List<SqlParameter>();
+
+            db.agregarParametro(parametros, "@descripcion", publicacion.descripcion);
+            db.agregarParametro(parametros, "@stock", publicacion.stock);
+            db.agregarParametro(parametros, "@fecha_inicio", publicacion.fechaInicio.Date);
+            db.agregarParametro(parametros, "@fecha_vencimiento", publicacion.fechaVencimiento.Date);
+            db.agregarParametro(parametros, "@precio", publicacion.precio);
+            db.agregarParametro(parametros, "@rubro", publicacion.rubro.id);
+            db.agregarParametro(parametros, "@visibilidad", publicacion.visibilidad.id);
+            db.agregarParametro(parametros, "@estado_publicacion", publicacion.estado.id);
+            db.agregarParametro(parametros, "@usuario_responsable", publicacion.responsable.id);
+            db.agregarParametro(parametros, "@tipo_publicacion", publicacion.tipo.id);
+            db.agregarParametro(parametros, "@envio", publicacion.hayEnvio);
+
+            //hacerInsert(filaPublicacion);
+            db.ejecutarStoredProcedure("sp_AgregarPublicacion", parametros);
         }
 
         private void hacerInsert(Dictionary<string, object> filaPublicacion)
