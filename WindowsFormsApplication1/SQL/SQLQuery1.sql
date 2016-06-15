@@ -137,7 +137,7 @@ create procedure st_validacion_de_compra_oferta
 @id_cliente numeric(10,0),
 @usuario_responsable numeric(10,0),
 @id_publicacion numeric(10,0),
-@tipoError varchar(50) out = 'todo piolaa',
+@tipoError varchar(50)  = 'todo piolaa' out
 as
 begin
       if(@id_cliente = @usuario_responsable )
