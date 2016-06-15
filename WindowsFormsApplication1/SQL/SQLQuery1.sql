@@ -613,7 +613,7 @@ AS BEGIN
 		        INSERT INTO FACTURA 
 		          (forma_pago , tipo_visibilidad,total_facturar)
 			       values
-			      ('efectivo',dbo.fu_tipo_visibilidad(@visibilidad),dbo.fu_precio_visibilidad(@visibilidad))
+			      ('efectivo',dbo.fu_nombre_visibilidad(@visibilidad),dbo.fu_precio_visibilidad(@visibilidad))
 			    SET @factura = SCOPE_IDENTITY();
 		   end
 		
