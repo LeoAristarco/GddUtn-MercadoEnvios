@@ -29,7 +29,7 @@ namespace WindowsFormsApplication1.Generar_Publicación
 
             this.formularioAnterior = formularioAnterior;
 
-            //inicializarFormulario();
+            InitializeComponent();
         }
 
         public GenerarPublicacion(Usuario usuario,Form formularioAnterior)
@@ -52,6 +52,8 @@ namespace WindowsFormsApplication1.Generar_Publicación
             VisibilidadRepository repoVisibilidad = new VisibilidadRepository();
             visibilidades = repoVisibilidad.obtenerVisibilidades();
 
+            visibilidad.Items.Clear();
+
             foreach (Visibilidad v in visibilidades)
             {
                 visibilidad.Items.Add(v.nombre);
@@ -59,6 +61,8 @@ namespace WindowsFormsApplication1.Generar_Publicación
 
             EstadoPublicacionRepository repoEstado = new EstadoPublicacionRepository();
             estados = repoEstado.obetenerEstadosPublicacion();
+
+            estado.Items.Clear();
 
             foreach (EstadoPublicacion e in estados)
             {
@@ -68,6 +72,8 @@ namespace WindowsFormsApplication1.Generar_Publicación
             RubroRepository repoRubro = new RubroRepository();
             rubros = repoRubro.obtenerRubros();
 
+            rubro.Items.Clear();
+
             foreach (Rubro item in rubros)
             {
                 rubro.Items.Add(item.descripcionCorta);
@@ -75,6 +81,8 @@ namespace WindowsFormsApplication1.Generar_Publicación
 
             TipoPublicacionRepository repoTipo = new TipoPublicacionRepository();
             tipos = repoTipo.obtenerTiposPublicacion();
+
+            tipo.Items.Clear();
 
             foreach (TipoPublicacion item in tipos)
             {
@@ -87,6 +95,7 @@ namespace WindowsFormsApplication1.Generar_Publicación
                 fechaFinalizacion.Value = publicacion.fechaVencimiento;
                 estado.SelectedItem = publicacion.estado.nombre;
                 tipo.SelectedItem = publicacion.tipo.nombre;
+                rubro.SelectedItem = publicacion.rubro.descripcionCorta;
             }
             else
             {
@@ -127,7 +136,7 @@ namespace WindowsFormsApplication1.Generar_Publicación
         {
             publicacion.descripcion = descripcion.Text;
             publicacion.estado = estados[estado.SelectedIndex];
-            publicacion.fechaInicio = new DateTime();//Vaya a saber vieja como la obtengo
+            publicacion.fechaInicio = DateTime.Now.Date;//Vaya a saber vieja como la obtengo
             publicacion.fechaVencimiento = fechaFinalizacion.Value;
             publicacion.hayEnvio = hayEnvio.Checked;
             publicacion.precio = Convert.ToDouble(precio.Text);

@@ -37,9 +37,10 @@
             // 
             // volverButton
             // 
-            this.volverButton.Location = new System.Drawing.Point(552, 196);
+            this.volverButton.Location = new System.Drawing.Point(736, 241);
+            this.volverButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.volverButton.Name = "volverButton";
-            this.volverButton.Size = new System.Drawing.Size(75, 38);
+            this.volverButton.Size = new System.Drawing.Size(100, 47);
             this.volverButton.TabIndex = 8;
             this.volverButton.Text = "< < Volver";
             this.volverButton.UseVisualStyleBackColor = true;
@@ -51,19 +52,22 @@
             this.tablaVisibilidad.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.tablaVisibilidad.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaVisibilidad.GridColor = System.Drawing.SystemColors.Window;
-            this.tablaVisibilidad.Location = new System.Drawing.Point(10, 49);
+            this.tablaVisibilidad.Location = new System.Drawing.Point(13, 60);
+            this.tablaVisibilidad.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tablaVisibilidad.MultiSelect = false;
             this.tablaVisibilidad.Name = "tablaVisibilidad";
             this.tablaVisibilidad.ReadOnly = true;
             this.tablaVisibilidad.RowHeadersVisible = false;
-            this.tablaVisibilidad.Size = new System.Drawing.Size(617, 121);
+            this.tablaVisibilidad.Size = new System.Drawing.Size(823, 149);
             this.tablaVisibilidad.TabIndex = 7;
+            this.tablaVisibilidad.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tablaVisibilidad_CellContentClick);
             // 
             // modificarButton
             // 
-            this.modificarButton.Location = new System.Drawing.Point(91, 11);
+            this.modificarButton.Location = new System.Drawing.Point(121, 14);
+            this.modificarButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.modificarButton.Name = "modificarButton";
-            this.modificarButton.Size = new System.Drawing.Size(75, 23);
+            this.modificarButton.Size = new System.Drawing.Size(100, 28);
             this.modificarButton.TabIndex = 6;
             this.modificarButton.Text = "Modificar";
             this.modificarButton.UseVisualStyleBackColor = true;
@@ -71,9 +75,10 @@
             // 
             // nuevaButton
             // 
-            this.nuevaButton.Location = new System.Drawing.Point(10, 11);
+            this.nuevaButton.Location = new System.Drawing.Point(13, 14);
+            this.nuevaButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.nuevaButton.Name = "nuevaButton";
-            this.nuevaButton.Size = new System.Drawing.Size(75, 23);
+            this.nuevaButton.Size = new System.Drawing.Size(100, 28);
             this.nuevaButton.TabIndex = 5;
             this.nuevaButton.Text = "Nueva";
             this.nuevaButton.UseVisualStyleBackColor = true;
@@ -81,14 +86,14 @@
             // 
             // ABMVisibilidad
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(638, 246);
+            this.ClientSize = new System.Drawing.Size(851, 303);
             this.Controls.Add(this.volverButton);
             this.Controls.Add(this.tablaVisibilidad);
             this.Controls.Add(this.modificarButton);
             this.Controls.Add(this.nuevaButton);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "ABMVisibilidad";
             this.Text = "ABMVisibilidad";
             this.Load += new System.EventHandler(this.ABMVisibilidad_Load);

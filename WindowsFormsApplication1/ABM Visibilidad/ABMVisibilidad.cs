@@ -15,11 +15,14 @@ namespace WindowsFormsApplication1.ABM_Visibilidad
     {
         private Form formAnterior;
         private VisibilidadRepository repositorio = new VisibilidadRepository();
-        public ABMVisibilidad()
+
+        public ABMVisibilidad(Form formAnterior)
         {
             InitializeComponent();
 
-            tablaVisibilidad = repositorio.llenarDataGrid();
+            this.formAnterior = formAnterior;
+
+            tablaVisibilidad = repositorio.llenarDataGrid();//lpm no esta llenando una mierda
         }
 
         private void nuevaButton_Click(object sender, EventArgs e)
@@ -50,9 +53,12 @@ namespace WindowsFormsApplication1.ABM_Visibilidad
 
         private void ABMVisibilidad_Load(object sender, EventArgs e)
         {
-
+            tablaVisibilidad.Show();
         }
 
-
+        private void tablaVisibilidad_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //aca deberia setear la visibilidad seleccionada
+        }
     }
 }
