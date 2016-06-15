@@ -356,35 +356,33 @@ drop view vista_publicaciones;
 drop procedure MIGRAR_PUBLICACIONES;
 
 go
-/*
+
 /********************************************************************************************************************************/
 /*COMPRAS*/
 /********************************************************************************************************************************/
 
---creo vista necesaria
+--creo vista necesaria, todas las compras estan calificadas
 create view vista_compras_calificadas
 as
 select  
 	Cli_Dni as dni,
 	Publicacion_Cod as codigo_publicacion,
 	Compra_Fecha as fecha,
-	/*el monto lo obtengo sumando las facturas*/
 	Compra_Cantidad as cantidad,
-	Calificacion_Codigo as codigo_calificacion,
-	Calificacion_Cant_Estrellas as estrellas,
-	Calificacion_Descripcion as descripcion 
+	Calificacion_Codigo as codigo_calificacion
 from gd_esquema.Maestra
 where 
 	Compra_Fecha is not null and
 	Calificacion_Codigo is not null
 
+go
 
 --creo procedimiento
 create procedure MIGRAR_COMPRAS_CALIFICADAS
 as begin 
 
-	insert into COMPRA /*POR AHORA METO EL MONTO EN 0*/
-		select USUARIO.id_usuario, PUBLICACION.id_publicacion, v.fecha, 0, v.cantidad, CALIFICACION.id_calificacion
+	insert into COMPRA 
+		select USUARIO.id_usuario, PUBLICACION.id_publicacion, v.fecha, PUBLICACION.precio, v.cantidad, CALIFICACION.id_calificacion
 		from vista_compras_calificadas as v
 		inner join USUARIO
 		on CAST(v.dni as nvarchar(255)) = USUARIO.nick
@@ -406,4 +404,4 @@ go
 drop view vista_compras_calificadas;
 drop procedure MIGRAR_COMPRAS_CALIFICADAS;
 
-go*/
+go
