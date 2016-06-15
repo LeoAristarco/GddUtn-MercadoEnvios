@@ -405,3 +405,72 @@ drop view vista_compras_calificadas;
 drop procedure MIGRAR_COMPRAS_CALIFICADAS;
 
 go
+
+
+/********************************************************************************************************************************/
+/*OFERTAS*/
+/********************************************************************************************************************************/
+
+--vista de maximos montos para el calculo del campo concretada
+create view vista_montos_maximos
+as
+select 
+	Publicacion_Cod as codigo_publicacion,
+	MAX(Oferta_Monto) as monto_maximo
+from gd_esquema.Maestra 
+where
+	Oferta_Fecha is not null
+group by Publicacion_Cod;
+
+go
+
+--vista a recorrer
+create view vista_ofertas
+as
+select 
+	Publ_Cli_Dni as dni,
+	Publ_Empresa_Cuit as cuit,
+	Publicacion_Cod as codigo_publicacion,
+	Oferta_Fecha as fecha, 
+	case 
+		when (select vm.monto_maximo from vista_montos_maximos as vm where vm.codigo_publicacion = Publicacion_Cod and vm.monto_maximo = Oferta_Monto) is null then 0
+		else 1
+	end as concretado,
+	Oferta_Monto as monto
+from gd_esquema.Maestra 
+where
+	Oferta_Fecha is not null;
+
+go 
+
+--creo procedimiento
+create procedure MIGRAR_OFERTAS
+as begin 
+
+	insert into OFERTA
+		select USUARIO.id_usuario, PUBLICACION.id_publicacion, v.fecha, v.concretado, v.monto
+		from vista_ofertas as v
+		inner join USUARIO
+		on
+			case 
+				when v.dni is not null then CAST(v.dni as nvarchar(255))
+				else CAST(v.cuit as nvarchar(255))
+			end
+			= USUARIO.nick
+		inner join PUBLICACION
+		on v.codigo_publicacion = PUBLICACION.codigo_publicacion;
+end
+
+go
+
+--ejecuto procedimiento
+exec MIGRAR_OFERTAS;
+
+go
+
+--libero todo
+drop view vista_montos_maximos;
+drop view vista_ofertas;
+drop procedure MIGRAR_OFERTAS;
+
+go
