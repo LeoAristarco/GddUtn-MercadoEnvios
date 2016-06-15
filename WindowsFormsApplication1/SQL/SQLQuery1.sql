@@ -9,6 +9,8 @@ create table FUNCIONALIDAD
 	PRIMARY KEY (id_funcionalidad)
 )
 
+go
+
 create table ROL
 (
 	id_rol                 numeric(10,0) identity (1,1),
@@ -17,6 +19,8 @@ create table ROL
 
 	PRIMARY KEY (id_rol)
 )
+
+go
 
 create table FUNCIONALIDAD_POR_ROL 
 ( 
@@ -27,6 +31,8 @@ create table FUNCIONALIDAD_POR_ROL
 	FOREIGN KEY (id_funcionalidad)           references FUNCIONALIDAD(id_funcionalidad), 
 	FOREIGN KEY (id_rol)		             references ROL(id_rol)
 ) 
+
+go
 
 create table USUARIO
 (
@@ -52,6 +58,8 @@ create table USUARIO
 	PRIMARY KEY(id_usuario)
 )
 
+go
+
 CREATE TABLE CLIENTE
 (
 	id_cliente			  numeric(10,0) IDENTITY,
@@ -65,6 +73,8 @@ CREATE TABLE CLIENTE
 	PRIMARY KEY(id_cliente),
 	FOREIGN KEY(id_usuario) references USUARIO(id_usuario)
 )
+
+go
 
 CREATE TABLE EMPRESA
 (
@@ -85,6 +95,7 @@ CREATE TABLE EMPRESA
 
 )
 
+go
 
 create table ROL_POR_USUARIO 
 ( 
@@ -97,6 +108,7 @@ create table ROL_POR_USUARIO
 	
 )
 
+go
 
 create table RUBRO
 (
@@ -106,6 +118,8 @@ create table RUBRO
 
 	PRIMARY KEY (id_rubro)
 )
+
+go
 
 create table VISIBILIDAD
 (
@@ -118,7 +132,7 @@ create table VISIBILIDAD
 	PRIMARY KEY (id_visibilidad)
 )
 
-
+go
 
 create table ESTADO_PUBLICACION
 (
@@ -128,6 +142,8 @@ create table ESTADO_PUBLICACION
 	PRIMARY KEY (id_estado)
 )
 
+go
+
 create table TIPO_PUBLICACION
 (
 	id_tipo  numeric(10,0) identity (1,1),
@@ -135,6 +151,8 @@ create table TIPO_PUBLICACION
 	
 	PRIMARY KEY (id_tipo)
 )
+
+go
 
 CREATE TABLE FACTURA
 (
@@ -149,6 +167,8 @@ CREATE TABLE FACTURA
 
 )
 
+go
+
 CREATE TABLE ITEM_FACTURA
 (
 	id_item			 numeric(10,0) identity (1,1), 
@@ -161,6 +181,8 @@ CREATE TABLE ITEM_FACTURA
 	PRIMARY KEY (id_item),
 	FOREIGN KEY(id_factura) REFERENCES FACTURA(id_factura)
 )
+
+go
 
 create table PUBLICACION
 (
@@ -188,7 +210,7 @@ create table PUBLICACION
 	FOREIGN KEY (factura)  references FACTURA(id_factura)
 )
 
-
+go
 
 create table OFERTA
 (
@@ -205,6 +227,8 @@ create table OFERTA
 
 )
 
+go
+
 create table CALIFICACION
 (
 	id_calificacion     numeric(10,0) identity (1,1),
@@ -213,6 +237,8 @@ create table CALIFICACION
 
 	PRIMARY KEY (id_calificacion)
 )
+
+go
 
 CREATE TABLE COMPRA
 (

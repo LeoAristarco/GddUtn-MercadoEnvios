@@ -205,7 +205,7 @@ drop view vista_calificaciones
 go
 
 /********************************************************************************************************************************/
-/*FACTURA*/
+/*FACTURA*/ --preguntar por el costo de visibilidad
 /********************************************************************************************************************************/
 
 --agrego campo que necesito para la migracion, al final la elimino
@@ -229,8 +229,10 @@ where
 go
 
 insert into FACTURA
-	select forma_pago, vis_descripcion, fecha, factura_numero
-	from vista_facturas
+	select v.forma_pago, v.vis_descripcion, VISIBILIDAD.precio_visibilidad, v.fecha, 0, v.factura_numero
+	from vista_facturas as v
+	inner join VISIBILIDAD 
+	on v.vis_descripcion = VISIBILIDAD.visibilidad_nombre
 
 go
 
@@ -281,7 +283,6 @@ drop procedure MIGRAR_TABLA_ITEM_FACTURA;
 
 go
 
-/*
 /********************************************************************************************************************************/
 /*PUBLICACIONES*/
 /********************************************************************************************************************************/
@@ -290,7 +291,77 @@ go
 alter table PUBLICACION 
 add codigo_publicacion numeric(18,0); 
 
---agrego un campo necesario para las demas migraciones que voy a eliminar al final
+go
+
+--creo vista para recorrer
+create view vista_publicaciones
+as
+select distinct
+	Publ_Cli_Dni as dni,
+	Publ_Empresa_Cuit as cuit,	
+	Publicacion_Cod as codigo,
+	Publicacion_Descripcion as descripcion,
+	Publicacion_Stock as stock,
+	Publicacion_Fecha as creacion,
+	Publicacion_Fecha_Venc as vencimiento,
+	Publicacion_Precio as precio,
+	UPPER(Publicacion_Tipo) as tipo,
+	UPPER(Publicacion_Visibilidad_Desc) as vis_nombre,
+	Publicacion_Visibilidad_Precio as vis_precio,
+	Publicacion_Visibilidad_Porcentaje as vis_porcentaje,
+	'ACTIVA' as estado,
+	UPPER(Publicacion_Rubro_Descripcion) as rubro,
+	Factura_Nro as numero_factura
+from gd_esquema.Maestra
+where 
+	Cli_Dni is null and 
+	Factura_Nro is not null;
+
+go
+
+--creo procedimiento
+create procedure MIGRAR_PUBLICACIONES
+as begin 
+
+	insert into PUBLICACION
+		select v.descripcion, v.stock, v.creacion, v.vencimiento, v.precio, RUBRO.id_rubro, VISIBILIDAD.id_visibilidad, 2, USUARIO.id_usuario, TIPO_PUBLICACION.id_tipo, 0, FACTURA.id_factura,v.codigo
+		from vista_publicaciones as v
+		inner join RUBRO
+		on v.rubro = RUBRO.descripción_corta
+		inner join VISIBILIDAD
+		on v.vis_nombre = VISIBILIDAD.visibilidad_nombre
+		inner join USUARIO
+		on 
+			case 
+				when v.dni is not null then CAST(v.dni as nvarchar(255))
+				else CAST(v.cuit as nvarchar(255))
+			end
+			 = USUARIO.nick
+		inner join TIPO_PUBLICACION
+		on v.tipo = TIPO_PUBLICACION.tipo
+		inner join FACTURA
+		on v.numero_factura = FACTURA.factura_numero
+
+end
+
+go
+
+--ejecuto procedimiento
+exec MIGRAR_PUBLICACIONES;
+
+go
+
+--libero todo
+drop view vista_publicaciones;
+drop procedure MIGRAR_PUBLICACIONES;
+
+go
+/*
+/********************************************************************************************************************************/
+/*COMPRAS*/
+/********************************************************************************************************************************/
+
+--creo vista necesaria
 create view vista_compras_calificadas
 as
 select  
@@ -307,72 +378,6 @@ where
 	Compra_Fecha is not null and
 	Calificacion_Codigo is not null
 
-go
-
---creo vista para recorrer
-create view vista_publicaciones
-as
-select 
-	Publ_Cli_Dni as dni,
-	Publ_Empresa_Cuit as cuit,	
-	Publicacion_Cod as codigo,
-	Publicacion_Descripcion as descripcion,
-	Publicacion_Stock as stock,
-	Publicacion_Fecha as creacion,
-	Publicacion_Fecha_Venc as vencimiento,
-	Publicacion_Precio as precio,
-	Publicacion_Tipo as tipo,
-	UPPER(Publicacion_Visibilidad_Desc) as vis_nombre,
-	Publicacion_Visibilidad_Precio as vis_precio,
-	Publicacion_Visibilidad_Porcentaje as vis_porcentaje,
-	Publicacion_Estado as estado,
-	Publicacion_Rubro_Descripcion as rubro
-from gd_esquema.Maestra
-where 
-	Cli_Dni is null and
-	Item_Factura_Monto is null;
-
-go
-
---creo procedimiento
-create procedure MIGRAR_PUBLICACIONES
-as begin 
-
-	insert into PUBLICACION
-		select v.descripcion, v.stock, v.creacion, v.vencimiento, v.precio, RUBRO.id_rubro, VISIBILIDAD.id_visibilidad, CAST(2 as decimal(10,2)), USUARIO.id_usuario, TIPO_PUBLICACION.id_tipo, 0, v.codigo
-		from vista_publicaciones as v
-		inner join RUBRO
-		on v.rubro = RUBRO.descripción_corta
-		inner join VISIBILIDAD
-		on v.vis_nombre = VISIBILIDAD.visibilidad_nombre
-		inner join USUARIO
-		on 
-			case 
-				when v.dni is not null then CAST(v.dni as nvarchar(255))
-				else CAST(v.cuit as nvarchar(255))
-			end
-			 = USUARIO.nick
-		inner join TIPO_PUBLICACION
-		on v.tipo = TIPO_PUBLICACION.tipo;
-
-end
-
-go
-
---ejecuto procedimiento
-exec MIGRAR_PUBLICACIONES;
-
-go
-
---libero todo
-drop view vista_publicaciones;
-drop procedure MIGRAR_PUBLICACIONES;
-
-go
-
-/********************************************************************************************************************************/
-/*COMPRAS*/
-/********************************************************************************************************************************/
 
 --creo procedimiento
 create procedure MIGRAR_COMPRAS_CALIFICADAS
