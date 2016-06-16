@@ -104,20 +104,6 @@ namespace WindowsFormsApplication1.Clases
             return executeQueryableCommand(consulta, parametros, 'T');
         }
 
-        public DataGridView obtenerDataGridView(string consulta)
-        {
-            SqlConnection conexion = abrirConexion();
-            SqlCommand comando = new SqlCommand(consulta, conexion);
-            SqlDataAdapter adapter = new SqlDataAdapter(comando);
-            DataTable dataTable = new DataTable();
-            adapter.Fill(dataTable);
-            DataGridView dataGrid = new DataGridView();
-            dataGrid.DataSource = dataTable;
-            conexion.Close();
-
-            return dataGrid;
-        }
-
         public List<Dictionary<string, object>> ejecutarConsulta(string consulta)
         {
             return ejecutarConsulta(consulta, new List<SqlParameter>());

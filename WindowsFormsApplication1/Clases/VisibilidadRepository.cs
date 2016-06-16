@@ -60,11 +60,6 @@ namespace WindowsFormsApplication1.Clases
             db.ejecutarStoredProcedure("sp_EditarVisibilidad", parametros);
         }
 
-        public DataGridView llenarDataGrid()
-        {
-            return db.obtenerDataGridView("select visibilidad_nombre,precio_visibilidad,porcentaje_venta from VISIBILIDAD");
-        }
-
         internal Visibilidad traerPorId(long v)
         {
             string consulta = "select * from VISIBILIDAD where id_visibilidad=" + v.ToString();

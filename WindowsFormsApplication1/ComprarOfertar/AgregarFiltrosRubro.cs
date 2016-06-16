@@ -16,10 +16,10 @@ namespace WindowsFormsApplication1.ComprarOfertar
     {
         RubroRepository repositorio = new RubroRepository();
         private List<Rubro> rubros;
-        private Form formAnterior;
+        private ComprarOfertar formAnterior;
         private Rubro rubroSeleccionado;
 
-        public AgregarFiltrosRubro(Form formAnterior)
+        public AgregarFiltrosRubro(ComprarOfertar formAnterior)
         {
             this.formAnterior = formAnterior;
             InitializeComponent();

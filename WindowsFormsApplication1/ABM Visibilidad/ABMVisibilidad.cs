@@ -18,11 +18,12 @@ namespace WindowsFormsApplication1.ABM_Visibilidad
 
         public ABMVisibilidad(Form formAnterior)
         {
-            InitializeComponent();
 
             this.formAnterior = formAnterior;
 
-            tablaVisibilidad = repositorio.llenarDataGrid();//lpm no esta llenando una mierda
+            visibilidades = repositorio.obtenerVisibilidades();
+
+            InitializeComponent();
         }
 
         private void nuevaButton_Click(object sender, EventArgs e)
@@ -44,6 +45,7 @@ namespace WindowsFormsApplication1.ABM_Visibilidad
         }
 
         private Visibilidad visibilidadSeleccionada;
+        private List<Visibilidad> visibilidades;
 
         private void volverButton_Click(object sender, EventArgs e)
         {
@@ -53,11 +55,35 @@ namespace WindowsFormsApplication1.ABM_Visibilidad
 
         private void ABMVisibilidad_Load(object sender, EventArgs e)
         {
-            tablaVisibilidad.Show();
+            cargarDataGrid();
+        }
+
+        private void cargarDataGrid()
+        {
+            DataGridViewTextBoxColumn cNombre = new DataGridViewTextBoxColumn();
+            cNombre.HeaderText = "Nombre";
+            cNombre.ReadOnly = true;
+            tablaVisibilidad.Columns.Add(cNombre);
+            DataGridViewTextBoxColumn cPrecio = new DataGridViewTextBoxColumn();
+            cPrecio.HeaderText = "Precio";
+            cPrecio.ReadOnly = true;
+            tablaVisibilidad.Columns.Add(cPrecio);
+            DataGridViewTextBoxColumn cPorcentaje = new DataGridViewTextBoxColumn();
+            cPorcentaje.HeaderText = "Porcentaje de Venta";
+            cPorcentaje.ReadOnly = true;
+            tablaVisibilidad.Columns.Add(cPorcentaje);
+
+            foreach (Visibilidad visibilidad in visibilidades)
+            {
+                tablaVisibilidad.Rows.Add(visibilidad.nombre);
+                tablaVisibilidad.Rows.Add(visibilidad.precio);
+                tablaVisibilidad.Rows.Add(visibilidad.porcentajeVenta);
+            }
         }
 
         private void tablaVisibilidad_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            visibilidadSeleccionada = visibilidades[tablaVisibilidad.SelectedRows[0].Index];
             //aca deberia setear la visibilidad seleccionada
         }
     }
