@@ -332,10 +332,19 @@ GO
 
 /* SP Eliminar VISIBILIDAD */
 
-CREATE PROCEDURE sp_EliminarVisibilidad
-	(@id_visibilidad numeric(10,0))
+create PROCEDURE sp_EliminarVisibilidad
+	@id_visibilidad numeric(10,0),
+	@tipoError varchar(50) = 'todo piolaa' out
 AS BEGIN
-	DELETE FROM VISIBILIDAD WHERE id_visibilidad = @id_visibilidad
+
+    BEGIN TRY
+	    DELETE FROM VISIBILIDAD WHERE id_visibilidad = @id_visibilidad
+	END TRY
+
+    BEGIN CATCH
+	 set @tipoError = 'error, no se puede borrar la visibilidad'
+    END CATCH
+
 END
 GO
 
