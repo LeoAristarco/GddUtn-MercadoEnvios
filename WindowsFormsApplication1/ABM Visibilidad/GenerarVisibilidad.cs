@@ -44,11 +44,13 @@ namespace WindowsFormsApplication1.ABM_Visibilidad
 
             nombre.Text = visibilidad.nombre;
             costo.Text = visibilidad.precio.ToString();
-            porcentaje.Text = visibilidad.porcentajeVenta.ToString();
+            porcentaje.Text = (100*visibilidad.porcentajeVenta).ToString();
         }
 
         private void ConfirmarButton_Click(object sender, EventArgs e)
         {
+            setVisibilidad();
+
             if (update)
             {
                 repositorio.updateVisibilidad(visibilidad);
@@ -59,6 +61,13 @@ namespace WindowsFormsApplication1.ABM_Visibilidad
             }
         }
 
+        private void setVisibilidad()
+        {
+            visibilidad.nombre = nombre.Text;
+            visibilidad.porcentajeVenta = Convert.ToDouble(porcentaje.Text) / 100;
+            visibilidad.precio = Convert.ToDouble(costo.Text);
+        }
+
         private void limpiarButton_Click(object sender, EventArgs e)
         {
             inicializarFormulario();
@@ -67,7 +76,7 @@ namespace WindowsFormsApplication1.ABM_Visibilidad
         private void cancelarButton_Click(object sender, EventArgs e)
         {
             Hide();
-            formAnterior.ShowDialog();
+            formAnterior.Show();
         }
     }
 }

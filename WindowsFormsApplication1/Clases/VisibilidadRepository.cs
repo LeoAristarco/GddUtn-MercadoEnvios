@@ -41,11 +41,13 @@ namespace WindowsFormsApplication1.Clases
 
         internal void agregarVisibilidad(Visibilidad visibilidad)
         {
+            int dummyInt = 0;
             List<SqlParameter> parametros = new List<SqlParameter>();
             db.agregarParametro(parametros, "@visibilidad_nombre", visibilidad.nombre);
             db.agregarParametro(parametros, "@precio_visibilidad", visibilidad.precio);
             db.agregarParametro(parametros, "@porcentaje_venta", visibilidad.porcentajeVenta);
-
+            db.agregarParametro(parametros, "@retorno", dummyInt);
+            
             db.ejecutarStoredProcedure("sp_AgregarVisibilidad", parametros);
         }
 

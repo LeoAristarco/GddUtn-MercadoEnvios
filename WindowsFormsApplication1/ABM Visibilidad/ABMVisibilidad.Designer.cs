@@ -38,7 +38,7 @@
             // volverButton
             // 
             this.volverButton.Location = new System.Drawing.Point(736, 241);
-            this.volverButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.volverButton.Margin = new System.Windows.Forms.Padding(4);
             this.volverButton.Name = "volverButton";
             this.volverButton.Size = new System.Drawing.Size(100, 47);
             this.volverButton.TabIndex = 8;
@@ -53,19 +53,19 @@
             this.tablaVisibilidad.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tablaVisibilidad.GridColor = System.Drawing.SystemColors.Window;
             this.tablaVisibilidad.Location = new System.Drawing.Point(13, 60);
-            this.tablaVisibilidad.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tablaVisibilidad.Margin = new System.Windows.Forms.Padding(4);
             this.tablaVisibilidad.MultiSelect = false;
             this.tablaVisibilidad.Name = "tablaVisibilidad";
             this.tablaVisibilidad.ReadOnly = true;
             this.tablaVisibilidad.RowHeadersVisible = false;
             this.tablaVisibilidad.Size = new System.Drawing.Size(823, 149);
             this.tablaVisibilidad.TabIndex = 7;
-            this.tablaVisibilidad.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tablaVisibilidad_CellContentClick);
+            this.tablaVisibilidad.Click += new System.EventHandler(this.tablaVisibilidad_Click);
             // 
             // modificarButton
             // 
             this.modificarButton.Location = new System.Drawing.Point(121, 14);
-            this.modificarButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.modificarButton.Margin = new System.Windows.Forms.Padding(4);
             this.modificarButton.Name = "modificarButton";
             this.modificarButton.Size = new System.Drawing.Size(100, 28);
             this.modificarButton.TabIndex = 6;
@@ -76,7 +76,7 @@
             // nuevaButton
             // 
             this.nuevaButton.Location = new System.Drawing.Point(13, 14);
-            this.nuevaButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.nuevaButton.Margin = new System.Windows.Forms.Padding(4);
             this.nuevaButton.Name = "nuevaButton";
             this.nuevaButton.Size = new System.Drawing.Size(100, 28);
             this.nuevaButton.TabIndex = 5;

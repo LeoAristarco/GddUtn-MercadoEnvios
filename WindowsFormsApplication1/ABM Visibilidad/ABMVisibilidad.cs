@@ -55,7 +55,13 @@ namespace WindowsFormsApplication1.ABM_Visibilidad
 
         private void ABMVisibilidad_Load(object sender, EventArgs e)
         {
+            inicializarFormulario();
+        }
+
+        private void inicializarFormulario()
+        {
             cargarDataGrid();
+            visibilidadSeleccionada = visibilidades[0];
         }
 
         private void cargarDataGrid()
@@ -75,15 +81,15 @@ namespace WindowsFormsApplication1.ABM_Visibilidad
 
             foreach (Visibilidad visibilidad in visibilidades)
             {
-                tablaVisibilidad.Rows.Add(visibilidad.nombre);
-                tablaVisibilidad.Rows.Add(visibilidad.precio);
-                tablaVisibilidad.Rows.Add(visibilidad.porcentajeVenta);
+                tablaVisibilidad.Rows.Add(visibilidad.nombre, visibilidad.precio, 100 * visibilidad.porcentajeVenta);
             }
         }
 
-        private void tablaVisibilidad_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void tablaVisibilidad_Click(object sender, EventArgs e)
         {
-            visibilidadSeleccionada = visibilidades[tablaVisibilidad.SelectedRows[0].Index];
+            int index = tablaVisibilidad.CurrentCell.RowIndex;
+            index = index == visibilidades.Count ? index-1 : index;
+            visibilidadSeleccionada = visibilidades[index];
             //aca deberia setear la visibilidad seleccionada
         }
     }

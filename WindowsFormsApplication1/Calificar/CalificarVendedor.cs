@@ -44,11 +44,6 @@ namespace WindowsFormsApplication1.Calificar
             formAnterior.ShowDialog();
         }
 
-        private void tablaPublicacionesCalificar_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            publicacionSeleccionada = publicacionesSinCalificar[tablaPublicacionesCalificar.SelectedRows[0].Index];
-        }
-
         private void CalificarVendedor_Load(object sender, EventArgs e)
         {
             inicializarFormulario();
@@ -84,6 +79,11 @@ namespace WindowsFormsApplication1.Calificar
             }
             //POR AHORA SOLO CARGO ESTO,IGUAL SE DEBERIAN MOSTRAR SOLO 3 O 4 DATOS
 
+        }
+
+        private void tablaPublicacionesCalificar_Click(object sender, EventArgs e)
+        {
+            publicacionSeleccionada = publicacionesSinCalificar[tablaPublicacionesCalificar.CurrentCell.RowIndex];
         }
     }
 }

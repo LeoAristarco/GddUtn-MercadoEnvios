@@ -96,7 +96,7 @@
             this.tablaPublicacionesCalificar.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tablaPublicacionesCalificar.Size = new System.Drawing.Size(655, 396);
             this.tablaPublicacionesCalificar.TabIndex = 0;
-            this.tablaPublicacionesCalificar.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tablaPublicacionesCalificar_CellContentClick);
+            this.tablaPublicacionesCalificar.Click += new System.EventHandler(this.tablaPublicacionesCalificar_Click);
             // 
             // CalificarVendedor
             // 
