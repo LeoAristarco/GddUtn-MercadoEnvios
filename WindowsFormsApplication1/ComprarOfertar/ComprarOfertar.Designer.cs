@@ -30,7 +30,7 @@
         {
             this.btnVolver = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtRubros = new System.Windows.Forms.TextBox();
+            this.rubroTextBox = new System.Windows.Forms.TextBox();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
             this.btnBorrarDescripcion = new System.Windows.Forms.Button();
@@ -60,7 +60,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.txtRubros);
+            this.groupBox1.Controls.Add(this.rubroTextBox);
             this.groupBox1.Controls.Add(this.btnBuscar);
             this.groupBox1.Controls.Add(this.btnReset);
             this.groupBox1.Controls.Add(this.btnBorrarDescripcion);
@@ -76,13 +76,13 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtros:";
             // 
-            // txtRubros
+            // rubroTextBox
             // 
-            this.txtRubros.Location = new System.Drawing.Point(95, 48);
-            this.txtRubros.Name = "txtRubros";
-            this.txtRubros.ReadOnly = true;
-            this.txtRubros.Size = new System.Drawing.Size(295, 23);
-            this.txtRubros.TabIndex = 17;
+            this.rubroTextBox.Location = new System.Drawing.Point(95, 48);
+            this.rubroTextBox.Name = "rubroTextBox";
+            this.rubroTextBox.ReadOnly = true;
+            this.rubroTextBox.Size = new System.Drawing.Size(295, 23);
+            this.rubroTextBox.TabIndex = 17;
             // 
             // btnBuscar
             // 
@@ -93,6 +93,7 @@
             this.btnBuscar.TabIndex = 5;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // btnReset
             // 
@@ -114,6 +115,7 @@
             this.btnBorrarDescripcion.TabIndex = 2;
             this.btnBorrarDescripcion.Text = "Borrar descripción";
             this.btnBorrarDescripcion.UseVisualStyleBackColor = true;
+            this.btnBorrarDescripcion.Click += new System.EventHandler(this.btnBorrarDescripcion_Click);
             // 
             // lblDescripcion
             // 
@@ -152,6 +154,7 @@
             this.btnAgregarRubros.TabIndex = 3;
             this.btnAgregarRubros.Text = "Agregar rubros";
             this.btnAgregarRubros.UseVisualStyleBackColor = true;
+            this.btnAgregarRubros.Click += new System.EventHandler(this.btnAgregarRubros_Click);
             // 
             // btnAbrirPublicacion
             // 
@@ -172,6 +175,7 @@
             this.btnUltimaPag.TabIndex = 17;
             this.btnUltimaPag.Text = "Ultima";
             this.btnUltimaPag.UseVisualStyleBackColor = true;
+            this.btnUltimaPag.Click += new System.EventHandler(this.btnUltimaPag_Click);
             // 
             // btnPrimerPag
             // 
@@ -182,6 +186,7 @@
             this.btnPrimerPag.TabIndex = 14;
             this.btnPrimerPag.Text = "Primera";
             this.btnPrimerPag.UseVisualStyleBackColor = true;
+            this.btnPrimerPag.Click += new System.EventHandler(this.btnPrimerPag_Click);
             // 
             // btnSiguientePag
             // 
@@ -191,6 +196,7 @@
             this.btnSiguientePag.TabIndex = 16;
             this.btnSiguientePag.Text = ">";
             this.btnSiguientePag.UseVisualStyleBackColor = true;
+            this.btnSiguientePag.Click += new System.EventHandler(this.btnSiguientePag_Click);
             // 
             // btnAnteriorPag
             // 
@@ -200,6 +206,7 @@
             this.btnAnteriorPag.TabIndex = 15;
             this.btnAnteriorPag.Text = "<";
             this.btnAnteriorPag.UseVisualStyleBackColor = true;
+            this.btnAnteriorPag.Click += new System.EventHandler(this.btnAnteriorPag_Click);
             // 
             // tablaPublicacionesFiltradas
             // 
@@ -247,7 +254,7 @@
 
         private System.Windows.Forms.Button btnVolver;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox txtRubros;
+        private System.Windows.Forms.TextBox rubroTextBox;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.Button btnBorrarDescripcion;

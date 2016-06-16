@@ -59,6 +59,55 @@ namespace WindowsFormsApplication1.Clases
             db.ejecutarConsulta(insert + valores, parametros);
         }
 
+        internal List<Publicacion> obtenerPublicacionesPorFiltro(string text, Rubro rubroSeleccionado, int numeroPagina)
+        {
+            List<SqlParameter> parametros = new List<SqlParameter>();
+            db.agregarParametro(parametros,"@descripcion", text);
+
+            if (rubroSeleccionado==null)
+            {
+                db.agregarParametro(parametros, "@rubroId", null);
+            }
+            else
+            {
+                db.agregarParametro(parametros, "@rubroId", rubroSeleccionado.id);
+            }
+
+            db.agregarParametro(parametros, "@pagina", numeroPagina);
+
+            List<Dictionary<string, object>> tabla = db.ejecutarStoredProcedure("st_buscar_publicaciones", parametros);
+
+            List<Publicacion> publicacionesFiltradas = new List<Publicacion>();
+
+            foreach (Dictionary<string,object> item in tabla)
+            {
+                publicacionesFiltradas.Add(deserializarPublicacionConId(item));
+            }
+
+            return publicacionesFiltradas;
+        }
+
+        internal int cantidadDePaginasFiltradas(string text, Rubro rubroSeleccionado, int numeroPagina)
+        {
+            List<SqlParameter> parametros = new List<SqlParameter>();
+            db.agregarParametro(parametros, "@descripcion", text);
+
+            if (rubroSeleccionado == null)
+            {
+                db.agregarParametro(parametros, "@rubroId", null);
+            }
+            else
+            {
+                db.agregarParametro(parametros, "@rubroId", rubroSeleccionado.id);
+            }
+
+            db.agregarParametro(parametros, "@pagina", numeroPagina);
+
+            List<Dictionary<string, object>> tabla = db.ejecutarStoredProcedure("st_buscar_publicaciones_ULTIMA_PAGINA", parametros);
+
+            return toInt(tabla[0]["@ultimaPagina"]);//No se como hacer con un stored que devuelve un int
+        }
+
         internal List<Publicacion> obtenerPublicacionesSinCalificar(Usuario usuario)
         {
             List<SqlParameter> parametros = new List<SqlParameter>();

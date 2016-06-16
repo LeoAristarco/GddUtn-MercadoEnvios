@@ -21,5 +21,10 @@ namespace WindowsFormsApplication1.ComprarOfertar
         {
 
         }
+
+        private void DetallePublicacion_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

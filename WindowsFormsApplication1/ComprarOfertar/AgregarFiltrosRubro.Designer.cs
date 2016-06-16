@@ -32,7 +32,7 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.cblRubros = new System.Windows.Forms.CheckedListBox();
+            this.rubroListBox = new System.Windows.Forms.CheckedListBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -45,6 +45,7 @@
             this.btnNinguno.TabIndex = 4;
             this.btnNinguno.Text = "Ninguno";
             this.btnNinguno.UseVisualStyleBackColor = true;
+            this.btnNinguno.Click += new System.EventHandler(this.btnNinguno_Click);
             // 
             // btnCancelar
             // 
@@ -56,6 +57,7 @@
             this.btnCancelar.TabIndex = 6;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnAceptar
             // 
@@ -67,10 +69,11 @@
             this.btnAceptar.TabIndex = 5;
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.cblRubros);
+            this.groupBox1.Controls.Add(this.rubroListBox);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(13, 13);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
@@ -81,16 +84,17 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Seleccione rubros a filtrar:";
             // 
-            // cblRubros
+            // rubroListBox
             // 
-            this.cblRubros.FormattingEnabled = true;
-            this.cblRubros.Location = new System.Drawing.Point(8, 23);
-            this.cblRubros.Margin = new System.Windows.Forms.Padding(4);
-            this.cblRubros.Name = "cblRubros";
-            this.cblRubros.Size = new System.Drawing.Size(340, 220);
-            this.cblRubros.TabIndex = 0;
+            this.rubroListBox.FormattingEnabled = true;
+            this.rubroListBox.Location = new System.Drawing.Point(8, 23);
+            this.rubroListBox.Margin = new System.Windows.Forms.Padding(4);
+            this.rubroListBox.Name = "rubroListBox";
+            this.rubroListBox.Size = new System.Drawing.Size(340, 220);
+            this.rubroListBox.TabIndex = 0;
+            this.rubroListBox.SelectedIndexChanged += new System.EventHandler(this.rubroListBox_SelectedIndexChanged);
             // 
-            // AgregarRubros
+            // AgregarFiltrosRubro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -99,8 +103,9 @@
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.groupBox1);
-            this.Name = "AgregarRubros";
+            this.Name = "AgregarFiltrosRubro";
             this.Text = "AgregarRubros";
+            this.Load += new System.EventHandler(this.AgregarFiltrosRubro_Load);
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -112,6 +117,6 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.CheckedListBox cblRubros;
+        private System.Windows.Forms.CheckedListBox rubroListBox;
     }
 }

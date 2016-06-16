@@ -412,6 +412,7 @@
             this.Controls.Add(this.GBDetalle);
             this.Name = "DetallePublicacion";
             this.Text = "DetallePublicacion";
+            this.Load += new System.EventHandler(this.DetallePublicacion_Load);
             this.GBDetalle.ResumeLayout(false);
             this.GBDetalle.PerformLayout();
             this.ResumeLayout(false);
