@@ -57,6 +57,7 @@
             this.btnVolver.TabIndex = 20;
             this.btnVolver.Text = "<< Volver";
             this.btnVolver.UseVisualStyleBackColor = true;
+            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             // 
             // groupBox1
             // 
@@ -165,6 +166,7 @@
             this.btnAbrirPublicacion.TabIndex = 18;
             this.btnAbrirPublicacion.Text = "Abrir Publicacion";
             this.btnAbrirPublicacion.UseVisualStyleBackColor = true;
+            this.btnAbrirPublicacion.Click += new System.EventHandler(this.btnAbrirPublicacion_Click);
             // 
             // btnUltimaPag
             // 
@@ -225,7 +227,7 @@
             this.tablaPublicacionesFiltradas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tablaPublicacionesFiltradas.Size = new System.Drawing.Size(853, 380);
             this.tablaPublicacionesFiltradas.TabIndex = 13;
-            this.tablaPublicacionesFiltradas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Publicaciones_Datagrid_CellContentClick);
+            this.tablaPublicacionesFiltradas.Click += new System.EventHandler(this.tablaPublicacionesFiltradas_Click);
             // 
             // ComprarOfertar
             // 

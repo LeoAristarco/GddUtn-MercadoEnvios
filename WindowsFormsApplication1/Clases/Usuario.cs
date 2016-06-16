@@ -3,5 +3,6 @@
     public class Usuario
     {
         public long id;//{ get; }
+        public string nick = "";
     }
 }

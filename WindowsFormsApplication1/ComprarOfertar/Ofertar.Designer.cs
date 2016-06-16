@@ -32,8 +32,8 @@
             this.txtAceptar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnBorrar = new System.Windows.Forms.Button();
-            this.txtOferta = new System.Windows.Forms.TextBox();
-            this.txtOfertaActual = new System.Windows.Forms.TextBox();
+            this.montoOferta = new System.Windows.Forms.TextBox();
+            this.ofertaActual = new System.Windows.Forms.TextBox();
             this.lblOferta = new System.Windows.Forms.Label();
             this.lblOfertaActual = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
@@ -49,6 +49,7 @@
             this.btnCancelar.TabIndex = 4;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // txtAceptar
             // 
@@ -59,12 +60,13 @@
             this.txtAceptar.TabIndex = 2;
             this.txtAceptar.Text = "Aceptar";
             this.txtAceptar.UseVisualStyleBackColor = true;
+            this.txtAceptar.Click += new System.EventHandler(this.txtAceptar_Click);
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.btnBorrar);
-            this.groupBox1.Controls.Add(this.txtOferta);
-            this.groupBox1.Controls.Add(this.txtOfertaActual);
+            this.groupBox1.Controls.Add(this.montoOferta);
+            this.groupBox1.Controls.Add(this.ofertaActual);
             this.groupBox1.Controls.Add(this.lblOferta);
             this.groupBox1.Controls.Add(this.lblOfertaActual);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -86,23 +88,24 @@
             this.btnBorrar.TabIndex = 2;
             this.btnBorrar.Text = "Borrar";
             this.btnBorrar.UseVisualStyleBackColor = true;
+            this.btnBorrar.Click += new System.EventHandler(this.btnBorrar_Click);
             // 
-            // txtOferta
+            // montoOferta
             // 
-            this.txtOferta.Location = new System.Drawing.Point(116, 73);
-            this.txtOferta.Margin = new System.Windows.Forms.Padding(4);
-            this.txtOferta.Name = "txtOferta";
-            this.txtOferta.Size = new System.Drawing.Size(132, 23);
-            this.txtOferta.TabIndex = 5;
+            this.montoOferta.Location = new System.Drawing.Point(116, 73);
+            this.montoOferta.Margin = new System.Windows.Forms.Padding(4);
+            this.montoOferta.Name = "montoOferta";
+            this.montoOferta.Size = new System.Drawing.Size(132, 23);
+            this.montoOferta.TabIndex = 5;
             // 
-            // txtOfertaActual
+            // ofertaActual
             // 
-            this.txtOfertaActual.Location = new System.Drawing.Point(116, 38);
-            this.txtOfertaActual.Margin = new System.Windows.Forms.Padding(4);
-            this.txtOfertaActual.Name = "txtOfertaActual";
-            this.txtOfertaActual.ReadOnly = true;
-            this.txtOfertaActual.Size = new System.Drawing.Size(132, 23);
-            this.txtOfertaActual.TabIndex = 4;
+            this.ofertaActual.Location = new System.Drawing.Point(116, 38);
+            this.ofertaActual.Margin = new System.Windows.Forms.Padding(4);
+            this.ofertaActual.Name = "ofertaActual";
+            this.ofertaActual.ReadOnly = true;
+            this.ofertaActual.Size = new System.Drawing.Size(132, 23);
+            this.ofertaActual.TabIndex = 4;
             // 
             // lblOferta
             // 
@@ -126,7 +129,7 @@
             this.lblOfertaActual.TabIndex = 2;
             this.lblOfertaActual.Text = "Oferta actual:";
             // 
-            // OfertaDlg
+            // Ofertar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -134,8 +137,9 @@
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.txtAceptar);
             this.Controls.Add(this.groupBox1);
-            this.Name = "OfertaDlg";
+            this.Name = "Ofertar";
             this.Text = "OfertaDlg";
+            this.Load += new System.EventHandler(this.Ofertar_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -148,8 +152,8 @@
         private System.Windows.Forms.Button txtAceptar;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnBorrar;
-        private System.Windows.Forms.TextBox txtOferta;
-        private System.Windows.Forms.TextBox txtOfertaActual;
+        private System.Windows.Forms.TextBox montoOferta;
+        private System.Windows.Forms.TextBox ofertaActual;
         private System.Windows.Forms.Label lblOferta;
         private System.Windows.Forms.Label lblOfertaActual;
     }

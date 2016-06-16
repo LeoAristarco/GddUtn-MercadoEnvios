@@ -10,5 +10,10 @@ namespace WindowsFormsApplication1.Calificar
         {
             throw new NotImplementedException();
         }
+
+        internal void comprar(Publicacion publicacion, object user, int v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

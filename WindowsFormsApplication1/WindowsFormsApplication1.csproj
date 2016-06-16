@@ -179,6 +179,12 @@
     <Compile Include="ComprarOfertar\AgregarFiltrosRubro.Designer.cs">
       <DependentUpon>AgregarFiltrosRubro.cs</DependentUpon>
     </Compile>
+    <Compile Include="ComprarOfertar\Comprar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ComprarOfertar\Comprar.Designer.cs">
+      <DependentUpon>Comprar.cs</DependentUpon>
+    </Compile>
     <Compile Include="ComprarOfertar\ComprarOfertar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -197,6 +203,7 @@
     <Compile Include="ComprarOfertar\Ofertar.Designer.cs">
       <DependentUpon>Ofertar.cs</DependentUpon>
     </Compile>
+    <Compile Include="ComprarOfertar\OfertaRepository.cs" />
     <Compile Include="Facturas\FacturarForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -357,6 +364,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ComprarOfertar\AgregarFiltrosRubro.resx">
       <DependentUpon>AgregarFiltrosRubro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ComprarOfertar\Comprar.resx">
+      <DependentUpon>Comprar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ComprarOfertar\ComprarOfertar.resx">
       <DependentUpon>ComprarOfertar.cs</DependentUpon>

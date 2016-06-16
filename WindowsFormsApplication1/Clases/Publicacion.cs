@@ -39,6 +39,11 @@ namespace WindowsFormsApplication1.Clases
             this.hayEnvio = hayEnvio;
         }
 
+        internal bool sosSubasta()
+        {
+            return tipo.sosSubasta();
+        }
+
         public Publicacion()
         {
         }

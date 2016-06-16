@@ -21,15 +21,14 @@ namespace WindowsFormsApplication1.ComprarOfertar
         private int numeroPagina = 1;
         private int cantidadMaxDePags = 0;
         private List<Publicacion> publicacionesFiltradas;
+        private Usuario usuario;
+        private Form formAnterior;
 
-        public ComprarOfertar()
+        public ComprarOfertar(Usuario usuario,Form formAnterior)
         {
+            this.formAnterior = formAnterior;
+            this.usuario = usuario;
             InitializeComponent();
-        }
-
-        private void Publicaciones_Datagrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            //selecciono publicacion
         }
 
         private void ComprarOfertar_Load(object sender, EventArgs e)
@@ -39,9 +38,26 @@ namespace WindowsFormsApplication1.ComprarOfertar
 
         private void inicializarFormulario()
         {
+            inicializarDataGrid();
             tablaPublicacionesFiltradas.Rows.Clear();
             filtroDescripcion.Text = "";
             //NO HACE NADA!!
+        }
+
+        private void inicializarDataGrid()
+        {
+            DataGridViewTextBoxColumn cDescripcion = new DataGridViewTextBoxColumn();
+            cDescripcion.HeaderText = "Descripcion";
+            cDescripcion.ReadOnly = true;
+            tablaPublicacionesFiltradas.Columns.Add(cDescripcion);
+            DataGridViewTextBoxColumn cConEnvio = new DataGridViewTextBoxColumn();
+            cConEnvio.HeaderText = "Con Envio";
+            cConEnvio.ReadOnly = true;
+            tablaPublicacionesFiltradas.Columns.Add(cConEnvio);
+            DataGridViewTextBoxColumn cfechaFin = new DataGridViewTextBoxColumn();
+            cfechaFin.HeaderText = "Fecha de Finalizacion";
+            cfechaFin.ReadOnly = true;
+            tablaPublicacionesFiltradas.Columns.Add(cfechaFin);
         }
 
         private void btnReset_Click(object sender, EventArgs e)
@@ -70,7 +86,7 @@ namespace WindowsFormsApplication1.ComprarOfertar
         {
             AgregarFiltrosRubro agregarFiltroRubro = new AgregarFiltrosRubro(this);
             Hide();
-            ShowDialog();
+            agregarFiltroRubro.ShowDialog();
         }
 
         private void btnBorrarDescripcion_Click(object sender, EventArgs e)
@@ -88,29 +104,20 @@ namespace WindowsFormsApplication1.ComprarOfertar
                 cantidadMaxDePags = repositorio.cantidadDePaginasFiltradas(filtroDescripcion.Text, rubroSeleccionado, numeroPagina);
             }
 
+            if (publicacionesFiltradas.Count>0)
+            {
+                publicacionSeleccionada = publicacionesFiltradas[0];
+            }
+
             cargarDataGrid();
         }
 
         private void cargarDataGrid()
         {
-            DataGridViewTextBoxColumn cDescripcion = new DataGridViewTextBoxColumn();
-            cDescripcion.HeaderText = "Descripcion";
-            cDescripcion.ReadOnly = true;
-            tablaPublicacionesFiltradas.Columns.Add(cDescripcion);
-            DataGridViewTextBoxColumn cConEnvio = new DataGridViewTextBoxColumn();
-            cConEnvio.HeaderText = "Con Envio";
-            cConEnvio.ReadOnly = true;
-            tablaPublicacionesFiltradas.Columns.Add(cConEnvio);
-            DataGridViewTextBoxColumn cfechaFin = new DataGridViewTextBoxColumn();
-            cfechaFin.HeaderText = "Fecha de Finalizacion";
-            cfechaFin.ReadOnly = true;
-            tablaPublicacionesFiltradas.Columns.Add(cfechaFin);
-
+            tablaPublicacionesFiltradas.Rows.Clear();
             foreach (Publicacion publicacion in publicacionesFiltradas)
             {
-                tablaPublicacionesFiltradas.Rows.Add(publicacion.descripcion);
-                tablaPublicacionesFiltradas.Rows.Add(publicacion.hayEnvio);
-                tablaPublicacionesFiltradas.Rows.Add(publicacion.fechaVencimiento);
+                tablaPublicacionesFiltradas.Rows.Add(publicacion.descripcion, publicacion.hayEnvio, publicacion.fechaVencimiento);
             }
             //POR AHORA SOLO CARGO ESTO,IGUAL SE DEBERIAN MOSTRAR SOLO 3 O 4 DATOS
         }
@@ -149,6 +156,24 @@ namespace WindowsFormsApplication1.ComprarOfertar
                 return;
             }
             btnBuscar_Click(new object(), new EventArgs());
+        }
+
+        private void tablaPublicacionesFiltradas_Click(object sender, EventArgs e)
+        {
+            publicacionSeleccionada = publicacionesFiltradas[tablaPublicacionesFiltradas.CurrentCell.RowIndex];
+        }
+
+        private void btnAbrirPublicacion_Click(object sender, EventArgs e)
+        {
+            DetallePublicacion verPublicacion = new DetallePublicacion(publicacionSeleccionada,this,usuario);
+            Hide();
+            verPublicacion.ShowDialog();
+        }
+
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            formAnterior.Show();
+            Close();
         }
     }
 }

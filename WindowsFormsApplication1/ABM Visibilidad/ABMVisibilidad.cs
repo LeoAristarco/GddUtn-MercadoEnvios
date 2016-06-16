@@ -89,7 +89,7 @@ namespace WindowsFormsApplication1.ABM_Visibilidad
         {
             int index = tablaVisibilidad.CurrentCell.RowIndex;
             index = index == visibilidades.Count ? index-1 : index;
-            visibilidadSeleccionada = visibilidades[index];
+            visibilidadSeleccionada = visibilidades[index];//No se por que me crea una fila de mas
             //aca deberia setear la visibilidad seleccionada
         }
     }

@@ -89,6 +89,8 @@ namespace WindowsFormsApplication1.Clases
 
         internal int cantidadDePaginasFiltradas(string text, Rubro rubroSeleccionado, int numeroPagina)
         {
+            int cantidadPaginas = 0;
+
             List<SqlParameter> parametros = new List<SqlParameter>();
             db.agregarParametro(parametros, "@descripcion", text);
 
@@ -102,10 +104,11 @@ namespace WindowsFormsApplication1.Clases
             }
 
             db.agregarParametro(parametros, "@pagina", numeroPagina);
+            db.agregarParametro(parametros, "@ultimaPagina", cantidadPaginas);
 
             List<Dictionary<string, object>> tabla = db.ejecutarStoredProcedure("st_buscar_publicaciones_ULTIMA_PAGINA", parametros);
 
-            return toInt(tabla[0]["@ultimaPagina"]);//No se como hacer con un stored que devuelve un int
+            return cantidadPaginas;//No se como hacer con un stored que devuelve un int
         }
 
         internal List<Publicacion> obtenerPublicacionesSinCalificar(Usuario usuario)
