@@ -64,5 +64,11 @@ namespace WindowsFormsApplication1.Generar_Publicación
 
             return fila;
         }
+
+        internal Rubro traerPorId(long v)
+        {
+            string consulta = "select * from RUBRO where id_rubro=" + v.ToString();
+            return deserializarRubro(db.ejecutarConsulta(consulta)[0]);
+        }
     }
 }

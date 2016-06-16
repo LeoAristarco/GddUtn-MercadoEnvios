@@ -35,7 +35,7 @@
             this.btnReset = new System.Windows.Forms.Button();
             this.btnBorrarDescripcion = new System.Windows.Forms.Button();
             this.lblDescripcion = new System.Windows.Forms.Label();
-            this.txtDescripcion = new System.Windows.Forms.TextBox();
+            this.filtroDescripcion = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnAgregarRubros = new System.Windows.Forms.Button();
             this.btnAbrirPublicacion = new System.Windows.Forms.Button();
@@ -43,9 +43,9 @@
             this.btnPrimerPag = new System.Windows.Forms.Button();
             this.btnSiguientePag = new System.Windows.Forms.Button();
             this.btnAnteriorPag = new System.Windows.Forms.Button();
-            this.Publicaciones_Datagrid = new System.Windows.Forms.DataGridView();
+            this.tablaPublicacionesFiltradas = new System.Windows.Forms.DataGridView();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Publicaciones_Datagrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaPublicacionesFiltradas)).BeginInit();
             this.SuspendLayout();
             // 
             // btnVolver
@@ -65,7 +65,7 @@
             this.groupBox1.Controls.Add(this.btnReset);
             this.groupBox1.Controls.Add(this.btnBorrarDescripcion);
             this.groupBox1.Controls.Add(this.lblDescripcion);
-            this.groupBox1.Controls.Add(this.txtDescripcion);
+            this.groupBox1.Controls.Add(this.filtroDescripcion);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.btnAgregarRubros);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -103,6 +103,7 @@
             this.btnReset.TabIndex = 4;
             this.btnReset.Text = "Sin filtros!";
             this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // btnBorrarDescripcion
             // 
@@ -118,24 +119,25 @@
             // 
             this.lblDescripcion.AutoSize = true;
             this.lblDescripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDescripcion.Location = new System.Drawing.Point(23, 22);
+            this.lblDescripcion.Location = new System.Drawing.Point(6, 22);
             this.lblDescripcion.Name = "lblDescripcion";
             this.lblDescripcion.Size = new System.Drawing.Size(86, 17);
             this.lblDescripcion.TabIndex = 14;
             this.lblDescripcion.Text = "Descripción:";
             // 
-            // txtDescripcion
+            // filtroDescripcion
             // 
-            this.txtDescripcion.Location = new System.Drawing.Point(95, 19);
-            this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(295, 23);
-            this.txtDescripcion.TabIndex = 1;
+            this.filtroDescripcion.Location = new System.Drawing.Point(95, 19);
+            this.filtroDescripcion.Name = "filtroDescripcion";
+            this.filtroDescripcion.Size = new System.Drawing.Size(295, 23);
+            this.filtroDescripcion.TabIndex = 1;
+            this.filtroDescripcion.TextChanged += new System.EventHandler(this.txtDescripcion_TextChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(23, 51);
+            this.label1.Location = new System.Drawing.Point(13, 51);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(62, 17);
             this.label1.TabIndex = 10;
@@ -199,23 +201,24 @@
             this.btnAnteriorPag.Text = "<";
             this.btnAnteriorPag.UseVisualStyleBackColor = true;
             // 
-            // Publicaciones_Datagrid
+            // tablaPublicacionesFiltradas
             // 
-            this.Publicaciones_Datagrid.AllowUserToAddRows = false;
-            this.Publicaciones_Datagrid.AllowUserToDeleteRows = false;
-            this.Publicaciones_Datagrid.AllowUserToResizeColumns = false;
-            this.Publicaciones_Datagrid.AllowUserToResizeRows = false;
-            this.Publicaciones_Datagrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.Publicaciones_Datagrid.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.Publicaciones_Datagrid.BackgroundColor = System.Drawing.SystemColors.Window;
-            this.Publicaciones_Datagrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Publicaciones_Datagrid.Location = new System.Drawing.Point(12, 96);
-            this.Publicaciones_Datagrid.MultiSelect = false;
-            this.Publicaciones_Datagrid.Name = "Publicaciones_Datagrid";
-            this.Publicaciones_Datagrid.ReadOnly = true;
-            this.Publicaciones_Datagrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.Publicaciones_Datagrid.Size = new System.Drawing.Size(853, 380);
-            this.Publicaciones_Datagrid.TabIndex = 13;
+            this.tablaPublicacionesFiltradas.AllowUserToAddRows = false;
+            this.tablaPublicacionesFiltradas.AllowUserToDeleteRows = false;
+            this.tablaPublicacionesFiltradas.AllowUserToResizeColumns = false;
+            this.tablaPublicacionesFiltradas.AllowUserToResizeRows = false;
+            this.tablaPublicacionesFiltradas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.tablaPublicacionesFiltradas.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.tablaPublicacionesFiltradas.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.tablaPublicacionesFiltradas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tablaPublicacionesFiltradas.Location = new System.Drawing.Point(12, 96);
+            this.tablaPublicacionesFiltradas.MultiSelect = false;
+            this.tablaPublicacionesFiltradas.Name = "tablaPublicacionesFiltradas";
+            this.tablaPublicacionesFiltradas.ReadOnly = true;
+            this.tablaPublicacionesFiltradas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.tablaPublicacionesFiltradas.Size = new System.Drawing.Size(853, 380);
+            this.tablaPublicacionesFiltradas.TabIndex = 13;
+            this.tablaPublicacionesFiltradas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Publicaciones_Datagrid_CellContentClick);
             // 
             // ComprarOfertar
             // 
@@ -229,12 +232,13 @@
             this.Controls.Add(this.btnPrimerPag);
             this.Controls.Add(this.btnSiguientePag);
             this.Controls.Add(this.btnAnteriorPag);
-            this.Controls.Add(this.Publicaciones_Datagrid);
+            this.Controls.Add(this.tablaPublicacionesFiltradas);
             this.Name = "ComprarOfertar";
             this.Text = "ComprarOfertar";
+            this.Load += new System.EventHandler(this.ComprarOfertar_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Publicaciones_Datagrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaPublicacionesFiltradas)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -248,7 +252,7 @@
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.Button btnBorrarDescripcion;
         private System.Windows.Forms.Label lblDescripcion;
-        private System.Windows.Forms.TextBox txtDescripcion;
+        private System.Windows.Forms.TextBox filtroDescripcion;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnAgregarRubros;
         private System.Windows.Forms.Button btnAbrirPublicacion;
@@ -256,6 +260,6 @@
         private System.Windows.Forms.Button btnPrimerPag;
         private System.Windows.Forms.Button btnSiguientePag;
         private System.Windows.Forms.Button btnAnteriorPag;
-        private System.Windows.Forms.DataGridView Publicaciones_Datagrid;
+        private System.Windows.Forms.DataGridView tablaPublicacionesFiltradas;
     }
 }

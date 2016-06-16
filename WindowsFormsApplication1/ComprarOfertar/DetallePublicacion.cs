@@ -16,5 +16,10 @@ namespace WindowsFormsApplication1.ComprarOfertar
         {
             InitializeComponent();
         }
+
+        private void btnComprar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

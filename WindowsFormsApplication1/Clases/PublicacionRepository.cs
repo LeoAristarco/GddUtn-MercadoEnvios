@@ -4,6 +4,9 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using WindowsFormsApplication1.Calificar;
+using WindowsFormsApplication1.Generar_Publicación;
 
 namespace WindowsFormsApplication1.Clases
 {
@@ -54,6 +57,55 @@ namespace WindowsFormsApplication1.Clases
             valores += ")";
 
             db.ejecutarConsulta(insert + valores, parametros);
+        }
+
+        internal List<Publicacion> obtenerPublicacionesSinCalificar(Usuario usuario)
+        {
+            List<SqlParameter> parametros = new List<SqlParameter>();
+            db.agregarParametro(parametros, "@id_usuario", usuario.id);
+            List<Dictionary<string,object>> tabla = db.ejecutarStoredProcedure("st_mostrarPublicacionesSinCalificar", parametros);
+            List<Publicacion> publicacionesSinCalificar = new List<Publicacion>();
+
+            foreach (Dictionary<string,object> item in tabla)
+            {
+                publicacionesSinCalificar.Add(deserializarPublicacionConCalificacion(item));
+            }
+
+            return publicacionesSinCalificar;
+        }
+
+        private Publicacion deserializarPublicacionConCalificacion(Dictionary<string, object> item)
+        {
+            CalificacionRepository calificacionRepo = new CalificacionRepository();
+            Publicacion publicacion = deserializarPublicacionConId(item);
+            publicacion.calificacion = calificacionRepo.traerPorId(toLong(item["id_calificacion"]));
+
+            return publicacion;
+        }
+
+        private Publicacion deserializarPublicacionConId(Dictionary<string, object> item)
+        {
+            Publicacion publicacion = new Publicacion();
+            VisibilidadRepository repoVisib = new VisibilidadRepository();
+            EstadoPublicacionRepository repoEstado = new EstadoPublicacionRepository();
+            UsuarioRepository repoUser = new UsuarioRepository();
+            TipoPublicacionRepository repoTipo = new TipoPublicacionRepository();
+            RubroRepository repoRubro = new RubroRepository();
+
+            publicacion.id = toLong(item["id_publicacion"]);
+            publicacion.hayEnvio = toBool(item["envio"]);
+            publicacion.descripcion = item["descripcion"].ToString();
+            publicacion.stock = toLong(item["stock"]);
+            publicacion.fechaInicio = toDate(item["fecha_inicio"]);
+            publicacion.fechaVencimiento = toDate(item["fecha_vencimiento"]);
+            publicacion.precio = toDouble(item["precio"]);
+            publicacion.rubro = repoRubro.traerPorId(toLong(item["rubro"]));
+            publicacion.visibilidad = repoVisib.traerPorId(toLong(item["visibilidad"]));
+            publicacion.estado = repoEstado.traerPorId(toLong(item["estado_publicacion"]));
+            publicacion.responsable = repoUser.traerPorId(toLong(item["usuario_responsable"]));
+            publicacion.tipo = repoTipo.traerPorId(toLong(item["tipo_publicacion"]));
+
+            return publicacion;
         }
 
         private Dictionary<string, object> serializarSinId(Publicacion publicacion)

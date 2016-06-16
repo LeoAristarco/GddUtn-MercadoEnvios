@@ -1,15 +1,15 @@
 ﻿namespace WindowsFormsApplication1.Calificar
 {
-    internal class Calificacion
+    public class Calificacion
     {
         public long id;
-        int calificacion;
-        string comentarios;
+        public int estrellas;
+        public string comentarios;
 
-        public Calificacion(long id, int calificacion, string comentarios)
+        public Calificacion(long id, int estrellas, string comentarios)
         {
             this.id = id;
-            this.calificacion = calificacion;
+            this.estrellas = estrellas;
             this.comentarios = comentarios;
         }
     }

@@ -23,5 +23,15 @@ namespace WindowsFormsApplication1.Clases
         {
             return Convert.ToDateTime(e);
         }
+
+        public int toInt(object e)
+        {
+            return Convert.ToInt16(e);
+        }
+
+        public bool toBool(object e)
+        {
+            return Convert.ToBoolean(e);
+        }
     }
 }

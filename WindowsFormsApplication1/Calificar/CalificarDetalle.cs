@@ -16,9 +16,10 @@ namespace WindowsFormsApplication1.Calificar
         private Calificacion calificacion;
         private CalificacionRepository repositorio = new CalificacionRepository();
 
-        public CalificarDetalle(Form formAnterior)
+        public CalificarDetalle(Form formAnterior,Calificacion calificacion)
         {
             this.formAnterior = formAnterior;
+            this.calificacion = calificacion;
             InitializeComponent();
         }
 
@@ -53,12 +54,13 @@ namespace WindowsFormsApplication1.Calificar
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             setCalificacion();
-            repositorio.agregarCalificacion(calificacion);
+            repositorio.updateCalificacion(calificacion);
         }
 
         private void setCalificacion()
         {
-            calificacion = new Calificacion(0, Convert.ToInt16(estrellas.SelectedItem), textoLibre.Text);
+            calificacion.estrellas = Convert.ToInt16(estrellas.SelectedItem);
+            calificacion.comentarios = textoLibre.Text;
         }
     }
 }

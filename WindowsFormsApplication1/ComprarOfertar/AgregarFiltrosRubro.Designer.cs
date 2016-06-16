@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApplication1.ComprarOfertar
 {
-    partial class AgregarRubros
+    partial class AgregarFiltrosRubro
     {
         /// <summary>
         /// Required designer variable.

@@ -64,5 +64,11 @@ namespace WindowsFormsApplication1.Clases
         {
             return db.obtenerDataGridView("select visibilidad_nombre,precio_visibilidad,porcentaje_venta from VISIBILIDAD");
         }
+
+        internal Visibilidad traerPorId(long v)
+        {
+            string consulta = "select * from VISIBILIDAD where id_visibilidad=" + v.ToString();
+            return deserializarVisibilidad(db.ejecutarConsulta(consulta)[0]);
+        }
     }
 }

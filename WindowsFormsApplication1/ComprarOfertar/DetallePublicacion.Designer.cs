@@ -44,10 +44,6 @@
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.txtUsername = new System.Windows.Forms.TextBox();
             this.txtCodPublicacion = new System.Windows.Forms.TextBox();
-            this.btnLimpiar = new System.Windows.Forms.Button();
-            this.btnEnviar = new System.Windows.Forms.Button();
-            this.txtPregunta = new System.Windows.Forms.TextBox();
-            this.lblPregunta = new System.Windows.Forms.Label();
             this.lblStockInicial = new System.Windows.Forms.Label();
             this.lblTipoPublicacion = new System.Windows.Forms.Label();
             this.lblEstadoPublicacion = new System.Windows.Forms.Label();
@@ -59,13 +55,15 @@
             this.lblIdVendedor = new System.Windows.Forms.Label();
             this.lblVisibilidad = new System.Windows.Forms.Label();
             this.lblCodPublicacion = new System.Windows.Forms.Label();
+            this.cantidad = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.GBDetalle.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(558, 407);
+            this.btnCancelar.Location = new System.Drawing.Point(545, 315);
             this.btnCancelar.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(100, 28);
@@ -75,13 +73,14 @@
             // 
             // btnComprar
             // 
-            this.btnComprar.Location = new System.Drawing.Point(666, 407);
+            this.btnComprar.Location = new System.Drawing.Point(359, 315);
             this.btnComprar.Margin = new System.Windows.Forms.Padding(4);
             this.btnComprar.Name = "btnComprar";
             this.btnComprar.Size = new System.Drawing.Size(100, 28);
             this.btnComprar.TabIndex = 8;
             this.btnComprar.Text = "Comprar";
             this.btnComprar.UseVisualStyleBackColor = true;
+            this.btnComprar.Click += new System.EventHandler(this.btnComprar_Click);
             // 
             // GBDetalle
             // 
@@ -98,10 +97,6 @@
             this.GBDetalle.Controls.Add(this.txtDescripcion);
             this.GBDetalle.Controls.Add(this.txtUsername);
             this.GBDetalle.Controls.Add(this.txtCodPublicacion);
-            this.GBDetalle.Controls.Add(this.btnLimpiar);
-            this.GBDetalle.Controls.Add(this.btnEnviar);
-            this.GBDetalle.Controls.Add(this.txtPregunta);
-            this.GBDetalle.Controls.Add(this.lblPregunta);
             this.GBDetalle.Controls.Add(this.lblStockInicial);
             this.GBDetalle.Controls.Add(this.lblTipoPublicacion);
             this.GBDetalle.Controls.Add(this.lblEstadoPublicacion);
@@ -118,7 +113,7 @@
             this.GBDetalle.Margin = new System.Windows.Forms.Padding(4);
             this.GBDetalle.Name = "GBDetalle";
             this.GBDetalle.Padding = new System.Windows.Forms.Padding(4);
-            this.GBDetalle.Size = new System.Drawing.Size(753, 386);
+            this.GBDetalle.Size = new System.Drawing.Size(645, 268);
             this.GBDetalle.TabIndex = 6;
             this.GBDetalle.TabStop = false;
             this.GBDetalle.Text = "Detalle de la publicación:";
@@ -266,48 +261,6 @@
             this.txtCodPublicacion.TabIndex = 4;
             this.txtCodPublicacion.TabStop = false;
             // 
-            // btnLimpiar
-            // 
-            this.btnLimpiar.Location = new System.Drawing.Point(636, 334);
-            this.btnLimpiar.Margin = new System.Windows.Forms.Padding(4);
-            this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(100, 28);
-            this.btnLimpiar.TabIndex = 3;
-            this.btnLimpiar.Text = "Limpar";
-            this.btnLimpiar.UseVisualStyleBackColor = true;
-            // 
-            // btnEnviar
-            // 
-            this.btnEnviar.Location = new System.Drawing.Point(636, 298);
-            this.btnEnviar.Margin = new System.Windows.Forms.Padding(4);
-            this.btnEnviar.Name = "btnEnviar";
-            this.btnEnviar.Size = new System.Drawing.Size(100, 28);
-            this.btnEnviar.TabIndex = 2;
-            this.btnEnviar.Text = "Enviar";
-            this.btnEnviar.UseVisualStyleBackColor = true;
-            // 
-            // txtPregunta
-            // 
-            this.txtPregunta.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPregunta.Location = new System.Drawing.Point(12, 298);
-            this.txtPregunta.Margin = new System.Windows.Forms.Padding(4);
-            this.txtPregunta.MaxLength = 255;
-            this.txtPregunta.Multiline = true;
-            this.txtPregunta.Name = "txtPregunta";
-            this.txtPregunta.Size = new System.Drawing.Size(615, 63);
-            this.txtPregunta.TabIndex = 1;
-            // 
-            // lblPregunta
-            // 
-            this.lblPregunta.AutoSize = true;
-            this.lblPregunta.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPregunta.Location = new System.Drawing.Point(12, 278);
-            this.lblPregunta.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblPregunta.Name = "lblPregunta";
-            this.lblPregunta.Size = new System.Drawing.Size(365, 17);
-            this.lblPregunta.TabIndex = 11;
-            this.lblPregunta.Text = "Escriba una pregunta al vendedor: (max 255 caracteres)";
-            // 
             // lblStockInicial
             // 
             this.lblStockInicial.AutoSize = true;
@@ -429,11 +382,31 @@
             this.lblCodPublicacion.TabIndex = 0;
             this.lblCodPublicacion.Text = "Código publicación:";
             // 
+            // cantidad
+            // 
+            this.cantidad.Location = new System.Drawing.Point(231, 312);
+            this.cantidad.Multiline = true;
+            this.cantidad.Name = "cantidad";
+            this.cantidad.Size = new System.Drawing.Size(75, 31);
+            this.cantidad.TabIndex = 9;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(20, 316);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(182, 24);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Cantidad a Comprar:";
+            // 
             // DetallePublicacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 444);
+            this.ClientSize = new System.Drawing.Size(672, 356);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.cantidad);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnComprar);
             this.Controls.Add(this.GBDetalle);
@@ -442,6 +415,7 @@
             this.GBDetalle.ResumeLayout(false);
             this.GBDetalle.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -463,10 +437,6 @@
         private System.Windows.Forms.TextBox txtDescripcion;
         private System.Windows.Forms.TextBox txtUsername;
         private System.Windows.Forms.TextBox txtCodPublicacion;
-        private System.Windows.Forms.Button btnLimpiar;
-        private System.Windows.Forms.Button btnEnviar;
-        private System.Windows.Forms.TextBox txtPregunta;
-        private System.Windows.Forms.Label lblPregunta;
         private System.Windows.Forms.Label lblStockInicial;
         private System.Windows.Forms.Label lblTipoPublicacion;
         private System.Windows.Forms.Label lblEstadoPublicacion;
@@ -478,5 +448,7 @@
         private System.Windows.Forms.Label lblIdVendedor;
         private System.Windows.Forms.Label lblVisibilidad;
         private System.Windows.Forms.Label lblCodPublicacion;
+        private System.Windows.Forms.TextBox cantidad;
+        private System.Windows.Forms.Label label1;
     }
 }

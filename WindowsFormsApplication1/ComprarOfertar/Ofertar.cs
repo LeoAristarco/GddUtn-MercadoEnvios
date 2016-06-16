@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication1.ComprarOfertar
 {
-    public partial class AgregarRubros : Form
+    public partial class Ofertar : Form
     {
-        public AgregarRubros()
+        public Ofertar()
         {
             InitializeComponent();
         }

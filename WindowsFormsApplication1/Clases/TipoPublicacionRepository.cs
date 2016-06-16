@@ -28,5 +28,11 @@ namespace WindowsFormsApplication1.Generar_Publicación
 
             return tipos;
         }
+
+        internal TipoPublicacion traerPorId(long v)
+        {
+            string consulta = "select * from TIPO_PUBLICACION where id_tipo=" + v.ToString();
+            return deserializarTipoPublicacion(db.ejecutarConsulta(consulta)[0]);
+        }
     }
 }

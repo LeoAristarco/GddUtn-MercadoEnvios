@@ -7,22 +7,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApplication1.Clases;
 
 namespace WindowsFormsApplication1.Calificar
 {
     public partial class CalificarVendedor : Form
     {
         private Form formAnterior;
+        private PublicacionRepository repositorio = new PublicacionRepository();
+        private List<Publicacion> publicacionesSinCalificar;
+        private Usuario usuario;
+        private Publicacion publicacionSeleccionada;
 
-        public CalificarVendedor()
+        public CalificarVendedor(Usuario usuario,Form formAnterior)
         {
+            this.formAnterior = formAnterior;
+
+            this.usuario = usuario;
+
             InitializeComponent();
-            //ACA DEBERIA CARGAR LA LISTA DE PUBLICACIONES
+            //ACA DEBERIA CARGAR LA LISTA DE COMPRAS
         }
 
         private void btnCalificar_Click(object sender, EventArgs e)
         {
-            CalificarDetalle calificar = new CalificarDetalle(this);
+            CalificarDetalle calificar = new CalificarDetalle(this,publicacionSeleccionada.calificacion);
 
             Hide();
 
@@ -33,6 +42,48 @@ namespace WindowsFormsApplication1.Calificar
         {
             Hide();
             formAnterior.ShowDialog();
+        }
+
+        private void tablaPublicacionesCalificar_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            publicacionSeleccionada = publicacionesSinCalificar[tablaPublicacionesCalificar.SelectedRows[0].Index];
+        }
+
+        private void CalificarVendedor_Load(object sender, EventArgs e)
+        {
+            inicializarFormulario();
+        }
+
+        private void inicializarFormulario()
+        {
+            publicacionesSinCalificar = repositorio.obtenerPublicacionesSinCalificar(usuario);
+
+            cargarPublicacionesADataGrid();
+        }
+
+        private void cargarPublicacionesADataGrid()
+        {
+            DataGridViewTextBoxColumn cDescripcion = new DataGridViewTextBoxColumn();
+            cDescripcion.HeaderText = "Descripcion";
+            cDescripcion.ReadOnly = true;
+            tablaPublicacionesCalificar.Columns.Add(cDescripcion);
+            DataGridViewTextBoxColumn cConEnvio = new DataGridViewTextBoxColumn();
+            cConEnvio.HeaderText = "Con Envio";
+            cConEnvio.ReadOnly = true;
+            tablaPublicacionesCalificar.Columns.Add(cConEnvio);
+            DataGridViewTextBoxColumn cfechaFin = new DataGridViewTextBoxColumn();
+            cfechaFin.HeaderText = "Fecha de Finalizacion";
+            cfechaFin.ReadOnly = true;
+            tablaPublicacionesCalificar.Columns.Add(cfechaFin);
+
+            foreach (Publicacion publicacion in publicacionesSinCalificar)
+            {
+                tablaPublicacionesCalificar.Rows.Add(publicacion.descripcion);
+                tablaPublicacionesCalificar.Rows.Add(publicacion.hayEnvio);
+                tablaPublicacionesCalificar.Rows.Add(publicacion.fechaVencimiento);
+            }
+            //POR AHORA SOLO CARGO ESTO,IGUAL SE DEBERIAN MOSTRAR SOLO 3 O 4 DATOS
+
         }
     }
 }

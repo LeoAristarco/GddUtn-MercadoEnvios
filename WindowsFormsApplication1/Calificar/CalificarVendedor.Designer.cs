@@ -96,6 +96,7 @@
             this.tablaPublicacionesCalificar.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tablaPublicacionesCalificar.Size = new System.Drawing.Size(655, 396);
             this.tablaPublicacionesCalificar.TabIndex = 0;
+            this.tablaPublicacionesCalificar.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tablaPublicacionesCalificar_CellContentClick);
             // 
             // CalificarVendedor
             // 
@@ -106,6 +107,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "CalificarVendedor";
             this.Text = "CalificarVendedor";
+            this.Load += new System.EventHandler(this.CalificarVendedor_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tablaPublicacionesCalificar)).EndInit();
             this.ResumeLayout(false);

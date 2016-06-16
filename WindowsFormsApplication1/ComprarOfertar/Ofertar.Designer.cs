@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApplication1.ComprarOfertar
 {
-    partial class OfertaDlg
+    partial class Ofertar
     {
         /// <summary>
         /// Required designer variable.
