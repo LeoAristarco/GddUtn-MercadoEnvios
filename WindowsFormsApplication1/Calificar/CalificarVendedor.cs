@@ -58,6 +58,8 @@ namespace WindowsFormsApplication1.Calificar
         {
             publicacionesSinCalificar = repositorio.obtenerPublicacionesSinCalificar(usuario);
 
+            publicacionSeleccionada = publicacionesSinCalificar[0];
+
             cargarPublicacionesADataGrid();
         }
 
@@ -78,9 +80,7 @@ namespace WindowsFormsApplication1.Calificar
 
             foreach (Publicacion publicacion in publicacionesSinCalificar)
             {
-                tablaPublicacionesCalificar.Rows.Add(publicacion.descripcion);
-                tablaPublicacionesCalificar.Rows.Add(publicacion.hayEnvio);
-                tablaPublicacionesCalificar.Rows.Add(publicacion.fechaVencimiento);
+                tablaPublicacionesCalificar.Rows.Add(publicacion.descripcion, publicacion.hayEnvio, publicacion.fechaVencimiento);
             }
             //POR AHORA SOLO CARGO ESTO,IGUAL SE DEBERIAN MOSTRAR SOLO 3 O 4 DATOS
 
