@@ -252,10 +252,9 @@ end
 
 		/************ABM de usuario*************/
 
-	CREATE PROCEDURE sp_crearUsuario
+	CREATE PROCEDURE sp_crearUsuario(
 		@user			nvarchar(255),
-		@pass			nvarchar(255),
-		@rol			nvarchar(255),
+		@pass			nvarchar(255),		
 		@mail			nvarchar(255),
 		@telefono		nvarchar(60),
 		@calle			nvarchar(255),
@@ -263,22 +262,53 @@ end
 		@numero_piso	nvarchar(30),
 		@departamento	nvarchar(50),
 		@localidad		nvarchar(255),
-		@codigo_postal	nvarchar(50)
+		@codigo_postal	nvarchar(50))
 		
 	AS BEGIN
 		INSERT INTO USUARIO(nick,pass,baja_logica,mail,telefono,calle,numero_calle,departamento,localidad,codigo_postal)
 		VALUES (@user,@pass,0,@mail,@telefono,@calle,@numero_calle,@numero_piso,@departamento,@localidad,@codigo_postal)		
 	END
 	GO
-	--Falta validar la existencia del usuario
 
-	CREATE PROCEDURE sp_crearCliente
+	CREATE PROCEDURE sp_actualizarUsuario(
+		@id_usuario		numeric(10,0),				
+		@mail			nvarchar(255),
+		@telefono		nvarchar(60),
+		@calle			nvarchar(255),
+		@numero_calle	numeric(18,0),
+		@numero_piso	nvarchar(30),
+		@departamento	nvarchar(50),
+		@localidad		nvarchar(255),
+		@codigo_postal	nvarchar(50))
+	AS BEGIN
+		UPDATE USUARIO SET
+		mail = @mail,
+		telefono = @telefono,
+		calle = @calle,
+		numero_calle = @numero_calle,
+		numero_piso = @numero_piso,
+		departamento = @departamento,
+		localidad = @localidad,
+		codigo_postal = @codigo_postal
+		WHERE id_usuario = @id_usuario
+	END
+	GO
+	
+	CREATE PROCEDURE sp_darDeBajaLogicaAUsuario(@id_usuario numeric(10,0))
+	AS BEGIN
+		UPDATE USUARIO SET
+		baja_logica = 1
+		WHERE id_usuario = @id_usuario
+	END
+	GO
+
+	CREATE PROCEDURE sp_crearCliente(
 		@nombre				nvarchar(255),
 		@apellido			nvarchar(255),
 		@dni				numeric(18,0),
 		@tipo_documento		nvarchar(255),
 		@fecha_nacimiento	date,
-		@fecha_creacion		date
+		@fecha_creacion		date)
 
 	AS BEGIN
 		INSERT INTO CLIENTE(nombre,apellido,dni,tipo_documento,fecha_nacimiento,fecha_creacion)
@@ -286,19 +316,59 @@ end
 	END
 	GO
 
-	CREATE PROCEDURE sp_crearEmpresa
+	CREATE PROCEDURE sp_actualizarCliente(
+		@id_usuario			numeric(10,0),
+		@nombre				nvarchar(255),
+		@apellido			nvarchar(255),
+		@dni				numeric(18,0),
+		@tipo_documento		nvarchar(255),
+		@fecha_nacimiento	date,
+		@fecha_creacion		date)
+
+	AS BEGIN
+		UPDATE CLIENTE SET
+		nombre = @nombre,
+		apellido = @apellido,
+		dni = @dni,
+		tipo_documento = @tipo_documento,
+		fecha_nacimiento = @fecha_nacimiento,
+		fecha_creacion = @fecha_creacion
+		WHERE id_usuario = @id_usuario
+	END
+	GO
+		
+
+
+	CREATE PROCEDURE sp_crearEmpresa(
 		@razon_social	nvarchar(255),
 		@cuit			nvarchar(50),
 		@nombre_contacto nvarchar(255),
 		@ciudad			nvarchar(255),
-		@rubro			nvarchar(255)
+		@rubro			nvarchar(255))
 	AS BEGIN
 		INSERT INTO EMPRESA(razon_social,cuit,nombre_contacto,ciudad,rubro)	
 		VALUES (@razon_social,@cuit,@nombre_contacto,@ciudad,@rubro)
 	END
 	GO
 
-	--Falta validar la existencia del usuario
+	CREATE PROCEDURE sp_actualizarEmpresa(
+		@id_empresa		numeric(10,0),
+		@razon_social	nvarchar(255),
+		@cuit			nvarchar(50),
+		@nombre_contacto nvarchar(255),
+		@ciudad			nvarchar(255),
+		@rubro			nvarchar(255))
+	AS BEGIN
+		UPDATE EMPRESA SET
+		razon_social = @razon_social,
+		cuit = @cuit,
+		nombre_contacto = @nombre_contacto,
+		ciudad = @ciudad,
+		rubro = @rubro
+		WHERE id_empresa = @id_empresa
+	END
+	GO
+
 
 
 
@@ -363,12 +433,11 @@ AS BEGIN
 
 	UNION
 
-	SELECT DISTINCT descripcion
+	SELECT  descripcion
 	FROM PUBLICACION INNER JOIN OFERTA ON id_publicacion = publicacion
 		INNER JOIN USUARIO U ON U.id_usuario = ofertante
 		INNER JOIN CLIENTE C On U.id_usuario = C.id_usuario
 	WHERE dni = @dni
-
 END
 GO
 
