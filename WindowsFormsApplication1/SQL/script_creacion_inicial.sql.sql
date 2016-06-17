@@ -203,8 +203,8 @@ go
 create table RUBRO
 (
 	id_rubro            numeric(10,0)  identity (1,1),
-	descripción_corta   varchar(30) NULL, 
-	descripción_larga   nvarchar(255),
+	descripciÃ³n_corta   varchar(30) NULL, 
+	descripciÃ³n_larga   nvarchar(255),
 
 	PRIMARY KEY (id_rubro)
 )
@@ -475,12 +475,12 @@ go
 /********************************************************************************************************************************/
 
 insert into VISIBILIDAD
-	values 
+	values
+		('GRATIS', 0, 0),
+		('BRONCE', 60, 0.30),	
 		('PLATA', 100, 0.20),
-		('BRONCE', 60, 0.30),
-		('PLATINO', 180, 0.10),
 		('ORO', 140, 0.15),
-		('GRATIS', 0, 0);
+		('PLATINO', 180, 0.10);
 go
 
 /********************************************************************************************************************************/
@@ -677,7 +677,7 @@ as begin
 		select v.descripcion, v.stock, v.creacion, v.vencimiento, v.precio, RUBRO.id_rubro, VISIBILIDAD.id_visibilidad, 2, USUARIO.id_usuario, TIPO_PUBLICACION.id_tipo, 0, FACTURA.id_factura,v.codigo
 		from vista_publicaciones as v
 		inner join RUBRO
-		on v.rubro = RUBRO.descripción_corta
+		on v.rubro = RUBRO.descripciÃ³n_corta
 		inner join VISIBILIDAD
 		on v.vis_nombre = VISIBILIDAD.visibilidad_nombre
 		inner join USUARIO
