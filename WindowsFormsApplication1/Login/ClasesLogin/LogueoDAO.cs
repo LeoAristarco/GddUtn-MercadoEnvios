@@ -27,27 +27,32 @@ namespace WindowsFormsApplication1.Login.ClasesLogin
             SqlParameter pNick = new SqlParameter("@nick", logueo.nick);
             SqlParameter pPass = new SqlParameter("@pass", logueo.pass);
             List<SqlParameter> parametros = new List<SqlParameter> { pNick, pPass };
-
-            dataReader = dataBase.getDataReader(procedimientoSql, 'P', parametros);
-
-            logueo.roles = mapearDataReadADiccionarioRoles();
-            dataBase.cerrarConexion();
+            
+            logueo.roles = obtenerRolesPorProcedimientoSQL(procedimientoSql, parametros);
         }
         
-        private Dictionary<long, string> mapearDataReadADiccionarioRoles()
+        private Dictionary<double, string> obtenerRolesPorProcedimientoSQL(string nombreProcedimientoSQL, List<SqlParameter> parametros)
         {
-            if (!dataReader.HasRows) return null;
+            dataBase.abrirConexion();
 
-            Dictionary<long, string> roles = new Dictionary<long, string>();
+            dataReader = dataBase.getDataReader(nombreProcedimientoSQL, 'P', parametros);
 
+            if (!dataReader.HasRows)
+            {
+                dataBase.cerrarConexion();
+                return null;
+            }
+
+            Dictionary<double, string> roles = new Dictionary<double, string>();
             while (dataReader.Read())
             {
-                long key = dataReader.GetSqlDecimal(3).Scale;
+                double key = dataReader.GetSqlDecimal(3).ToDouble();
                 string value = dataReader.GetString(4);
                 
                 roles.Add(key, value);              
             }
 
+            dataBase.cerrarConexion();
             return roles;
         }
     }

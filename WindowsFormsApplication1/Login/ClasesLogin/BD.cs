@@ -33,8 +33,6 @@ namespace WindowsFormsApplication1.Login.ClasesLogin
 
         public SqlDataReader getDataReader(string consulta, char tipoConsulta, List<SqlParameter> parametros)
         {
-            conexion.Open();
-
             //creo y cargo el comando para ejecutar
             SqlCommand comando = new SqlCommand();
                 comando.Connection = conexion;
@@ -71,6 +69,11 @@ namespace WindowsFormsApplication1.Login.ClasesLogin
         public void cerrarConexion()
         {
             conexion.Close();
+        }
+
+        public void abrirConexion()
+        {
+            conexion.Open();
         }
     }
 }

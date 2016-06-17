@@ -29,17 +29,24 @@ namespace WindowsFormsApplication1.Login
         {
             logueo.cargarNickYPass(nick_TextBox.Text, pass_TextBox.Text);
 
-            if (!logueo.nickYPassSonValidos()) return;
+            if (!logueo.nickYPassSonValidos())
+            {
+                MessageBox.Show("Los campos no pueden estar vacios", "Error", MessageBoxButtons.OK);
+                return;
+            }
 
             logueoDAO.loguear(logueo);
             
             if(logueo.logueoExitoso())
             {
-                MessageBox.Show("Bienvenido " + logueo.nick + "..!", "Error", MessageBoxButtons.OK);
+                SeleccionRoles seleccionRoles = new SeleccionRoles(logueo);
+                seleccionRoles.Show();
+
+                Hide();
             }
             else
             {
-                MessageBox.Show("No se encontro el Usuario", "Error", MessageBoxButtons.OK);
+                MessageBox.Show("El Nick o el Pass son incorrectos", "Error", MessageBoxButtons.OK);
             }
         }
     }

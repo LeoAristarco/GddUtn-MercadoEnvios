@@ -12,7 +12,7 @@ namespace WindowsFormsApplication1.Login.ClasesLogin
 
         public string nick { get; set; }
 
-        public Dictionary<long, string> roles { get; set; }
+        public Dictionary<double, string> roles { get; set; }
 
         public Logueo()
         {
