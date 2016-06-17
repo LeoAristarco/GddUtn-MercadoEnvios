@@ -1,7 +1,26 @@
-USE GD1C2016
+select * FROM PUBLICACION
+
+select * FROM COMPRA
+
+select * FROM CALIFICACION
+
+select * FROM FACTURA
+
+select * FROM ITEM_FACTURA
+
+
+
 
 insert into USUARIO(nick)
-values('pepe49')
+values('lobo93_kpo_de_kung_fu')
+
+insert into ROL
+values
+	('EMPRESA', 1),
+	('CLIENTE', 1),
+	('ADMINISTRATIVO', 1);
+
+go
 
 
 insert into FUNCIONALIDAD(funcionalidad_nombre)
@@ -9,20 +28,13 @@ values('COMPRAR/OFERTAR')
 
 
 
-	   insert into VISIBILIDAD(visibilidad_nombre,precio_visibilidad,porcentaje_venta)
-    values('Gratis',0,0)
-
-		insert into VISIBILIDAD(visibilidad_nombre,precio_visibilidad,porcentaje_venta)
-    values('Bronze',60,0.30)
-
-		insert into VISIBILIDAD(visibilidad_nombre,precio_visibilidad,porcentaje_venta)
-    values('Plata',100,0.20)
-
-		insert into VISIBILIDAD(visibilidad_nombre,precio_visibilidad,porcentaje_venta)
-    values('Oro',140,0.15)
-
-		insert into VISIBILIDAD(visibilidad_nombre,precio_visibilidad,porcentaje_venta)
-    values('Platino',160,0.10)
+insert into VISIBILIDAD
+	values 
+		('PLATA', 100, 0.20),
+		('BRONCE', 60, 0.30),
+		('PLATINO', 180, 0.10),
+		('ORO', 140, 0.15),
+		('GRATIS', 0, 0);
 
 	
 	
@@ -39,23 +51,20 @@ values('COMPRAR/OFERTAR')
 	
 	
 
-	insert into ESTADO_PUBLICACION(estado_nombre)
-	values('Borrador')
-	
-	insert into ESTADO_PUBLICACION(estado_nombre)
-	values('Activa')
+insert into ESTADO_PUBLICACION
+	values 
+		('BORRADOR'),
+		('ACTIVA'),
+		('PAUSADA'),
+		('FINALIZADA');
+go
 
-	insert into ESTADO_PUBLICACION(estado_nombre)
-	values('Pausado')
-	
-	insert into ESTADO_PUBLICACION(estado_nombre)
-	values('Finalizado')
 
-	insert into TIPO_PUBLICACION(tipo)
-	values('Compra')
-
-	insert into TIPO_PUBLICACION(tipo)
-	values('Subasta')
+insert into TIPO_PUBLICACION
+	values 
+		('COMPRA INMEDIATA'),
+		('SUBASTA');
+go
 	
 	
 	insert into PUBLICACION(descripcion,stock,fecha_inicio,fecha_vencimiento,precio,
