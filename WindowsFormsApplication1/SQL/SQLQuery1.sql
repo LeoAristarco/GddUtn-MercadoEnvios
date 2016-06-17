@@ -320,15 +320,13 @@ go
 --------------------------------------------------COMIENZO ABM VISIBILIDAD----------------------------------------------------------------
 
 CREATE PROCEDURE sp_AgregarVisibilidad
-	(@visibilidad_nombre nvarchar(255), @precio_visibilidad numeric(10,0), @porcentaje_venta  numeric(10,0),
-	  @retorno numeric(10,0) output)
+	(@visibilidad_nombre nvarchar(255), @precio_visibilidad numeric(10,0), @porcentaje_venta  numeric(10,2))
 AS BEGIN
 	INSERT INTO VISIBILIDAD
 		(visibilidad_nombre, precio_visibilidad, porcentaje_venta)
 	VALUES
 		(@visibilidad_nombre, @precio_visibilidad, @porcentaje_venta)
 
-	SET @retorno = SCOPE_IDENTITY();
 END
 GO
 
@@ -336,7 +334,7 @@ GO
 
 CREATE PROCEDURE sp_EditarVisibilidad
 	(@id_visibilidad numeric(10,0), @visibilidad_nombre nvarchar(255), @precio_visibilidad numeric(10,0), 
-		@porcentaje_venta  numeric(10,0))
+		@porcentaje_venta  numeric(10,2))
 AS BEGIN
 	UPDATE VISIBILIDAD 
 	SET visibilidad_nombre = @visibilidad_nombre, precio_visibilidad = @precio_visibilidad,
