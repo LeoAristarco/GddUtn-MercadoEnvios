@@ -29,8 +29,6 @@ drop PROCEDURE sp_EditarVisibilidad
 
 drop PROCEDURE sp_EliminarVisibilidad
 
-drop PROCEDURE sp_HistorialDelCliente 
-
 drop function fu_nombre_visibilidad
 
 drop function fu_precio_visibilidad
@@ -39,9 +37,7 @@ drop PROCEDURE sp_AgregarPublicacion
 
 drop function mas_de_tres_sin_calificar
 
-drop PROCEDURE sp_crearEmpresa
 
-drop procedure VERIFICAR_LOGUEO
 
 
 
