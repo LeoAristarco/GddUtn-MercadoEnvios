@@ -149,11 +149,11 @@ create procedure st_validacion_de_compra_oferta
 as
 begin
       if(@id_cliente = @usuario_responsable )
-	    set @tipoError = 'error, cliente es el mismo'
+	    set @tipoError = 'i' --error, cliente es el mismo
 	  if(dbo.publicacion_en_estado_pausado(@id_publicacion) =1)
-	    set @tipoError = 'error, publicacion pausada'
+	    set @tipoError = 'p' --error, publicacion pausada
 	  if(dbo.mas_de_tres_sin_calificar(@id_cliente) =1)
-	   set @tipoError = 'error, el cliente debe calificar sus compras'
+	   set @tipoError = 'c' --error, el cliente debe calificar sus compras
 	    
 end
 
@@ -298,7 +298,7 @@ AS BEGIN
 	END TRY
 
     BEGIN CATCH
-	 set @tipoError = 'error, no se puede borrar la visibilidad'
+	 set @tipoError = 'e' --error, no se puede borrar la visibilidad
     END CATCH
 
 END
