@@ -21,7 +21,7 @@ begin
       inner join TIPO_PUBLICACION on id_tipo = tipo_publicacion
       inner join RUBRO on id_rubro = rubro
       where (descripcion like '%' + @descripcion + '%') and 
-      estado_nombre <> 'BORRADOR' and estado_nombre <> 'FINALIZADO' and
+      estado_nombre <> 'BORRADOR' and estado_nombre <> 'FINALIZADA' and
       (id_rubro = @rubroId OR @rubroId IS NULL)
       
       ) gg_vieja
@@ -85,7 +85,7 @@ go
 			insert into COMPRA ( comprador, publicacion, fecha_operacion,monto, cantidad )
 	           values (@comprador , @publicacion , @fecha_operacion , @monto ,@cantidad )
 			   
-			insert into ITEM_FACTURA(nro_factura ,descripcion,cantidad_vendida ,precio_unitario,precio_envio )
+			insert into ITEM_FACTURA(id_factura ,descripcion,cantidad_vendida ,precio_unitario,precio_envio )
 			   values (@factura , @descripcion, @cantidad, @monto ,@precio_envio )
 			   
 			exec st_actualizar_Estado_Publicacion_a_Finalizado @publicacion,@factura,@fecha_operacion
@@ -127,7 +127,7 @@ declare @cant int,@bool bit
 
       select @cant= count(id_publicacion)
 	  from PUBLICACION inner join ESTADO_PUBLICACION on estado_publicacion = id_estado
-	  where id_publicacion = @id_publicacion and estado_nombre = 'PAUSADO'
+	  where id_publicacion = @id_publicacion and estado_nombre = 'PAUSADA'
 
 	  if (@cant <> 0)
 	   SET @bool=1
