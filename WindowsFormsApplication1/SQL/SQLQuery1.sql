@@ -442,6 +442,25 @@ END
 GO
 
 
+CREATE FUNCTION fu_cantDeOperacionesSinCalificar(@comprador numeric(10,0))
+	RETURNS int
+AS BEGIN
+	DECLARE @cant int
+		SELECT @cant = COUNT(*)
+		FROM COMPRA WHERE comprador = @comprador AND calificacion IS NULL
+
+	RETURN @cant
+END
+GO
+
+
+SELECT * FROM COMPRA
+
+insert into compra(comprador,publicacion,fecha_operacion,monto,cantidad)
+values(1,5,getdate(),2,2)
+
+
+
 
 --------FIN DE HISTORIAL DEL CLIENTE-----------------------
 
