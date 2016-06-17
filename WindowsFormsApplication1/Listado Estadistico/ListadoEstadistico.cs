@@ -21,5 +21,10 @@ namespace WindowsFormsApplication1.Listado_Estadistico
         {
             inicializarFormulario();
         }
+
+        private void inicializarFormulario()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
