@@ -247,9 +247,9 @@ end
 
 go
 
-create procedure st_ultimas5compras(@id_usuario numeric(10,0))
+alter procedure st_ultimas5compras(@id_usuario numeric(10,0))
 as begin  
-	  select top 5 *
+	  select top 5 descripcion,calif_estrellas
 	  from COMPRA
 	  inner join PUBLICACION on publicacion = id_publicacion
 	  inner join CALIFICACION on id_calificacion =calificacion
