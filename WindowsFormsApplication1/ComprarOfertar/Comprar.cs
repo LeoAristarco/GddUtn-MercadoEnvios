@@ -34,7 +34,12 @@ namespace WindowsFormsApplication1.ComprarOfertar
 
         private void btnComprar_Click(object sender, EventArgs e)
         {
-            repositorio.comprar(publicacion, usuario, Convert.ToInt32(cantidad.Text));
+            if (Convert.ToInt32(cantidad.Text)>publicacion.stock)
+            {
+                MessageBox.Show("Cantidad supera stock disponible");
+                return;
+            }
+            repositorio.comprar(publicacion, usuario, Convert.ToInt32(cantidad.Text), checkBox1.Checked);
             //SI TODO SALE BIEN..
             detallePublicacion.Show();
             Close();
@@ -44,6 +49,15 @@ namespace WindowsFormsApplication1.ComprarOfertar
         {
             detallePublicacion.Show();
             Close();
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked&&!publicacion.hayEnvio)
+            {
+                checkBox1.Checked = false;
+                MessageBox.Show("Esta publicacion no permite envio");
+            }
         }
     }
 }

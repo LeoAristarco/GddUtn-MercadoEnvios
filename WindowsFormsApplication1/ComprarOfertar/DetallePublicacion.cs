@@ -14,11 +14,11 @@ namespace WindowsFormsApplication1.ComprarOfertar
 {
     public partial class DetallePublicacion : Form
     {
-        private ComprarOfertar comprarOfertar;
+        private Comprar_Ofertar comprarOfertar;
         private Publicacion publicacion;
         private Usuario user;
 
-        public DetallePublicacion(Publicacion publicacionSeleccionada, ComprarOfertar comprarOfertar,Usuario usuario)
+        public DetallePublicacion(Publicacion publicacionSeleccionada, Comprar_Ofertar comprarOfertar,Usuario usuario)
         {
             this.publicacion = publicacionSeleccionada;
             this.comprarOfertar = comprarOfertar;
@@ -28,6 +28,16 @@ namespace WindowsFormsApplication1.ComprarOfertar
 
         private void btnComprar_Click(object sender, EventArgs e)
         {
+            CompraRepository compraRepo = new CompraRepository();
+
+            string mensaje = compraRepo.validacionDeCompra(publicacion,user);
+
+            if (mensaje!="todo piolaa")
+            {
+                MessageBox.Show(mensaje.ToUpper());
+                //return;
+            }
+
             if (publicacion.sosSubasta())
             {
                 Ofertar ofertar = new Ofertar(publicacion, user, this);

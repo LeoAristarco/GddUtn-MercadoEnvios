@@ -94,7 +94,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(184, 236);
+            this.ClientSize = new System.Drawing.Size(188, 236);
             this.Controls.Add(this.bBack);
             this.Controls.Add(this.groupBox1);
             this.Name = "SeleccionHistorial";

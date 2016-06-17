@@ -85,5 +85,10 @@ namespace WindowsFormsApplication1.Calificar
         {
             publicacionSeleccionada = publicacionesSinCalificar[tablaPublicacionesCalificar.CurrentCell.RowIndex];
         }
+
+        private void btnVerPublicacion_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

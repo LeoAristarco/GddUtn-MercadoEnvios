@@ -44,11 +44,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ABM Rol\AbmRolForm.cs">
+    <Compile Include="ABM Rol\ABMRol.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Rol\AbmRolForm.Designer.cs">
-      <DependentUpon>AbmRolForm.cs</DependentUpon>
+    <Compile Include="ABM Rol\ABMRol.Designer.cs">
+      <DependentUpon>ABMRol.cs</DependentUpon>
     </Compile>
     <Compile Include="ABM Rol\AsignarRolesUsuario.cs">
       <SubType>Form</SubType>
@@ -62,18 +62,13 @@
     <Compile Include="ABM Rol\EditorDeRoles.Designer.cs">
       <DependentUpon>EditorDeRoles.cs</DependentUpon>
     </Compile>
-    <Compile Include="ABM Rol\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ABM Rol\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="ABM Rol\RolesUsuarioDlg.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ABM Rol\RolesUsuarioDlg.Designer.cs">
       <DependentUpon>RolesUsuarioDlg.cs</DependentUpon>
     </Compile>
+    <Compile Include="ABM Rol\RolRepository.cs" />
     <Compile Include="ABM Rubro\ABMRubro.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -128,12 +123,6 @@
     <Compile Include="ABM Usuario\Empresa\ModificarEmpresa.Designer.cs">
       <DependentUpon>ModificarEmpresa.cs</DependentUpon>
     </Compile>
-    <Compile Include="ABM Usuario\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ABM Usuario\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="ABM Visibilidad\ABMVisibilidad.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -164,10 +153,14 @@
     </Compile>
     <Compile Include="Clases\DataBase.cs" />
     <Compile Include="Clases\EstadoPublicacion.cs" />
+    <Compile Include="Clases\Factura.cs" />
+    <Compile Include="Clases\OfertaRepository.cs" />
     <Compile Include="Clases\Publicacion.cs" />
     <Compile Include="Clases\PublicacionRepository.cs" />
     <Compile Include="Clases\Repository.cs" />
+    <Compile Include="Clases\Rol.cs" />
     <Compile Include="Clases\Rubro.cs" />
+    <Compile Include="Clases\Sistema.cs" />
     <Compile Include="Clases\TipoPublicacion.cs" />
     <Compile Include="Clases\Usuario.cs" />
     <Compile Include="Clases\UsuarioRepository.cs" />
@@ -185,11 +178,11 @@
     <Compile Include="ComprarOfertar\Comprar.Designer.cs">
       <DependentUpon>Comprar.cs</DependentUpon>
     </Compile>
-    <Compile Include="ComprarOfertar\ComprarOfertar.cs">
+    <Compile Include="ComprarOfertar\Comprar_Ofertar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ComprarOfertar\ComprarOfertar.Designer.cs">
-      <DependentUpon>ComprarOfertar.cs</DependentUpon>
+    <Compile Include="ComprarOfertar\Comprar_Ofertar.Designer.cs">
+      <DependentUpon>Comprar_Ofertar.cs</DependentUpon>
     </Compile>
     <Compile Include="ComprarOfertar\DetallePublicacion.cs">
       <SubType>Form</SubType>
@@ -203,18 +196,11 @@
     <Compile Include="ComprarOfertar\Ofertar.Designer.cs">
       <DependentUpon>Ofertar.cs</DependentUpon>
     </Compile>
-    <Compile Include="ComprarOfertar\OfertaRepository.cs" />
     <Compile Include="Facturas\FacturarForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Facturas\FacturarForm.Designer.cs">
       <DependentUpon>FacturarForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Facturas\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Facturas\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -231,12 +217,6 @@
     </Compile>
     <Compile Include="Clases\RubroRepository.cs" />
     <Compile Include="Clases\TipoPublicacionRepository.cs" />
-    <Compile Include="Historial Cliente\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Historial Cliente\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Historial Cliente\Historial.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -273,12 +253,6 @@
     <Compile Include="Historial Cliente\VerPublicacion.Designer.cs">
       <DependentUpon>VerPublicacion.cs</DependentUpon>
     </Compile>
-    <Compile Include="Listado Estadistico\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Listado Estadistico\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Listado Estadistico\ListadoEstadisticoForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -311,8 +285,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="ABM Rol\AbmRolForm.resx">
-      <DependentUpon>AbmRolForm.cs</DependentUpon>
+    <EmbeddedResource Include="ABM Rol\ABMRol.resx">
+      <DependentUpon>ABMRol.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ABM Rol\AsignarRolesUsuario.resx">
       <DependentUpon>AsignarRolesUsuario.cs</DependentUpon>
@@ -368,8 +342,8 @@
     <EmbeddedResource Include="ComprarOfertar\Comprar.resx">
       <DependentUpon>Comprar.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ComprarOfertar\ComprarOfertar.resx">
-      <DependentUpon>ComprarOfertar.cs</DependentUpon>
+    <EmbeddedResource Include="ComprarOfertar\Comprar_Ofertar.resx">
+      <DependentUpon>Comprar_Ofertar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ComprarOfertar\DetallePublicacion.resx">
       <DependentUpon>DetallePublicacion.cs</DependentUpon>

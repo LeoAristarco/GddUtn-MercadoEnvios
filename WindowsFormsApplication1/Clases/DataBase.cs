@@ -94,6 +94,26 @@ namespace WindowsFormsApplication1.Clases
             return rows;
         }
 
+        public object ejecutarStoredConRetorno(string storedProcedure, List<SqlParameter> parametros,string nombreVariableRetorno, object valorVariableRetorno)
+        {
+            SqlConnection connection = abrirConexion();
+
+            SqlCommand cmd = new SqlCommand(storedProcedure, connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            foreach (SqlParameter parametro in parametros)
+            {
+                cmd.Parameters.Add(parametro);
+            }
+            SqlParameter retornoParametro = new SqlParameter(nombreVariableRetorno, valorVariableRetorno);
+            retornoParametro.Direction = ParameterDirection.Output;
+            cmd.Parameters.Add(retornoParametro);
+            cmd.ExecuteNonQuery();
+            object retorno = cmd.Parameters[nombreVariableRetorno].Value;
+            connection.Close();
+
+            return retorno;
+        }
+
         public List<Dictionary<string, object>> ejecutarStoredProcedure(string storedProcedure,List<SqlParameter> parametros)
         {
             return executeQueryableCommand(storedProcedure, parametros, 'P');
@@ -139,8 +159,6 @@ namespace WindowsFormsApplication1.Clases
 
                 return lista;
             }
-
-
-        }
+    }
 
     }

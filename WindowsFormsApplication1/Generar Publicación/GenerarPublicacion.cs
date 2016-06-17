@@ -160,7 +160,7 @@ namespace WindowsFormsApplication1.Generar_Publicación
         private void button4_Click(object sender, EventArgs e)
         {
             formularioAnterior.Show();
-            Hide();
+            Close();
         }
 
         private void tipo_SelectedIndexChanged(object sender, EventArgs e)

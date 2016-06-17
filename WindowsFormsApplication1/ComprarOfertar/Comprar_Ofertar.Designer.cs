@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApplication1.ComprarOfertar
 {
-    partial class ComprarOfertar
+    partial class Comprar_Ofertar
     {
         /// <summary>
         /// Required designer variable.
@@ -134,7 +134,6 @@
             this.filtroDescripcion.Name = "filtroDescripcion";
             this.filtroDescripcion.Size = new System.Drawing.Size(295, 23);
             this.filtroDescripcion.TabIndex = 1;
-            this.filtroDescripcion.TextChanged += new System.EventHandler(this.txtDescripcion_TextChanged);
             // 
             // label1
             // 

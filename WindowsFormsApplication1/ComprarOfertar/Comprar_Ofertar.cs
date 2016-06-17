@@ -11,12 +11,10 @@ using WindowsFormsApplication1.Clases;
 
 namespace WindowsFormsApplication1.ComprarOfertar
 {
-    public partial class ComprarOfertar : Form
+    public partial class Comprar_Ofertar : Form
     {
         private Publicacion publicacionSeleccionada;
         private PublicacionRepository repositorio = new PublicacionRepository();
-        private bool hayFiltroTexto = false;
-        private bool hayFiltroRubro = false;
         private Rubro rubroSeleccionado = null;
         private int numeroPagina = 1;
         private int cantidadMaxDePags = 0;
@@ -24,7 +22,7 @@ namespace WindowsFormsApplication1.ComprarOfertar
         private Usuario usuario;
         private Form formAnterior;
 
-        public ComprarOfertar(Usuario usuario,Form formAnterior)
+        public Comprar_Ofertar(Usuario usuario,Form formAnterior)
         {
             this.formAnterior = formAnterior;
             this.usuario = usuario;
@@ -64,21 +62,12 @@ namespace WindowsFormsApplication1.ComprarOfertar
         {
             filtroDescripcion.Text = "";
             rubroTextBox.Text = "";
-            hayFiltroTexto = false;
-            hayFiltroRubro = false;
+            rubroSeleccionado = null;
         }
 
-        private void txtDescripcion_TextChanged(object sender, EventArgs e)
-        {
-            if (filtroDescripcion.Text=="")
-            {
-                hayFiltroTexto = false;
-            }
-        }
         public void agregarFiltroRubro(Rubro rubroSeleccionado)
         {
             this.rubroSeleccionado = rubroSeleccionado;
-            hayFiltroRubro = true;
             rubroTextBox.Text = rubroSeleccionado.descripcionCorta;
         }
 
@@ -92,7 +81,6 @@ namespace WindowsFormsApplication1.ComprarOfertar
         private void btnBorrarDescripcion_Click(object sender, EventArgs e)
         {
             filtroDescripcion.Text = "";
-            hayFiltroTexto = false;
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)

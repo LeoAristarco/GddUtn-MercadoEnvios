@@ -33,7 +33,7 @@ namespace WindowsFormsApplication1.ComprarOfertar
 
         private void inicializarFormulario()
         {
-            throw new NotImplementedException();
+            ofertaActual.Text = publicacion.precio.ToString();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -44,7 +44,18 @@ namespace WindowsFormsApplication1.ComprarOfertar
 
         private void txtAceptar_Click(object sender, EventArgs e)
         {
-            repositorio.ofertar(publicacion, user, Convert.ToDouble(montoOferta.Text));
+            int monto = Convert.ToInt32(montoOferta.Text);
+            if (montoOferta.Text.Contains(",")|| montoOferta.Text.Contains("."))
+            {
+                MessageBox.Show("No se permiten ofertas con valores decimales");
+                return;
+            }
+            if (monto<=publicacion.precio)
+            {
+                MessageBox.Show("La cantidad ofertada debe ser mayor a la actual");
+                return;
+            }
+            repositorio.ofertar(publicacion, user, monto);
             detallePublicacion.Show();
             Close();
         }
@@ -53,5 +64,6 @@ namespace WindowsFormsApplication1.ComprarOfertar
         {
             montoOferta.Text = "";
         }
+
     }
 }
