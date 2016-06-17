@@ -265,6 +265,9 @@
     <Compile Include="Login\CambiarPassword.Designer.cs">
       <DependentUpon>CambiarPassword.cs</DependentUpon>
     </Compile>
+    <Compile Include="Login\ClasesLogin\BD.cs" />
+    <Compile Include="Login\ClasesLogin\Logueo.cs" />
+    <Compile Include="Login\ClasesLogin\LogueoDAO.cs" />
     <Compile Include="Login\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>

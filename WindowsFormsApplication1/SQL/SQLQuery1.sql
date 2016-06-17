@@ -452,7 +452,27 @@ AS BEGIN
 
 END
 
+go
 
 ----------------------  FIN DE GENERAR PUBLICACION----------------------------------------------------------------------
 
+
+------------------------------------------------ INICIO LOGUIN----------------------------------------------------------------------
+create procedure VERIFICAR_LOGUEO
+	@nick nvarchar(255), 
+	@pass nvarchar(255)
+as begin
+	select u.id_usuario, u.nick, u.pass, ru.id_rol, r.rol_nombre
+	from USUARIO as u
+	inner join ROL_POR_USUARIO as ru
+	on  u.id_usuario = ru.id_usuario
+	inner join ROL as r
+	on ru.id_rol = r.id_rol
+	where 
+		u.nick = @nick and 
+		u.pass = @pass;
+end
+
+go
+------------------------------------------------ FIN LOGUIN----------------------------------------------------------------------
 
