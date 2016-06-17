@@ -37,6 +37,11 @@ drop function fu_precio_visibilidad
 
 drop PROCEDURE sp_AgregarPublicacion
 
+drop function mas_de_tres_sin_calificar
+
+drop PROCEDURE sp_crearEmpresa
+
+drop procedure VERIFICAR_LOGUEO
 
 
 
