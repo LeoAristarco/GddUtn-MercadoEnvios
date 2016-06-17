@@ -138,31 +138,7 @@ namespace WindowsFormsApplication1.Clases
             return cantidadPaginas;//No se como hacer con un stored que devuelve un int
         }
 
-        internal List<Publicacion> obtenerPublicacionesSinCalificar(Usuario usuario)
-        {
-            List<SqlParameter> parametros = new List<SqlParameter>();
-            db.agregarParametro(parametros, "@id_usuario", usuario.id);
-            List<Dictionary<string,object>> tabla = db.ejecutarStoredProcedure("st_mostrarPublicacionesSinCalificar", parametros);
-            List<Publicacion> publicacionesSinCalificar = new List<Publicacion>();
-
-            foreach (Dictionary<string,object> item in tabla)
-            {
-                publicacionesSinCalificar.Add(deserializarPublicacionConCalificacion(item));
-            }
-
-            return publicacionesSinCalificar;
-        }
-
-        private Publicacion deserializarPublicacionConCalificacion(Dictionary<string, object> item)
-        {
-            CalificacionRepository calificacionRepo = new CalificacionRepository();
-            Publicacion publicacion = deserializarPublicacionConId(item);
-            publicacion.calificacion = calificacionRepo.traerPorId(toLong(item["id_calificacion"]));
-
-            return publicacion;
-        }
-
-        private Publicacion deserializarPublicacionConId(Dictionary<string, object> item)
+        public Publicacion deserializarPublicacionConId(Dictionary<string, object> item)
         {
             Publicacion publicacion = new Publicacion();
             VisibilidadRepository repoVisib = new VisibilidadRepository();

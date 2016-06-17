@@ -12,5 +12,9 @@
             this.estrellas = estrellas;
             this.comentarios = comentarios;
         }
+
+        public Calificacion()
+        {
+        }
     }
 }

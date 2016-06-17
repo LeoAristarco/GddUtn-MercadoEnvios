@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication1.Listado_Estadistico
 {
-    public partial class ListadoEstadisticoForm : Form
+    public partial class ListadoEstadistico : Form
     {
-        public ListadoEstadisticoForm()
+        public ListadoEstadistico()
         {
             InitializeComponent();
+        }
+
+        private void ListadoEstadistico_Load(object sender, EventArgs e)
+        {
+            inicializarFormulario();
         }
     }
 }

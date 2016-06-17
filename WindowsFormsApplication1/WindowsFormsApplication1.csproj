@@ -135,6 +135,12 @@
     <Compile Include="ABM Visibilidad\GenerarVisibilidad.Designer.cs">
       <DependentUpon>GenerarVisibilidad.cs</DependentUpon>
     </Compile>
+    <Compile Include="Calificar\HistorialCalificaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Calificar\HistorialCalificaciones.Designer.cs">
+      <DependentUpon>HistorialCalificaciones.cs</DependentUpon>
+    </Compile>
     <Compile Include="Clases\Compra.cs" />
     <Compile Include="Clases\CompraRepository.cs" />
     <Compile Include="Clases\Calificacion.cs" />
@@ -335,6 +341,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Calificar\CalificarVendedor.resx">
       <DependentUpon>CalificarVendedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Calificar\HistorialCalificaciones.resx">
+      <DependentUpon>HistorialCalificaciones.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ComprarOfertar\AgregarFiltrosRubro.resx">
       <DependentUpon>AgregarFiltrosRubro.cs</DependentUpon>

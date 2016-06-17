@@ -12,6 +12,10 @@ namespace WindowsFormsApplication1.Clases
 
         public long toLong(object e)
         {
+            if (e.ToString() == "")
+            {
+                return 0;
+            }
             return Convert.ToInt32(e);
         }
         public double toDouble(object e)
@@ -26,6 +30,10 @@ namespace WindowsFormsApplication1.Clases
 
         public int toInt(object e)
         {
+            if (e.ToString()=="")
+            {
+                return 0;
+            }
             return Convert.ToInt16(e);
         }
 

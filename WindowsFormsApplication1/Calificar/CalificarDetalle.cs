@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApplication1.Clases;
 
 namespace WindowsFormsApplication1.Calificar
 {
@@ -15,9 +16,11 @@ namespace WindowsFormsApplication1.Calificar
         private Form formAnterior;
         private Calificacion calificacion;
         private CalificacionRepository repositorio = new CalificacionRepository();
+        private Usuario usuario;
 
-        public CalificarDetalle(Form formAnterior,Calificacion calificacion)
+        public CalificarDetalle(Form formAnterior,Calificacion calificacion,Usuario user)
         {
+            usuario = user;
             this.formAnterior = formAnterior;
             this.calificacion = calificacion;
             InitializeComponent();
@@ -46,15 +49,20 @@ namespace WindowsFormsApplication1.Calificar
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            Hide();
-
-            formAnterior.ShowDialog();
+            formAnterior.Show();
+            Close();
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             setCalificacion();
             repositorio.updateCalificacion(calificacion);
+
+            HistorialCalificaciones historial = new HistorialCalificaciones(this, usuario);
+
+            Hide();
+
+            historial.ShowDialog();
         }
 
         private void setCalificacion()

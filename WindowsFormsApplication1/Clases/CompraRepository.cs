@@ -29,6 +29,29 @@ namespace WindowsFormsApplication1.Calificar
             db.ejecutarStoredProcedure("st_insertarCompraSubasta", parametros);
         }
 
+        internal List<Compra> obtenerUltimas5Compras(Usuario usuario)
+        {
+            List<SqlParameter> parametros = new List<SqlParameter>();
+            List<Compra> compras = new List<Compra>();
+
+            db.agregarParametro(parametros, "@id_usuario", usuario.id);
+
+            List<Dictionary<string,object>> tabla = db.ejecutarStoredProcedure("st_ultimas5compras", parametros);
+
+            foreach (Dictionary<string,object> item in tabla)
+            {
+                Compra compra = new Compra();
+                compra.publicacion = new Publicacion();
+                compra.publicacion.descripcion = item["descripcion"].ToString();
+                compra.calificacion = new Calificacion();
+                compra.calificacion.estrellas = compra.calificacion.estrellas = toInt(item["calif_estrellas"]);
+
+                compras.Add(compra);
+            }
+
+            return compras;
+        }
+
         internal string validacionDeCompra(Publicacion publicacion,Usuario user)
         {
             List<SqlParameter> parametros = new List<SqlParameter>();
@@ -39,10 +62,42 @@ namespace WindowsFormsApplication1.Calificar
             db.agregarParametro(parametros, "@id_publicacion",publicacion.id);
             //db.agregarParametro(parametros, "@tipoError",tipoError);
 
+            //tipoError = db.ejecutarStoredProcedure("st_validacion_de_compra_oferta", parametros)[0]["tipo_de_error"].ToString();
+
 
             tipoError = db.ejecutarStoredConRetorno("st_validacion_de_compra_oferta", parametros, "@tipoError", "").ToString();
 
             return tipoError;
         }
+
+        internal List<Compra> obtenerComprasSinCalificar(Usuario usuario)
+        {
+            List<SqlParameter> parametros = new List<SqlParameter>();
+            db.agregarParametro(parametros, "@id_usuario", usuario.id);
+            List<Dictionary<string, object>> tabla = db.ejecutarStoredProcedure("st_mostrarPublicacionesSinCalificar", parametros);
+            List<Compra> comprasSinCalificar = new List<Compra>();
+
+            foreach (Dictionary<string, object> item in tabla)
+            {
+                comprasSinCalificar.Add(deserializarCompraVaciaConPublicacion(item));
+            }
+
+            return comprasSinCalificar;
+        }
+
+        private Compra deserializarCompraVaciaConPublicacion(Dictionary<string, object> item)
+        {
+            PublicacionRepository repoPublicacion = new PublicacionRepository();
+            CalificacionRepository repoCalificacion = new CalificacionRepository();
+            Compra compra = new Compra();
+            compra.publicacion = repoPublicacion.deserializarPublicacionConId(item);
+            compra.calificacion = repoCalificacion.traerPorId(toLong(item["id_calificacion"]));
+
+            return compra;
+        }
+
+        
+
+
     }
 }

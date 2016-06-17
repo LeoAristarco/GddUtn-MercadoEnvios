@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApplication1.Listado_Estadistico
 {
-    partial class ListadoEstadisticoForm
+    partial class ListadoEstadistico
     {
         /// <summary>
         /// Required designer variable.
@@ -240,7 +240,7 @@
             this.volverButton.Text = "< < Volver";
             this.volverButton.UseVisualStyleBackColor = true;
             // 
-            // ListadoEstadisticoForm
+            // ListadoEstadistico
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -249,8 +249,9 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.volverButton);
-            this.Name = "ListadoEstadisticoForm";
+            this.Name = "ListadoEstadistico";
             this.Text = "ListadoEstadisticoForm";
+            this.Load += new System.EventHandler(this.ListadoEstadistico_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.top5DataGriedView)).EndInit();

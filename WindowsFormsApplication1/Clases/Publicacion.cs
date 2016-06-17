@@ -21,7 +21,7 @@ namespace WindowsFormsApplication1.Clases
         public Usuario responsable ;//{ get; }
         public TipoPublicacion tipo;// { get; }
         public bool hayEnvio;
-        public Calificacion calificacion;
+        //public Calificacion calificacion;
         public Factura factura;
 
         public Publicacion(long id, string descripcion, long stock, DateTime fechaInicio, DateTime fechaVencimiento, double precio, Rubro rubro, Visibilidad visibilidad, EstadoPublicacion estado, Usuario responsable,TipoPublicacion tipo,bool hayEnvio)
