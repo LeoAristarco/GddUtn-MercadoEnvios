@@ -247,7 +247,7 @@ end
 
 go
 
-alter procedure st_ultimas5compras(@id_usuario numeric(10,0))
+create procedure st_ultimas5compras(@id_usuario numeric(10,0))
 as begin  
 	  select top 5 descripcion,calif_estrellas
 	  from COMPRA
