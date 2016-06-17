@@ -23,7 +23,6 @@ namespace WindowsFormsApplication1.Login.ClasesLogin
         private BD()
         {
             conexion.ConnectionString = datosConexion;
-            conexion.Open();
         }
 
         public static BD getInstance()
@@ -34,6 +33,8 @@ namespace WindowsFormsApplication1.Login.ClasesLogin
 
         public SqlDataReader getDataReader(string consulta, char tipoConsulta, List<SqlParameter> parametros)
         {
+            conexion.Open();
+
             //creo y cargo el comando para ejecutar
             SqlCommand comando = new SqlCommand();
                 comando.Connection = conexion;

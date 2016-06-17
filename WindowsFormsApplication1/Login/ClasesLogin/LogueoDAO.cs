@@ -31,6 +31,7 @@ namespace WindowsFormsApplication1.Login.ClasesLogin
             dataReader = dataBase.getDataReader(procedimientoSql, 'P', parametros);
 
             logueo.roles = mapearDataReadADiccionarioRoles();
+            dataBase.cerrarConexion();
         }
         
         private Dictionary<long, string> mapearDataReadADiccionarioRoles()
