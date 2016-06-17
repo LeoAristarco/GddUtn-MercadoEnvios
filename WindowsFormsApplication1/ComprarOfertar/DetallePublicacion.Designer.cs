@@ -32,23 +32,17 @@
             this.btnComprar = new System.Windows.Forms.Button();
             this.GBDetalle = new System.Windows.Forms.GroupBox();
             this.lblRubro = new System.Windows.Forms.Label();
-            this.txtRubros = new System.Windows.Forms.TextBox();
-            this.txtTipoPublicacion = new System.Windows.Forms.TextBox();
-            this.txtFechaFinalizacion = new System.Windows.Forms.TextBox();
-            this.txtStockInicial = new System.Windows.Forms.TextBox();
-            this.txtCodVisibilidad = new System.Windows.Forms.TextBox();
-            this.txtEstadoPublicacion = new System.Windows.Forms.TextBox();
-            this.txtPrecio = new System.Windows.Forms.TextBox();
-            this.txtFechaInicio = new System.Windows.Forms.TextBox();
-            this.txtStockDisponible = new System.Windows.Forms.TextBox();
-            this.txtDescripcion = new System.Windows.Forms.TextBox();
-            this.txtUsername = new System.Windows.Forms.TextBox();
-            this.txtCodPublicacion = new System.Windows.Forms.TextBox();
-            this.btnLimpiar = new System.Windows.Forms.Button();
-            this.btnEnviar = new System.Windows.Forms.Button();
-            this.txtPregunta = new System.Windows.Forms.TextBox();
-            this.lblPregunta = new System.Windows.Forms.Label();
-            this.lblStockInicial = new System.Windows.Forms.Label();
+            this.rubro = new System.Windows.Forms.TextBox();
+            this.tipo = new System.Windows.Forms.TextBox();
+            this.fechaFin = new System.Windows.Forms.TextBox();
+            this.visibilidad = new System.Windows.Forms.TextBox();
+            this.estado = new System.Windows.Forms.TextBox();
+            this.precio = new System.Windows.Forms.TextBox();
+            this.fechaInicio = new System.Windows.Forms.TextBox();
+            this.stock = new System.Windows.Forms.TextBox();
+            this.descripcion = new System.Windows.Forms.TextBox();
+            this.username = new System.Windows.Forms.TextBox();
+            this.codigoPublicacion = new System.Windows.Forms.TextBox();
             this.lblTipoPublicacion = new System.Windows.Forms.Label();
             this.lblEstadoPublicacion = new System.Windows.Forms.Label();
             this.lblPrecio = new System.Windows.Forms.Label();
@@ -65,44 +59,40 @@
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(558, 407);
+            this.btnCancelar.Location = new System.Drawing.Point(545, 305);
             this.btnCancelar.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(100, 28);
             this.btnCancelar.TabIndex = 7;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnComprar
             // 
-            this.btnComprar.Location = new System.Drawing.Point(666, 407);
+            this.btnComprar.Location = new System.Drawing.Point(423, 305);
             this.btnComprar.Margin = new System.Windows.Forms.Padding(4);
             this.btnComprar.Name = "btnComprar";
             this.btnComprar.Size = new System.Drawing.Size(100, 28);
             this.btnComprar.TabIndex = 8;
             this.btnComprar.Text = "Comprar";
             this.btnComprar.UseVisualStyleBackColor = true;
+            this.btnComprar.Click += new System.EventHandler(this.btnComprar_Click);
             // 
             // GBDetalle
             // 
             this.GBDetalle.Controls.Add(this.lblRubro);
-            this.GBDetalle.Controls.Add(this.txtRubros);
-            this.GBDetalle.Controls.Add(this.txtTipoPublicacion);
-            this.GBDetalle.Controls.Add(this.txtFechaFinalizacion);
-            this.GBDetalle.Controls.Add(this.txtStockInicial);
-            this.GBDetalle.Controls.Add(this.txtCodVisibilidad);
-            this.GBDetalle.Controls.Add(this.txtEstadoPublicacion);
-            this.GBDetalle.Controls.Add(this.txtPrecio);
-            this.GBDetalle.Controls.Add(this.txtFechaInicio);
-            this.GBDetalle.Controls.Add(this.txtStockDisponible);
-            this.GBDetalle.Controls.Add(this.txtDescripcion);
-            this.GBDetalle.Controls.Add(this.txtUsername);
-            this.GBDetalle.Controls.Add(this.txtCodPublicacion);
-            this.GBDetalle.Controls.Add(this.btnLimpiar);
-            this.GBDetalle.Controls.Add(this.btnEnviar);
-            this.GBDetalle.Controls.Add(this.txtPregunta);
-            this.GBDetalle.Controls.Add(this.lblPregunta);
-            this.GBDetalle.Controls.Add(this.lblStockInicial);
+            this.GBDetalle.Controls.Add(this.rubro);
+            this.GBDetalle.Controls.Add(this.tipo);
+            this.GBDetalle.Controls.Add(this.fechaFin);
+            this.GBDetalle.Controls.Add(this.visibilidad);
+            this.GBDetalle.Controls.Add(this.estado);
+            this.GBDetalle.Controls.Add(this.precio);
+            this.GBDetalle.Controls.Add(this.fechaInicio);
+            this.GBDetalle.Controls.Add(this.stock);
+            this.GBDetalle.Controls.Add(this.descripcion);
+            this.GBDetalle.Controls.Add(this.username);
+            this.GBDetalle.Controls.Add(this.codigoPublicacion);
             this.GBDetalle.Controls.Add(this.lblTipoPublicacion);
             this.GBDetalle.Controls.Add(this.lblEstadoPublicacion);
             this.GBDetalle.Controls.Add(this.lblPrecio);
@@ -118,7 +108,7 @@
             this.GBDetalle.Margin = new System.Windows.Forms.Padding(4);
             this.GBDetalle.Name = "GBDetalle";
             this.GBDetalle.Padding = new System.Windows.Forms.Padding(4);
-            this.GBDetalle.Size = new System.Drawing.Size(753, 386);
+            this.GBDetalle.Size = new System.Drawing.Size(645, 268);
             this.GBDetalle.TabIndex = 6;
             this.GBDetalle.TabStop = false;
             this.GBDetalle.Text = "Detalle de la publicación:";
@@ -130,200 +120,136 @@
             this.lblRubro.Location = new System.Drawing.Point(8, 229);
             this.lblRubro.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRubro.Name = "lblRubro";
-            this.lblRubro.Size = new System.Drawing.Size(62, 17);
+            this.lblRubro.Size = new System.Drawing.Size(51, 17);
             this.lblRubro.TabIndex = 25;
-            this.lblRubro.Text = "Rubro/s:";
+            this.lblRubro.Text = "Rubro:";
             // 
-            // txtRubros
+            // rubro
             // 
-            this.txtRubros.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRubros.Location = new System.Drawing.Point(180, 225);
-            this.txtRubros.Margin = new System.Windows.Forms.Padding(4);
-            this.txtRubros.Name = "txtRubros";
-            this.txtRubros.ReadOnly = true;
-            this.txtRubros.Size = new System.Drawing.Size(415, 23);
-            this.txtRubros.TabIndex = 4;
-            this.txtRubros.TabStop = false;
+            this.rubro.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rubro.Location = new System.Drawing.Point(180, 229);
+            this.rubro.Margin = new System.Windows.Forms.Padding(4);
+            this.rubro.Name = "rubro";
+            this.rubro.ReadOnly = true;
+            this.rubro.Size = new System.Drawing.Size(415, 23);
+            this.rubro.TabIndex = 4;
+            this.rubro.TabStop = false;
             // 
-            // txtTipoPublicacion
+            // tipo
             // 
-            this.txtTipoPublicacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTipoPublicacion.Location = new System.Drawing.Point(463, 161);
-            this.txtTipoPublicacion.Margin = new System.Windows.Forms.Padding(4);
-            this.txtTipoPublicacion.Name = "txtTipoPublicacion";
-            this.txtTipoPublicacion.ReadOnly = true;
-            this.txtTipoPublicacion.Size = new System.Drawing.Size(132, 23);
-            this.txtTipoPublicacion.TabIndex = 24;
-            this.txtTipoPublicacion.TabStop = false;
+            this.tipo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tipo.Location = new System.Drawing.Point(463, 131);
+            this.tipo.Margin = new System.Windows.Forms.Padding(4);
+            this.tipo.Name = "tipo";
+            this.tipo.ReadOnly = true;
+            this.tipo.Size = new System.Drawing.Size(132, 23);
+            this.tipo.TabIndex = 24;
+            this.tipo.TabStop = false;
             // 
-            // txtFechaFinalizacion
+            // fechaFin
             // 
-            this.txtFechaFinalizacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFechaFinalizacion.Location = new System.Drawing.Point(463, 129);
-            this.txtFechaFinalizacion.Margin = new System.Windows.Forms.Padding(4);
-            this.txtFechaFinalizacion.Name = "txtFechaFinalizacion";
-            this.txtFechaFinalizacion.ReadOnly = true;
-            this.txtFechaFinalizacion.Size = new System.Drawing.Size(132, 23);
-            this.txtFechaFinalizacion.TabIndex = 23;
-            this.txtFechaFinalizacion.TabStop = false;
+            this.fechaFin.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fechaFin.Location = new System.Drawing.Point(463, 99);
+            this.fechaFin.Margin = new System.Windows.Forms.Padding(4);
+            this.fechaFin.Name = "fechaFin";
+            this.fechaFin.ReadOnly = true;
+            this.fechaFin.Size = new System.Drawing.Size(132, 23);
+            this.fechaFin.TabIndex = 23;
+            this.fechaFin.TabStop = false;
             // 
-            // txtStockInicial
+            // visibilidad
             // 
-            this.txtStockInicial.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStockInicial.Location = new System.Drawing.Point(463, 97);
-            this.txtStockInicial.Margin = new System.Windows.Forms.Padding(4);
-            this.txtStockInicial.Name = "txtStockInicial";
-            this.txtStockInicial.ReadOnly = true;
-            this.txtStockInicial.Size = new System.Drawing.Size(132, 23);
-            this.txtStockInicial.TabIndex = 22;
-            this.txtStockInicial.TabStop = false;
+            this.visibilidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.visibilidad.Location = new System.Drawing.Point(463, 33);
+            this.visibilidad.Margin = new System.Windows.Forms.Padding(4);
+            this.visibilidad.Name = "visibilidad";
+            this.visibilidad.ReadOnly = true;
+            this.visibilidad.Size = new System.Drawing.Size(132, 23);
+            this.visibilidad.TabIndex = 21;
+            this.visibilidad.TabStop = false;
             // 
-            // txtCodVisibilidad
+            // estado
             // 
-            this.txtCodVisibilidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCodVisibilidad.Location = new System.Drawing.Point(463, 33);
-            this.txtCodVisibilidad.Margin = new System.Windows.Forms.Padding(4);
-            this.txtCodVisibilidad.Name = "txtCodVisibilidad";
-            this.txtCodVisibilidad.ReadOnly = true;
-            this.txtCodVisibilidad.Size = new System.Drawing.Size(132, 23);
-            this.txtCodVisibilidad.TabIndex = 21;
-            this.txtCodVisibilidad.TabStop = false;
+            this.estado.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.estado.Location = new System.Drawing.Point(180, 161);
+            this.estado.Margin = new System.Windows.Forms.Padding(4);
+            this.estado.Name = "estado";
+            this.estado.ReadOnly = true;
+            this.estado.Size = new System.Drawing.Size(132, 23);
+            this.estado.TabIndex = 20;
+            this.estado.TabStop = false;
             // 
-            // txtEstadoPublicacion
+            // precio
             // 
-            this.txtEstadoPublicacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEstadoPublicacion.Location = new System.Drawing.Point(180, 161);
-            this.txtEstadoPublicacion.Margin = new System.Windows.Forms.Padding(4);
-            this.txtEstadoPublicacion.Name = "txtEstadoPublicacion";
-            this.txtEstadoPublicacion.ReadOnly = true;
-            this.txtEstadoPublicacion.Size = new System.Drawing.Size(132, 23);
-            this.txtEstadoPublicacion.TabIndex = 20;
-            this.txtEstadoPublicacion.TabStop = false;
+            this.precio.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.precio.Location = new System.Drawing.Point(180, 193);
+            this.precio.Margin = new System.Windows.Forms.Padding(4);
+            this.precio.Name = "precio";
+            this.precio.ReadOnly = true;
+            this.precio.Size = new System.Drawing.Size(132, 23);
+            this.precio.TabIndex = 19;
+            this.precio.TabStop = false;
             // 
-            // txtPrecio
+            // fechaInicio
             // 
-            this.txtPrecio.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPrecio.Location = new System.Drawing.Point(180, 193);
-            this.txtPrecio.Margin = new System.Windows.Forms.Padding(4);
-            this.txtPrecio.Name = "txtPrecio";
-            this.txtPrecio.ReadOnly = true;
-            this.txtPrecio.Size = new System.Drawing.Size(132, 23);
-            this.txtPrecio.TabIndex = 19;
-            this.txtPrecio.TabStop = false;
+            this.fechaInicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fechaInicio.Location = new System.Drawing.Point(180, 129);
+            this.fechaInicio.Margin = new System.Windows.Forms.Padding(4);
+            this.fechaInicio.Name = "fechaInicio";
+            this.fechaInicio.ReadOnly = true;
+            this.fechaInicio.Size = new System.Drawing.Size(132, 23);
+            this.fechaInicio.TabIndex = 18;
+            this.fechaInicio.TabStop = false;
             // 
-            // txtFechaInicio
+            // stock
             // 
-            this.txtFechaInicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFechaInicio.Location = new System.Drawing.Point(180, 129);
-            this.txtFechaInicio.Margin = new System.Windows.Forms.Padding(4);
-            this.txtFechaInicio.Name = "txtFechaInicio";
-            this.txtFechaInicio.ReadOnly = true;
-            this.txtFechaInicio.Size = new System.Drawing.Size(132, 23);
-            this.txtFechaInicio.TabIndex = 18;
-            this.txtFechaInicio.TabStop = false;
+            this.stock.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.stock.Location = new System.Drawing.Point(180, 97);
+            this.stock.Margin = new System.Windows.Forms.Padding(4);
+            this.stock.Name = "stock";
+            this.stock.ReadOnly = true;
+            this.stock.Size = new System.Drawing.Size(132, 23);
+            this.stock.TabIndex = 17;
+            this.stock.TabStop = false;
             // 
-            // txtStockDisponible
+            // descripcion
             // 
-            this.txtStockDisponible.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStockDisponible.Location = new System.Drawing.Point(180, 97);
-            this.txtStockDisponible.Margin = new System.Windows.Forms.Padding(4);
-            this.txtStockDisponible.Name = "txtStockDisponible";
-            this.txtStockDisponible.ReadOnly = true;
-            this.txtStockDisponible.Size = new System.Drawing.Size(132, 23);
-            this.txtStockDisponible.TabIndex = 17;
-            this.txtStockDisponible.TabStop = false;
+            this.descripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.descripcion.Location = new System.Drawing.Point(180, 65);
+            this.descripcion.Margin = new System.Windows.Forms.Padding(4);
+            this.descripcion.Name = "descripcion";
+            this.descripcion.ReadOnly = true;
+            this.descripcion.Size = new System.Drawing.Size(415, 23);
+            this.descripcion.TabIndex = 16;
+            this.descripcion.TabStop = false;
             // 
-            // txtDescripcion
+            // username
             // 
-            this.txtDescripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDescripcion.Location = new System.Drawing.Point(180, 65);
-            this.txtDescripcion.Margin = new System.Windows.Forms.Padding(4);
-            this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.ReadOnly = true;
-            this.txtDescripcion.Size = new System.Drawing.Size(415, 23);
-            this.txtDescripcion.TabIndex = 16;
-            this.txtDescripcion.TabStop = false;
+            this.username.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.username.Location = new System.Drawing.Point(463, 163);
+            this.username.Margin = new System.Windows.Forms.Padding(4);
+            this.username.Name = "username";
+            this.username.ReadOnly = true;
+            this.username.Size = new System.Drawing.Size(132, 23);
+            this.username.TabIndex = 15;
+            this.username.TabStop = false;
             // 
-            // txtUsername
+            // codigoPublicacion
             // 
-            this.txtUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUsername.Location = new System.Drawing.Point(463, 193);
-            this.txtUsername.Margin = new System.Windows.Forms.Padding(4);
-            this.txtUsername.Name = "txtUsername";
-            this.txtUsername.ReadOnly = true;
-            this.txtUsername.Size = new System.Drawing.Size(132, 23);
-            this.txtUsername.TabIndex = 15;
-            this.txtUsername.TabStop = false;
-            // 
-            // txtCodPublicacion
-            // 
-            this.txtCodPublicacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCodPublicacion.Location = new System.Drawing.Point(180, 33);
-            this.txtCodPublicacion.Margin = new System.Windows.Forms.Padding(4);
-            this.txtCodPublicacion.Name = "txtCodPublicacion";
-            this.txtCodPublicacion.ReadOnly = true;
-            this.txtCodPublicacion.Size = new System.Drawing.Size(132, 23);
-            this.txtCodPublicacion.TabIndex = 4;
-            this.txtCodPublicacion.TabStop = false;
-            // 
-            // btnLimpiar
-            // 
-            this.btnLimpiar.Location = new System.Drawing.Point(636, 334);
-            this.btnLimpiar.Margin = new System.Windows.Forms.Padding(4);
-            this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(100, 28);
-            this.btnLimpiar.TabIndex = 3;
-            this.btnLimpiar.Text = "Limpar";
-            this.btnLimpiar.UseVisualStyleBackColor = true;
-            // 
-            // btnEnviar
-            // 
-            this.btnEnviar.Location = new System.Drawing.Point(636, 298);
-            this.btnEnviar.Margin = new System.Windows.Forms.Padding(4);
-            this.btnEnviar.Name = "btnEnviar";
-            this.btnEnviar.Size = new System.Drawing.Size(100, 28);
-            this.btnEnviar.TabIndex = 2;
-            this.btnEnviar.Text = "Enviar";
-            this.btnEnviar.UseVisualStyleBackColor = true;
-            // 
-            // txtPregunta
-            // 
-            this.txtPregunta.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPregunta.Location = new System.Drawing.Point(12, 298);
-            this.txtPregunta.Margin = new System.Windows.Forms.Padding(4);
-            this.txtPregunta.MaxLength = 255;
-            this.txtPregunta.Multiline = true;
-            this.txtPregunta.Name = "txtPregunta";
-            this.txtPregunta.Size = new System.Drawing.Size(615, 63);
-            this.txtPregunta.TabIndex = 1;
-            // 
-            // lblPregunta
-            // 
-            this.lblPregunta.AutoSize = true;
-            this.lblPregunta.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPregunta.Location = new System.Drawing.Point(12, 278);
-            this.lblPregunta.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblPregunta.Name = "lblPregunta";
-            this.lblPregunta.Size = new System.Drawing.Size(365, 17);
-            this.lblPregunta.TabIndex = 11;
-            this.lblPregunta.Text = "Escriba una pregunta al vendedor: (max 255 caracteres)";
-            // 
-            // lblStockInicial
-            // 
-            this.lblStockInicial.AutoSize = true;
-            this.lblStockInicial.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStockInicial.Location = new System.Drawing.Point(321, 101);
-            this.lblStockInicial.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblStockInicial.Name = "lblStockInicial";
-            this.lblStockInicial.Size = new System.Drawing.Size(86, 17);
-            this.lblStockInicial.TabIndex = 10;
-            this.lblStockInicial.Text = "Stock inicial:";
+            this.codigoPublicacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.codigoPublicacion.Location = new System.Drawing.Point(180, 33);
+            this.codigoPublicacion.Margin = new System.Windows.Forms.Padding(4);
+            this.codigoPublicacion.Name = "codigoPublicacion";
+            this.codigoPublicacion.ReadOnly = true;
+            this.codigoPublicacion.Size = new System.Drawing.Size(132, 23);
+            this.codigoPublicacion.TabIndex = 4;
+            this.codigoPublicacion.TabStop = false;
             // 
             // lblTipoPublicacion
             // 
             this.lblTipoPublicacion.AutoSize = true;
             this.lblTipoPublicacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTipoPublicacion.Location = new System.Drawing.Point(321, 165);
+            this.lblTipoPublicacion.Location = new System.Drawing.Point(321, 135);
             this.lblTipoPublicacion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTipoPublicacion.Name = "lblTipoPublicacion";
             this.lblTipoPublicacion.Size = new System.Drawing.Size(135, 17);
@@ -367,7 +293,7 @@
             // 
             this.lblFechaFinalizacion.AutoSize = true;
             this.lblFechaFinalizacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFechaFinalizacion.Location = new System.Drawing.Point(321, 133);
+            this.lblFechaFinalizacion.Location = new System.Drawing.Point(321, 103);
             this.lblFechaFinalizacion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblFechaFinalizacion.Name = "lblFechaFinalizacion";
             this.lblFechaFinalizacion.Size = new System.Drawing.Size(125, 17);
@@ -400,7 +326,7 @@
             // 
             this.lblIdVendedor.AutoSize = true;
             this.lblIdVendedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIdVendedor.Location = new System.Drawing.Point(321, 197);
+            this.lblIdVendedor.Location = new System.Drawing.Point(321, 167);
             this.lblIdVendedor.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblIdVendedor.Name = "lblIdVendedor";
             this.lblIdVendedor.Size = new System.Drawing.Size(77, 17);
@@ -433,12 +359,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 444);
+            this.ClientSize = new System.Drawing.Size(672, 346);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnComprar);
             this.Controls.Add(this.GBDetalle);
             this.Name = "DetallePublicacion";
             this.Text = "DetallePublicacion";
+            this.Load += new System.EventHandler(this.DetallePublicacion_Load);
             this.GBDetalle.ResumeLayout(false);
             this.GBDetalle.PerformLayout();
             this.ResumeLayout(false);
@@ -451,23 +378,17 @@
         private System.Windows.Forms.Button btnComprar;
         private System.Windows.Forms.GroupBox GBDetalle;
         private System.Windows.Forms.Label lblRubro;
-        private System.Windows.Forms.TextBox txtRubros;
-        private System.Windows.Forms.TextBox txtTipoPublicacion;
-        private System.Windows.Forms.TextBox txtFechaFinalizacion;
-        private System.Windows.Forms.TextBox txtStockInicial;
-        private System.Windows.Forms.TextBox txtCodVisibilidad;
-        private System.Windows.Forms.TextBox txtEstadoPublicacion;
-        private System.Windows.Forms.TextBox txtPrecio;
-        private System.Windows.Forms.TextBox txtFechaInicio;
-        private System.Windows.Forms.TextBox txtStockDisponible;
-        private System.Windows.Forms.TextBox txtDescripcion;
-        private System.Windows.Forms.TextBox txtUsername;
-        private System.Windows.Forms.TextBox txtCodPublicacion;
-        private System.Windows.Forms.Button btnLimpiar;
-        private System.Windows.Forms.Button btnEnviar;
-        private System.Windows.Forms.TextBox txtPregunta;
-        private System.Windows.Forms.Label lblPregunta;
-        private System.Windows.Forms.Label lblStockInicial;
+        private System.Windows.Forms.TextBox rubro;
+        private System.Windows.Forms.TextBox tipo;
+        private System.Windows.Forms.TextBox fechaFin;
+        private System.Windows.Forms.TextBox visibilidad;
+        private System.Windows.Forms.TextBox estado;
+        private System.Windows.Forms.TextBox precio;
+        private System.Windows.Forms.TextBox fechaInicio;
+        private System.Windows.Forms.TextBox stock;
+        private System.Windows.Forms.TextBox descripcion;
+        private System.Windows.Forms.TextBox username;
+        private System.Windows.Forms.TextBox codigoPublicacion;
         private System.Windows.Forms.Label lblTipoPublicacion;
         private System.Windows.Forms.Label lblEstadoPublicacion;
         private System.Windows.Forms.Label lblPrecio;

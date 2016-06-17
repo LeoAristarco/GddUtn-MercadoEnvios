@@ -32,9 +32,9 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnVerPublicacion = new System.Windows.Forms.Button();
             this.btnCalificar = new System.Windows.Forms.Button();
-            this.calificacionesDataGrid = new System.Windows.Forms.DataGridView();
+            this.tablaPublicacionesCalificar = new System.Windows.Forms.DataGridView();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.calificacionesDataGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaPublicacionesCalificar)).BeginInit();
             this.SuspendLayout();
             // 
             // btnVolver
@@ -47,12 +47,13 @@
             this.btnVolver.TabIndex = 5;
             this.btnVolver.Text = "Volver";
             this.btnVolver.UseVisualStyleBackColor = true;
+            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.btnVerPublicacion);
             this.groupBox1.Controls.Add(this.btnCalificar);
-            this.groupBox1.Controls.Add(this.calificacionesDataGrid);
+            this.groupBox1.Controls.Add(this.tablaPublicacionesCalificar);
             this.groupBox1.Location = new System.Drawing.Point(13, 13);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
@@ -81,19 +82,21 @@
             this.btnCalificar.TabIndex = 2;
             this.btnCalificar.Text = "Calificar";
             this.btnCalificar.UseVisualStyleBackColor = true;
+            this.btnCalificar.Click += new System.EventHandler(this.btnCalificar_Click);
             // 
-            // calificacionesDataGrid
+            // tablaPublicacionesCalificar
             // 
-            this.calificacionesDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.calificacionesDataGrid.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.calificacionesDataGrid.BackgroundColor = System.Drawing.SystemColors.Window;
-            this.calificacionesDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.calificacionesDataGrid.Location = new System.Drawing.Point(8, 59);
-            this.calificacionesDataGrid.Margin = new System.Windows.Forms.Padding(4);
-            this.calificacionesDataGrid.Name = "calificacionesDataGrid";
-            this.calificacionesDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.calificacionesDataGrid.Size = new System.Drawing.Size(655, 396);
-            this.calificacionesDataGrid.TabIndex = 0;
+            this.tablaPublicacionesCalificar.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.tablaPublicacionesCalificar.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.tablaPublicacionesCalificar.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.tablaPublicacionesCalificar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tablaPublicacionesCalificar.Location = new System.Drawing.Point(8, 59);
+            this.tablaPublicacionesCalificar.Margin = new System.Windows.Forms.Padding(4);
+            this.tablaPublicacionesCalificar.Name = "tablaPublicacionesCalificar";
+            this.tablaPublicacionesCalificar.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.tablaPublicacionesCalificar.Size = new System.Drawing.Size(655, 396);
+            this.tablaPublicacionesCalificar.TabIndex = 0;
+            this.tablaPublicacionesCalificar.Click += new System.EventHandler(this.tablaPublicacionesCalificar_Click);
             // 
             // CalificarVendedor
             // 
@@ -104,8 +107,9 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "CalificarVendedor";
             this.Text = "CalificarVendedor";
+            this.Load += new System.EventHandler(this.CalificarVendedor_Load);
             this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.calificacionesDataGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaPublicacionesCalificar)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -116,6 +120,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnVerPublicacion;
         private System.Windows.Forms.Button btnCalificar;
-        private System.Windows.Forms.DataGridView calificacionesDataGrid;
+        private System.Windows.Forms.DataGridView tablaPublicacionesCalificar;
     }
 }

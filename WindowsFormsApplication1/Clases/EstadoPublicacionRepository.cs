@@ -24,10 +24,16 @@ namespace WindowsFormsApplication1.Generar_Publicación
 
         private EstadoPublicacion deserializarEstadoPublicacion(Dictionary<string, object> fila)
         {
-            long id = (long)fila["id_estado"];
-            string nombre =(string) fila["estado_nombre"];
+            long id = toLong(fila["id_estado"]);
+            string nombre = fila["estado_nombre"].ToString();
 
             return new EstadoPublicacion(id, nombre);
+        }
+
+        internal EstadoPublicacion traerPorId(long v)
+        {
+            string consulta = "select * from ESTADO_PUBLICACION where id_estado=" + v.ToString();
+            return deserializarEstadoPublicacion(db.ejecutarConsulta(consulta)[0]);
         }
     }
 }

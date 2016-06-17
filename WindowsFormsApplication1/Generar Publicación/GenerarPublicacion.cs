@@ -11,29 +11,29 @@ using WindowsFormsApplication1.Clases;
 
 namespace WindowsFormsApplication1.Generar_Publicación
 {
-    public partial class GenerarPubliForm : Form
+    public partial class GenerarPublicacion : Form
     {
         private Publicacion publicacion;
 
-        private PublicacionRepository repositorio;
+        private PublicacionRepository repositorio = new PublicacionRepository();
         private Form formularioAnterior;
         private List<Rubro> rubros;
         private List<TipoPublicacion> tipos;
 
-        public GenerarPubliForm(Publicacion publicacion, Form formularioAnterior)
+        public GenerarPublicacion(Publicacion publicacion, Form formularioAnterior)
         {
-            InitializeComponent();
 
             this.publicacion = publicacion;
 
             update = true;
 
             this.formularioAnterior = formularioAnterior;
+
+            InitializeComponent();
         }
 
-        public GenerarPubliForm(Usuario usuario,Form formularioAnterior)
+        public GenerarPublicacion(Usuario usuario,Form formularioAnterior)
         {
-            InitializeComponent();
 
             publicacion = new Publicacion();
 
@@ -42,19 +42,17 @@ namespace WindowsFormsApplication1.Generar_Publicación
             update = false;
 
             this.formularioAnterior = formularioAnterior;
-        }
 
-        private void GenerarPubliForm_Load(object sender, EventArgs e)
-        {
-            repositorio = new PublicacionRepository();
-
-            inicializarFormulario();
+            InitializeComponent();
         }
 
         private void inicializarFormulario()
         {
+
             VisibilidadRepository repoVisibilidad = new VisibilidadRepository();
             visibilidades = repoVisibilidad.obtenerVisibilidades();
+
+            visibilidad.Items.Clear();
 
             foreach (Visibilidad v in visibilidades)
             {
@@ -64,6 +62,8 @@ namespace WindowsFormsApplication1.Generar_Publicación
             EstadoPublicacionRepository repoEstado = new EstadoPublicacionRepository();
             estados = repoEstado.obetenerEstadosPublicacion();
 
+            estado.Items.Clear();
+
             foreach (EstadoPublicacion e in estados)
             {
                 estado.Items.Add(e.nombre);
@@ -72,6 +72,8 @@ namespace WindowsFormsApplication1.Generar_Publicación
             RubroRepository repoRubro = new RubroRepository();
             rubros = repoRubro.obtenerRubros();
 
+            rubro.Items.Clear();
+
             foreach (Rubro item in rubros)
             {
                 rubro.Items.Add(item.descripcionCorta);
@@ -79,6 +81,8 @@ namespace WindowsFormsApplication1.Generar_Publicación
 
             TipoPublicacionRepository repoTipo = new TipoPublicacionRepository();
             tipos = repoTipo.obtenerTiposPublicacion();
+
+            tipo.Items.Clear();
 
             foreach (TipoPublicacion item in tipos)
             {
@@ -91,6 +95,7 @@ namespace WindowsFormsApplication1.Generar_Publicación
                 fechaFinalizacion.Value = publicacion.fechaVencimiento;
                 estado.SelectedItem = publicacion.estado.nombre;
                 tipo.SelectedItem = publicacion.tipo.nombre;
+                rubro.SelectedItem = publicacion.rubro.descripcionCorta;
             }
             else
             {
@@ -108,7 +113,7 @@ namespace WindowsFormsApplication1.Generar_Publicación
 
         private void limpiarFormulario()
         {
-            InitializeComponent();
+            //InitializeComponent();
             inicializarFormulario();
         }
 
@@ -131,10 +136,11 @@ namespace WindowsFormsApplication1.Generar_Publicación
         {
             publicacion.descripcion = descripcion.Text;
             publicacion.estado = estados[estado.SelectedIndex];
-            publicacion.fechaInicio = new DateTime();//Vaya a saber vieja como la obtengo
+            publicacion.fechaInicio = DateTime.Now.Date;//Vaya a saber vieja como la obtengo
             publicacion.fechaVencimiento = fechaFinalizacion.Value;
             publicacion.hayEnvio = hayEnvio.Checked;
             publicacion.precio = Convert.ToDouble(precio.Text);
+            publicacion.visibilidad = visibilidades[visibilidad.SelectedIndex];
             publicacion.rubro = rubros[rubro.SelectedIndex];
             publicacion.stock = Convert.ToInt64(stock.Text);
             publicacion.tipo = tipos[tipo.SelectedIndex];
@@ -155,6 +161,25 @@ namespace WindowsFormsApplication1.Generar_Publicación
         {
             formularioAnterior.Show();
             Hide();
+        }
+
+        private void tipo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tipos[tipo.SelectedIndex].sosSubasta())
+            {
+                stock.Text = "1";
+                stock.ReadOnly = true;
+            }
+            else
+            {
+                stock.ReadOnly = false;
+            }
+        }
+
+        private void GenerarPublicacion_Load(object sender, EventArgs e)
+        {
+            inicializarFormulario();
+            tipo_SelectedIndexChanged(new object(), new EventArgs());
         }
     }
 }

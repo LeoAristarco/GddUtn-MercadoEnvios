@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace WindowsFormsApplication1.Clases
 {
@@ -26,15 +28,44 @@ namespace WindowsFormsApplication1.Clases
 
         private Visibilidad deserializarVisibilidad(Dictionary<string, object> fila)
         {
-            long id = (long)fila["id_visibilidad"];
+            long id = toLong(fila["id_visibilidad"]);
 
             string nombre =(string) fila["visibilidad_nombre"];
 
-            double precio = (double)fila["precio_visibilidad"];
+            double precio = toDouble(fila["precio_visibilidad"]);
 
-            double porcentajeVenta = (double)fila["porcentaje_venta"];
+            double porcentajeVenta = toDouble(fila["porcentaje_venta"]);
 
             return new Visibilidad(id, nombre, precio, porcentajeVenta);
+        }
+
+        internal void agregarVisibilidad(Visibilidad visibilidad)
+        {
+            int dummyInt = 0;
+            List<SqlParameter> parametros = new List<SqlParameter>();
+            db.agregarParametro(parametros, "@visibilidad_nombre", visibilidad.nombre);
+            db.agregarParametro(parametros, "@precio_visibilidad", visibilidad.precio);
+            db.agregarParametro(parametros, "@porcentaje_venta", visibilidad.porcentajeVenta);
+            db.agregarParametro(parametros, "@retorno", dummyInt);
+            
+            db.ejecutarStoredProcedure("sp_AgregarVisibilidad", parametros);
+        }
+
+        internal void updateVisibilidad(Visibilidad visibilidad)
+        {
+            List<SqlParameter> parametros = new List<SqlParameter>();
+            db.agregarParametro(parametros, "@id_visibilidad", visibilidad.id);
+            db.agregarParametro(parametros, "@visibilidad_nombre", visibilidad.nombre);
+            db.agregarParametro(parametros, "@precio_visibilidad", visibilidad.precio);
+            db.agregarParametro(parametros, "@porcentaje_venta", visibilidad.porcentajeVenta);
+
+            db.ejecutarStoredProcedure("sp_EditarVisibilidad", parametros);
+        }
+
+        internal Visibilidad traerPorId(long v)
+        {
+            string consulta = "select * from VISIBILIDAD where id_visibilidad=" + v.ToString();
+            return deserializarVisibilidad(db.ejecutarConsulta(consulta)[0]);
         }
     }
 }

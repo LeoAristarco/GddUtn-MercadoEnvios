@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApplication1.Calificar
 {
-    partial class CalificarDlg
+    partial class CalificarDetalle
     {
         /// <summary>
         /// Required designer variable.
@@ -32,110 +32,73 @@
             this.btnAceptar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnBorrar = new System.Windows.Forms.Button();
-            this.cmbOpciones = new System.Windows.Forms.ComboBox();
-            this.rbOpciones = new System.Windows.Forms.RadioButton();
-            this.rbTextoLibre = new System.Windows.Forms.RadioButton();
-            this.txtTextoLibre = new System.Windows.Forms.TextBox();
+            this.textoLibre = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.cmbEstrellas = new System.Windows.Forms.ComboBox();
+            this.estrellas = new System.Windows.Forms.ComboBox();
             this.lblEstrellas = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(217, 376);
+            this.btnCancelar.Location = new System.Drawing.Point(218, 355);
             this.btnCancelar.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(100, 28);
             this.btnCancelar.TabIndex = 10;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(325, 376);
+            this.btnAceptar.Location = new System.Drawing.Point(326, 355);
             this.btnAceptar.Margin = new System.Windows.Forms.Padding(4);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(100, 28);
             this.btnAceptar.TabIndex = 11;
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.btnBorrar);
-            this.groupBox1.Controls.Add(this.cmbOpciones);
-            this.groupBox1.Controls.Add(this.rbOpciones);
-            this.groupBox1.Controls.Add(this.rbTextoLibre);
-            this.groupBox1.Controls.Add(this.txtTextoLibre);
+            this.groupBox1.Controls.Add(this.textoLibre);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.cmbEstrellas);
+            this.groupBox1.Controls.Add(this.estrellas);
             this.groupBox1.Controls.Add(this.lblEstrellas);
             this.groupBox1.Location = new System.Drawing.Point(13, 13);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(413, 356);
+            this.groupBox1.Size = new System.Drawing.Size(413, 322);
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Seleccione la cantidad de estrellas que desea puntuar:";
             // 
             // btnBorrar
             // 
-            this.btnBorrar.Location = new System.Drawing.Point(8, 320);
+            this.btnBorrar.Location = new System.Drawing.Point(11, 274);
             this.btnBorrar.Margin = new System.Windows.Forms.Padding(4);
             this.btnBorrar.Name = "btnBorrar";
             this.btnBorrar.Size = new System.Drawing.Size(100, 28);
             this.btnBorrar.TabIndex = 6;
             this.btnBorrar.Text = "Borrar";
             this.btnBorrar.UseVisualStyleBackColor = true;
+            this.btnBorrar.Click += new System.EventHandler(this.btnBorrar_Click);
             // 
-            // cmbOpciones
+            // textoLibre
             // 
-            this.cmbOpciones.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbOpciones.FormattingEnabled = true;
-            this.cmbOpciones.Location = new System.Drawing.Point(196, 137);
-            this.cmbOpciones.Margin = new System.Windows.Forms.Padding(4);
-            this.cmbOpciones.Name = "cmbOpciones";
-            this.cmbOpciones.Size = new System.Drawing.Size(160, 24);
-            this.cmbOpciones.TabIndex = 3;
-            // 
-            // rbOpciones
-            // 
-            this.rbOpciones.AutoSize = true;
-            this.rbOpciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbOpciones.Location = new System.Drawing.Point(8, 137);
-            this.rbOpciones.Margin = new System.Windows.Forms.Padding(4);
-            this.rbOpciones.Name = "rbOpciones";
-            this.rbOpciones.Size = new System.Drawing.Size(176, 21);
-            this.rbOpciones.TabIndex = 2;
-            this.rbOpciones.TabStop = true;
-            this.rbOpciones.Text = "Seleccione una opción:";
-            this.rbOpciones.UseVisualStyleBackColor = true;
-            // 
-            // rbTextoLibre
-            // 
-            this.rbTextoLibre.AutoSize = true;
-            this.rbTextoLibre.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbTextoLibre.Location = new System.Drawing.Point(8, 191);
-            this.rbTextoLibre.Margin = new System.Windows.Forms.Padding(4);
-            this.rbTextoLibre.Name = "rbTextoLibre";
-            this.rbTextoLibre.Size = new System.Drawing.Size(99, 21);
-            this.rbTextoLibre.TabIndex = 4;
-            this.rbTextoLibre.TabStop = true;
-            this.rbTextoLibre.Text = "Texto libre:";
-            this.rbTextoLibre.UseVisualStyleBackColor = true;
-            // 
-            // txtTextoLibre
-            // 
-            this.txtTextoLibre.Location = new System.Drawing.Point(8, 219);
-            this.txtTextoLibre.Margin = new System.Windows.Forms.Padding(4);
-            this.txtTextoLibre.Multiline = true;
-            this.txtTextoLibre.Name = "txtTextoLibre";
-            this.txtTextoLibre.Size = new System.Drawing.Size(348, 93);
-            this.txtTextoLibre.TabIndex = 5;
+            this.textoLibre.Location = new System.Drawing.Point(11, 173);
+            this.textoLibre.Margin = new System.Windows.Forms.Padding(4);
+            this.textoLibre.Multiline = true;
+            this.textoLibre.Name = "textoLibre";
+            this.textoLibre.Size = new System.Drawing.Size(348, 93);
+            this.textoLibre.TabIndex = 5;
             // 
             // label1
             // 
@@ -148,15 +111,15 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "Describa su experiencia (OPCIONAL) :";
             // 
-            // cmbEstrellas
+            // estrellas
             // 
-            this.cmbEstrellas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbEstrellas.FormattingEnabled = true;
-            this.cmbEstrellas.Location = new System.Drawing.Point(81, 34);
-            this.cmbEstrellas.Margin = new System.Windows.Forms.Padding(4);
-            this.cmbEstrellas.Name = "cmbEstrellas";
-            this.cmbEstrellas.Size = new System.Drawing.Size(160, 24);
-            this.cmbEstrellas.TabIndex = 1;
+            this.estrellas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.estrellas.FormattingEnabled = true;
+            this.estrellas.Location = new System.Drawing.Point(81, 34);
+            this.estrellas.Margin = new System.Windows.Forms.Padding(4);
+            this.estrellas.Name = "estrellas";
+            this.estrellas.Size = new System.Drawing.Size(160, 24);
+            this.estrellas.TabIndex = 1;
             // 
             // lblEstrellas
             // 
@@ -168,16 +131,26 @@
             this.lblEstrellas.TabIndex = 2;
             this.lblEstrellas.Text = "Estrellas:";
             // 
-            // CalificarDlg
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(8, 142);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(78, 17);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Texto libre:";
+            // 
+            // CalificarDetalle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(443, 416);
+            this.ClientSize = new System.Drawing.Size(443, 393);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.groupBox1);
-            this.Name = "CalificarDlg";
+            this.Name = "CalificarDetalle";
             this.Text = "CalificarDlg";
+            this.Load += new System.EventHandler(this.CalificarDetalle_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -190,12 +163,10 @@
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnBorrar;
-        private System.Windows.Forms.ComboBox cmbOpciones;
-        private System.Windows.Forms.RadioButton rbOpciones;
-        private System.Windows.Forms.RadioButton rbTextoLibre;
-        private System.Windows.Forms.TextBox txtTextoLibre;
+        private System.Windows.Forms.TextBox textoLibre;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cmbEstrellas;
+        private System.Windows.Forms.ComboBox estrellas;
         private System.Windows.Forms.Label lblEstrellas;
+        private System.Windows.Forms.Label label2;
     }
 }

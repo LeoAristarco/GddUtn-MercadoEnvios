@@ -23,7 +23,11 @@ namespace WindowsFormsApplication1.Generar_Publicación
 
         private Rubro deserializarRubro(Dictionary<string, object> fila)
         {
-            return new Rubro((long)fila["id_rubro"], (string)fila["descripción_corta"], (string)fila["descripción_larga"]);
+            long id = toLong(fila["id_rubro"]);
+            string descripcionCorta = fila["descripción_corta"].ToString();
+            string descripcionLarga = fila["descripción_larga"].ToString();
+
+            return new Rubro(id, descripcionCorta, descripcionLarga);
         }
 
         internal void updateRubro(Rubro rubroAModificar)
@@ -59,6 +63,12 @@ namespace WindowsFormsApplication1.Generar_Publicación
             fila.Add("descripción_larga", rubroAModificar.descripcionLarga);
 
             return fila;
+        }
+
+        internal Rubro traerPorId(long v)
+        {
+            string consulta = "select * from RUBRO where id_rubro=" + v.ToString();
+            return deserializarRubro(db.ejecutarConsulta(consulta)[0]);
         }
     }
 }

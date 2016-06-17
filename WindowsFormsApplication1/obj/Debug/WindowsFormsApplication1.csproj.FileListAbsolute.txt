@@ -3,7 +3,6 @@ C:\Users\Alexis\Downloads\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\GddU
 C:\Users\Alexis\Downloads\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csprojResolveAssemblyReference.cache
 C:\Users\Alexis\Downloads\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ABM_Rubro.ABMRubro.resources
 C:\Users\Alexis\Downloads\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ABM_Rubro.Modificar.resources
-C:\Users\Alexis\Downloads\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Generar_Publicación.GenerarPubliForm.resources
 C:\Users\Alexis\Downloads\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
 C:\Users\Alexis\Downloads\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csproj.GenerateResource.Cache
 C:\Users\Alexis\Downloads\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\GddUtn-MercadoEnvios\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
@@ -22,14 +21,9 @@ C:\Users\Alexis\Downloads\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\GddU
 C:\Users\Alexis\Downloads\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ABM_Usuario.Empresa.BuscarEmpresa.resources
 C:\Users\Alexis\Downloads\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ABM_Usuario.Empresa.ModificarEmpresa.resources
 C:\Users\Alexis\Downloads\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ABM_Visibilidad.ABMVisibilidad.resources
-C:\Users\Alexis\Downloads\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ABM_Visibilidad.EditorDeVisibilidades.resources
-C:\Users\Alexis\Downloads\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Calificar.CalificarDlg.resources
 C:\Users\Alexis\Downloads\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Calificar.CalificarVendedor.resources
-C:\Users\Alexis\Downloads\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ComprarOfertar.AgregarRubros.resources
 C:\Users\Alexis\Downloads\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ComprarOfertar.ComprarOfertar.resources
-C:\Users\Alexis\Downloads\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ComprarOfertar.DatosVendedor.resources
 C:\Users\Alexis\Downloads\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ComprarOfertar.DetallePublicacion.resources
-C:\Users\Alexis\Downloads\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ComprarOfertar.OfertaDlg.resources
 C:\Users\Alexis\Downloads\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Facturas.FacturarForm.resources
 C:\Users\Alexis\Downloads\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Historial_Cliente.HistorialOfertas.resources
 C:\Users\Alexis\Downloads\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Historial_Cliente.HistorialSubastas.resources
@@ -40,3 +34,13 @@ C:\Users\Alexis\Downloads\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\GddU
 C:\Users\Alexis\Downloads\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Login.LoginForm.resources
 C:\Users\Alexis\Downloads\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Login.SeleccionFuncionalidades.resources
 C:\Users\Alexis\Downloads\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Login.SeleccionRoles.resources
+C:\Users\alexis\Documents\GDD\GddUtn-MercadoEnvios\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe.config
+C:\Users\alexis\Documents\GDD\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+C:\Users\alexis\Documents\GDD\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
+C:\Users\Alexis\Downloads\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ABM_Visibilidad.GenerarVisibilidad.resources
+C:\Users\Alexis\Downloads\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Form1.resources
+C:\Users\Alexis\Downloads\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Generar_Publicación.GenerarPublicacion.resources
+C:\Users\Alexis\Downloads\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Calificar.CalificarDetalle.resources
+C:\Users\Alexis\Downloads\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ComprarOfertar.AgregarFiltrosRubro.resources
+C:\Users\Alexis\Downloads\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ComprarOfertar.Ofertar.resources
+C:\Users\Alexis\Downloads\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ComprarOfertar.Comprar.resources
