@@ -29,12 +29,14 @@ values('COMPRAR/OFERTAR')
 
 
 insert into VISIBILIDAD
-	values 
+	values
+		('GRATIS', 0, 0),
+		('BRONCE', 60, 0.30),	
 		('PLATA', 100, 0.20),
-		('BRONCE', 60, 0.30),
-		('PLATINO', 180, 0.10),
 		('ORO', 140, 0.15),
-		('GRATIS', 0, 0);
+		('PLATINO', 180, 0.10);
+
+
 
 	
 	
