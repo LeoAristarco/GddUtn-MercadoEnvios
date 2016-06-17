@@ -454,14 +454,6 @@ END
 GO
 
 
-SELECT * FROM COMPRA
-
-insert into compra(comprador,publicacion,fecha_operacion,monto,cantidad)
-values(1,5,getdate(),2,2)
-
-
-
-
 --------FIN DE HISTORIAL DEL CLIENTE-----------------------
 
 -------------- GENERAR PUBLICACION----------------------------------------------------------------------
