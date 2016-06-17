@@ -30,6 +30,7 @@ begin
 
 end
 
+go
 
 -- Procedimientos que usa el store st_insertarCompraSubasta
 create procedure st_actualizar_Estado_Publicacion_a_Finalizado
@@ -55,7 +56,7 @@ as begin
  
 end
 
-
+go
 
 create PROCEDURE sp_AgregarOferta(@ofertante numeric(10,0),@publicacion numeric(10,0),
                                   @fecha_oferta datetime,
@@ -72,6 +73,8 @@ AS BEGIN
 
 END		
 
+
+go
 
 	create procedure st_insertarCompraSubasta(@comprador numeric(10,0), 
 	    @publicacion numeric(10,0), 
@@ -90,6 +93,8 @@ END
 			   
 	end
 
+
+go
 
 --validaciones
 create function mas_de_tres_sin_calificar(@id_cliente numeric(10,0))
@@ -112,6 +117,7 @@ declare @cant int,@bool bit
 
 end
 
+go
 
 create function publicacion_en_estado_pausado(@id_publicacion numeric(10,0))
 returns bit
@@ -132,6 +138,8 @@ declare @cant int,@bool bit
 
 end
 
+go
+
 --procedemiento para validar antes de comprar, segun el @tipoError deriba en distintas ventanas de c#
 create procedure st_validacion_de_compra_oferta
 @id_cliente numeric(10,0),
@@ -149,6 +157,8 @@ begin
 	    
 end
 
+
+go
 
 -- Procedimientos que usa el tr_insertarCompra
 create procedure st_agregarCalificacion(@id_calificacion numeric(10,0) output )
@@ -187,7 +197,7 @@ create trigger tr_insertarCompra
 	end
 	
 
-
+go
 	
 -------------- FIN  funcionalidad Comprar/Ofertar----------------------------------------------------------------------
 
@@ -204,6 +214,7 @@ as begin
 	  where comprador = @id_usuario and calif_estrellas is null
 end
 
+go
 
 create procedure st_insertarCalificacion(
 @id_calificacion numeric(10,0),
@@ -213,6 +224,8 @@ as begin
         update CALIFICACION set calif_estrellas= @calif_estrellas,calif_detalle =@calif_detalle
 		where id_calificacion=@id_calificacion
 end
+
+go
 
 create procedure st_resumenDeEstrellasDadas(@id_usuario numeric(10,0))
 as begin
@@ -232,6 +245,8 @@ select
 drop table #TablaTemporal
 end
 
+go
+
 create procedure st_ultimas5compras(@id_usuario numeric(10,0))
 as begin  
 	  select top 5 *
@@ -247,7 +262,7 @@ end
 
 
 
-
+go
 
 
 		/************ABM de usuario*************/
@@ -301,7 +316,7 @@ end
 	--Falta validar la existencia del usuario
 
 
-
+go
 --------------------------------------------------COMIENZO ABM VISIBILIDAD----------------------------------------------------------------
 
 CREATE PROCEDURE sp_AgregarVisibilidad
@@ -392,6 +407,8 @@ declare @visibilidad_nombre nvarchar(255)
 
 end
 
+go
+
 create function fu_precio_visibilidad(@visibilidad numeric(10,0))
 returns numeric(10,2)
 as
@@ -406,6 +423,7 @@ declare @precio_visibilidad numeric(10,2)
 
 end
 
+go
 
 create PROCEDURE sp_AgregarPublicacion
 	(@descripcion nvarchar(255),@stock numeric(10,0), @fecha_inicio datetime, 
