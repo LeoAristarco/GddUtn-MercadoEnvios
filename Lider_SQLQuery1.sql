@@ -60,13 +60,13 @@ go
 
 create PROCEDURE sp_AgregarOferta(@ofertante numeric(10,0),@publicacion numeric(10,0),
                                   @fecha_oferta datetime,
-                                  @monto_ofertado numeric(10,2))
+                                  @monto_ofertado numeric(10,2),@precio_envio int)
 AS BEGIN
 
 		INSERT INTO OFERTA
-			(ofertante, publicacion, fecha_oferta,concretada, monto_ofertado)
+			(ofertante, publicacion, fecha_oferta,concretada, monto_ofertado,precio_envio)
 			VALUES
-			(@ofertante, @publicacion, @fecha_oferta, 0, @monto_ofertado)
+			(@ofertante, @publicacion, @fecha_oferta, 0, @monto_ofertado,@precio_envio)
 			
 		update PUBLICACION SET precio = @monto_ofertado
 	       where id_publicacion = @publicacion
@@ -247,7 +247,7 @@ end
 
 go
 
-create procedure st_ultimas5compras(@id_usuario numeric(10,0))
+alter procedure st_ultimas5compras(@id_usuario numeric(10,0))
 as begin  
 	  select top 5 descripcion,calif_estrellas
 	  from COMPRA
@@ -378,3 +378,32 @@ go
 
 ----------------------  FIN DE GENERAR PUBLICACION----------------------------------------------------------------------
 
+
+----------------------  COMIENZO DE ESTADISTICAS-------------------------------------------------------------------------------
+select nick,mail,count(*)
+FROM PUBLICACION
+inner join USUARIO on usuario_responsable = id_usuario 
+group by nick,mail,factura
+having 0 =(select count(*) from ITEM_FACTURA
+                                   where factura = id_factura )
+
+
+----------------------  FIN DE ESTADISTICAS----------------------------------------------------------------------
+
+
+
+--Al iniciar la aplicación se tiene que barrer la base de datos para saber que publicaciones
+--estan vencidas, a las q estan vencidas hay que finalizarlas y cerrar la factura
+CREATE PROCEDURE st_actualizar_publicaciones_vencidas
+AS
+DECLARE @fecha datetime
+
+UPDATE PUBLICACION  
+	SET estado_publicacion = 4 --finalizado
+	WHERE	
+			year(fecha_vencimiento) < 2016 AND
+			estado_publicacion <> 1 AND --distinto de borrador
+			( select factura_fecha  -- todavia no se facturo
+			          from FACTURA
+			          where factura = id_factura) is null
+			
