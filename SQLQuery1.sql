@@ -462,15 +462,55 @@ create procedure VERIFICAR_LOGUEO
 	@nick nvarchar(255), 
 	@pass nvarchar(255)
 as begin
-	select u.id_usuario, u.nick, u.pass, ru.id_rol, r.rol_nombre
+	
+	declare 
+		@filas int,
+		@intentos int;
+
+	select top 1 @filas = COUNT(*)
+	from USUARIO
+	where 
+		nick = @nick and 
+		pass = @pass;
+
+	if(@filas = 0) begin
+		select @intentos = intentos_login
+		from USUARIO
+		where nick = @nick;
+		
+		if(@intentos < 3) begin
+			Set @intentos = @intentos + 1;
+
+			update USUARIO
+			set intentos_login = @intentos
+			where nick = @nick;
+		end
+
+		if (@intentos = 3) begin 
+			update USUARIO
+			set 
+				intentos_login = 0,
+				baja_logica = 1
+			where nick = @nick;
+
+		end
+		
+	end
+	
+	else begin
+		update USUARIO
+		set intentos_login = 0
+		where nick = @nick;
+	end
+	
+	select u.id_usuario, u.nick, u.pass, ru.id_rol, r.rol_nombre, u.intentos_login, u.baja_logica
 	from USUARIO as u
 	inner join ROL_POR_USUARIO as ru
 	on  u.id_usuario = ru.id_usuario
 	inner join ROL as r
 	on ru.id_rol = r.id_rol
-	where 
-		u.nick = @nick and 
-		u.pass = @pass;
+	where u.nick = @nick and u.pass = @pass
+
 end
 
 go
