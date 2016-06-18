@@ -32,41 +32,6 @@ end
 
 go
 
-create procedure st_buscar_publicaciones_ULTIMA_PAGINA
-@descripcion nvarchar(255) = null,
-@rubroId nvarchar(255)= null,
-@ultimaPagina int output
-AS
-begin
-declare @paginas int
-
- select @paginas=count(publicaciones)
- from(
-      select (row_number() over (order by id_publicacion desc) ) as publicaciones
-      from PUBLICACION
-      inner join VISIBILIDAD on id_visibilidad = visibilidad
-      inner join ESTADO_PUBLICACION on id_estado = estado_publicacion
-      inner join TIPO_PUBLICACION on id_tipo = tipo_publicacion
-      inner join RUBRO on id_rubro = rubro
-      where (descripcion like '%' + @descripcion + '%') and 
-      estado_nombre <> 'BORRADOR' and estado_nombre <> 'FINALIZADO' and
-      (id_rubro = @rubroId OR @rubroId IS NULL)
-      
-      ) gg_vieja
-
-	  if((@paginas%10)<>0)
-	  begin
-	       set @ultimaPagina = (@paginas/10)+1
-	  end
-	  else
-	  begin
-	       set @ultimaPagina = (@paginas/10)
-	  end
-
-end
-
-go
-
 -- Procedimientos que usa el store st_insertarCompraSubasta
 create procedure st_actualizar_Estado_Publicacion_a_Finalizado
 @publicacion numeric(10,0),
@@ -95,13 +60,13 @@ go
 
 create PROCEDURE sp_AgregarOferta(@ofertante numeric(10,0),@publicacion numeric(10,0),
                                   @fecha_oferta datetime,
-                                  @monto_ofertado numeric(10,2))
+                                  @monto_ofertado numeric(10,2),@precio_envio int)
 AS BEGIN
 
 		INSERT INTO OFERTA
-			(ofertante, publicacion, fecha_oferta,concretada, monto_ofertado)
+			(ofertante, publicacion, fecha_oferta,concretada, monto_ofertado,precio_envio)
 			VALUES
-			(@ofertante, @publicacion, @fecha_oferta, 0, @monto_ofertado)
+			(@ofertante, @publicacion, @fecha_oferta, 0, @monto_ofertado,@precio_envio)
 			
 		update PUBLICACION SET precio = @monto_ofertado
 	       where id_publicacion = @publicacion
@@ -282,7 +247,7 @@ end
 
 go
 
-create procedure st_ultimas5compras(@id_usuario numeric(10,0))
+alter procedure st_ultimas5compras(@id_usuario numeric(10,0))
 as begin  
 	  select top 5 descripcion,calif_estrellas
 	  from COMPRA
@@ -413,3 +378,32 @@ go
 
 ----------------------  FIN DE GENERAR PUBLICACION----------------------------------------------------------------------
 
+
+----------------------  COMIENZO DE ESTADISTICAS-------------------------------------------------------------------------------
+select nick,mail,count(*)
+FROM PUBLICACION
+inner join USUARIO on usuario_responsable = id_usuario 
+group by nick,mail,factura
+having 0 =(select count(*) from ITEM_FACTURA
+                                   where factura = id_factura )
+
+
+----------------------  FIN DE ESTADISTICAS----------------------------------------------------------------------
+
+
+
+--Al iniciar la aplicación se tiene que barrer la base de datos para saber que publicaciones
+--estan vencidas, a las q estan vencidas hay que finalizarlas y cerrar la factura
+CREATE PROCEDURE st_actualizar_publicaciones_vencidas
+AS
+DECLARE @fecha datetime
+
+UPDATE PUBLICACION  
+	SET estado_publicacion = 4 --finalizado
+	WHERE	
+			year(fecha_vencimiento) < 2016 AND
+			estado_publicacion <> 1 AND --distinto de borrador
+			( select factura_fecha  -- todavia no se facturo
+			          from FACTURA
+			          where factura = id_factura) is null
+			
