@@ -117,7 +117,7 @@ create table FUNCIONALIDAD_POR_ROL
 	id_funcionalidad    numeric(10,0) NOT NULL, 
 	id_rol			    numeric(10,0) NOT NULL, 
 	
-	PRIMARY KEY (id_funcionalidad, id_rol), 
+	--PRIMARY KEY (id_funcionalidad, id_rol), 
 	FOREIGN KEY (id_funcionalidad)           references FUNCIONALIDAD(id_funcionalidad), 
 	FOREIGN KEY (id_rol)		             references ROL(id_rol)
 ) 
@@ -842,10 +842,19 @@ go
 /*FUNCIONALIDAD*/
 /********************************************************************************************************************************/
 
+insert into FUNCIONALIDAD
+values
+	('ABM_USUARIO', 1),
+	('ABM_RUBRO', 1),
+	('ABM_VISIBILIDAD', 1),
+	('GENERAR_PUBLICACION', 1),
+	('COMPRAR/OFERTAR', 1),
+	('HISTORIAL_CLIENTE', 1),
+	('CALIFICAR_VENDEDOR', 1),
+	('FACTURAS_REALIZADAS', 1),
+	('ESTADISTICAS', 1);
 
---preguntar como los cargamos
-
-
+go
 
 /********************************************************************************************************************************/
 /*ELIMINACION DE CAMPOS INNECESARIOS*/
@@ -885,5 +894,11 @@ insert into ROL_POR_USUARIO
 	where 
 		nick= 'admin' and 
 		pass= 'w23e';
+
+go
+
+insert into FUNCIONALIDAD_POR_ROL
+	select id_funcionalidad, 3
+	from FUNCIONALIDAD, ROL
 
 go
