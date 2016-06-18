@@ -12,7 +12,7 @@ namespace WindowsFormsApplication1.Listado_Estadistico
 {
     public partial class ListadoEstadistico : Form
     {
-        private const string VENDEDORES_MAS_VENDIDO = "Vendedores Con mas productos no vendidos";
+        private const string VENDEDORES_MENOS_VENDIDO = "Vendedores con mas productos no vendidos";
         private const string CLIENTES_MAS_COMPRAS = "Clientes con mas compras";
         private const string VENDEDORES_MAS_FACTURAS = "Vendedores con mas facturas";
         private const string VENDEDORES_MAYOR_FACTURA = "Vendedores con mayor facturacion";
@@ -33,7 +33,7 @@ namespace WindowsFormsApplication1.Listado_Estadistico
         private void inicializarFormulario()
         {
             tipoListado.Items.Add(VACIO);
-            tipoListado.Items.Add(VENDEDORES_MAS_VENDIDO);
+            tipoListado.Items.Add(VENDEDORES_MENOS_VENDIDO);
             tipoListado.Items.Add(CLIENTES_MAS_COMPRAS);
             tipoListado.Items.Add(VENDEDORES_MAS_FACTURAS);
             tipoListado.Items.Add(VENDEDORES_MAYOR_FACTURA);
@@ -46,6 +46,11 @@ namespace WindowsFormsApplication1.Listado_Estadistico
             trimestre.SelectedIndex = 0;
             tipoListado.SelectedIndex = 0;
 
+            limpiarDataGrid();
+        }
+
+        private void limpiarDataGrid()
+        {
             tablaEstadistica.Rows.Clear();
             tablaEstadistica.Columns.Clear();
         }
@@ -78,10 +83,12 @@ namespace WindowsFormsApplication1.Listado_Estadistico
 
         private void tipoListado_SelectedIndexChanged(object sender, EventArgs e)
         {
+            limpiarDataGrid();
+
             switch (tipoListado.SelectedItem.ToString())
             {
-                case VENDEDORES_MAS_VENDIDO:
-                    iniciarVenderoresMasVendido();
+                case VENDEDORES_MENOS_VENDIDO:
+                    iniciarVenderoresMenosVendido();
                     break;
                 case VENDEDORES_MAS_FACTURAS:
                     iniciarVenderoresMasFacturas();
@@ -97,22 +104,50 @@ namespace WindowsFormsApplication1.Listado_Estadistico
 
         private void iniciarClientesMasCompras()
         {
-            throw new NotImplementedException();
+            DataGridViewTextBoxColumn cCliente = new DataGridViewTextBoxColumn();
+            cCliente.HeaderText = "Cliente";
+            cCliente.ReadOnly = true;
+            tablaEstadistica.Columns.Add(cCliente);
+            DataGridViewTextBoxColumn cCantidadCompras = new DataGridViewTextBoxColumn();
+            cCantidadCompras.HeaderText = "Cantidad de Compras";
+            cCantidadCompras.ReadOnly = true;
+            tablaEstadistica.Columns.Add(cCantidadCompras);
         }
 
         private void iniciarVenderoresMayorFactura()
         {
-            throw new NotImplementedException();
+            DataGridViewTextBoxColumn cVendedor = new DataGridViewTextBoxColumn();
+            cVendedor.HeaderText = "Vendedor";
+            cVendedor.ReadOnly = true;
+            tablaEstadistica.Columns.Add(cVendedor);
+            DataGridViewTextBoxColumn cMayorFactura = new DataGridViewTextBoxColumn();
+            cMayorFactura.HeaderText = "Monto facturado";
+            cMayorFactura.ReadOnly = true;
+            tablaEstadistica.Columns.Add(cMayorFactura);
         }
 
         private void iniciarVenderoresMasFacturas()
         {
-            throw new NotImplementedException();
+            DataGridViewTextBoxColumn cVendedor = new DataGridViewTextBoxColumn();
+            cVendedor.HeaderText = "Vendedor";
+            cVendedor.ReadOnly = true;
+            tablaEstadistica.Columns.Add(cVendedor);
+            DataGridViewTextBoxColumn cMayorCantidadFacturas = new DataGridViewTextBoxColumn();
+            cMayorCantidadFacturas.HeaderText = "Cantidad de facturas";
+            cMayorCantidadFacturas.ReadOnly = true;
+            tablaEstadistica.Columns.Add(cMayorCantidadFacturas);
         }
 
-        private void iniciarVenderoresMasVendido()
+        private void iniciarVenderoresMenosVendido()
         {
-            throw new NotImplementedException();
+            DataGridViewTextBoxColumn cVendedor = new DataGridViewTextBoxColumn();
+            cVendedor.HeaderText = "Vendedor";
+            cVendedor.ReadOnly = true;
+            tablaEstadistica.Columns.Add(cVendedor);
+            DataGridViewTextBoxColumn cMenorCantidadVendido = new DataGridViewTextBoxColumn();
+            cMenorCantidadVendido.HeaderText = "Cantidad de productos vendidos";
+            cMenorCantidadVendido.ReadOnly = true;
+            tablaEstadistica.Columns.Add(cMenorCantidadVendido);
         }
     }
 }
