@@ -571,7 +571,8 @@ select distinct
 	UPPER(Forma_Pago_Desc) as forma_pago,
 	UPPER(Publicacion_Visibilidad_Desc) as vis_descripcion,
 	Factura_Fecha as fecha,
-	Factura_Nro as factura_numero
+	Factura_Nro as factura_numero,
+	Factura_Total as total_factura
 from gd_esquema.Maestra
 where 
 	Factura_Nro is not null;
@@ -579,7 +580,7 @@ where
 go
 
 insert into FACTURA
-	select v.forma_pago, v.vis_descripcion, VISIBILIDAD.precio_visibilidad, v.fecha, 0, v.factura_numero
+	select v.forma_pago, v.vis_descripcion, VISIBILIDAD.precio_visibilidad, v.fecha, v.total_factura, v.factura_numero
 	from vista_facturas as v
 	inner join VISIBILIDAD 
 	on v.vis_descripcion = VISIBILIDAD.visibilidad_nombre
