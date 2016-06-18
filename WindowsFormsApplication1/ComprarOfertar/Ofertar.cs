@@ -55,7 +55,7 @@ namespace WindowsFormsApplication1.ComprarOfertar
                 MessageBox.Show("La cantidad ofertada debe ser mayor a la actual");
                 return;
             }
-            repositorio.ofertar(publicacion, user, monto);
+            repositorio.ofertar(publicacion, user, monto,checkBox1.Checked);
             detallePublicacion.Show();
             Close();
         }
@@ -65,5 +65,13 @@ namespace WindowsFormsApplication1.ComprarOfertar
             montoOferta.Text = "";
         }
 
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked && !publicacion.hayEnvio)
+            {
+                checkBox1.Checked = false;
+                MessageBox.Show("Esta publicacion no permite envio");
+            }
+        }
     }
 }
