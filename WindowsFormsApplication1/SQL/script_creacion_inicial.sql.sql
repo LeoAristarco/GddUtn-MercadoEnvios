@@ -310,6 +310,7 @@ create table OFERTA
 	fecha_oferta   datetime,
 	concretada     bit,
 	monto_ofertado numeric(10,2),
+	precio_envio   int,
 
 	PRIMARY KEY (id_oferta),
 	FOREIGN KEY (ofertante)	  references USUARIO(id_usuario),
