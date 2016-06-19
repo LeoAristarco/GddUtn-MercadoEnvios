@@ -80,9 +80,10 @@
             this.ClientSize = new System.Drawing.Size(281, 110);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "SeleccionRoles";
             this.Text = "SeleccionRoles";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SeleccionRoles_FormClosed);
             this.Load += new System.EventHandler(this.SeleccionRoles_Load);
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);

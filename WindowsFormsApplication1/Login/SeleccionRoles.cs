@@ -16,11 +16,14 @@ namespace WindowsFormsApplication1.Login
     {
         public Logueo logueo { get; set; }
 
-        public SeleccionRoles(Logueo logueo)
+        private LoginForm formPadre;
+
+        public SeleccionRoles(LoginForm formPadre)
         {
             InitializeComponent();
 
-            this.logueo = logueo;
+            this.formPadre = formPadre;
+            logueo = formPadre.logueo;
 
             cargarComboBoxConDiccionarioRoles();
         }
@@ -41,6 +44,11 @@ namespace WindowsFormsApplication1.Login
         private void SeleccionRoles_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void SeleccionRoles_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            formPadre.Close();
         }
     }
 }

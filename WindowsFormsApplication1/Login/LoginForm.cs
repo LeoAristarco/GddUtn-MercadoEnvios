@@ -13,7 +13,7 @@ namespace WindowsFormsApplication1.Login
 {
     public partial class LoginForm : Form
     {
-        private Logueo logueo;
+        public Logueo logueo { get; set; }
 
         private LogueoDAO logueoDAO;
 
@@ -31,7 +31,7 @@ namespace WindowsFormsApplication1.Login
 
             if (!logueo.nickYPassSonValidos())
             {
-                MessageBox.Show("Los campos no pueden estar vacios", "Error", MessageBoxButtons.OK);
+                MessageBox.Show(logueo.mensageError, "Error", MessageBoxButtons.OK);
                 return;
             }
 
@@ -39,14 +39,14 @@ namespace WindowsFormsApplication1.Login
             
             if(logueo.logueoExitoso())
             {
-                SeleccionRoles seleccionRoles = new SeleccionRoles(logueo);
+                SeleccionRoles seleccionRoles = new SeleccionRoles(this);
                 seleccionRoles.Show();
 
                 Hide();
             }
             else
             {
-                MessageBox.Show("El Nick o el Pass son incorrectos", "Error", MessageBoxButtons.OK);
+                MessageBox.Show(logueo.mensageError, "Error", MessageBoxButtons.OK);
             }
         }
     }

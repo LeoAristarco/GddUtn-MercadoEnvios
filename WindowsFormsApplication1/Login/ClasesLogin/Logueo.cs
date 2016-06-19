@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace WindowsFormsApplication1.Login.ClasesLogin
 {
@@ -13,6 +14,10 @@ namespace WindowsFormsApplication1.Login.ClasesLogin
         public string nick { get; set; }
 
         public Dictionary<double, string> roles { get; set; }
+
+        public bool bajaLogica { get; set; }
+
+        public string mensageError { get; set; }
 
         public Logueo()
         {
@@ -28,17 +33,28 @@ namespace WindowsFormsApplication1.Login.ClasesLogin
         {
             if (nick == "" || pass == "")
             {
+                mensageError = "Los campos no pueden estar vacios";
                 return false;
             }
-            else
-            {
-                return true;
-            }
+
+            return true;
         }
 
         public bool logueoExitoso()
         {
-            return roles != null;
+            if (roles == null)
+            {
+                mensageError = "El Nick o el Pass son incorrectos";
+                return false;
+            }
+
+            if (bajaLogica)
+            {
+                mensageError = "Ha sido bloqueado, comuniquese con el Administrador";
+                return false;
+            }
+
+            return true;
         }
     }
 }
