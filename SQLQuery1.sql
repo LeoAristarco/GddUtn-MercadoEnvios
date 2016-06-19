@@ -453,14 +453,30 @@ END
 GO
 
 
-CREATE FUNCTION fu_cantDeOperacionesSinCalificar(@comprador numeric(10,0))
+CREATE FUNCTION fu_cantDeOperacionesSinCalificar(@cliente numeric(10,0))
 	RETURNS int
 AS BEGIN
 	DECLARE @cant int
 		SELECT @cant = COUNT(*)
-		FROM COMPRA WHERE comprador = @comprador AND calificacion IS NULL
+		FROM COMPRA INNER JOIN USUARIO U ON comprador = U.id_usuario
+				INNER JOIN CLIENTE C ON U.id_usuario = C.id_usuario
+		WHERE id_cliente = @cliente AND calificacion IS NULL
 
 	RETURN @cant
+END
+GO
+
+
+CREATE FUNCTION fu_resumenDeEstrellasDadas(@cliente numeric(10,0))
+	RETURNS int
+AS BEGIN
+	DECLARE @resumen int
+		SELECT @resumen = AVG(calif_estrellas)
+		FROM CALIFICACION INNER JOIN COMPRA ON calificacion = id_calificacion
+			INNER JOIN USUARIO U ON comprador = id_usuario
+			INNER JOIN CLIENTE C ON U.id_usuario = C.id_usuario
+		WHERE id_cliente = @cliente
+	RETURN @resumen
 END
 GO
 
