@@ -380,12 +380,46 @@ go
 
 
 ----------------------  COMIENZO DE ESTADISTICAS-------------------------------------------------------------------------------
-select nick,mail,count(*)
+
+--Vendedores con mayor cantidad de productos no vendidos, 
+--dicho listado debe filtrarse por grado de visibilidad de la publicación y
+--por mes-año. Primero se deberá ordenar por fecha y luego por visibilidad. 
+select nick,mail,count(*) as cant_productos_no_vendidos
 FROM PUBLICACION
 inner join USUARIO on usuario_responsable = id_usuario 
 group by nick,mail,factura
 having 0 =(select count(*) from ITEM_FACTURA
                                    where factura = id_factura )
+ order by cant_productos_no_vendidos desc
+
+--Clientes con mayor cantidad de productos comprados, por mes y por año, dentro de un rubro particular
+
+select nick,mail,sum(cantidad) as cant_de_productos_comprados
+FROM COMPRA
+inner join USUARIO on comprador = id_usuario
+inner join PUBLICACION on publicacion = id_publicacion
+where rubro=1 and month(fecha_operacion)= 03 and year(fecha_operacion)=2012
+group by nick,mail
+ order by cant_de_productos_comprados desc
+
+--Vendedores con mayor cantidad de facturas dentro de un mes y año particular
+select nick,mail,count(*) as cant_de_facturas
+FROM PUBLICACION
+inner join USUARIO on usuario_responsable = id_usuario
+inner join FACTURA on id_factura = factura
+group by nick,mail
+order by cant_de_facturas desc
+
+
+--Vendedores con mayor monto facturado dentro de un mes y año particular. 
+select nick,mail,sum(precio_unitario*cantidad_vendida+precio_envio) as mayor_monto_facturado
+FROM PUBLICACION
+inner join USUARIO on usuario_responsable = id_usuario
+inner join FACTURA on id_factura = factura
+inner join ITEM_FACTURA i on i.id_factura=factura
+group by nick,mail
+order by mayor_monto_facturado desc
+
 
 
 ----------------------  FIN DE ESTADISTICAS----------------------------------------------------------------------
