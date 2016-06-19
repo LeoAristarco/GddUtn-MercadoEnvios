@@ -36,13 +36,15 @@
             this.ofertaActual = new System.Windows.Forms.TextBox();
             this.lblOferta = new System.Windows.Forms.Label();
             this.lblOfertaActual = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(162, 152);
+            this.btnCancelar.Location = new System.Drawing.Point(161, 203);
             this.btnCancelar.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(100, 28);
@@ -53,7 +55,7 @@
             // 
             // txtAceptar
             // 
-            this.txtAceptar.Location = new System.Drawing.Point(270, 152);
+            this.txtAceptar.Location = new System.Drawing.Point(270, 203);
             this.txtAceptar.Margin = new System.Windows.Forms.Padding(4);
             this.txtAceptar.Name = "txtAceptar";
             this.txtAceptar.Size = new System.Drawing.Size(100, 28);
@@ -64,6 +66,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.checkBox1);
             this.groupBox1.Controls.Add(this.btnBorrar);
             this.groupBox1.Controls.Add(this.montoOferta);
             this.groupBox1.Controls.Add(this.ofertaActual);
@@ -74,7 +78,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(357, 132);
+            this.groupBox1.Size = new System.Drawing.Size(357, 170);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Ingrese una oferta entera mayor a la actual";
@@ -129,11 +133,30 @@
             this.lblOfertaActual.TabIndex = 2;
             this.lblOfertaActual.Text = "Oferta actual:";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(7, 132);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(72, 17);
+            this.label2.TabIndex = 18;
+            this.label2.Text = "Con Envio";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(116, 133);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(18, 17);
+            this.checkBox1.TabIndex = 17;
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // Ofertar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(387, 192);
+            this.ClientSize = new System.Drawing.Size(387, 242);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.txtAceptar);
             this.Controls.Add(this.groupBox1);
@@ -156,5 +179,7 @@
         private System.Windows.Forms.TextBox ofertaActual;
         private System.Windows.Forms.Label lblOferta;
         private System.Windows.Forms.Label lblOfertaActual;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

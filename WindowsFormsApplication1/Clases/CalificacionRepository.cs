@@ -32,9 +32,26 @@ namespace WindowsFormsApplication1.Calificar
                 estrellas = toInt(fila["calif_estrellas"]);
             }
 
-             
-
             return new Calificacion(id, estrellas,comentarios);
+        }
+
+        internal List<long> obtenerResumenCalificaciones(Usuario usuario)
+        {
+            List<long> calificaciones = new List<long>();
+
+            List<SqlParameter> parametros = new List<SqlParameter>();
+
+            db.agregarParametro(parametros, "@id_usuario", usuario.id);
+
+            List<Dictionary<string,object>> tabla = db.ejecutarStoredProcedure("st_resumenDeEstrellasDadas", parametros);
+
+            for (int i = 1; i < 6; i++)
+            {
+                string index = i.ToString() + " estrella";
+                calificaciones.Add(toLong(tabla[0][index]));
+            }
+
+            return calificaciones;
         }
     }
 }

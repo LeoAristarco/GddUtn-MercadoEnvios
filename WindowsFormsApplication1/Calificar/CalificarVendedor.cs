@@ -14,10 +14,10 @@ namespace WindowsFormsApplication1.Calificar
     public partial class CalificarVendedor : Form
     {
         private Form formAnterior;
-        private PublicacionRepository repositorio = new PublicacionRepository();
-        private List<Publicacion> publicacionesSinCalificar;
+        private CompraRepository repositorio = new CompraRepository();
+        private List<Compra> comprasSinCalificar;
         private Usuario usuario;
-        private Publicacion publicacionSeleccionada;
+        private Compra compraSeleccionada;
 
         public CalificarVendedor(Usuario usuario,Form formAnterior)
         {
@@ -31,7 +31,7 @@ namespace WindowsFormsApplication1.Calificar
 
         private void btnCalificar_Click(object sender, EventArgs e)
         {
-            CalificarDetalle calificar = new CalificarDetalle(this,publicacionSeleccionada.calificacion);
+            CalificarDetalle calificar = new CalificarDetalle(this,compraSeleccionada.calificacion,usuario);
 
             Hide();
 
@@ -40,8 +40,8 @@ namespace WindowsFormsApplication1.Calificar
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
-            Hide();
-            formAnterior.ShowDialog();
+            formAnterior.Show();
+            Close();
         }
 
         private void CalificarVendedor_Load(object sender, EventArgs e)
@@ -51,9 +51,12 @@ namespace WindowsFormsApplication1.Calificar
 
         private void inicializarFormulario()
         {
-            publicacionesSinCalificar = repositorio.obtenerPublicacionesSinCalificar(usuario);
+            comprasSinCalificar = repositorio.obtenerComprasSinCalificar(usuario);
 
-            publicacionSeleccionada = publicacionesSinCalificar[0];
+            if (comprasSinCalificar.Count>0)
+            {
+                compraSeleccionada = comprasSinCalificar[0];
+            }
 
             cargarPublicacionesADataGrid();
         }
@@ -73,8 +76,9 @@ namespace WindowsFormsApplication1.Calificar
             cfechaFin.ReadOnly = true;
             tablaPublicacionesCalificar.Columns.Add(cfechaFin);
 
-            foreach (Publicacion publicacion in publicacionesSinCalificar)
+            foreach (Compra compra in comprasSinCalificar)
             {
+                Publicacion publicacion = compra.publicacion;
                 tablaPublicacionesCalificar.Rows.Add(publicacion.descripcion, publicacion.hayEnvio, publicacion.fechaVencimiento);
             }
             //POR AHORA SOLO CARGO ESTO,IGUAL SE DEBERIAN MOSTRAR SOLO 3 O 4 DATOS
@@ -83,7 +87,12 @@ namespace WindowsFormsApplication1.Calificar
 
         private void tablaPublicacionesCalificar_Click(object sender, EventArgs e)
         {
-            publicacionSeleccionada = publicacionesSinCalificar[tablaPublicacionesCalificar.CurrentCell.RowIndex];
+            compraSeleccionada = comprasSinCalificar[tablaPublicacionesCalificar.CurrentCell.RowIndex];
+        }
+
+        private void btnVerPublicacion_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

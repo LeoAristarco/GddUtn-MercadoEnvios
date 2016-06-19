@@ -80,7 +80,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox1.Size = new System.Drawing.Size(479, 560);
+            this.groupBox1.Size = new System.Drawing.Size(479, 492);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Creación o Modificación de Publicación";
@@ -96,7 +96,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(36, 460);
+            this.label9.Location = new System.Drawing.Point(36, 381);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(43, 17);
             this.label9.TabIndex = 20;
@@ -105,7 +105,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(32, 414);
+            this.label8.Location = new System.Drawing.Point(32, 335);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(48, 17);
             this.label8.TabIndex = 19;
@@ -176,7 +176,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(35, 514);
+            this.button4.Location = new System.Drawing.Point(35, 435);
             this.button4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(107, 39);
@@ -187,7 +187,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(337, 514);
+            this.button2.Location = new System.Drawing.Point(337, 435);
             this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(107, 39);
@@ -198,7 +198,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(187, 514);
+            this.button1.Location = new System.Drawing.Point(187, 435);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(107, 39);
@@ -210,7 +210,7 @@
             // hayEnvio
             // 
             this.hayEnvio.AutoSize = true;
-            this.hayEnvio.Location = new System.Drawing.Point(195, 460);
+            this.hayEnvio.Location = new System.Drawing.Point(195, 381);
             this.hayEnvio.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.hayEnvio.Name = "hayEnvio";
             this.hayEnvio.Size = new System.Drawing.Size(88, 21);
@@ -220,7 +220,7 @@
             // 
             // precio
             // 
-            this.precio.Location = new System.Drawing.Point(195, 414);
+            this.precio.Location = new System.Drawing.Point(195, 335);
             this.precio.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.precio.Multiline = true;
             this.precio.Name = "precio";
@@ -285,7 +285,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(527, 586);
+            this.ClientSize = new System.Drawing.Size(527, 521);
             this.Controls.Add(this.groupBox1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "GenerarPublicacion";

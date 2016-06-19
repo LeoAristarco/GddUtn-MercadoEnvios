@@ -92,5 +92,15 @@ namespace WindowsFormsApplication1.ABM_Visibilidad
             visibilidadSeleccionada = visibilidades[index];//No se por que me crea una fila de mas
             //aca deberia setear la visibilidad seleccionada
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string mensaje = repositorio.eliminarVisibilidad(visibilidadSeleccionada);
+
+            if (mensaje!="todo piolaa")
+            {
+                MessageBox.Show(mensaje.ToUpper());
+            }
+        }
     }
 }

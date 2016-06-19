@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApplication1.ABM_Rol
 {
-    partial class AbmRolForm
+    partial class ABMRol
     {
         /// <summary>
         /// Required designer variable.
@@ -31,19 +31,19 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnAsignarRoles = new System.Windows.Forms.Button();
             this.Nuevo_Button = new System.Windows.Forms.Button();
-            this.Roles_Datagrid = new System.Windows.Forms.DataGridView();
+            this.tablaRoles = new System.Windows.Forms.DataGridView();
             this.Modificar_Button = new System.Windows.Forms.Button();
             this.Eliminar_Button = new System.Windows.Forms.Button();
             this.Volver_Button = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Roles_Datagrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaRoles)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.btnAsignarRoles);
             this.groupBox1.Controls.Add(this.Nuevo_Button);
-            this.groupBox1.Controls.Add(this.Roles_Datagrid);
+            this.groupBox1.Controls.Add(this.tablaRoles);
             this.groupBox1.Controls.Add(this.Modificar_Button);
             this.groupBox1.Controls.Add(this.Eliminar_Button);
             this.groupBox1.Location = new System.Drawing.Point(13, 13);
@@ -76,23 +76,24 @@
             this.Nuevo_Button.Text = "Nuevo";
             this.Nuevo_Button.UseVisualStyleBackColor = true;
             // 
-            // Roles_Datagrid
+            // tablaRoles
             // 
-            this.Roles_Datagrid.AllowUserToAddRows = false;
-            this.Roles_Datagrid.AllowUserToDeleteRows = false;
-            this.Roles_Datagrid.AllowUserToOrderColumns = true;
-            this.Roles_Datagrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.Roles_Datagrid.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.Roles_Datagrid.BackgroundColor = System.Drawing.SystemColors.Window;
-            this.Roles_Datagrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Roles_Datagrid.Location = new System.Drawing.Point(8, 59);
-            this.Roles_Datagrid.Margin = new System.Windows.Forms.Padding(4);
-            this.Roles_Datagrid.MultiSelect = false;
-            this.Roles_Datagrid.Name = "Roles_Datagrid";
-            this.Roles_Datagrid.ReadOnly = true;
-            this.Roles_Datagrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.Roles_Datagrid.Size = new System.Drawing.Size(531, 273);
-            this.Roles_Datagrid.TabIndex = 4;
+            this.tablaRoles.AllowUserToAddRows = false;
+            this.tablaRoles.AllowUserToDeleteRows = false;
+            this.tablaRoles.AllowUserToOrderColumns = true;
+            this.tablaRoles.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.tablaRoles.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.tablaRoles.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.tablaRoles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tablaRoles.Location = new System.Drawing.Point(8, 59);
+            this.tablaRoles.Margin = new System.Windows.Forms.Padding(4);
+            this.tablaRoles.MultiSelect = false;
+            this.tablaRoles.Name = "tablaRoles";
+            this.tablaRoles.ReadOnly = true;
+            this.tablaRoles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.tablaRoles.Size = new System.Drawing.Size(531, 273);
+            this.tablaRoles.TabIndex = 4;
+            this.tablaRoles.Click += new System.EventHandler(this.tablaRoles_Click);
             // 
             // Modificar_Button
             // 
@@ -113,6 +114,7 @@
             this.Eliminar_Button.TabIndex = 3;
             this.Eliminar_Button.Text = "Eliminar";
             this.Eliminar_Button.UseVisualStyleBackColor = true;
+            this.Eliminar_Button.Click += new System.EventHandler(this.Eliminar_Button_Click);
             // 
             // Volver_Button
             // 
@@ -125,17 +127,18 @@
             this.Volver_Button.Text = "Volver";
             this.Volver_Button.UseVisualStyleBackColor = true;
             // 
-            // AbmRolForm
+            // ABMRol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(591, 403);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.Volver_Button);
-            this.Name = "AbmRolForm";
+            this.Name = "ABMRol";
             this.Text = "AbmRolForm";
+            this.Load += new System.EventHandler(this.ABMRol_Load);
             this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.Roles_Datagrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaRoles)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -145,7 +148,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnAsignarRoles;
         private System.Windows.Forms.Button Nuevo_Button;
-        private System.Windows.Forms.DataGridView Roles_Datagrid;
+        private System.Windows.Forms.DataGridView tablaRoles;
         private System.Windows.Forms.Button Modificar_Button;
         private System.Windows.Forms.Button Eliminar_Button;
         private System.Windows.Forms.Button Volver_Button;

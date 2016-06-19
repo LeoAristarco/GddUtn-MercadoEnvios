@@ -33,7 +33,7 @@ namespace WindowsFormsApplication1.ComprarOfertar
 
         private void inicializarFormulario()
         {
-            throw new NotImplementedException();
+            ofertaActual.Text = publicacion.precio.ToString();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -44,7 +44,18 @@ namespace WindowsFormsApplication1.ComprarOfertar
 
         private void txtAceptar_Click(object sender, EventArgs e)
         {
-            repositorio.ofertar(publicacion, user, Convert.ToDouble(montoOferta.Text));
+            int monto = Convert.ToInt32(montoOferta.Text);
+            if (montoOferta.Text.Contains(",")|| montoOferta.Text.Contains("."))
+            {
+                MessageBox.Show("No se permiten ofertas con valores decimales");
+                return;
+            }
+            if (monto<=publicacion.precio)
+            {
+                MessageBox.Show("La cantidad ofertada debe ser mayor a la actual");
+                return;
+            }
+            repositorio.ofertar(publicacion, user, monto,checkBox1.Checked);
             detallePublicacion.Show();
             Close();
         }
@@ -52,6 +63,15 @@ namespace WindowsFormsApplication1.ComprarOfertar
         private void btnBorrar_Click(object sender, EventArgs e)
         {
             montoOferta.Text = "";
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked && !publicacion.hayEnvio)
+            {
+                checkBox1.Checked = false;
+                MessageBox.Show("Esta publicacion no permite envio");
+            }
         }
     }
 }

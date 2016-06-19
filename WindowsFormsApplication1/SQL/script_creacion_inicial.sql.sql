@@ -117,7 +117,7 @@ create table FUNCIONALIDAD_POR_ROL
 	id_funcionalidad    numeric(10,0) NOT NULL, 
 	id_rol			    numeric(10,0) NOT NULL, 
 	
-	PRIMARY KEY (id_funcionalidad, id_rol), 
+	--PRIMARY KEY (id_funcionalidad, id_rol), 
 	FOREIGN KEY (id_funcionalidad)           references FUNCIONALIDAD(id_funcionalidad), 
 	FOREIGN KEY (id_rol)		             references ROL(id_rol)
 ) 
@@ -203,8 +203,8 @@ go
 create table RUBRO
 (
 	id_rubro            numeric(10,0)  identity (1,1),
-	descripción_corta   varchar(30) NULL, 
-	descripción_larga   nvarchar(255),
+	descripciÃ³n_corta   varchar(30) NULL, 
+	descripciÃ³n_larga   nvarchar(255),
 
 	PRIMARY KEY (id_rubro)
 )
@@ -310,6 +310,7 @@ create table OFERTA
 	fecha_oferta   datetime,
 	concretada     bit,
 	monto_ofertado numeric(10,2),
+	precio_envio   int,
 
 	PRIMARY KEY (id_oferta),
 	FOREIGN KEY (ofertante)	  references USUARIO(id_usuario),
@@ -475,12 +476,12 @@ go
 /********************************************************************************************************************************/
 
 insert into VISIBILIDAD
-	values 
+	values
+		('GRATIS', 0, 0),
+		('BRONCE', 60, 0.30),	
 		('PLATA', 100, 0.20),
-		('BRONCE', 60, 0.30),
-		('PLATINO', 180, 0.10),
 		('ORO', 140, 0.15),
-		('GRATIS', 0, 0);
+		('PLATINO', 180, 0.10);
 go
 
 /********************************************************************************************************************************/
@@ -571,7 +572,8 @@ select distinct
 	UPPER(Forma_Pago_Desc) as forma_pago,
 	UPPER(Publicacion_Visibilidad_Desc) as vis_descripcion,
 	Factura_Fecha as fecha,
-	Factura_Nro as factura_numero
+	Factura_Nro as factura_numero,
+	Factura_Total as total_factura
 from gd_esquema.Maestra
 where 
 	Factura_Nro is not null;
@@ -579,7 +581,7 @@ where
 go
 
 insert into FACTURA
-	select v.forma_pago, v.vis_descripcion, VISIBILIDAD.precio_visibilidad, v.fecha, 0, v.factura_numero
+	select v.forma_pago, v.vis_descripcion, VISIBILIDAD.precio_visibilidad, v.fecha, v.total_factura, v.factura_numero
 	from vista_facturas as v
 	inner join VISIBILIDAD 
 	on v.vis_descripcion = VISIBILIDAD.visibilidad_nombre
@@ -677,7 +679,7 @@ as begin
 		select v.descripcion, v.stock, v.creacion, v.vencimiento, v.precio, RUBRO.id_rubro, VISIBILIDAD.id_visibilidad, 2, USUARIO.id_usuario, TIPO_PUBLICACION.id_tipo, 0, FACTURA.id_factura,v.codigo
 		from vista_publicaciones as v
 		inner join RUBRO
-		on v.rubro = RUBRO.descripción_corta
+		on v.rubro = RUBRO.descripciÃ³n_corta
 		inner join VISIBILIDAD
 		on v.vis_nombre = VISIBILIDAD.visibilidad_nombre
 		inner join USUARIO
@@ -842,10 +844,19 @@ go
 /*FUNCIONALIDAD*/
 /********************************************************************************************************************************/
 
+insert into FUNCIONALIDAD
+values
+	('ABM_USUARIO', 1),
+	('ABM_RUBRO', 1),
+	('ABM_VISIBILIDAD', 1),
+	('GENERAR_PUBLICACION', 1),
+	('COMPRAR/OFERTAR', 1),
+	('HISTORIAL_CLIENTE', 1),
+	('CALIFICAR_VENDEDOR', 1),
+	('FACTURAS_REALIZADAS', 1),
+	('ESTADISTICAS', 1);
 
---preguntar como los cargamos
-
-
+go
 
 /********************************************************************************************************************************/
 /*ELIMINACION DE CAMPOS INNECESARIOS*/
@@ -885,5 +896,11 @@ insert into ROL_POR_USUARIO
 	where 
 		nick= 'admin' and 
 		pass= 'w23e';
+
+go
+
+insert into FUNCIONALIDAD_POR_ROL
+	select id_funcionalidad, 3
+	from FUNCIONALIDAD, ROL
 
 go

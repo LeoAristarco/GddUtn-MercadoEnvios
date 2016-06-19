@@ -30,7 +30,6 @@
         {
             this.btnVolver = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnVerPublicacion = new System.Windows.Forms.Button();
             this.btnCalificar = new System.Windows.Forms.Button();
             this.tablaPublicacionesCalificar = new System.Windows.Forms.DataGridView();
             this.groupBox1.SuspendLayout();
@@ -51,8 +50,6 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.btnVerPublicacion);
-            this.groupBox1.Controls.Add(this.btnCalificar);
             this.groupBox1.Controls.Add(this.tablaPublicacionesCalificar);
             this.groupBox1.Location = new System.Drawing.Point(13, 13);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
@@ -63,19 +60,9 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lista de compras realizadas:";
             // 
-            // btnVerPublicacion
-            // 
-            this.btnVerPublicacion.Location = new System.Drawing.Point(404, 23);
-            this.btnVerPublicacion.Margin = new System.Windows.Forms.Padding(4);
-            this.btnVerPublicacion.Name = "btnVerPublicacion";
-            this.btnVerPublicacion.Size = new System.Drawing.Size(151, 28);
-            this.btnVerPublicacion.TabIndex = 1;
-            this.btnVerPublicacion.Text = "Ver publicación";
-            this.btnVerPublicacion.UseVisualStyleBackColor = true;
-            // 
             // btnCalificar
             // 
-            this.btnCalificar.Location = new System.Drawing.Point(563, 23);
+            this.btnCalificar.Location = new System.Drawing.Point(462, 483);
             this.btnCalificar.Margin = new System.Windows.Forms.Padding(4);
             this.btnCalificar.Name = "btnCalificar";
             this.btnCalificar.Size = new System.Drawing.Size(100, 28);
@@ -103,6 +90,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(706, 521);
+            this.Controls.Add(this.btnCalificar);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.groupBox1);
             this.Name = "CalificarVendedor";
@@ -118,7 +106,6 @@
 
         private System.Windows.Forms.Button btnVolver;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button btnVerPublicacion;
         private System.Windows.Forms.Button btnCalificar;
         private System.Windows.Forms.DataGridView tablaPublicacionesCalificar;
     }

@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApplication1.Listado_Estadistico
 {
-    partial class ListadoEstadisticoForm
+    partial class ListadoEstadistico
     {
         /// <summary>
         /// Required designer variable.
@@ -30,23 +30,23 @@
         {
             this.limpiarBoton = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.mesTextBox = new System.Windows.Forms.TextBox();
+            this.mes = new System.Windows.Forms.TextBox();
             this.mesLabel = new System.Windows.Forms.Label();
-            this.visibilidadComboBox = new System.Windows.Forms.ComboBox();
+            this.visibilidad = new System.Windows.Forms.ComboBox();
             this.visibilidadLabel = new System.Windows.Forms.Label();
-            this.top5DataGriedView = new System.Windows.Forms.DataGridView();
+            this.tablaEstadistica = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.buscarButton = new System.Windows.Forms.Button();
-            this.tipoListadoCombo = new System.Windows.Forms.ComboBox();
+            this.tipoListado = new System.Windows.Forms.ComboBox();
             this.TipoListadoLabel = new System.Windows.Forms.Label();
-            this.trimestreCombo = new System.Windows.Forms.ComboBox();
+            this.trimestre = new System.Windows.Forms.ComboBox();
             this.TrimestreLabel = new System.Windows.Forms.Label();
-            this.anioTextbox = new System.Windows.Forms.TextBox();
+            this.anio = new System.Windows.Forms.TextBox();
             this.anioLabel = new System.Windows.Forms.Label();
             this.volverButton = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.top5DataGriedView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaEstadistica)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,14 +59,15 @@
             this.limpiarBoton.TabIndex = 22;
             this.limpiarBoton.Text = "Limpiar";
             this.limpiarBoton.UseVisualStyleBackColor = true;
+            this.limpiarBoton.Click += new System.EventHandler(this.limpiarBoton_Click);
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.mesTextBox);
+            this.groupBox2.Controls.Add(this.mes);
             this.groupBox2.Controls.Add(this.mesLabel);
-            this.groupBox2.Controls.Add(this.visibilidadComboBox);
+            this.groupBox2.Controls.Add(this.visibilidad);
             this.groupBox2.Controls.Add(this.visibilidadLabel);
-            this.groupBox2.Controls.Add(this.top5DataGriedView);
+            this.groupBox2.Controls.Add(this.tablaEstadistica);
             this.groupBox2.Location = new System.Drawing.Point(13, 210);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
@@ -76,13 +77,13 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "TOP 5:";
             // 
-            // mesTextBox
+            // mes
             // 
-            this.mesTextBox.Location = new System.Drawing.Point(284, 26);
-            this.mesTextBox.Margin = new System.Windows.Forms.Padding(4);
-            this.mesTextBox.Name = "mesTextBox";
-            this.mesTextBox.Size = new System.Drawing.Size(132, 22);
-            this.mesTextBox.TabIndex = 17;
+            this.mes.Location = new System.Drawing.Point(284, 26);
+            this.mes.Margin = new System.Windows.Forms.Padding(4);
+            this.mes.Name = "mes";
+            this.mes.Size = new System.Drawing.Size(132, 22);
+            this.mes.TabIndex = 17;
             // 
             // mesLabel
             // 
@@ -94,14 +95,14 @@
             this.mesLabel.TabIndex = 16;
             this.mesLabel.Text = "Mes:";
             // 
-            // visibilidadComboBox
+            // visibilidad
             // 
-            this.visibilidadComboBox.FormattingEnabled = true;
-            this.visibilidadComboBox.Location = new System.Drawing.Point(91, 26);
-            this.visibilidadComboBox.Margin = new System.Windows.Forms.Padding(4);
-            this.visibilidadComboBox.Name = "visibilidadComboBox";
-            this.visibilidadComboBox.Size = new System.Drawing.Size(121, 24);
-            this.visibilidadComboBox.TabIndex = 15;
+            this.visibilidad.FormattingEnabled = true;
+            this.visibilidad.Location = new System.Drawing.Point(91, 26);
+            this.visibilidad.Margin = new System.Windows.Forms.Padding(4);
+            this.visibilidad.Name = "visibilidad";
+            this.visibilidad.Size = new System.Drawing.Size(121, 24);
+            this.visibilidad.TabIndex = 15;
             // 
             // visibilidadLabel
             // 
@@ -113,34 +114,34 @@
             this.visibilidadLabel.TabIndex = 14;
             this.visibilidadLabel.Text = "Visibilidad:";
             // 
-            // top5DataGriedView
+            // tablaEstadistica
             // 
-            this.top5DataGriedView.AllowUserToAddRows = false;
-            this.top5DataGriedView.AllowUserToDeleteRows = false;
-            this.top5DataGriedView.AllowUserToResizeColumns = false;
-            this.top5DataGriedView.AllowUserToResizeRows = false;
-            this.top5DataGriedView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.top5DataGriedView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.top5DataGriedView.BackgroundColor = System.Drawing.SystemColors.Window;
-            this.top5DataGriedView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.top5DataGriedView.GridColor = System.Drawing.SystemColors.Window;
-            this.top5DataGriedView.Location = new System.Drawing.Point(8, 59);
-            this.top5DataGriedView.Margin = new System.Windows.Forms.Padding(4);
-            this.top5DataGriedView.Name = "top5DataGriedView";
-            this.top5DataGriedView.ReadOnly = true;
-            this.top5DataGriedView.RowHeadersVisible = false;
-            this.top5DataGriedView.Size = new System.Drawing.Size(659, 151);
-            this.top5DataGriedView.TabIndex = 11;
+            this.tablaEstadistica.AllowUserToAddRows = false;
+            this.tablaEstadistica.AllowUserToDeleteRows = false;
+            this.tablaEstadistica.AllowUserToResizeColumns = false;
+            this.tablaEstadistica.AllowUserToResizeRows = false;
+            this.tablaEstadistica.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.tablaEstadistica.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.tablaEstadistica.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.tablaEstadistica.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tablaEstadistica.GridColor = System.Drawing.SystemColors.Window;
+            this.tablaEstadistica.Location = new System.Drawing.Point(8, 59);
+            this.tablaEstadistica.Margin = new System.Windows.Forms.Padding(4);
+            this.tablaEstadistica.Name = "tablaEstadistica";
+            this.tablaEstadistica.ReadOnly = true;
+            this.tablaEstadistica.RowHeadersVisible = false;
+            this.tablaEstadistica.Size = new System.Drawing.Size(659, 151);
+            this.tablaEstadistica.TabIndex = 11;
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.buscarButton);
-            this.groupBox1.Controls.Add(this.tipoListadoCombo);
+            this.groupBox1.Controls.Add(this.tipoListado);
             this.groupBox1.Controls.Add(this.TipoListadoLabel);
-            this.groupBox1.Controls.Add(this.trimestreCombo);
+            this.groupBox1.Controls.Add(this.trimestre);
             this.groupBox1.Controls.Add(this.TrimestreLabel);
-            this.groupBox1.Controls.Add(this.anioTextbox);
+            this.groupBox1.Controls.Add(this.anio);
             this.groupBox1.Controls.Add(this.anioLabel);
             this.groupBox1.Location = new System.Drawing.Point(13, 13);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
@@ -171,15 +172,17 @@
             this.buscarButton.Text = "Buscar";
             this.buscarButton.UseVisualStyleBackColor = true;
             // 
-            // tipoListadoCombo
+            // tipoListado
             // 
-            this.tipoListadoCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.tipoListadoCombo.FormattingEnabled = true;
-            this.tipoListadoCombo.Location = new System.Drawing.Point(181, 48);
-            this.tipoListadoCombo.Margin = new System.Windows.Forms.Padding(4);
-            this.tipoListadoCombo.Name = "tipoListadoCombo";
-            this.tipoListadoCombo.Size = new System.Drawing.Size(471, 24);
-            this.tipoListadoCombo.TabIndex = 0;
+            this.tipoListado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.tipoListado.Enabled = false;
+            this.tipoListado.FormattingEnabled = true;
+            this.tipoListado.Location = new System.Drawing.Point(181, 48);
+            this.tipoListado.Margin = new System.Windows.Forms.Padding(4);
+            this.tipoListado.Name = "tipoListado";
+            this.tipoListado.Size = new System.Drawing.Size(471, 24);
+            this.tipoListado.TabIndex = 0;
+            this.tipoListado.SelectedIndexChanged += new System.EventHandler(this.tipoListado_SelectedIndexChanged);
             // 
             // TipoListadoLabel
             // 
@@ -191,15 +194,17 @@
             this.TipoListadoLabel.TabIndex = 4;
             this.TipoListadoLabel.Text = "Tipo de Listado (*):";
             // 
-            // trimestreCombo
+            // trimestre
             // 
-            this.trimestreCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.trimestreCombo.FormattingEnabled = true;
-            this.trimestreCombo.Location = new System.Drawing.Point(457, 95);
-            this.trimestreCombo.Margin = new System.Windows.Forms.Padding(4);
-            this.trimestreCombo.Name = "trimestreCombo";
-            this.trimestreCombo.Size = new System.Drawing.Size(195, 24);
-            this.trimestreCombo.TabIndex = 2;
+            this.trimestre.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.trimestre.Enabled = false;
+            this.trimestre.FormattingEnabled = true;
+            this.trimestre.Location = new System.Drawing.Point(457, 95);
+            this.trimestre.Margin = new System.Windows.Forms.Padding(4);
+            this.trimestre.Name = "trimestre";
+            this.trimestre.Size = new System.Drawing.Size(195, 24);
+            this.trimestre.TabIndex = 2;
+            this.trimestre.SelectedIndexChanged += new System.EventHandler(this.trimestre_SelectedIndexChanged);
             // 
             // TrimestreLabel
             // 
@@ -211,13 +216,14 @@
             this.TrimestreLabel.TabIndex = 2;
             this.TrimestreLabel.Text = "Trimestre (*):";
             // 
-            // anioTextbox
+            // anio
             // 
-            this.anioTextbox.Location = new System.Drawing.Point(181, 95);
-            this.anioTextbox.Margin = new System.Windows.Forms.Padding(4);
-            this.anioTextbox.Name = "anioTextbox";
-            this.anioTextbox.Size = new System.Drawing.Size(132, 22);
-            this.anioTextbox.TabIndex = 1;
+            this.anio.Location = new System.Drawing.Point(181, 95);
+            this.anio.Margin = new System.Windows.Forms.Padding(4);
+            this.anio.Name = "anio";
+            this.anio.Size = new System.Drawing.Size(132, 22);
+            this.anio.TabIndex = 1;
+            this.anio.TextChanged += new System.EventHandler(this.anio_TextChanged);
             // 
             // anioLabel
             // 
@@ -239,8 +245,9 @@
             this.volverButton.TabIndex = 21;
             this.volverButton.Text = "< < Volver";
             this.volverButton.UseVisualStyleBackColor = true;
+            this.volverButton.Click += new System.EventHandler(this.volverButton_Click);
             // 
-            // ListadoEstadisticoForm
+            // ListadoEstadistico
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -249,11 +256,12 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.volverButton);
-            this.Name = "ListadoEstadisticoForm";
+            this.Name = "ListadoEstadistico";
             this.Text = "ListadoEstadisticoForm";
+            this.Load += new System.EventHandler(this.ListadoEstadistico_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.top5DataGriedView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaEstadistica)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -264,19 +272,19 @@
 
         private System.Windows.Forms.Button limpiarBoton;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox mesTextBox;
+        private System.Windows.Forms.TextBox mes;
         private System.Windows.Forms.Label mesLabel;
-        private System.Windows.Forms.ComboBox visibilidadComboBox;
+        private System.Windows.Forms.ComboBox visibilidad;
         private System.Windows.Forms.Label visibilidadLabel;
-        private System.Windows.Forms.DataGridView top5DataGriedView;
+        private System.Windows.Forms.DataGridView tablaEstadistica;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buscarButton;
-        private System.Windows.Forms.ComboBox tipoListadoCombo;
+        private System.Windows.Forms.ComboBox tipoListado;
         private System.Windows.Forms.Label TipoListadoLabel;
-        private System.Windows.Forms.ComboBox trimestreCombo;
+        private System.Windows.Forms.ComboBox trimestre;
         private System.Windows.Forms.Label TrimestreLabel;
-        private System.Windows.Forms.TextBox anioTextbox;
+        private System.Windows.Forms.TextBox anio;
         private System.Windows.Forms.Label anioLabel;
         private System.Windows.Forms.Button volverButton;
     }
