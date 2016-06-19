@@ -306,8 +306,8 @@ go
 		numero_piso = @numero_piso,
 		departamento = @departamento,
 		localidad = @localidad,
-		codigo_postal = @codigo_postal
-		fecha_nacimieto = @fecha_nacimiento
+		codigo_postal = @codigo_postal,
+		fecha_nacimiento = @fecha_nacimiento
 		WHERE id_usuario = @id_usuario
 	END
 	GO
