@@ -268,33 +268,35 @@ go
 		/************ABM de usuario*************/
 
 	CREATE PROCEDURE sp_crearUsuario(
-		@user			nvarchar(255),
-		@pass			nvarchar(255),		
-		@mail			nvarchar(255),
-		@telefono		nvarchar(60),
-		@calle			nvarchar(255),
-		@numero_calle	numeric(18,0),
-		@numero_piso	nvarchar(30),
-		@departamento	nvarchar(50),
-		@localidad		nvarchar(255),
-		@codigo_postal	nvarchar(50))
+		@user				nvarchar(255),
+		@pass				nvarchar(255),
+		@mail				nvarchar(255),
+		@fecha_nacimiento	date,
+		@telefono			nvarchar(60),
+		@calle				nvarchar(255),
+		@numero_calle		numeric(18,0),
+		@numero_piso		nvarchar(30),
+		@departamento		nvarchar(50),
+		@localidad			nvarchar(255),
+		@codigo_postal		nvarchar(50))
 		
 	AS BEGIN
-		INSERT INTO USUARIO(nick,pass,baja_logica,mail,telefono,calle,numero_calle,departamento,localidad,codigo_postal)
-		VALUES (@user,@pass,0,@mail,@telefono,@calle,@numero_calle,@numero_piso,@departamento,@localidad,@codigo_postal)		
+		INSERT INTO USUARIO(nick,pass,intentos_login,baja_logica,mail,telefono,calle,numero_calle,departamento,localidad,codigo_postal,fecha_nacimiento,fecha_alta_sistema)
+		VALUES (@user,@pass,0,0,@mail,@telefono,@calle,@numero_calle,@numero_piso,@departamento,@localidad,@codigo_postal,@fecha_nacimiento,GETDATE())		
 	END
 	GO
 
 	CREATE PROCEDURE sp_actualizarUsuario(
-		@id_usuario		numeric(10,0),				
-		@mail			nvarchar(255),
-		@telefono		nvarchar(60),
-		@calle			nvarchar(255),
-		@numero_calle	numeric(18,0),
-		@numero_piso	nvarchar(30),
-		@departamento	nvarchar(50),
-		@localidad		nvarchar(255),
-		@codigo_postal	nvarchar(50))
+		@id_usuario			numeric(10,0),				
+		@mail				nvarchar(255),
+		@fecha_nacimiento	date,
+		@telefono			nvarchar(60),
+		@calle				nvarchar(255),
+		@numero_calle		numeric(18,0),
+		@numero_piso		nvarchar(30),
+		@departamento		nvarchar(50),
+		@localidad			nvarchar(255),
+		@codigo_postal		nvarchar(50))
 	AS BEGIN
 		UPDATE USUARIO SET
 		mail = @mail,
@@ -305,6 +307,7 @@ go
 		departamento = @departamento,
 		localidad = @localidad,
 		codigo_postal = @codigo_postal
+		fecha_nacimieto = @fecha_nacimiento
 		WHERE id_usuario = @id_usuario
 	END
 	GO
@@ -321,13 +324,11 @@ go
 		@nombre				nvarchar(255),
 		@apellido			nvarchar(255),
 		@dni				numeric(18,0),
-		@tipo_documento		nvarchar(255),
-		@fecha_nacimiento	date,
-		@fecha_creacion		date)
+		@tipo_documento		nvarchar(255))
 
 	AS BEGIN
-		INSERT INTO CLIENTE(nombre,apellido,dni,tipo_documento,fecha_nacimiento,fecha_creacion)
-		VALUES (@nombre,@apellido,@dni,@tipo_documento,@fecha_nacimiento,@fecha_creacion)
+		INSERT INTO CLIENTE(nombre,apellido,dni,tipo_documento)
+		VALUES (@nombre,@apellido,@dni,@tipo_documento)
 	END
 	GO
 
@@ -336,18 +337,15 @@ go
 		@nombre				nvarchar(255),
 		@apellido			nvarchar(255),
 		@dni				numeric(18,0),
-		@tipo_documento		nvarchar(255),
-		@fecha_nacimiento	date,
-		@fecha_creacion		date)
+		@tipo_documento		nvarchar(255)
+		)
 
 	AS BEGIN
 		UPDATE CLIENTE SET
 		nombre = @nombre,
 		apellido = @apellido,
 		dni = @dni,
-		tipo_documento = @tipo_documento,
-		fecha_nacimiento = @fecha_nacimiento,
-		fecha_creacion = @fecha_creacion
+		tipo_documento = @tipo_documento		
 		WHERE id_usuario = @id_usuario
 	END
 	GO
