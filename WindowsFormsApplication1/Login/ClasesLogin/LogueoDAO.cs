@@ -28,10 +28,10 @@ namespace WindowsFormsApplication1.Login.ClasesLogin
             SqlParameter pPass = new SqlParameter("@pass", logueo.pass);
             List<SqlParameter> parametros = new List<SqlParameter> { pNick, pPass };
             
-            logueo.roles = obtenerRolesPorProcedimientoSQL(procedimientoSql, parametros);
+            cargarLogueoConProcedimientoSQL(procedimientoSql, parametros, logueo);
         }
         
-        private Dictionary<double, string> obtenerRolesPorProcedimientoSQL(string nombreProcedimientoSQL, List<SqlParameter> parametros)
+        private void cargarLogueoConProcedimientoSQL(string nombreProcedimientoSQL, List<SqlParameter> parametros, Logueo logueo)
         {
             dataBase.abrirConexion();
 
@@ -40,20 +40,56 @@ namespace WindowsFormsApplication1.Login.ClasesLogin
             if (!dataReader.HasRows)
             {
                 dataBase.cerrarConexion();
-                return null;
+                return;
             }
-
-            Dictionary<double, string> roles = new Dictionary<double, string>();
+            
             while (dataReader.Read())
             {
-                double key = dataReader.GetSqlDecimal(3).ToDouble();
-                string value = dataReader.GetString(4);
-                
-                roles.Add(key, value);              
+                double key = dataReader.GetSqlDecimal(1).ToDouble();
+                string value = dataReader.GetString(2);
+                logueo.roles.Add(key, value);            
+
+                logueo.bajaLogica = dataReader.GetBoolean(3);
+                logueo.idUsuario = dataReader.GetSqlDecimal(0).ToDouble();
+            }
+            
+            dataBase.cerrarConexion();
+        }
+
+        public void cargarFuncionalidadesDelRolElegido(double idRol, Logueo logueo)
+        {
+
+            if (logueo.funcionalidadesPorRol.ContainsKey(idRol)) return;
+
+            dataBase.abrirConexion();
+
+            string procedimiento = "OBTENER_FUNCIONALIDADES_POR_ID_ROL";
+
+            SqlParameter pIdRol = new SqlParameter("@id_rol", idRol);
+            List<SqlParameter> parametros = new List<SqlParameter> { pIdRol };
+
+            dataReader = dataBase.getDataReader(procedimiento, 'P', parametros);
+
+            if (!dataReader.HasRows)
+            {
+                dataBase.cerrarConexion();
+                return;
             }
 
-            dataBase.cerrarConexion();
-            return roles;
+            double keyRol = idRol;
+            Dictionary<double, string> dic = new Dictionary<double, string>();
+
+            while (dataReader.Read())
+            {
+                double keyFunc = dataReader.GetSqlDecimal(0).ToDouble();
+                string value = dataReader.GetString(1);
+
+                dic.Add(keyFunc, value);
+            }
+
+            logueo.funcionalidadesPorRol.Add(keyRol, dic);
+            logueo.idRolSeleccionado = idRol;
         }
+
     }
 }

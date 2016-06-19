@@ -595,7 +595,7 @@ as begin
 		where nick = @nick;
 	end
 	
-	select u.id_usuario, u.nick, u.pass, ru.id_rol, r.rol_nombre, u.intentos_login, u.baja_logica
+	select u.id_usuario, ru.id_rol, r.rol_nombre, u.baja_logica 
 	from USUARIO as u
 	inner join ROL_POR_USUARIO as ru
 	on  u.id_usuario = ru.id_usuario

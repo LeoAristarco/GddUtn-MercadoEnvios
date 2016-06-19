@@ -16,6 +16,8 @@ namespace WindowsFormsApplication1.Login
     {
         public Logueo logueo { get; set; }
 
+        private LogueoDAO logueoDAO;
+
         private LoginForm formPadre;
 
         public SeleccionRoles(LoginForm formPadre)
@@ -24,6 +26,7 @@ namespace WindowsFormsApplication1.Login
 
             this.formPadre = formPadre;
             logueo = formPadre.logueo;
+            logueoDAO = new LogueoDAO();
 
             cargarComboBoxConDiccionarioRoles();
         }
@@ -38,7 +41,22 @@ namespace WindowsFormsApplication1.Login
 
         private void continuar_Boton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Proximamente funcionalidad", "Estamos trabajando", MessageBoxButtons.OK);
+
+            if (comboBox_Roles.SelectedIndex == -1)
+            {
+                MessageBox.Show("No ha seleccionado ningun Rol", "Error", MessageBoxButtons.OK);
+                return;
+            }
+
+            string nombreRolSeleccionado = comboBox_Roles.SelectedItem.ToString();
+            double idRolSeleccionado = logueo.roles.FirstOrDefault(x => x.Value.Equals(nombreRolSeleccionado)).Key;
+
+            logueoDAO.cargarFuncionalidadesDelRolElegido(idRolSeleccionado, logueo);
+
+            SeleccionFuncionalidades formSiguiente = new SeleccionFuncionalidades(this);
+            formSiguiente.Show();
+
+            Hide();
         }
 
         private void SeleccionRoles_Load(object sender, EventArgs e)

@@ -13,14 +13,26 @@ namespace WindowsFormsApplication1.Login.ClasesLogin
 
         public string nick { get; set; }
 
+        public double idUsuario { get; set; }
+
         public Dictionary<double, string> roles { get; set; }
 
         public bool bajaLogica { get; set; }
+
+        public double idRolSeleccionado { get; set; }
+
+        public Dictionary<double, Dictionary<double, string>> funcionalidadesPorRol { get; set; } //<id_rol , <id_func, desc_func> >
 
         public string mensageError { get; set; }
 
         public Logueo()
         {
+            bajaLogica = false;
+            idUsuario = -1;
+            roles = new Dictionary<double, string>();
+
+            idRolSeleccionado = -1;
+            funcionalidadesPorRol = new Dictionary<double, Dictionary<double, string>>();
         }
 
         public void cargarNickYPass(string nick, string pass)
@@ -42,7 +54,7 @@ namespace WindowsFormsApplication1.Login.ClasesLogin
 
         public bool logueoExitoso()
         {
-            if (roles == null)
+            if (idUsuario == -1)
             {
                 mensageError = "El Nick o el Pass son incorrectos";
                 return false;
