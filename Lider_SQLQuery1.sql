@@ -419,17 +419,16 @@ open miCursor
 fetch next from miCursor into @id_publicacion,@tipo_publicacion,@factura,@precio,@descripcion
 
 while @@fetch_status=0
-
-UPDATE PUBLICACION  
- SET estado_publicacion = 4 --finalizado
- where id_publicacion= @id_publicacion
-       
-UPDATE FACTURA  
- SET factura_fecha = @fechaDelSistema --cierro la factura
- where id_factura =@factura
-
 begin
-       if(@tipo_publicacion =2)
+       UPDATE PUBLICACION  
+       SET estado_publicacion = 4 --finalizado
+       where id_publicacion= @id_publicacion
+       
+       UPDATE FACTURA  
+       SET factura_fecha = @fechaDelSistema --cierro la factura
+       where id_factura =@factura
+
+       if(@tipo_publicacion =2) -- si es una subasta
        begin
 	       select @ofertante=ofertante,@precio_envio=precio_envio
 	       from OFERTA
