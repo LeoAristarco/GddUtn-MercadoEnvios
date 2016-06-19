@@ -37,6 +37,8 @@ drop PROCEDURE sp_AgregarPublicacion
 
 drop function mas_de_tres_sin_calificar
 
+drop PROCEDURE st_actualizar_publicaciones_vencidas
+
 
 
 
