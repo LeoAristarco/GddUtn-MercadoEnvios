@@ -99,12 +99,56 @@ values(5)
 	insert into COMPRA( comprador, publicacion, fecha_operacion,monto, cantidad,calificacion )
 	values (1, 2, getdate(),5,1,1)
 
-	insert into CLIENTE(id_usuario,nombre,dni)
-	values(1,'Barcangel',666)
 
+
+
+
+
+insert into USUARIO(nick)
+values('Ricardios')
+
+
+insert into CLIENTE(id_usuario,nombre,dni)
+values(1,'Barcangel',666)
+
+insert into PUBLICACION(descripcion)
+values('Placa de video GeForce')
+
+insert into COMPRA(comprador,calificacion,publicacion,fecha_operacion,monto)
+values(1,1,1,GETDATE(),10000)
+
+insert into COMPRA(comprador,calificacion,publicacion,fecha_operacion,monto)
+values(1,2,1,GETDATE(),10000)
+
+insert into COMPRA(comprador,calificacion,publicacion,fecha_operacion,monto)
+values(1,3,1,GETDATE(),10000)
+
+insert into COMPRA(comprador,calificacion,publicacion,fecha_operacion,monto)
+values(1,5,1,GETDATE(),10000)
+
+select * from COMPRA
+
+
+insert into CALIFICACION(calif_estrellas,calif_detalle)
+values(5,'La mejor plaqueta de video')
+
+insert into CALIFICACION(calif_estrellas,calif_detalle)
+values(1,'Viene con Windows')
+
+insert into CALIFICACION(calif_estrellas,calif_detalle)
+values(5,'Linus')
+
+insert into CALIFICACION(calif_estrellas,calif_detalle)
+values(5,'Ubuntu')
+
+select * from CLIENTE
+select * from USUARIO
+select * from COMPRA
+select * from CALIFICACION
 	
 insert into OFERTA(ofertante,publicacion)
 values(1,1)
 
 insert into OFERTA(ofertante,publicacion)
 values(1,5)
+
