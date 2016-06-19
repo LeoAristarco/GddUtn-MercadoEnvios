@@ -901,6 +901,6 @@ go
 
 insert into FUNCIONALIDAD_POR_ROL
 	select id_funcionalidad, 3
-	from FUNCIONALIDAD, ROL
+	from FUNCIONALIDAD
 
 go
