@@ -12,77 +12,77 @@ drop table FUNCIONALIDAD
 go
 
 if EXISTS (SELECT * FROM sysobjects WHERE name='ROL') 
-drop table FUNCIONALIDAD
+drop table ROL
 
 go
 
 if EXISTS (SELECT * FROM sysobjects WHERE name='FUNCIONALIDAD_POR_ROL') 
-drop table FUNCIONALIDAD
+drop table FUNCIONALIDAD_POR_ROL
 
 go
 
 if EXISTS (SELECT * FROM sysobjects WHERE name='EMPRESA') 
-drop table FUNCIONALIDAD
+drop table EMPRESA
 
 go
 
 if EXISTS (SELECT * FROM sysobjects WHERE name='CLIENTE') 
-drop table FUNCIONALIDAD
+drop table CLIENTE
 
 go
 
 if EXISTS (SELECT * FROM sysobjects WHERE name='ROL_POR_USUARIO') 
-drop table FUNCIONALIDAD
+drop table ROL_POR_USUARIO
 
 go
 
 if EXISTS (SELECT * FROM sysobjects WHERE name='RUBRO') 
-drop table FUNCIONALIDAD
+drop table RUBRO
 
 go
 
 if EXISTS (SELECT * FROM sysobjects WHERE name='VISIBILIDAD') 
-drop table FUNCIONALIDAD
+drop table VISIBILIDAD
 
 go
 
 if EXISTS (SELECT * FROM sysobjects WHERE name='ESTADO_PUBLICACION') 
-drop table FUNCIONALIDAD
+drop table ESTADO_PUBLICACION
 
 go
 
 if EXISTS (SELECT * FROM sysobjects WHERE name='TIPO_PUBLICACION') 
-drop table FUNCIONALIDAD
+drop table TIPO_PUBLICACION
 
 go
 
 if EXISTS (SELECT * FROM sysobjects WHERE name='FACTURA') 
-drop table FUNCIONALIDAD
+drop table FACTURA
 
 go
 
 if EXISTS (SELECT * FROM sysobjects WHERE name='ITEM_FACTURA') 
-drop table FUNCIONALIDAD
+drop table ITEM_FACTURA
 
 go
 
 if EXISTS (SELECT * FROM sysobjects WHERE name='PUBLICACION') 
-drop table FUNCIONALIDAD
+drop table PUBLICACION
 
 go
 
 if EXISTS (SELECT * FROM sysobjects WHERE name='OFERTA') 
-drop table FUNCIONALIDAD
+drop table OFERTA
 
 go
 
 if EXISTS (SELECT * FROM sysobjects WHERE name='CALIFICACION') 
-drop table FUNCIONALIDAD
+drop table CALIFICACION
 
 go
 
 if EXISTS (SELECT * FROM sysobjects WHERE name='COMPRA') 
-drop table FUNCIONALIDAD
+drop table COMPRA
 
 go
 
