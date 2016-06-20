@@ -385,13 +385,43 @@ go
 --Vendedores con mayor cantidad de productos no vendidos, 
 --dicho listado debe filtrarse por grado de visibilidad de la publicación y
 --por mes-año. Primero se deberá ordenar por fecha y luego por visibilidad.
- 
+
 create procedure st_top5_vendedores_menos_venta
 @mes1 int,
 @mes2 int,
 @mes3 int,
 @anio int,
-@visibilidad int
+@visibilidad int=null
+AS BEGIN
+ 
+select top 5 nick,mail,count(*) as cant_productos_no_vendidos
+FROM PUBLICACION
+inner join VISIBILIDAD on id_visibilidad = visibilidad
+inner join USUARIO on usuario_responsable = id_usuario
+inner join FACTURA as f on f.id_factura = factura
+ where year(f.factura_fecha)= @anio and (
+									month(f.factura_fecha)=@mes1 or 
+									month(f.factura_fecha)=@mes2 or 
+									month(f.factura_fecha)=@mes3
+									) and 
+(@visibilidad=visibilidad or @visibilidad is null) and
+	(select count(*) from ITEM_FACTURA as i
+	 where i.id_factura = f.id_factura
+	 )=0
+group by nick,mail
+ order by cant_productos_no_vendidos desc
+
+ end
+
+ go
+ 
+ /*
+create procedure st_top5_vendedores_menos_venta
+@mes1 int,
+@mes2 int,
+@mes3 int,
+@anio int,
+@visibilidad int=null
 AS BEGIN
  
 select top 5 nick,mail,count(*) as cant_productos_no_vendidos
@@ -409,13 +439,39 @@ having 0 =(select count(*) from ITEM_FACTURA
 
  end
 
+ go
+ */
+ create procedure st_top5_clientes_mas_compras
+@mes1 int=null,
+@mes2 int=null,
+@mes3 int=null,
+@anio int=null,
+@rubro int=null
+as begin
+ select top 5 nick,mail,sum(cantidad) cant_de_productos_comprados from COMPRA
+ inner join USUARIO on comprador=id_usuario
+ inner join PUBLICACION on id_publicacion=publicacion
+ where year(fecha_operacion)= @anio and (
+									month(fecha_operacion)=@mes1 or 
+									month(fecha_operacion)=@mes2 or 
+									month(fecha_operacion)=@mes3
+									) and 
+(@rubro=rubro or @rubro is null)
+
+ group by nick,mail
+ order by cant_de_productos_comprados desc
+
+ end
+
+ go
 --Clientes con mayor cantidad de productos comprados, por mes y por año, dentro de un rubro particular
+/*
 create procedure st_top5_clientes_mas_compras
 @mes1 int,
 @mes2 int,
 @mes3 int,
 @anio int,
-@rubro int
+@rubro int=null
 
 AS BEGIN
 
@@ -431,8 +487,37 @@ order by cant_de_productos_comprados desc
 
 end
 
+go
+*/
+
 --Vendedores con mayor cantidad de facturas dentro de un mes y año particular
+
 create procedure st_top5_vendedores_mayor_facturas
+@mes1 int=null,
+@mes2 int=null,
+@mes3 int=null,
+@anio int=null,
+@rubro int=null
+
+AS BEGIN
+
+select top 5 nick,mail,count(*) as cant_de_facturas
+FROM PUBLICACION
+inner join USUARIO on usuario_responsable = id_usuario
+inner join FACTURA on id_factura = factura
+ where year(factura_fecha)= @anio and (
+									month(factura_fecha)=@mes1 or 
+									month(factura_fecha)=@mes2 or 
+									month(factura_fecha)=@mes3
+									)
+group by nick,mail
+order by cant_de_facturas desc
+
+end
+
+go
+
+/*create procedure st_top5_vendedores_mayor_facturas
 
 @mes1 int,
 @mes2 int,
@@ -453,9 +538,38 @@ order by cant_de_facturas desc
 
 end
 
+go*/
+
 
 --Vendedores con mayor monto facturado dentro de un mes y año particular.
+
 create procedure st_top5_vendedores_mayor_monto_facturado
+
+@mes1 int,
+@mes2 int,
+@mes3 int,
+@anio int
+
+AS BEGIN
+
+select top 5 nick,mail,sum(precio_unitario*cantidad_vendida+precio_envio) as mayor_monto_facturado
+FROM PUBLICACION
+inner join USUARIO on usuario_responsable = id_usuario
+inner join FACTURA on id_factura = factura
+inner join ITEM_FACTURA i on i.id_factura=factura
+ where year(factura_fecha)= @anio and (
+									month(factura_fecha)=@mes1 or 
+									month(factura_fecha)=@mes2 or 
+									month(factura_fecha)=@mes3
+									)
+group by nick,mail
+order by mayor_monto_facturado desc
+
+end
+
+go
+
+/*create procedure st_top5_vendedores_mayor_monto_facturado
 
 @mes1 int,
 @mes2 int,
@@ -477,9 +591,11 @@ order by mayor_monto_facturado desc
 
 end
 
+go*/
+
 ----------------------  FIN DE ESTADISTICAS----------------------------------------------------------------------
 
-go
+
 
 --Al iniciar la aplicación se tiene que barrer la base de datos para saber que publicaciones
 --estan vencidas, a las q estan vencidas hay que finalizarlas y cerrar la factura

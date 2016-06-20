@@ -82,7 +82,7 @@
             this.mes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.mes.Enabled = false;
             this.mes.FormattingEnabled = true;
-            this.mes.Location = new System.Drawing.Point(342, 27);
+            this.mes.Location = new System.Drawing.Point(457, 27);
             this.mes.Margin = new System.Windows.Forms.Padding(4);
             this.mes.Name = "mes";
             this.mes.Size = new System.Drawing.Size(137, 24);
@@ -91,7 +91,7 @@
             // mesLabel
             // 
             this.mesLabel.AutoSize = true;
-            this.mesLabel.Location = new System.Drawing.Point(287, 30);
+            this.mesLabel.Location = new System.Drawing.Point(396, 30);
             this.mesLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.mesLabel.Name = "mesLabel";
             this.mesLabel.Size = new System.Drawing.Size(38, 17);
@@ -105,7 +105,7 @@
             this.filtro.Location = new System.Drawing.Point(107, 27);
             this.filtro.Margin = new System.Windows.Forms.Padding(4);
             this.filtro.Name = "filtro";
-            this.filtro.Size = new System.Drawing.Size(121, 24);
+            this.filtro.Size = new System.Drawing.Size(206, 24);
             this.filtro.TabIndex = 15;
             this.filtro.SelectedIndexChanged += new System.EventHandler(this.filtro_SelectedIndexChanged);
             // 

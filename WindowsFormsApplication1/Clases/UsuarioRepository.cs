@@ -39,7 +39,7 @@ namespace WindowsFormsApplication1.Clases
                 db.agregarParametro(parametros, "@visibilidad", visibilidad.id);
             }
 
-            List<Dictionary<string,object>> tabla = db.ejecutarStoredProcedure("st_negro", parametros);
+            List<Dictionary<string,object>> tabla = db.ejecutarStoredProcedure("st_top5_vendedores_menos_venta", parametros);
 
             Dictionary<Usuario, int> dictionaryUsersVentasFallidas = new Dictionary<Usuario, int>();
 
@@ -52,6 +52,41 @@ namespace WindowsFormsApplication1.Clases
             }
 
             return dictionaryUsersVentasFallidas;
+        }
+
+        internal Dictionary<Usuario, int> obtenerTop5ConMasCompras(List<int> meses, int anio, Rubro rubro)
+        {
+            List<SqlParameter> parametros = new List<SqlParameter>();
+
+            for (int i = 1; i < 4; i++)
+            {
+                db.agregarParametro(parametros, "@mes" + i.ToString(), meses[i - 1]);
+            }
+
+            db.agregarParametro(parametros, "@anio", anio);
+
+            if (rubro == null)
+            {
+                db.agregarParametro(parametros, "@rubro", null);
+            }
+            else
+            {
+                db.agregarParametro(parametros, "@rubro", rubro.id);
+            }
+
+            List<Dictionary<string, object>> tabla = db.ejecutarStoredProcedure("st_top5_clientes_mas_compras", parametros);
+
+            Dictionary<Usuario, int> dictionaryUsersMasCompras = new Dictionary<Usuario, int>();
+
+            foreach (Dictionary<string, object> item in tabla)
+            {
+                Usuario user = new Usuario();
+                user.nick = item["nick"].ToString();
+                user.mail = item["mail"].ToString();
+                dictionaryUsersMasCompras.Add(user, toInt(item["cant_de_productos_comprados"]));
+            }
+
+            return dictionaryUsersMasCompras;
         }
     }
 }

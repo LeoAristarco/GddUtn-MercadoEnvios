@@ -69,6 +69,8 @@ namespace WindowsFormsApplication1.Listado_Estadistico
             trimestre.SelectedIndex = 0;
             tipoListado.SelectedIndex = 0;
 
+            filtro.Items.Clear();
+
             limpiarDataGrid();
         }
 
@@ -109,6 +111,9 @@ namespace WindowsFormsApplication1.Listado_Estadistico
         private void tipoListado_SelectedIndexChanged(object sender, EventArgs e)
         {
             limpiarDataGrid();
+            filtro.Items.Add("");
+            filtro.SelectedItem = "";
+            filtro.Items.Clear();//Esto es para que se borre el combo box cuando cambio a un listado sin filtro
 
             switch (tipoListado.SelectedItem.ToString())
             {
@@ -125,6 +130,7 @@ namespace WindowsFormsApplication1.Listado_Estadistico
                     listado = new ClientesMasCompras();
                     break;
             }
+
             if (tipoListado.SelectedItem.ToString()!=VACIO)
             {
                 listado.initDataGrid(ref tablaEstadistica);
@@ -150,6 +156,8 @@ namespace WindowsFormsApplication1.Listado_Estadistico
                 MessageBox.Show("Debe seleccionar un trimestre");
                 return;
             }
+
+            tablaEstadistica.Rows.Clear();
 
             int trimestreSeleccionado = Convert.ToInt16(trimestre.SelectedItem);
 

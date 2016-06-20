@@ -10,7 +10,6 @@ namespace WindowsFormsApplication1.Listado_Estadistico
 {
     class VendedoresMenosVendido : Listado
     {
-        private UsuarioRepository repositorio = new UsuarioRepository();
         private List<Visibilidad> visibilidades = new List<Visibilidad>();
 
         public VendedoresMenosVendido()
@@ -57,6 +56,8 @@ namespace WindowsFormsApplication1.Listado_Estadistico
             {
                 comboBox.Items.Add(item.nombre);
             }
+
+            comboBox.SelectedItem = "ninguno";
 
             return "Visibilidades:";
         }

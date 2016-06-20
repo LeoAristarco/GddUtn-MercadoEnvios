@@ -27,7 +27,7 @@ namespace WindowsFormsApplication1.Listado_Estadistico
 
         public override string initFiltros(ref ComboBox filtro)
         {
-            throw new NotImplementedException();
+            return "";
         }
 
         public override void llenarDataGrid(ref DataGridView grilla, List<int> meses, int anio)
