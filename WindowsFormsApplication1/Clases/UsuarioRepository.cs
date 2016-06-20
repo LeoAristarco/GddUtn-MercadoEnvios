@@ -54,6 +54,58 @@ namespace WindowsFormsApplication1.Clases
             return dictionaryUsersVentasFallidas;
         }
 
+        internal Dictionary<Usuario, long> obtenerTop5ConMayorFactura(List<int> meses, int anio)
+        {
+            List<SqlParameter> parametros = new List<SqlParameter>();
+
+            for (int i = 1; i < 4; i++)
+            {
+                db.agregarParametro(parametros, "@mes" + i.ToString(), meses[i - 1]);
+            }
+
+            db.agregarParametro(parametros, "@anio", anio);
+
+            List<Dictionary<string, object>> tabla = db.ejecutarStoredProcedure("st_top5_vendedores_mayor_monto_facturado", parametros);
+
+            Dictionary<Usuario, long> dictionaryUsersMayorFactura = new Dictionary<Usuario, long>();
+
+            foreach (Dictionary<string, object> item in tabla)
+            {
+                Usuario user = new Usuario();
+                user.nick = item["nick"].ToString();
+                user.mail = item["mail"].ToString();
+                dictionaryUsersMayorFactura.Add(user, toLong(item["mayor_monto_facturado"]));
+            }
+
+            return dictionaryUsersMayorFactura;
+        }
+
+        internal Dictionary<Usuario, int> obtenerTop5ConMasFacturas(List<int> meses, int anio)
+        {
+            List<SqlParameter> parametros = new List<SqlParameter>();
+
+            for (int i = 1; i < 4; i++)
+            {
+                db.agregarParametro(parametros, "@mes" + i.ToString(), meses[i - 1]);
+            }
+
+            db.agregarParametro(parametros, "@anio", anio);
+
+            List<Dictionary<string, object>> tabla = db.ejecutarStoredProcedure("st_top5_vendedores_mayor_facturas", parametros);
+
+            Dictionary<Usuario, int> dictionaryUsersMasFacturas = new Dictionary<Usuario, int>();
+
+            foreach (Dictionary<string, object> item in tabla)
+            {
+                Usuario user = new Usuario();
+                user.nick = item["nick"].ToString();
+                user.mail = item["mail"].ToString();
+                dictionaryUsersMasFacturas.Add(user, toInt(item["cant_de_facturas"]));
+            }
+
+            return dictionaryUsersMasFacturas;
+        }
+
         internal Dictionary<Usuario, int> obtenerTop5ConMasCompras(List<int> meses, int anio, Rubro rubro)
         {
             List<SqlParameter> parametros = new List<SqlParameter>();

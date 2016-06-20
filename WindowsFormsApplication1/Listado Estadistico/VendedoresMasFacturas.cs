@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApplication1.Clases;
 
 namespace WindowsFormsApplication1.Listado_Estadistico
 {
@@ -32,7 +33,12 @@ namespace WindowsFormsApplication1.Listado_Estadistico
 
         public override void llenarDataGrid(ref DataGridView grilla, List<int> meses, int anio)
         {
-            throw new NotImplementedException();
+            Dictionary<Usuario, int> usuariosConMasFacturas = repositorio.obtenerTop5ConMasFacturas(meses, anio);
+
+            foreach (KeyValuePair<Usuario, int> item in usuariosConMasFacturas)
+            {
+                grilla.Rows.Add(item.Key.nick, item.Key.mail, item.Value);
+            }
         }
     }
 }
