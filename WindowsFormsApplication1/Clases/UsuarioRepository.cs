@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 
 namespace WindowsFormsApplication1.Clases
 {
@@ -16,6 +17,41 @@ namespace WindowsFormsApplication1.Clases
             Usuario user = new Usuario();
             user.id = toLong(dictionary["id_usuario"]);//POR AHORA MAPEO SOLO ESTO
             return user;
+        }
+
+        internal Dictionary<Usuario, int> obtenerTop5ConMenosVentas(List<int> meses, int anio, Visibilidad visibilidad)
+        {
+            List<SqlParameter> parametros = new List<SqlParameter>();
+
+            for (int i = 1; i < 4; i++)
+            {
+                db.agregarParametro(parametros, "@mes" + i.ToString(), meses[i-1]);
+            }
+
+            db.agregarParametro(parametros, "@anio", anio);
+
+            if (visibilidad==null)
+            {
+                db.agregarParametro(parametros, "@visibilidad", null);
+            }
+            else
+            {
+                db.agregarParametro(parametros, "@visibilidad", visibilidad.id);
+            }
+
+            List<Dictionary<string,object>> tabla = db.ejecutarStoredProcedure("st_negro", parametros);
+
+            Dictionary<Usuario, int> dictionaryUsersVentasFallidas = new Dictionary<Usuario, int>();
+
+            foreach (Dictionary<string,object> item in tabla)
+            {
+                Usuario user = new Usuario();
+                user.nick = item["nick"].ToString();
+                user.mail = item["mail"].ToString();
+                dictionaryUsersVentasFallidas.Add(user, toInt(item["cant_productos_no_vendidos"]));
+            }
+
+            return dictionaryUsersVentasFallidas;
         }
     }
 }

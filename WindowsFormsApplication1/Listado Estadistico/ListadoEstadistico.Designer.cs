@@ -30,10 +30,10 @@
         {
             this.limpiarBoton = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.mes = new System.Windows.Forms.TextBox();
+            this.mes = new System.Windows.Forms.ComboBox();
             this.mesLabel = new System.Windows.Forms.Label();
-            this.visibilidad = new System.Windows.Forms.ComboBox();
-            this.visibilidadLabel = new System.Windows.Forms.Label();
+            this.filtro = new System.Windows.Forms.ComboBox();
+            this.filtroEspecial = new System.Windows.Forms.Label();
             this.tablaEstadistica = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -65,8 +65,8 @@
             // 
             this.groupBox2.Controls.Add(this.mes);
             this.groupBox2.Controls.Add(this.mesLabel);
-            this.groupBox2.Controls.Add(this.visibilidad);
-            this.groupBox2.Controls.Add(this.visibilidadLabel);
+            this.groupBox2.Controls.Add(this.filtro);
+            this.groupBox2.Controls.Add(this.filtroEspecial);
             this.groupBox2.Controls.Add(this.tablaEstadistica);
             this.groupBox2.Location = new System.Drawing.Point(13, 210);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
@@ -79,40 +79,44 @@
             // 
             // mes
             // 
-            this.mes.Location = new System.Drawing.Point(284, 26);
+            this.mes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.mes.Enabled = false;
+            this.mes.FormattingEnabled = true;
+            this.mes.Location = new System.Drawing.Point(342, 27);
             this.mes.Margin = new System.Windows.Forms.Padding(4);
             this.mes.Name = "mes";
-            this.mes.Size = new System.Drawing.Size(132, 22);
-            this.mes.TabIndex = 17;
+            this.mes.Size = new System.Drawing.Size(137, 24);
+            this.mes.TabIndex = 20;
             // 
             // mesLabel
             // 
             this.mesLabel.AutoSize = true;
-            this.mesLabel.Location = new System.Drawing.Point(240, 30);
+            this.mesLabel.Location = new System.Drawing.Point(287, 30);
             this.mesLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.mesLabel.Name = "mesLabel";
             this.mesLabel.Size = new System.Drawing.Size(38, 17);
             this.mesLabel.TabIndex = 16;
             this.mesLabel.Text = "Mes:";
             // 
-            // visibilidad
+            // filtro
             // 
-            this.visibilidad.FormattingEnabled = true;
-            this.visibilidad.Location = new System.Drawing.Point(91, 26);
-            this.visibilidad.Margin = new System.Windows.Forms.Padding(4);
-            this.visibilidad.Name = "visibilidad";
-            this.visibilidad.Size = new System.Drawing.Size(121, 24);
-            this.visibilidad.TabIndex = 15;
+            this.filtro.Enabled = false;
+            this.filtro.FormattingEnabled = true;
+            this.filtro.Location = new System.Drawing.Point(107, 27);
+            this.filtro.Margin = new System.Windows.Forms.Padding(4);
+            this.filtro.Name = "filtro";
+            this.filtro.Size = new System.Drawing.Size(121, 24);
+            this.filtro.TabIndex = 15;
+            this.filtro.SelectedIndexChanged += new System.EventHandler(this.filtro_SelectedIndexChanged);
             // 
-            // visibilidadLabel
+            // filtroEspecial
             // 
-            this.visibilidadLabel.AutoSize = true;
-            this.visibilidadLabel.Location = new System.Drawing.Point(8, 30);
-            this.visibilidadLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.visibilidadLabel.Name = "visibilidadLabel";
-            this.visibilidadLabel.Size = new System.Drawing.Size(75, 17);
-            this.visibilidadLabel.TabIndex = 14;
-            this.visibilidadLabel.Text = "Visibilidad:";
+            this.filtroEspecial.AutoSize = true;
+            this.filtroEspecial.Location = new System.Drawing.Point(8, 30);
+            this.filtroEspecial.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.filtroEspecial.Name = "filtroEspecial";
+            this.filtroEspecial.Size = new System.Drawing.Size(0, 17);
+            this.filtroEspecial.TabIndex = 14;
             // 
             // tablaEstadistica
             // 
@@ -171,6 +175,7 @@
             this.buscarButton.TabIndex = 3;
             this.buscarButton.Text = "Buscar";
             this.buscarButton.UseVisualStyleBackColor = true;
+            this.buscarButton.Click += new System.EventHandler(this.buscarButton_Click);
             // 
             // tipoListado
             // 
@@ -272,10 +277,9 @@
 
         private System.Windows.Forms.Button limpiarBoton;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox mes;
         private System.Windows.Forms.Label mesLabel;
-        private System.Windows.Forms.ComboBox visibilidad;
-        private System.Windows.Forms.Label visibilidadLabel;
+        private System.Windows.Forms.ComboBox filtro;
+        private System.Windows.Forms.Label filtroEspecial;
         private System.Windows.Forms.DataGridView tablaEstadistica;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label1;
@@ -287,5 +291,6 @@
         private System.Windows.Forms.TextBox anio;
         private System.Windows.Forms.Label anioLabel;
         private System.Windows.Forms.Button volverButton;
+        private System.Windows.Forms.ComboBox mes;
     }
 }

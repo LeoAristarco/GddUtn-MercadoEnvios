@@ -4,5 +4,6 @@
     {
         public long id;//{ get; }
         public string nick = "";
+        public string mail;
     }
 }
