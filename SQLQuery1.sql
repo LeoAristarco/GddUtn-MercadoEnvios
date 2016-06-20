@@ -608,3 +608,16 @@ end
 go
 ------------------------------------------------ FIN LOGUIN----------------------------------------------------------------------
 
+------------------------------------------------ SELECCION DE FUNCIONALIDADES----------------------------------------------------------------------
+create procedure OBTENER_FUNCIONALIDADES_POR_ID_ROL
+	@id_rol numeric(18,0)
+as begin 
+	select f.id_funcionalidad, f.funcionalidad_nombre
+	from FUNCIONALIDAD as f
+	inner join FUNCIONALIDAD_POR_ROL as r
+	on r.id_funcionalidad = f.id_funcionalidad
+	where r.id_rol = @id_rol;
+end
+
+go 
+------------------------------------------------ FIN DE FUNCIONALIDADES----------------------------------------------------------------------
