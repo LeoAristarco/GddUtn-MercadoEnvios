@@ -26,27 +26,39 @@ namespace WindowsFormsApplication1.Login
             this.formPadre = formPadre;
             logueo = formPadre.logueo;
             dataBase = new LogueoDAO();
-
-            cargarComboBoxConFuncionalidades();
         }
 
-        private void cargarComboBoxConFuncionalidades()
+        public void cargarComboBoxConFuncionalidades()
         {
+            cbFuncionalidades.Items.Clear();
+            cbFuncionalidades.ResetText();
+
             if (!logueo.funcionalidadesPorRol.ContainsKey(logueo.idRolSeleccionado)) return;
-
+            
             List<string> items = new List<string>();
-
             items.AddRange(logueo.funcionalidadesPorRol.SingleOrDefault(x => x.Key.Equals(logueo.idRolSeleccionado)).Value.Values);
 
             foreach (string func in items)
             {
                 cbFuncionalidades.Items.Add(func);
             }
+
         }
 
         private void continuar_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void volver_Click(object sender, EventArgs e)
+        {
+            formPadre.Show();
+            Hide();
+        }
+
+        private void SeleccionFuncionalidades_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            formPadre.Close();
         }
     }
 }

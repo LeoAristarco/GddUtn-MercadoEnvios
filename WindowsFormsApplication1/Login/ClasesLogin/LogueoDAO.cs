@@ -89,6 +89,8 @@ namespace WindowsFormsApplication1.Login.ClasesLogin
 
             logueo.funcionalidadesPorRol.Add(keyRol, dic);
             logueo.idRolSeleccionado = idRol;
+
+            dataBase.cerrarConexion();
         }
 
     }

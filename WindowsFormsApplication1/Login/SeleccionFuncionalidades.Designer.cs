@@ -73,6 +73,7 @@
             this.volver.TabIndex = 2;
             this.volver.Text = "<< Volver";
             this.volver.UseVisualStyleBackColor = true;
+            this.volver.Click += new System.EventHandler(this.volver_Click);
             // 
             // SeleccionFuncionalidades
             // 
@@ -83,6 +84,7 @@
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "SeleccionFuncionalidades";
             this.Text = "SeleccionFuncionalidades";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SeleccionFuncionalidades_FormClosed);
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
