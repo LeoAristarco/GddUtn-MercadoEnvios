@@ -496,8 +496,7 @@ create procedure st_top5_vendedores_mayor_facturas
 @mes1 int=null,
 @mes2 int=null,
 @mes3 int=null,
-@anio int=null,
-@rubro int=null
+@anio int=null
 
 AS BEGIN
 
