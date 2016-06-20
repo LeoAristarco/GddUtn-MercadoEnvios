@@ -380,13 +380,13 @@ go
 
 
 ----------------------  COMIENZO DE ESTADISTICAS-------------------------------------------------------------------------------
-tres meses para todos y un año
+
 
 --Vendedores con mayor cantidad de productos no vendidos, 
 --dicho listado debe filtrarse por grado de visibilidad de la publicación y
 --por mes-año. Primero se deberá ordenar por fecha y luego por visibilidad.
  
-create procedure st_cant_productos_no_vendidos
+create procedure st_top5_vendedores_menos_venta
 @mes1 int,
 @mes2 int,
 @mes3 int,
@@ -394,49 +394,88 @@ create procedure st_cant_productos_no_vendidos
 @visibilidad int
 AS BEGIN
  
-select nick,mail,count(*) as cant_productos_no_vendidos
+select top 5 nick,mail,count(*) as cant_productos_no_vendidos
 FROM PUBLICACION
 inner join VISIBILIDAD on id_visibilidad = visibilidad
 inner join USUARIO on usuario_responsable = id_usuario
 inner join FACTURA on id_factura = factura
 where (@mes1=month(factura_fecha) or @mes1 IS NULL) and ( @mes2=month(factura_fecha) or @mes2 IS NULL) and
 ( @mes3=month(factura_fecha) or  @mes3 IS NULL) and
-@anio=year(factura_fecha) and visibilidad = @visibilidad
+@anio=year(factura_fecha) and (visibilidad = @visibilidad or @visibilidad IS NULL)
 group by nick,mail,factura,factura_fecha,precio_visibilidad 
 having 0 =(select count(*) from ITEM_FACTURA
                                    where factura = id_factura )
  order by factura_fecha,precio_visibilidad desc
 
  end
+
 --Clientes con mayor cantidad de productos comprados, por mes y por año, dentro de un rubro particular
-rubro
-select nick,mail,sum(cantidad) as cant_de_productos_comprados
+create procedure st_top5_clientes_mas_compras
+@mes1 int,
+@mes2 int,
+@mes3 int,
+@anio int,
+@rubro int
+
+AS BEGIN
+
+select top 5 nick,mail,sum(cantidad) as cant_de_productos_comprados
 FROM COMPRA
 inner join USUARIO on comprador = id_usuario
 inner join PUBLICACION on publicacion = id_publicacion
-where rubro=1 and month(fecha_operacion)= 03 and year(fecha_operacion)=2012
+where (@mes1=month(fecha_operacion) or @mes1 IS NULL) and ( @mes2=month(fecha_operacion) or @mes2 IS NULL) and
+( @mes3=month(fecha_operacion) or  @mes3 IS NULL) and
+@anio=year(fecha_operacion) and (rubro = @rubro or  @rubro IS NULL)
 group by nick,mail
- order by cant_de_productos_comprados desc
+order by cant_de_productos_comprados desc
+
+end
 
 --Vendedores con mayor cantidad de facturas dentro de un mes y año particular
-select nick,mail,count(*) as cant_de_facturas
+create procedure st_top5_vendedores_mayor_facturas
+
+@mes1 int,
+@mes2 int,
+@mes3 int,
+@anio int
+
+AS BEGIN
+
+select top 5 nick,mail,count(*) as cant_de_facturas
 FROM PUBLICACION
 inner join USUARIO on usuario_responsable = id_usuario
 inner join FACTURA on id_factura = factura
+where (@mes1=month(factura_fecha) or @mes1 IS NULL) and ( @mes2=month(factura_fecha) or @mes2 IS NULL) and
+( @mes3=month(factura_fecha) or  @mes3 IS NULL) and
+@anio=year(factura_fecha)
 group by nick,mail
 order by cant_de_facturas desc
 
+end
 
---Vendedores con mayor monto facturado dentro de un mes y año particular. 
-select nick,mail,sum(precio_unitario*cantidad_vendida+precio_envio) as mayor_monto_facturado
+
+--Vendedores con mayor monto facturado dentro de un mes y año particular.
+create procedure st_top5_vendedores_mayor_monto_facturado
+
+@mes1 int,
+@mes2 int,
+@mes3 int,
+@anio int
+
+AS BEGIN
+
+select top 5 nick,mail,sum(precio_unitario*cantidad_vendida+precio_envio) as mayor_monto_facturado
 FROM PUBLICACION
 inner join USUARIO on usuario_responsable = id_usuario
 inner join FACTURA on id_factura = factura
 inner join ITEM_FACTURA i on i.id_factura=factura
+where (@mes1=month(factura_fecha) or @mes1 IS NULL) and ( @mes2=month(factura_fecha) or @mes2 IS NULL) and
+( @mes3=month(factura_fecha) or  @mes3 IS NULL) and
+@anio=year(factura_fecha)
 group by nick,mail
 order by mayor_monto_facturado desc
 
-
+end
 
 ----------------------  FIN DE ESTADISTICAS----------------------------------------------------------------------
 
