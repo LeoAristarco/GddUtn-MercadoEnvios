@@ -27,6 +27,11 @@ namespace WindowsFormsApplication1.Login.ClasesLogin
 
         public Logueo()
         {
+            iniciarVariables();
+        }
+
+        private void iniciarVariables()
+        {
             bajaLogica = false;
             idUsuario = -1;
             roles = new Dictionary<double, string>();
@@ -34,6 +39,7 @@ namespace WindowsFormsApplication1.Login.ClasesLogin
             idRolSeleccionado = -1;
             funcionalidadesPorRol = new Dictionary<double, Dictionary<double, string>>();
         }
+
 
         public void cargarNickYPass(string nick, string pass)
         {
@@ -56,12 +62,14 @@ namespace WindowsFormsApplication1.Login.ClasesLogin
         {
             if (idUsuario == -1)
             {
+                iniciarVariables();
                 mensageError = "El Nick o el Pass son incorrectos";
                 return false;
             }
 
             if (bajaLogica)
             {
+                iniciarVariables();
                 mensageError = "Ha sido bloqueado, comuniquese con el Administrador";
                 return false;
             }

@@ -550,51 +550,42 @@ go
 
 
 ------------------------------------------------ INICIO LOGUIN----------------------------------------------------------------------
+--borro si existen versiones viejas
+if EXISTS (SELECT * FROM sysobjects WHERE name='tg_actualizar_intentos_login') 
+drop trigger tg_actualizar_intentos_login
+
+go
+
+if EXISTS (SELECT * FROM sysobjects WHERE name='VERIFICAR_LOGUEO') 
+drop procedure VERIFICAR_LOGUEO
+
+go
+
+--creo objetos necesarios
 create procedure VERIFICAR_LOGUEO
 	@nick nvarchar(255), 
 	@pass nvarchar(255)
 as begin
 	
-	declare 
-		@filas int,
-		@intentos int;
+	declare @filas int;
 
-	select top 1 @filas = COUNT(*)
+	select top 1 @filas = COUNT(baja_logica)
 	from USUARIO
 	where 
 		nick = @nick and 
 		pass = @pass;
 
 	if(@filas = 0) begin
-		select @intentos = intentos_login
-		from USUARIO
+		update USUARIO
+		set intentos_login = (intentos_login +1)
 		where nick = @nick;
-		
-		if(@intentos < 3) begin
-			Set @intentos = @intentos + 1;
-
-			update USUARIO
-			set intentos_login = @intentos
-			where nick = @nick;
-		end
-
-		if (@intentos = 3) begin 
-			update USUARIO
-			set 
-				intentos_login = 0,
-				baja_logica = 1
-			where nick = @nick;
-
-		end
-		
 	end
-	
 	else begin
 		update USUARIO
 		set intentos_login = 0
 		where nick = @nick;
 	end
-	
+
 	select u.id_usuario, ru.id_rol, r.rol_nombre, u.baja_logica 
 	from USUARIO as u
 	inner join ROL_POR_USUARIO as ru
@@ -603,6 +594,37 @@ as begin
 	on ru.id_rol = r.id_rol
 	where u.nick = @nick and u.pass = @pass
 
+end
+
+go
+
+create trigger tg_actualizar_intentos_login
+on USUARIO
+after update
+as begin
+
+	if update(intentos_login) begin
+		
+		declare 
+			@intentos int,
+			@id_usuario_modificado numeric(18,0);
+
+		select 
+			@intentos = i.intentos_login, 
+			@id_usuario_modificado = i.id_usuario
+		from USUARIO as u
+		inner join inserted as i
+		on u.id_usuario = i.id_usuario
+		where u.id_usuario = i.id_usuario;
+
+		if(@intentos = 3) 
+			update USUARIO
+			set
+				intentos_login = 0,
+				baja_logica = 1
+			where id_usuario = @id_usuario_modificado;
+	end
+		
 end
 
 go
