@@ -30,8 +30,8 @@
         {
             this.btnVolver = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnCalificar = new System.Windows.Forms.Button();
             this.tablaPublicacionesCalificar = new System.Windows.Forms.DataGridView();
+            this.btnCalificar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tablaPublicacionesCalificar)).BeginInit();
             this.SuspendLayout();
@@ -58,18 +58,7 @@
             this.groupBox1.Size = new System.Drawing.Size(671, 463);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Lista de compras realizadas:";
-            // 
-            // btnCalificar
-            // 
-            this.btnCalificar.Location = new System.Drawing.Point(462, 483);
-            this.btnCalificar.Margin = new System.Windows.Forms.Padding(4);
-            this.btnCalificar.Name = "btnCalificar";
-            this.btnCalificar.Size = new System.Drawing.Size(100, 28);
-            this.btnCalificar.TabIndex = 2;
-            this.btnCalificar.Text = "Calificar";
-            this.btnCalificar.UseVisualStyleBackColor = true;
-            this.btnCalificar.Click += new System.EventHandler(this.btnCalificar_Click);
+            this.groupBox1.Text = "Lista de compras sin calificar:";
             // 
             // tablaPublicacionesCalificar
             // 
@@ -84,6 +73,17 @@
             this.tablaPublicacionesCalificar.Size = new System.Drawing.Size(655, 396);
             this.tablaPublicacionesCalificar.TabIndex = 0;
             this.tablaPublicacionesCalificar.Click += new System.EventHandler(this.tablaPublicacionesCalificar_Click);
+            // 
+            // btnCalificar
+            // 
+            this.btnCalificar.Location = new System.Drawing.Point(462, 483);
+            this.btnCalificar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCalificar.Name = "btnCalificar";
+            this.btnCalificar.Size = new System.Drawing.Size(100, 28);
+            this.btnCalificar.TabIndex = 2;
+            this.btnCalificar.Text = "Calificar";
+            this.btnCalificar.UseVisualStyleBackColor = true;
+            this.btnCalificar.Click += new System.EventHandler(this.btnCalificar_Click);
             // 
             // CalificarVendedor
             // 
