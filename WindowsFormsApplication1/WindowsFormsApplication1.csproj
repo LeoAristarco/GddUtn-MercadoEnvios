@@ -68,7 +68,7 @@
     <Compile Include="ABM Rol\RolesUsuarioDlg.Designer.cs">
       <DependentUpon>RolesUsuarioDlg.cs</DependentUpon>
     </Compile>
-    <Compile Include="ABM Rol\RolRepository.cs" />
+    <Compile Include="Clases\RolRepository.cs" />
     <Compile Include="ABM Rubro\ABMRubro.cs">
       <SubType>Form</SubType>
     </Compile>

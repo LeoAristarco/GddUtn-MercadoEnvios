@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace WindowsFormsApplication1.Clases
 {
@@ -52,6 +53,12 @@ namespace WindowsFormsApplication1.Clases
             }
 
             return dictionaryUsersVentasFallidas;
+        }
+
+        internal void updatePassword(Usuario usuario, string nuevaPass)
+        {
+            string update = "update Usuario set pass=" + nuevaPass + " where id_usuario=" + usuario.id.ToString();
+            db.ejecutarConsulta(update);
         }
 
         internal Dictionary<Usuario, long> obtenerTop5ConMayorFactura(List<int> meses, int anio)
