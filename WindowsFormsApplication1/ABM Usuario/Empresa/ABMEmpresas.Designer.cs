@@ -30,11 +30,6 @@
         {
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.back = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.buscar = new System.Windows.Forms.Button();
-            this.label10 = new System.Windows.Forms.Label();
-            this.cbFiltro = new System.Windows.Forms.ComboBox();
-            this.tBusqueda = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.registrar = new System.Windows.Forms.Button();
             this.tNombreDeContacto = new System.Windows.Forms.TextBox();
@@ -54,13 +49,12 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(300, 483);
+            this.btnLimpiar.Location = new System.Drawing.Point(301, 395);
             this.btnLimpiar.Margin = new System.Windows.Forms.Padding(4);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(113, 37);
@@ -70,65 +64,13 @@
             // 
             // back
             // 
-            this.back.Location = new System.Drawing.Point(13, 482);
+            this.back.Location = new System.Drawing.Point(13, 395);
             this.back.Margin = new System.Windows.Forms.Padding(4);
             this.back.Name = "back";
             this.back.Size = new System.Drawing.Size(113, 37);
             this.back.TabIndex = 3;
             this.back.Text = "<< Volver";
             this.back.UseVisualStyleBackColor = true;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.buscar);
-            this.groupBox2.Controls.Add(this.label10);
-            this.groupBox2.Controls.Add(this.cbFiltro);
-            this.groupBox2.Controls.Add(this.tBusqueda);
-            this.groupBox2.Location = new System.Drawing.Point(13, 383);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(400, 92);
-            this.groupBox2.TabIndex = 5;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Baja o modificación de empresas";
-            // 
-            // buscar
-            // 
-            this.buscar.Location = new System.Drawing.Point(317, 46);
-            this.buscar.Margin = new System.Windows.Forms.Padding(4);
-            this.buscar.Name = "buscar";
-            this.buscar.Size = new System.Drawing.Size(73, 37);
-            this.buscar.TabIndex = 2;
-            this.buscar.Text = "Buscar";
-            this.buscar.UseVisualStyleBackColor = true;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(11, 26);
-            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(73, 17);
-            this.label10.TabIndex = 6;
-            this.label10.Text = "Filtrar por:";
-            // 
-            // cbFiltro
-            // 
-            this.cbFiltro.FormattingEnabled = true;
-            this.cbFiltro.Location = new System.Drawing.Point(15, 53);
-            this.cbFiltro.Margin = new System.Windows.Forms.Padding(4);
-            this.cbFiltro.Name = "cbFiltro";
-            this.cbFiltro.Size = new System.Drawing.Size(108, 24);
-            this.cbFiltro.TabIndex = 0;
-            // 
-            // tBusqueda
-            // 
-            this.tBusqueda.Location = new System.Drawing.Point(136, 53);
-            this.tBusqueda.Margin = new System.Windows.Forms.Padding(4);
-            this.tBusqueda.Name = "tBusqueda";
-            this.tBusqueda.Size = new System.Drawing.Size(172, 22);
-            this.tBusqueda.TabIndex = 1;
             // 
             // groupBox1
             // 
@@ -335,15 +277,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(427, 536);
+            this.ClientSize = new System.Drawing.Size(427, 445);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.back);
-            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "ABMEmpresas";
             this.Text = "ABMEmpresas";
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -354,11 +293,6 @@
 
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.Button back;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button buscar;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.ComboBox cbFiltro;
-        private System.Windows.Forms.TextBox tBusqueda;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button registrar;
         private System.Windows.Forms.TextBox tNombreDeContacto;
