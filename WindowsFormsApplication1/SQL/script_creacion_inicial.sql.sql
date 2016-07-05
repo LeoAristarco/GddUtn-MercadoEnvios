@@ -511,7 +511,7 @@ go
 /********************************************************************************************************************************/
 
 insert into RUBRO
-	select distinct Publicacion_Rubro_Descripcion, null
+	select distinct UPPER(Publicacion_Rubro_Descripcion), null
 	from gd_esquema.Maestra
 	where 
 		Publ_Empresa_Cuit is null and
@@ -535,7 +535,11 @@ create view vista_calificaciones
 as
 select
 	Calificacion_Codigo as codigo,
-	Calificacion_Cant_Estrellas as estrellas,
+	case 
+		when Calificacion_Cant_Estrellas % 2 = 1 
+			then (Calificacion_Cant_Estrellas+1)/2		
+		else Calificacion_Cant_Estrellas/2
+	end	as estrellas,
 	Calificacion_Descripcion as descripcion 
 from gd_esquema.Maestra
 where 
@@ -556,7 +560,7 @@ drop view vista_calificaciones
 go
 
 /********************************************************************************************************************************/
-/*FACTURA*/ --preguntar por el costo de visibilidad
+/*FACTURA*/
 /********************************************************************************************************************************/
 
 --agrego campo que necesito para la migracion, al final la elimino
