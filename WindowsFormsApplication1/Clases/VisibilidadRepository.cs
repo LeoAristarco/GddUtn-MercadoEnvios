@@ -73,6 +73,16 @@ namespace WindowsFormsApplication1.Clases
 
             string error = db.ejecutarStoredConRetorno("sp_EliminarVisibilidad", parametros, "@tipoError", "").ToString();
 
+            if (error=="e")
+            {
+                error = "Error, la visibilidad no puede ser eliminada";
+            }
+
+            else
+            {
+                error = "todo piolaa";
+            }
+
             return error;
 
         }

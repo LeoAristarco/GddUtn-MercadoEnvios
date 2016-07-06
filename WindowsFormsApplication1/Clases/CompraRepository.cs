@@ -67,6 +67,25 @@ namespace WindowsFormsApplication1.Calificar
 
             tipoError = db.ejecutarStoredConRetorno("st_validacion_de_compra_oferta", parametros, "@tipoError", "").ToString();
 
+            switch (tipoError)
+            {
+                case "i":
+                    tipoError = "Error, un usuario no puede comprarse a si mismo";
+                    break;
+
+                case "p":
+                    tipoError = "Error, un usuario no puede comprar una publicacion en estado pausado";
+                    break;
+
+                case "c":
+                    tipoError = "Error, un usuario no puede comprar con mas de 5 compras sin calificar";
+                    break;
+
+                case "t":
+                    tipoError = "todo piolaa";
+                    break;
+            }
+
             return tipoError;
         }
 
