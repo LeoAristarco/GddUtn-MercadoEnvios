@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using WindowsFormsApplication1.Calificar;
 using WindowsFormsApplication1.Clases;
 
 namespace WindowsFormsApplication1.ComprarOfertar
@@ -20,6 +21,13 @@ namespace WindowsFormsApplication1.ComprarOfertar
             db.agregarParametro(parametros, "@precio_envio", hayEnvio ? PRECIO_DE_ENVIO : 0);
 
             db.ejecutarStoredProcedure("sp_AgregarOferta", parametros);
+        }
+
+        internal string validacionDeOferta(Publicacion publicacion, Usuario user)
+        {
+            CompraRepository compraRepo = new CompraRepository();
+
+            return compraRepo.validacionDeCompra(publicacion, user);
         }
     }
 }

@@ -55,6 +55,14 @@ namespace WindowsFormsApplication1.ComprarOfertar
                 MessageBox.Show("La cantidad ofertada debe ser mayor a la actual");
                 return;
             }
+
+            string retornoValidacion = repositorio.validacionDeOferta(publicacion, user);
+
+            if (retornoValidacion!= "todo piolaa")
+            {
+                MessageBox.Show(retornoValidacion.ToUpper());
+            }
+
             repositorio.ofertar(publicacion, user, monto,checkBox1.Checked);
             detallePublicacion.Show();
             Close();
