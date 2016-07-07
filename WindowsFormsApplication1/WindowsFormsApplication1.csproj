@@ -69,7 +69,19 @@
       <DependentUpon>RolesUsuarioDlg.cs</DependentUpon>
     </Compile>
     <Compile Include="ABM Usuario\Cliente\Cliente.cs" />
+    <Compile Include="ABM Usuario\ElegirTipoUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM Usuario\ElegirTipoUsuario.Designer.cs">
+      <DependentUpon>ElegirTipoUsuario.cs</DependentUpon>
+    </Compile>
     <Compile Include="ABM Usuario\Empresa\Empresa.cs" />
+    <Compile Include="ABM Usuario\RegistrarUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM Usuario\RegistrarUsuario.Designer.cs">
+      <DependentUpon>RegistrarUsuario.cs</DependentUpon>
+    </Compile>
     <Compile Include="Clases\RolRepository.cs" />
     <Compile Include="ABM Rubro\ABMRubro.cs">
       <SubType>Form</SubType>
@@ -331,6 +343,9 @@
     <EmbeddedResource Include="ABM Usuario\Cliente\ModificarCliente.resx">
       <DependentUpon>ModificarCliente.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ABM Usuario\ElegirTipoUsuario.resx">
+      <DependentUpon>ElegirTipoUsuario.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ABM Usuario\Empresa\ABMEmpresas.resx">
       <DependentUpon>ABMEmpresas.cs</DependentUpon>
     </EmbeddedResource>
@@ -339,6 +354,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ABM Usuario\Empresa\ModificarEmpresa.resx">
       <DependentUpon>ModificarEmpresa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM Usuario\RegistrarUsuario.resx">
+      <DependentUpon>RegistrarUsuario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ABM Visibilidad\ABMVisibilidad.resx">
       <DependentUpon>ABMVisibilidad.cs</DependentUpon>

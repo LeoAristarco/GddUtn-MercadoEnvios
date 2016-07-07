@@ -55,6 +55,13 @@ namespace WindowsFormsApplication1.Clases
             return dictionaryUsersVentasFallidas;
         }
 
+        internal bool yaExisteEseNick(string nick)
+        {
+            string consulta = "select count(*) from USUARIO where nick='" + nick + "'";
+
+            return toInt(db.ejecutarConsulta(consulta)) > 0;
+        }
+
         internal void updatePassword(Usuario usuario, string nuevaPass)
         {
             string update = "update Usuario set pass=" + nuevaPass + " where id_usuario=" + usuario.id.ToString();
