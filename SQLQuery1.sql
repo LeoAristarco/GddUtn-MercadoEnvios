@@ -661,11 +661,25 @@ create procedure OBTENER_ROLES_POR_ID_USUARIO
 	@id_usuario numeric(18,0)
 as begin 
 	select r.id_rol, r.rol_nombre, r.habilitado
-		from ROL_POR_USUARIO as ru
-		inner join ROL as r
-		on r.id_rol = ru.id_rol
-		where
-			ru.id_usuario = @id_usuario;
+	from ROL_POR_USUARIO as ru
+	inner join ROL as r
+	on r.id_rol = ru.id_rol
+	where
+		ru.id_usuario = @id_usuario;
+end
+
+go 
+
+--esto hay que mejorarlo agregandole paginado
+if EXISTS (SELECT * FROM sysobjects WHERE name='OBTENER_USUARIOS_PARA_ABM_ROL') 
+drop procedure OBTENER_USUARIOS_PARA_ABM_ROL
+
+go
+
+create procedure OBTENER_USUARIOS_PARA_ABM_ROL
+as begin 
+	select id_usuario, nick
+	from USUARIO
 end
 
 go 

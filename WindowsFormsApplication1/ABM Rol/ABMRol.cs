@@ -1,16 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using WindowsFormsApplication1.ABM_Rol;
 using WindowsFormsApplication1.Clases;
-using WindowsFormsApplication1.Generar_Publicación;
-using WindowsFormsApplication1.Login.ClasesLogin;
 
 namespace WindowsFormsApplication1.ABM_Rol
 {
@@ -84,6 +75,24 @@ namespace WindowsFormsApplication1.ABM_Rol
         {
             formAnterior.Show();
             Hide();
+        }
+
+        private void Nuevo_Button_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAsignarRoles_Click(object sender, EventArgs e)
+        {
+            AsignarRolesUsuario asignarRolesUsuario = new AsignarRolesUsuario(this);
+            asignarRolesUsuario.Show();
+
+            Hide();
+        }
+
+        private void Modificar_Button_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

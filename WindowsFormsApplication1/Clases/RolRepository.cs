@@ -31,5 +31,26 @@ namespace WindowsFormsApplication1.ABM_Rol
         {
             throw new NotImplementedException();
         }
+
+        public List<Usuario> cargarUsuariosDelSistema()
+        {
+            List<Usuario> usuarios = new List<Usuario>() { };
+
+            string procedimiento = "OBTENER_USUARIOS_PARA_ABM_ROL";            
+            List<SqlParameter> parametros = new List<SqlParameter> { };
+
+            List<Dictionary<string, object>> listaBD = db.ejecutarStoredProcedure(procedimiento, parametros);
+
+            foreach (Dictionary<string, object> dic in listaBD)
+            {
+                Usuario user = new Usuario();
+                    user.id = Convert.ToInt64(dic["id_usuario"]);
+                    user.nick = (string)dic["nick"];
+
+                usuarios.Add(user);
+            }
+
+            return usuarios;
+        }
     }
 }

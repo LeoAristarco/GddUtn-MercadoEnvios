@@ -62,6 +62,7 @@
             this.btnAsignarRoles.TabIndex = 4;
             this.btnAsignarRoles.Text = "Asignar roles";
             this.btnAsignarRoles.UseVisualStyleBackColor = true;
+            this.btnAsignarRoles.Click += new System.EventHandler(this.btnAsignarRoles_Click);
             // 
             // Nuevo_Button
             // 
@@ -71,6 +72,7 @@
             this.Nuevo_Button.TabIndex = 1;
             this.Nuevo_Button.Text = "Nuevo";
             this.Nuevo_Button.UseVisualStyleBackColor = true;
+            this.Nuevo_Button.Click += new System.EventHandler(this.Nuevo_Button_Click);
             // 
             // tablaRoles
             // 
@@ -98,6 +100,7 @@
             this.Modificar_Button.TabIndex = 2;
             this.Modificar_Button.Text = "Modificar";
             this.Modificar_Button.UseVisualStyleBackColor = true;
+            this.Modificar_Button.Click += new System.EventHandler(this.Modificar_Button_Click);
             // 
             // Eliminar_Button
             // 
