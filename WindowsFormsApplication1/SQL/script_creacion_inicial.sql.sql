@@ -851,6 +851,7 @@ go
 insert into FUNCIONALIDAD
 values
 	('ABM_USUARIO', 1),
+	('ABM_ROL', 1),
 	('ABM_RUBRO', 1),
 	('ABM_VISIBILIDAD', 1),
 	('GENERAR_PUBLICACION', 1),

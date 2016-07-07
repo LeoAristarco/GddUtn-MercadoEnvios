@@ -31,7 +31,6 @@ namespace WindowsFormsApplication1.Login
             logueoDAO = new LogueoDAO();
 
             cargarComboBoxConDiccionarioRoles();
-            formSiguiente = new SeleccionFuncionalidades(this);
         }
 
         public void cargarComboBoxConDiccionarioRoles()
@@ -58,8 +57,9 @@ namespace WindowsFormsApplication1.Login
             logueoDAO.cargarFuncionalidadesDelRolElegido(idRolSeleccionado ,logueo);
 
             logueo.idRolSeleccionado = idRolSeleccionado;
-            formSiguiente.Show();
-            formSiguiente.cargarComboBoxConFuncionalidades();
+            formSiguiente = new SeleccionFuncionalidades(this);
+                formSiguiente.Show();
+                //formSiguiente.cargarComboBoxConFuncionalidades();
 
             Hide();
         }

@@ -26,6 +26,8 @@ namespace WindowsFormsApplication1.Login
             this.formPadre = formPadre;
             logueo = formPadre.logueo;
             dataBase = new LogueoDAO();
+
+            cargarComboBoxConFuncionalidades();
         }
 
         public void cargarComboBoxConFuncionalidades()
