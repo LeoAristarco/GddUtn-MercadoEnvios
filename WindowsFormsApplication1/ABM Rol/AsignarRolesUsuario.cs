@@ -10,6 +10,7 @@ namespace WindowsFormsApplication1.ABM_Rol
         private ABMRol formAnterior;
         private RolRepository repositorio;
         private List<Usuario> usuariosDG;
+        private Usuario usuario;
 
         public AsignarRolesUsuario(ABMRol formAnterior)
         {
@@ -18,6 +19,7 @@ namespace WindowsFormsApplication1.ABM_Rol
             this.formAnterior = formAnterior;
             repositorio = new RolRepository();
             usuariosDG = new List<Usuario>(){ };
+            usuario = new Usuario();
 
             inicializarDataGrid();
             cargarDataGrid();
@@ -25,7 +27,16 @@ namespace WindowsFormsApplication1.ABM_Rol
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
+            usuariosDataGrid.CellClick += UsuariosDataGrid_CellClick;
+            
+            RolesUsuarioDlg rolesUsuarioDlg = new RolesUsuarioDlg(usuario);
+            rolesUsuarioDlg.ShowDialog();
+        }
 
+        private void UsuariosDataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            usuario.nick = usuariosDataGrid.CurrentRow.Cells[0].Value.ToString();
+            usuario.id = Convert.ToInt64(usuariosDataGrid.CurrentRow.Cells[1].Value);
         }
 
         private void inicializarDataGrid()

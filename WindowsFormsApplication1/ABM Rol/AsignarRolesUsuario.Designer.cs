@@ -82,6 +82,7 @@
             this.usuariosDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.usuariosDataGrid.Size = new System.Drawing.Size(426, 287);
             this.usuariosDataGrid.TabIndex = 2;
+            this.usuariosDataGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.UsuariosDataGrid_CellClick);
             // 
             // AsignarRolesUsuario
             // 
@@ -90,7 +91,7 @@
             this.ClientSize = new System.Drawing.Size(460, 389);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.groupBox1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "AsignarRolesUsuario";
             this.Text = "AsignarRolesUsuario";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AsignarRolesUsuario_FormClosed);

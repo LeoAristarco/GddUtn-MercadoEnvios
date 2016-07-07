@@ -16,5 +16,10 @@ namespace WindowsFormsApplication1.ABM_Rol
         {
             InitializeComponent();
         }
+
+        private void Guardar_Button_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
