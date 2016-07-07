@@ -631,6 +631,11 @@ go
 ------------------------------------------------ FIN LOGUIN----------------------------------------------------------------------
 
 ------------------------------------------------ SELECCION DE FUNCIONALIDADES----------------------------------------------------------------------
+if EXISTS (SELECT * FROM sysobjects WHERE name='OBTENER_FUNCIONALIDADES_POR_ID_ROL') 
+drop procedure OBTENER_FUNCIONALIDADES_POR_ID_ROL
+
+go
+
 create procedure OBTENER_FUNCIONALIDADES_POR_ID_ROL
 	@id_rol numeric(18,0)
 as begin 

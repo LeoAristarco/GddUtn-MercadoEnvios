@@ -764,7 +764,7 @@ go
 
 
 /********************************************************************************************************************************/
-/*OFERTAS*/
+/*OFERTAS*/ --preguntar precio de envio que es un int
 /********************************************************************************************************************************/
 
 --vista de maximos montos para el calculo del campo concretada
@@ -804,7 +804,7 @@ create procedure MIGRAR_OFERTAS
 as begin 
 
 	insert into OFERTA
-		select USUARIO.id_usuario, PUBLICACION.id_publicacion, v.fecha, v.concretado, v.monto
+		select USUARIO.id_usuario, PUBLICACION.id_publicacion, v.fecha, v.concretado, v.monto, 0
 		from vista_ofertas as v
 		inner join USUARIO
 		on
