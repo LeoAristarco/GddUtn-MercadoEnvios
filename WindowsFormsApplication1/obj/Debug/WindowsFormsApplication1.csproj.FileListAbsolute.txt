@@ -90,3 +90,5 @@ D:\Documentos\visual studio 2015\Projects\GddUtn-MercadoEnvios\WindowsFormsAppli
 D:\Documentos\visual studio 2015\Projects\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Listado_Estadistico.ListadoEstadistico.resources
 C:\Users\Alexis\Downloads\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ABM_Usuario.ElegirTipoUsuario.resources
 C:\Users\Alexis\Downloads\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ABM_Usuario.RegistrarUsuario.resources
+D:\Documentos\visual studio 2015\Projects\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ABM_Usuario.ElegirTipoUsuario.resources
+D:\Documentos\visual studio 2015\Projects\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ABM_Usuario.RegistrarUsuario.resources

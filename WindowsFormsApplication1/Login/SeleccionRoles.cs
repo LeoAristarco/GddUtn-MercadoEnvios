@@ -44,7 +44,6 @@ namespace WindowsFormsApplication1.Login
 
         private void continuar_Boton_Click(object sender, EventArgs e)
         {
-            comboBox_Roles.Items.Clear();
             comboBox_Roles.ResetText();
 
             if (comboBox_Roles.SelectedIndex == -1)
