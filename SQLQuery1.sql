@@ -643,8 +643,31 @@ as begin
 	from FUNCIONALIDAD as f
 	inner join FUNCIONALIDAD_POR_ROL as r
 	on r.id_funcionalidad = f.id_funcionalidad
-	where r.id_rol = @id_rol;
+	where 
+		r.id_rol = @id_rol and
+		f.habilitado = 1;
 end
 
 go 
 ------------------------------------------------ FIN DE FUNCIONALIDADES----------------------------------------------------------------------
+
+------------------------------------------------ ABM ROL----------------------------------------------------------------------
+if EXISTS (SELECT * FROM sysobjects WHERE name='OBTENER_ROLES_POR_ID_USUARIO') 
+drop procedure OBTENER_ROLES_POR_ID_USUARIO
+
+go
+
+create procedure OBTENER_ROLES_POR_ID_USUARIO
+	@id_usuario numeric(18,0)
+as begin 
+	select r.id_rol, r.rol_nombre, r.habilitado
+		from ROL_POR_USUARIO as ru
+		inner join ROL as r
+		on r.id_rol = ru.id_rol
+		where
+			ru.id_usuario = @id_usuario;
+end
+
+go 
+
+------------------------------------------------ FIN ABM ROL----------------------------------------------------------------------

@@ -9,9 +9,9 @@ namespace WindowsFormsApplication1.Login.ClasesLogin
 {
     public class Logueo
     {
-        public string pass { get; set; }
-
         public string nick { get; set; }
+
+        public string pass { get; set; }
 
         public double idUsuario { get; set; }
 

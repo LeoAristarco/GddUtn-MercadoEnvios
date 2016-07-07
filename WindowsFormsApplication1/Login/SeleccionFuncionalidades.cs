@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApplication1.ABM_Rol;
+using WindowsFormsApplication1.Clases;
 using WindowsFormsApplication1.Login.ClasesLogin;
 
 namespace WindowsFormsApplication1.Login
@@ -14,9 +16,8 @@ namespace WindowsFormsApplication1.Login
     public partial class SeleccionFuncionalidades : Form
     {
         public Logueo logueo { get; set; }
-
+        public Usuario usuario { get; set; } 
         private SeleccionRoles formPadre;
-
         private LogueoDAO dataBase;
 
         public SeleccionFuncionalidades(SeleccionRoles formPadre)
@@ -28,6 +29,14 @@ namespace WindowsFormsApplication1.Login
             dataBase = new LogueoDAO();
 
             cargarComboBoxConFuncionalidades();
+
+            //transformo objeto logueo a usuario
+            
+            usuario = new Usuario();
+                usuario.id = Convert.ToInt64(logueo.idUsuario);
+                usuario.nick = logueo.nick;
+                usuario.pass = logueo.pass;
+
         }
 
         public void cargarComboBoxConFuncionalidades()
@@ -49,7 +58,15 @@ namespace WindowsFormsApplication1.Login
 
         private void continuar_Click(object sender, EventArgs e)
         {
+            string funcionalidadSeleccionada = cbFuncionalidades.SelectedItem.ToString();
 
+            if (cbFuncionalidades.SelectedIndex == -1)
+            {
+                MessageBox.Show("No ha seleccionado ninguna Funcionalidad", "Error", MessageBoxButtons.OK);
+                return;
+            }
+
+            redirigirAFuncionalidadElegida(funcionalidadSeleccionada);
         }
 
         private void volver_Click(object sender, EventArgs e)
@@ -61,6 +78,24 @@ namespace WindowsFormsApplication1.Login
         private void SeleccionFuncionalidades_FormClosed(object sender, FormClosedEventArgs e)
         {
             formPadre.Close();
+        }
+
+        private void redirigirAFuncionalidadElegida(string funcionalidadElegida)
+        {
+            /*ACA ESTA EL SWITHC PARA REDIRIGIR A LAS OTRAS VENTANAS, ES IMPORTANTE QUE EL OTRO FORM, HIJO DE ESTE
+             * CONOSCA EL PADRE PARA QUE EL USUARIO PUEDA VOLVER HACIA ATRAS*/
+
+            /*ES IMPORTANTE QUE ESTE ACTUALIZADO Y TENGA LAS OPCIONES IGUALES A LAS QUE ESTAN EN LA BD*/
+
+            switch (funcionalidadElegida)
+            {
+                case "ABM_ROL":
+                    ABMRol formRol = new ABMRol(this, usuario);
+                    formRol.Show();
+
+                    Hide();
+                    break;
+            }
         }
     }
 }

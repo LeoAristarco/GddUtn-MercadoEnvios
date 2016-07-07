@@ -35,6 +35,7 @@ namespace WindowsFormsApplication1.Login
 
         public void cargarComboBoxConDiccionarioRoles()
         {
+            comboBox_Roles.Items.Clear();
             foreach (KeyValuePair<double, string> rol in logueo.roles)
             {
                 comboBox_Roles.Items.Add(rol.Value);
@@ -59,7 +60,6 @@ namespace WindowsFormsApplication1.Login
             logueo.idRolSeleccionado = idRolSeleccionado;
             formSiguiente = new SeleccionFuncionalidades(this);
                 formSiguiente.Show();
-                //formSiguiente.cargarComboBoxConFuncionalidades();
 
             Hide();
         }
