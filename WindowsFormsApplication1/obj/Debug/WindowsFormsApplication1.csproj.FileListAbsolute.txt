@@ -53,11 +53,9 @@ D:\Documentos\visual studio 2015\Projects\GddUtn-MercadoEnvios\WindowsFormsAppli
 D:\Documentos\visual studio 2015\Projects\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ABM_Rol.RolesUsuarioDlg.resources
 D:\Documentos\visual studio 2015\Projects\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ABM_Rubro.ABMRubro.resources
 D:\Documentos\visual studio 2015\Projects\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ABM_Rubro.Modificar.resources
-D:\Documentos\visual studio 2015\Projects\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ABM_Usuario.Cliente.ABMClientes.resources
 D:\Documentos\visual studio 2015\Projects\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ABM_Usuario.Cliente.BuscarCliente.resources
 D:\Documentos\visual studio 2015\Projects\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ABM_Usuario.Cliente.Confirmacion.resources
 D:\Documentos\visual studio 2015\Projects\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ABM_Usuario.Cliente.ModificarCliente.resources
-D:\Documentos\visual studio 2015\Projects\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ABM_Usuario.Empresa.ABMEmpresas.resources
 D:\Documentos\visual studio 2015\Projects\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ABM_Usuario.Empresa.BuscarEmpresa.resources
 D:\Documentos\visual studio 2015\Projects\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ABM_Usuario.Empresa.ModificarEmpresa.resources
 D:\Documentos\visual studio 2015\Projects\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ABM_Visibilidad.ABMVisibilidad.resources
@@ -92,3 +90,5 @@ D:\Documentos\visual studio 2015\Projects\GddUtn-MercadoEnvios\WindowsFormsAppli
 D:\Documentos\visual studio 2015\Projects\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ABM_Usuario.RegistrarUsuario.resources
 C:\Users\Alexis\Downloads\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ABM_Usuario.Cliente.CrearCliente.resources
 C:\Users\Alexis\Downloads\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ABM_Usuario.Empresa.CrearEmpresa.resources
+D:\Documentos\visual studio 2015\Projects\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ABM_Usuario.Cliente.CrearCliente.resources
+D:\Documentos\visual studio 2015\Projects\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ABM_Usuario.Empresa.CrearEmpresa.resources
