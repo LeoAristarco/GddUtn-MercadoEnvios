@@ -95,11 +95,11 @@
     <Compile Include="ABM Rubro\Modificar.Designer.cs">
       <DependentUpon>Modificar.cs</DependentUpon>
     </Compile>
-    <Compile Include="ABM Usuario\Cliente\ABMClientes.cs">
+    <Compile Include="ABM Usuario\Cliente\CrearCliente.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Usuario\Cliente\ABMClientes.Designer.cs">
-      <DependentUpon>ABMClientes.cs</DependentUpon>
+    <Compile Include="ABM Usuario\Cliente\CrearCliente.Designer.cs">
+      <DependentUpon>CrearCliente.cs</DependentUpon>
     </Compile>
     <Compile Include="ABM Usuario\Cliente\BuscarCliente.cs">
       <SubType>Form</SubType>
@@ -107,10 +107,10 @@
     <Compile Include="ABM Usuario\Cliente\BuscarCliente.Designer.cs">
       <DependentUpon>BuscarCliente.cs</DependentUpon>
     </Compile>
-    <Compile Include="ABM Usuario\Cliente\Confirmacion.cs">
+    <Compile Include="ABM Usuario\Confirmacion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Usuario\Cliente\Confirmacion.Designer.cs">
+    <Compile Include="ABM Usuario\Confirmacion.Designer.cs">
       <DependentUpon>Confirmacion.cs</DependentUpon>
     </Compile>
     <Compile Include="ABM Usuario\Cliente\ModificarCliente.cs">
@@ -119,11 +119,11 @@
     <Compile Include="ABM Usuario\Cliente\ModificarCliente.Designer.cs">
       <DependentUpon>ModificarCliente.cs</DependentUpon>
     </Compile>
-    <Compile Include="ABM Usuario\Empresa\ABMEmpresas.cs">
+    <Compile Include="ABM Usuario\Empresa\CrearEmpresa.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Usuario\Empresa\ABMEmpresas.Designer.cs">
-      <DependentUpon>ABMEmpresas.cs</DependentUpon>
+    <Compile Include="ABM Usuario\Empresa\CrearEmpresa.Designer.cs">
+      <DependentUpon>CrearEmpresa.cs</DependentUpon>
     </Compile>
     <Compile Include="ABM Usuario\Empresa\BuscarEmpresa.cs">
       <SubType>Form</SubType>
@@ -331,13 +331,13 @@
     <EmbeddedResource Include="ABM Rubro\Modificar.resx">
       <DependentUpon>Modificar.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Usuario\Cliente\ABMClientes.resx">
-      <DependentUpon>ABMClientes.cs</DependentUpon>
+    <EmbeddedResource Include="ABM Usuario\Cliente\CrearCliente.resx">
+      <DependentUpon>CrearCliente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ABM Usuario\Cliente\BuscarCliente.resx">
       <DependentUpon>BuscarCliente.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Usuario\Cliente\Confirmacion.resx">
+    <EmbeddedResource Include="ABM Usuario\Confirmacion.resx">
       <DependentUpon>Confirmacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ABM Usuario\Cliente\ModificarCliente.resx">
@@ -346,8 +346,8 @@
     <EmbeddedResource Include="ABM Usuario\ElegirTipoUsuario.resx">
       <DependentUpon>ElegirTipoUsuario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Usuario\Empresa\ABMEmpresas.resx">
-      <DependentUpon>ABMEmpresas.cs</DependentUpon>
+    <EmbeddedResource Include="ABM Usuario\Empresa\CrearEmpresa.resx">
+      <DependentUpon>CrearEmpresa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ABM Usuario\Empresa\BuscarEmpresa.resx">
       <DependentUpon>BuscarEmpresa.cs</DependentUpon>

@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApplication1.ABM_Usuario.Empresa
 {
-    partial class ABMEmpresas
+    partial class CrearEmpresa
     {
         /// <summary>
         /// Required designer variable.
