@@ -613,6 +613,28 @@ go*/
 
 ----------------------  FIN DE ESTADISTICAS----------------------------------------------------------------------
 
+-------------------------------------ABM CLIENTE---------------------------------------------------------------------------------------
+
+create procedure st_buscar_clientes
+@nombre nvarchar(255)='',
+@apellido nvarchar(255)='',
+@numeroDocumento nvarchar(255)='',
+@mail nvarchar(255)=''
+as
+begin
+
+	select * from CLIENTE as c
+	inner join USUARIO as u on c.id_usuario=u.id_usuario
+	where (c.nombre=@nombre or @nombre='') and 
+		  (c.apellido=@apellido or @apellido='') and
+		  (c.dni=@numeroDocumento or @numeroDocumento='') and
+		  (u.mail=@mail or @mail='')
+end
+
+go
+
+--------------------------FIN ABM CLIENTE-------------------------------------------------------------------------------------
+
 
 
 --Al iniciar la aplicación se tiene que barrer la base de datos para saber que publicaciones
@@ -673,6 +695,8 @@ close miCursor
 deallocate miCursor
 
 end
+
+
 	
 			
 

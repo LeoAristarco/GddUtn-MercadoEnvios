@@ -21,6 +21,53 @@ namespace WindowsFormsApplication1.Clases
             return user;
         }
 
+        internal List<Cliente> buscarClientes(string nombre, string apellido, string dni, string mail)
+        {
+            List<SqlParameter> parametros = new List<SqlParameter>();
+
+            db.agregarParametro(parametros, "@nombre", nombre);
+            db.agregarParametro(parametros, "@apellido", apellido);
+            db.agregarParametro(parametros, "@numeroDocumento", dni);
+            db.agregarParametro(parametros, "@mail", mail);
+
+            List<Dictionary<string, object>> tabla = db.ejecutarStoredProcedure("st_buscar_clientes", parametros);
+
+            List<Cliente> clientesEncontrados = new List<Cliente>();
+
+            foreach (Dictionary<string,object> fila in tabla)
+            {
+                clientesEncontrados.Add(deserializarCliente(fila));
+            }
+
+            return clientesEncontrados;
+        }
+
+        private Cliente deserializarCliente(Dictionary<string, object> fila)
+        {
+            Cliente nuevoCliente = new Cliente();
+
+            nuevoCliente.id = toLong(fila["id_usuario"]);
+            nuevoCliente.idCliente = toLong(fila["id_cliente"]);
+            nuevoCliente.nombre = fila["nombre"].ToString();
+            nuevoCliente.mail = fila["mail"].ToString();
+            nuevoCliente.nick = fila["nick"].ToString();
+            nuevoCliente.pass = fila["pass"].ToString();
+            nuevoCliente.tipoDeDocumento = fila["tipo_documento"].ToString();
+            nuevoCliente.apellido = fila["apellido"].ToString();
+            nuevoCliente.calle = fila["calle"].ToString();
+            nuevoCliente.codigoPostal = toInt(fila["codigo_postal"]);
+            nuevoCliente.departamento = fila["departamento"].ToString();
+            nuevoCliente.dni = fila["dni"].ToString();
+            nuevoCliente.localidad = fila["localidad"].ToString();
+            nuevoCliente.numeroDeCalle = toInt(fila["numero_calle"]);
+            nuevoCliente.numeroDePiso = toInt(fila["numero_piso"]);
+            nuevoCliente.telefono = fila["telefono"].ToString();
+            nuevoCliente.bajaLogica = toBool(fila["baja_logica"]);
+            nuevoCliente.fechaDeNacimiento = toDate(fila["fecha_nacimiento"]);
+
+            return nuevoCliente;
+        }
+
         internal Dictionary<Usuario, int> obtenerTop5ConMenosVentas(List<int> meses, int anio, Visibilidad visibilidad)
         {
             List<SqlParameter> parametros = new List<SqlParameter>();
@@ -54,6 +101,15 @@ namespace WindowsFormsApplication1.Clases
             }
 
             return dictionaryUsersVentasFallidas;
+        }
+
+        internal void modificarCliente(Cliente cliente)
+        {
+            List<SqlParameter> parametros = new List<SqlParameter>();
+
+            //cargo parametros
+            //hay que checkear el nombre del stored
+            db.ejecutarStoredProcedure("st_ingresar_Cliente", parametros);
         }
 
         internal bool yaExisteEseDni(string dni)

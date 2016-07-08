@@ -30,17 +30,18 @@
         {
             this.bVolver = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.filtroDni = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.buscar = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.filtroMail = new System.Windows.Forms.TextBox();
             this.filtroApellido = new System.Windows.Forms.TextBox();
             this.filtroNombre = new System.Windows.Forms.TextBox();
-            this.buscar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tablaClientes = new System.Windows.Forms.DataGridView();
-            this.filtroDni = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.modificar = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tablaClientes)).BeginInit();
@@ -48,19 +49,21 @@
             // 
             // bVolver
             // 
-            this.bVolver.Location = new System.Drawing.Point(221, 289);
+            this.bVolver.Location = new System.Drawing.Point(39, 281);
             this.bVolver.Margin = new System.Windows.Forms.Padding(4);
             this.bVolver.Name = "bVolver";
             this.bVolver.Size = new System.Drawing.Size(148, 47);
             this.bVolver.TabIndex = 9;
             this.bVolver.Text = "<< Volver";
             this.bVolver.UseVisualStyleBackColor = true;
+            this.bVolver.Click += new System.EventHandler(this.bVolver_Click);
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.filtroDni);
             this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Controls.Add(this.buscar);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.filtroMail);
@@ -70,10 +73,26 @@
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(302, 246);
+            this.groupBox2.Size = new System.Drawing.Size(302, 323);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Filtrar por:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(7, 155);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(84, 17);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Documento:";
+            // 
+            // filtroDni
+            // 
+            this.filtroDni.Location = new System.Drawing.Point(104, 155);
+            this.filtroDni.Name = "filtroDni";
+            this.filtroDni.Size = new System.Drawing.Size(191, 22);
+            this.filtroDni.TabIndex = 6;
             // 
             // label3
             // 
@@ -83,6 +102,17 @@
             this.label3.Size = new System.Drawing.Size(37, 17);
             this.label3.TabIndex = 5;
             this.label3.Text = "Mail:";
+            // 
+            // buscar
+            // 
+            this.buscar.Location = new System.Drawing.Point(76, 268);
+            this.buscar.Margin = new System.Windows.Forms.Padding(4);
+            this.buscar.Name = "buscar";
+            this.buscar.Size = new System.Drawing.Size(148, 47);
+            this.buscar.TabIndex = 8;
+            this.buscar.Text = "Buscar";
+            this.buscar.UseVisualStyleBackColor = true;
+            this.buscar.Click += new System.EventHandler(this.buscar_Click);
             // 
             // label2
             // 
@@ -123,16 +153,6 @@
             this.filtroNombre.Size = new System.Drawing.Size(191, 22);
             this.filtroNombre.TabIndex = 0;
             // 
-            // buscar
-            // 
-            this.buscar.Location = new System.Drawing.Point(614, 289);
-            this.buscar.Margin = new System.Windows.Forms.Padding(4);
-            this.buscar.Name = "buscar";
-            this.buscar.Size = new System.Drawing.Size(148, 47);
-            this.buscar.TabIndex = 8;
-            this.buscar.Text = "Buscar";
-            this.buscar.UseVisualStyleBackColor = true;
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.tablaClientes);
@@ -154,34 +174,32 @@
             this.tablaClientes.Name = "tablaClientes";
             this.tablaClientes.Size = new System.Drawing.Size(535, 209);
             this.tablaClientes.TabIndex = 0;
+            this.tablaClientes.Click += new System.EventHandler(this.tablaClientes_Click);
             // 
-            // filtroDni
+            // modificar
             // 
-            this.filtroDni.Location = new System.Drawing.Point(104, 155);
-            this.filtroDni.Name = "filtroDni";
-            this.filtroDni.Size = new System.Drawing.Size(191, 22);
-            this.filtroDni.TabIndex = 6;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(7, 155);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 17);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "DNI:";
+            this.modificar.Enabled = false;
+            this.modificar.Location = new System.Drawing.Point(328, 281);
+            this.modificar.Margin = new System.Windows.Forms.Padding(4);
+            this.modificar.Name = "modificar";
+            this.modificar.Size = new System.Drawing.Size(148, 47);
+            this.modificar.TabIndex = 10;
+            this.modificar.Text = "Modificar";
+            this.modificar.UseVisualStyleBackColor = true;
+            this.modificar.Click += new System.EventHandler(this.modificar_Click);
             // 
             // BuscarCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(898, 349);
+            this.Controls.Add(this.modificar);
             this.Controls.Add(this.bVolver);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.buscar);
             this.Controls.Add(this.groupBox1);
             this.Name = "BuscarCliente";
             this.Text = "BuscarCliente";
+            this.Load += new System.EventHandler(this.BuscarCliente_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -205,5 +223,6 @@
         private System.Windows.Forms.Button buscar;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView tablaClientes;
+        private System.Windows.Forms.Button modificar;
     }
 }

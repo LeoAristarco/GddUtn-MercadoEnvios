@@ -7,7 +7,7 @@ using WindowsFormsApplication1.Clases;
 
 namespace WindowsFormsApplication1.ABM_Usuario.Cliente
 {
-    class Cliente:Usuario
+    public class Cliente:Usuario
     {
         public long idCliente;
 	    public string nombre;
