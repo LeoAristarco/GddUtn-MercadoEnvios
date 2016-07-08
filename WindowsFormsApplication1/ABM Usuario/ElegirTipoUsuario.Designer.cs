@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.comboBox_Roles = new System.Windows.Forms.ComboBox();
+            this.tiposDeUsuario = new System.Windows.Forms.ComboBox();
             this.continuar_Boton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
@@ -37,7 +37,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.comboBox_Roles);
+            this.groupBox1.Controls.Add(this.tiposDeUsuario);
             this.groupBox1.Controls.Add(this.continuar_Boton);
             this.groupBox1.Location = new System.Drawing.Point(13, 13);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
@@ -47,17 +47,16 @@
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tipos de usuario disponibles";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
-            // comboBox_Roles
+            // tiposDeUsuario
             // 
-            this.comboBox_Roles.FormattingEnabled = true;
-            this.comboBox_Roles.Location = new System.Drawing.Point(13, 25);
-            this.comboBox_Roles.Margin = new System.Windows.Forms.Padding(4);
-            this.comboBox_Roles.Name = "comboBox_Roles";
-            this.comboBox_Roles.Size = new System.Drawing.Size(329, 24);
-            this.comboBox_Roles.TabIndex = 0;
-            this.comboBox_Roles.SelectedIndexChanged += new System.EventHandler(this.comboBox_Roles_SelectedIndexChanged);
+            this.tiposDeUsuario.FormattingEnabled = true;
+            this.tiposDeUsuario.Location = new System.Drawing.Point(13, 25);
+            this.tiposDeUsuario.Margin = new System.Windows.Forms.Padding(4);
+            this.tiposDeUsuario.Name = "tiposDeUsuario";
+            this.tiposDeUsuario.Size = new System.Drawing.Size(329, 24);
+            this.tiposDeUsuario.TabIndex = 0;
+            this.tiposDeUsuario.SelectedIndexChanged += new System.EventHandler(this.tiposDeUsuario_SelectedIndexChanged);
             // 
             // continuar_Boton
             // 
@@ -68,6 +67,7 @@
             this.continuar_Boton.TabIndex = 1;
             this.continuar_Boton.Text = "Continuar >>";
             this.continuar_Boton.UseVisualStyleBackColor = true;
+            this.continuar_Boton.Click += new System.EventHandler(this.continuar_Boton_Click);
             // 
             // label1
             // 
@@ -87,7 +87,8 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
             this.Name = "ElegirTipoUsuario";
-            this.Text = "ElegirRolNuevoUsuario";
+            this.Text = "ElegirTipoUsuario";
+            this.Load += new System.EventHandler(this.ElegirTipoUsuario_Load);
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -97,7 +98,7 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.ComboBox comboBox_Roles;
+        private System.Windows.Forms.ComboBox tiposDeUsuario;
         private System.Windows.Forms.Button continuar_Boton;
         private System.Windows.Forms.Label label1;
     }

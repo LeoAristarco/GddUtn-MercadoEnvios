@@ -40,9 +40,9 @@ namespace WindowsFormsApplication1.ABM_Usuario
             nuevoUser.nick = nick.Text;
             nuevoUser.pass = pass.Text;
 
-            ElegirTipoUsuario elegirRol = new ElegirTipoUsuario(this, nuevoUser);
+            ElegirTipoUsuario elegirTipoUser = new ElegirTipoUsuario(this, nuevoUser);
 
-            elegirRol.ShowDialog();
+            elegirTipoUser.ShowDialog();
 
             Hide();
         }
