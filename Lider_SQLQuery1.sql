@@ -256,8 +256,27 @@ as begin
 	  where comprador = @id_usuario
 	  order by fecha_operacion desc
 end
-
+go
 ------------------------------------------------ FIN de Calificar al vendedor----------------------------------------------------------------------
+
+
+-------------- Historial de Cliente ----------------------------------------------------------------------
+
+create procedure st_cantidadDeOperacionesSinCalificar(@id_usuario numeric(10,0))
+as begin  
+	  select  count (*)
+	  from COMPRA
+	  inner join PUBLICACION on publicacion = id_publicacion
+	  inner join CALIFICACION on id_calificacion =calificacion
+	  where comprador = @id_usuario and calif_estrellas is null
+end
+
+--resumen de estrallas dadadas, ya fue creado en "Calificar al vendedor" (se recicla)
+-- "st_resumenDeEstrellasDadas"
+
+
+-------------- FIN  funcionalidad "Historial de Cliente"----------------------------------------------------------------------
+
 
 --------------------------------------------------COMIENZO ABM VISIBILIDAD----------------------------------------------------------------
 
