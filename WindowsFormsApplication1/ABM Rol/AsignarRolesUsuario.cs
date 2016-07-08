@@ -35,6 +35,8 @@ namespace WindowsFormsApplication1.ABM_Rol
 
         private void UsuariosDataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            //hay que validar que no clickee el la ultima fila que rome todo
+
             usuario.nick = usuariosDataGrid.CurrentRow.Cells[0].Value.ToString();
             usuario.id = Convert.ToInt64(usuariosDataGrid.CurrentRow.Cells[1].Value);
         }
