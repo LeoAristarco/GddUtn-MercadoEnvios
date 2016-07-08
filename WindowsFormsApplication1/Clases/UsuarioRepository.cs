@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using WindowsFormsApplication1.ABM_Usuario.Cliente;
 
 namespace WindowsFormsApplication1.Clases
 {
@@ -53,6 +54,22 @@ namespace WindowsFormsApplication1.Clases
             }
 
             return dictionaryUsersVentasFallidas;
+        }
+
+        internal bool yaExisteEseDni(string dni)
+        {
+            string consulta = "select count(*) from CLIENTE where dni='" + dni + "'";
+
+            return toInt(db.ejecutarConsulta(consulta)) > 0;
+        }
+
+        internal void agregarCliente(Cliente nuevoCliente)
+        {
+            List<SqlParameter> parametros = new List<SqlParameter>();
+
+            //cargo parametros
+            //hay que checkear el nombre del stored
+            db.ejecutarStoredProcedure("st_ingresar_Cliente", parametros);
         }
 
         internal bool yaExisteEseNick(string nick)

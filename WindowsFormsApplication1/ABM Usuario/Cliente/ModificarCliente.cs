@@ -16,5 +16,10 @@ namespace WindowsFormsApplication1.ABM_Usuario.Cliente
         {
             InitializeComponent();
         }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }

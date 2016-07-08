@@ -31,9 +31,9 @@
             this.button1 = new System.Windows.Forms.Button();
             this.tGB = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.tPassword = new System.Windows.Forms.TextBox();
+            this.pass = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.tUsername = new System.Windows.Forms.TextBox();
+            this.nick = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tGB.SuspendLayout();
@@ -48,13 +48,14 @@
             this.button1.TabIndex = 7;
             this.button1.Text = "Aceptar";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // tGB
             // 
             this.tGB.Controls.Add(this.label3);
-            this.tGB.Controls.Add(this.tPassword);
+            this.tGB.Controls.Add(this.pass);
             this.tGB.Controls.Add(this.label4);
-            this.tGB.Controls.Add(this.tUsername);
+            this.tGB.Controls.Add(this.nick);
             this.tGB.Location = new System.Drawing.Point(13, 68);
             this.tGB.Margin = new System.Windows.Forms.Padding(4);
             this.tGB.Name = "tGB";
@@ -74,15 +75,15 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "Nombre de Usuario:";
             // 
-            // tPassword
+            // pass
             // 
-            this.tPassword.Location = new System.Drawing.Point(151, 58);
-            this.tPassword.Margin = new System.Windows.Forms.Padding(4);
-            this.tPassword.Multiline = true;
-            this.tPassword.Name = "tPassword";
-            this.tPassword.ReadOnly = true;
-            this.tPassword.Size = new System.Drawing.Size(199, 24);
-            this.tPassword.TabIndex = 1;
+            this.pass.Location = new System.Drawing.Point(151, 58);
+            this.pass.Margin = new System.Windows.Forms.Padding(4);
+            this.pass.Multiline = true;
+            this.pass.Name = "pass";
+            this.pass.ReadOnly = true;
+            this.pass.Size = new System.Drawing.Size(199, 24);
+            this.pass.TabIndex = 1;
             // 
             // label4
             // 
@@ -94,15 +95,15 @@
             this.label4.TabIndex = 3;
             this.label4.Text = "Contraseña:";
             // 
-            // tUsername
+            // nick
             // 
-            this.tUsername.Location = new System.Drawing.Point(151, 27);
-            this.tUsername.Margin = new System.Windows.Forms.Padding(4);
-            this.tUsername.Multiline = true;
-            this.tUsername.Name = "tUsername";
-            this.tUsername.ReadOnly = true;
-            this.tUsername.Size = new System.Drawing.Size(199, 24);
-            this.tUsername.TabIndex = 0;
+            this.nick.Location = new System.Drawing.Point(151, 27);
+            this.nick.Margin = new System.Windows.Forms.Padding(4);
+            this.nick.Multiline = true;
+            this.nick.Name = "nick";
+            this.nick.ReadOnly = true;
+            this.nick.Size = new System.Drawing.Size(199, 24);
+            this.nick.TabIndex = 0;
             // 
             // label2
             // 
@@ -135,6 +136,7 @@
             this.Controls.Add(this.label1);
             this.Name = "Confirmacion";
             this.Text = "Confirmacion";
+            this.Load += new System.EventHandler(this.Confirmacion_Load);
             this.tGB.ResumeLayout(false);
             this.tGB.PerformLayout();
             this.ResumeLayout(false);
@@ -147,9 +149,9 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.GroupBox tGB;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox tPassword;
+        private System.Windows.Forms.TextBox pass;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox tUsername;
+        private System.Windows.Forms.TextBox nick;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
     }
