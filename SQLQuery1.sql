@@ -592,8 +592,10 @@ as begin
 	on  u.id_usuario = ru.id_usuario
 	inner join ROL as r
 	on ru.id_rol = r.id_rol
-	where u.nick = @nick and u.pass = @pass
-
+	where 
+		u.nick = @nick and 
+		u.pass = @pass and
+		r.habilitado = 1;
 end
 
 go
