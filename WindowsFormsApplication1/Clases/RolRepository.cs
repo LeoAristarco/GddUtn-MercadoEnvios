@@ -87,6 +87,101 @@ namespace WindowsFormsApplication1.ABM_Rol
                 db.ejecutarStoredProcedure(procedimiento, parametros);
             }
         }
+
+        public List<Funcionalidad> obtenerTodasLasFuncionalidades()
+        {
+            List<Funcionalidad> funcionalidades = new List<Funcionalidad>();
+
+            string sql = "select * from FUNCIONALIDAD";
+
+            List<Dictionary<string, object>> listaBD = db.ejecutarConsulta(sql);
+
+            foreach (Dictionary<string, object> dic in listaBD)
+            {
+                Funcionalidad func = new Funcionalidad(Convert.ToInt64(dic["id_funcionalidad"]), (string)dic["funcionalidad_nombre"], (bool)dic["habilitado"]);
+                funcionalidades.Add(func);
+            }
+
+            return funcionalidades;
+        }
+
+        public List<Funcionalidad> obtenerLasFuncionalidadesDel(Rol rol)
+        {
+            List<Funcionalidad> funcionalidades = new List<Funcionalidad>();
+
+            string procedimiento = "OBTENER_FUNCIONALIDADES_DEL_ROL";
+            SqlParameter p1 = new SqlParameter("@id_rol", rol.id);
+            List<SqlParameter> parametros = new List<SqlParameter> { p1};
+
+            List<Dictionary<string, object>> listaBD = db.ejecutarStoredProcedure(procedimiento, parametros);
+
+            foreach (Dictionary<string, object> dic in listaBD)
+            {
+                Funcionalidad func = new Funcionalidad(Convert.ToInt64(dic["id_funcionalidad"]), (string)dic["funcionalidad_nombre"], (bool)dic["habilitado"]);
+                funcionalidades.Add(func);
+            }
+
+            return funcionalidades;
+        }
+
+        public void crearNuevoRol(Rol rol, List<Funcionalidad> funcionalidades)
+        {
+            //inserto nuevo rol
+            string procedimiento = "INSERTAR_NUEVO_ROL";
+
+            SqlParameter p1 = new SqlParameter("@nombre", rol.nombre);
+            SqlParameter p2 = new SqlParameter("@hab", rol.habilitado);
+
+            List<SqlParameter> parametros = new List<SqlParameter> { p1, p2 };
+
+            db.ejecutarStoredProcedure(procedimiento, parametros);
+
+            //obtengo el id del nuevo rol que inserte
+            string sql = "select id_rol from ROL where rol_nombre = '"+rol.nombre+"'";
+            rol.id = Convert.ToInt64(db.ejecutarConsulta(sql)[0]["id_rol"]);
+
+            //ahora inserto las funcionalidades
+            foreach (Funcionalidad fun in funcionalidades)
+            {
+                string procedimiento2 = "ACTUALIZAR_FUNCIONALIDADES_DE_ROL";
+
+                SqlParameter pIdRol = new SqlParameter("@id_rol", rol.id);
+                SqlParameter pIdFun = new SqlParameter("@id_funcionalidad", fun.id);
+                SqlParameter pLoTiene = new SqlParameter("@lo_tiene", fun.habilitado);
+
+                List<SqlParameter> parametros2 = new List<SqlParameter> { pIdRol, pIdFun, pLoTiene };
+
+                db.ejecutarStoredProcedure(procedimiento2, parametros2);
+            }
+        }
+
+        public void actualizarRolYSusFuncionalidades(Rol rol, List<Funcionalidad> funcionalidades)
+        {
+            //actualizo el rol
+            string procedimiento2 = "ACTUALIZAR_ROL";
+
+            SqlParameter pIdRol = new SqlParameter("@id_rol", rol.id);
+            SqlParameter pNombre = new SqlParameter("@nombre", rol.nombre);
+            SqlParameter pHab = new SqlParameter("@habilitado", rol.habilitado);
+
+            List<SqlParameter> parametros2 = new List<SqlParameter> { pIdRol, pNombre, pHab };
+
+            db.ejecutarStoredProcedure(procedimiento2, parametros2);
+
+            //actualizo las funcionalidades
+            foreach (Funcionalidad fun in funcionalidades)
+            {
+                string procedimiento = "ACTUALIZAR_FUNCIONALIDADES_DE_ROL";
+
+                SqlParameter p1 = new SqlParameter("@id_rol", rol.id);
+                SqlParameter p2 = new SqlParameter("@id_funcionalidad", fun.id);
+                SqlParameter p3 = new SqlParameter("@lo_tiene", fun.habilitado);
+
+                List<SqlParameter> parametros = new List<SqlParameter> { p1, p2, p3 };
+
+                db.ejecutarStoredProcedure(procedimiento, parametros);
+            }
+        }
     }
 }
 

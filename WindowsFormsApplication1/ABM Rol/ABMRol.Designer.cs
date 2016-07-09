@@ -33,7 +33,6 @@
             this.Nuevo_Button = new System.Windows.Forms.Button();
             this.tablaRoles = new System.Windows.Forms.DataGridView();
             this.Modificar_Button = new System.Windows.Forms.Button();
-            this.Eliminar_Button = new System.Windows.Forms.Button();
             this.Volver_Button = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tablaRoles)).BeginInit();
@@ -45,7 +44,6 @@
             this.groupBox1.Controls.Add(this.Nuevo_Button);
             this.groupBox1.Controls.Add(this.tablaRoles);
             this.groupBox1.Controls.Add(this.Modificar_Button);
-            this.groupBox1.Controls.Add(this.Eliminar_Button);
             this.groupBox1.Location = new System.Drawing.Point(10, 11);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(410, 276);
@@ -90,6 +88,7 @@
             this.tablaRoles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.tablaRoles.Size = new System.Drawing.Size(398, 222);
             this.tablaRoles.TabIndex = 4;
+            this.tablaRoles.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tablaRoles_CellClick);
             this.tablaRoles.Click += new System.EventHandler(this.tablaRoles_Click);
             // 
             // Modificar_Button
@@ -101,16 +100,6 @@
             this.Modificar_Button.Text = "Modificar";
             this.Modificar_Button.UseVisualStyleBackColor = true;
             this.Modificar_Button.Click += new System.EventHandler(this.Modificar_Button_Click);
-            // 
-            // Eliminar_Button
-            // 
-            this.Eliminar_Button.Location = new System.Drawing.Point(168, 19);
-            this.Eliminar_Button.Name = "Eliminar_Button";
-            this.Eliminar_Button.Size = new System.Drawing.Size(75, 23);
-            this.Eliminar_Button.TabIndex = 3;
-            this.Eliminar_Button.Text = "Eliminar";
-            this.Eliminar_Button.UseVisualStyleBackColor = true;
-            this.Eliminar_Button.Click += new System.EventHandler(this.Eliminar_Button_Click);
             // 
             // Volver_Button
             // 
@@ -130,7 +119,7 @@
             this.ClientSize = new System.Drawing.Size(443, 327);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.Volver_Button);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ABMRol";
             this.Text = "AbmRolForm";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ABMRol_FormClosed);
@@ -148,7 +137,6 @@
         private System.Windows.Forms.Button Nuevo_Button;
         private System.Windows.Forms.DataGridView tablaRoles;
         private System.Windows.Forms.Button Modificar_Button;
-        private System.Windows.Forms.Button Eliminar_Button;
         private System.Windows.Forms.Button Volver_Button;
     }
 }

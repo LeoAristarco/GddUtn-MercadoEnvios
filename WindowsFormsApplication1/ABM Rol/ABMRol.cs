@@ -7,7 +7,6 @@ namespace WindowsFormsApplication1.ABM_Rol
 {
     public partial class ABMRol : Form
     {
-        private List<Rol> rubros;
         private RolRepository repositorio = new RolRepository();
         private Form formAnterior;
         private Usuario user;
@@ -23,9 +22,8 @@ namespace WindowsFormsApplication1.ABM_Rol
 
         private void ABMRol_Load(object sender, EventArgs e)
         {
-            roles = repositorio.obtenerRolesDe(user);
-
-            rolSeleccionado = roles[0];
+            roles = repositorio.TodosLosRolesDelSistema();
+            
             inicializarFormulario();
         }
 
@@ -79,7 +77,10 @@ namespace WindowsFormsApplication1.ABM_Rol
 
         private void Nuevo_Button_Click(object sender, EventArgs e)
         {
+            Rol rolNuevo = new Rol(Convert.ToInt64(tablaRoles.RowCount), "", true);
+            EditorDeRoles editorForm = new EditorDeRoles(rolNuevo, false);
 
+            editorForm.ShowDialog();
         }
 
         private void btnAsignarRoles_Click(object sender, EventArgs e)
@@ -93,7 +94,19 @@ namespace WindowsFormsApplication1.ABM_Rol
 
         private void Modificar_Button_Click(object sender, EventArgs e)
         {
+            EditorDeRoles editorForm = new EditorDeRoles(rolSeleccionado, true);
 
+            editorForm.ShowDialog();
+        }
+
+        private void tablaRoles_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (tablaRoles.CurrentRow.Index < tablaRoles.RowCount)
+            {
+                rolSeleccionado.id = roles[e.RowIndex].id;
+                rolSeleccionado.nombre = roles[e.RowIndex].nombre;
+                rolSeleccionado.habilitado = roles[e.RowIndex].habilitado;
+            }
         }
     }
 }

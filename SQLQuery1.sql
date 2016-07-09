@@ -728,4 +728,100 @@ end
 
 go 
 
+if EXISTS (SELECT * FROM sysobjects WHERE name='OBTENER_FUNCIONALIDADES_DEL_ROL') 
+drop procedure OBTENER_FUNCIONALIDADES_DEL_ROL
+
+go
+
+create procedure OBTENER_FUNCIONALIDADES_DEL_ROL
+	@id_rol nvarchar(255)
+as begin 
+	select f.id_funcionalidad, f.funcionalidad_nombre, f.habilitado 
+	from FUNCIONALIDAD as f
+	inner join FUNCIONALIDAD_POR_ROL as fr
+	on fr.id_funcionalidad = f.id_funcionalidad
+	where
+		fr.id_rol = @id_rol;
+end
+
+go 
+
+
+if EXISTS (SELECT * FROM sysobjects WHERE name='INSERTAR_NUEVO_ROL') 
+drop procedure INSERTAR_NUEVO_ROL
+
+go
+
+create procedure INSERTAR_NUEVO_ROL
+	@nombre nvarchar(255),
+	@hab bit
+as begin 
+	insert into ROL
+	values
+		(@nombre, @hab);
+end
+
+go 
+
+
+if EXISTS (SELECT * FROM sysobjects WHERE name='ACTUALIZAR_ROL') 
+drop procedure ACTUALIZAR_ROL
+
+go
+
+create procedure ACTUALIZAR_ROL
+	@id_rol numeric(18,0),
+	@nombre nvarchar(255),
+	@habilitado bit
+as begin 
+	update ROL
+	set rol_nombre = @nombre, habilitado = @habilitado
+	where id_rol = @id_rol;
+end
+
+go 
+
+
+if EXISTS (SELECT * FROM sysobjects WHERE name='ACTUALIZAR_FUNCIONALIDADES_DE_ROL') 
+drop procedure ACTUALIZAR_FUNCIONALIDADES_DE_ROL
+
+go
+
+create procedure ACTUALIZAR_FUNCIONALIDADES_DE_ROL
+	@id_rol numeric(18,0),
+	@id_funcionalidad numeric(18,0),
+	@lo_tiene bit
+as begin 
+	
+	declare @cont int;
+
+	select @cont = COUNT(*)
+	from FUNCIONALIDAD_POR_ROL
+	where 
+		id_rol = @id_rol and
+		id_funcionalidad = @id_funcionalidad;
+
+	if @cont > 0 begin
+		if @lo_tiene = 0 begin
+			delete
+			from FUNCIONALIDAD_POR_ROL
+			where 
+				id_rol = @id_rol and
+				id_funcionalidad = @id_funcionalidad;
+		end
+	end
+	else begin
+		if @lo_tiene = 1 begin
+			insert into FUNCIONALIDAD_POR_ROL
+			values
+				(@id_funcionalidad, @id_rol);
+		end
+	end
+
+end
+
+go 
+
+
+
 ------------------------------------------------ FIN ABM ROL----------------------------------------------------------------------
