@@ -66,7 +66,6 @@ D:\Documentos\visual studio 2015\Projects\GddUtn-MercadoEnvios\WindowsFormsAppli
 D:\Documentos\visual studio 2015\Projects\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ComprarOfertar.Comprar_Ofertar.resources
 D:\Documentos\visual studio 2015\Projects\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ComprarOfertar.DetallePublicacion.resources
 D:\Documentos\visual studio 2015\Projects\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ComprarOfertar.Ofertar.resources
-D:\Documentos\visual studio 2015\Projects\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Facturas.FacturarForm.resources
 D:\Documentos\visual studio 2015\Projects\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Form1.resources
 D:\Documentos\visual studio 2015\Projects\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Generar_Publicación.GenerarPublicacion.resources
 D:\Documentos\visual studio 2015\Projects\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Historial_Cliente.HistorialOfertas.resources
@@ -93,3 +92,5 @@ D:\Documentos\visual studio 2015\Projects\GddUtn-MercadoEnvios\WindowsFormsAppli
 D:\Documentos\visual studio 2015\Projects\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ABM_Usuario.Empresa.CrearEmpresa.resources
 C:\Users\Alexis\Downloads\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Historial_Cliente.HistorialCliente.resources
 C:\Users\Alexis\Downloads\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Facturas.FacturasRealizadas.resources
+D:\Documentos\visual studio 2015\Projects\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Facturas.FacturasRealizadas.resources
+D:\Documentos\visual studio 2015\Projects\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Historial_Cliente.HistorialCliente.resources
