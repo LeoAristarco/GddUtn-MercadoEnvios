@@ -42,9 +42,14 @@ namespace WindowsFormsApplication1.ABM_Usuario
 
             ElegirTipoUsuario elegirTipoUser = new ElegirTipoUsuario(this, nuevoUser);
 
-            elegirTipoUser.ShowDialog();
-
             Hide();
+
+            elegirTipoUser.ShowDialog();
+        }
+
+        private void RegistrarUsuario_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            formAnterior.Show();
         }
     }
 }

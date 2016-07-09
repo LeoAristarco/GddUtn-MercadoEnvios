@@ -81,9 +81,9 @@ namespace WindowsFormsApplication1.Login
 
         private void volver_Click(object sender, EventArgs e)
         {
+            Hide();
             formPadre.Show();
             formPadre.cargarComboBoxConDiccionarioRoles();
-            Hide();
         }
 
         private void SeleccionFuncionalidades_FormClosed(object sender, FormClosedEventArgs e)
@@ -117,7 +117,7 @@ namespace WindowsFormsApplication1.Login
                     proximoForm = new GenerarPublicacion(new Publicacion(), this);
                     break;
 
-                case "COMPRAR / OFERTAR":
+                case "COMPRAR/OFERTAR":
                     proximoForm = new Comprar_Ofertar(usuario, this);
                     break;
 
@@ -138,9 +138,14 @@ namespace WindowsFormsApplication1.Login
                     break;
             }
 
-            proximoForm.Show();
-
             Hide();
+
+            proximoForm.ShowDialog();
+        }
+
+        private void SeleccionFuncionalidades_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

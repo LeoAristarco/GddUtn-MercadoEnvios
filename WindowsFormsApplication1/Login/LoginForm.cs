@@ -40,14 +40,18 @@ namespace WindowsFormsApplication1.Login
             if(logueo.logueoExitoso())
             {
                 SeleccionRoles seleccionRoles = new SeleccionRoles(this);
-                seleccionRoles.Show();
-
                 Hide();
+                seleccionRoles.Show();
             }
             else
             {
                 MessageBox.Show(logueo.mensageError, "Error", MessageBoxButtons.OK);
             }
+        }
+
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

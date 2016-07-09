@@ -40,9 +40,11 @@
             this.groupBox1.Controls.Add(this.cbFuncionalidades);
             this.groupBox1.Controls.Add(this.continuar);
             this.groupBox1.Controls.Add(this.volver);
-            this.groupBox1.Location = new System.Drawing.Point(10, 11);
+            this.groupBox1.Location = new System.Drawing.Point(13, 14);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(269, 90);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Size = new System.Drawing.Size(359, 111);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "¿Qué desea hacer?";
@@ -50,16 +52,18 @@
             // cbFuncionalidades
             // 
             this.cbFuncionalidades.FormattingEnabled = true;
-            this.cbFuncionalidades.Location = new System.Drawing.Point(10, 20);
+            this.cbFuncionalidades.Location = new System.Drawing.Point(13, 25);
+            this.cbFuncionalidades.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbFuncionalidades.Name = "cbFuncionalidades";
-            this.cbFuncionalidades.Size = new System.Drawing.Size(248, 21);
+            this.cbFuncionalidades.Size = new System.Drawing.Size(329, 24);
             this.cbFuncionalidades.TabIndex = 0;
             // 
             // continuar
             // 
-            this.continuar.Location = new System.Drawing.Point(139, 50);
+            this.continuar.Location = new System.Drawing.Point(185, 62);
+            this.continuar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.continuar.Name = "continuar";
-            this.continuar.Size = new System.Drawing.Size(120, 30);
+            this.continuar.Size = new System.Drawing.Size(160, 37);
             this.continuar.TabIndex = 1;
             this.continuar.Text = "Continuar >>";
             this.continuar.UseVisualStyleBackColor = true;
@@ -67,9 +71,10 @@
             // 
             // volver
             // 
-            this.volver.Location = new System.Drawing.Point(10, 50);
+            this.volver.Location = new System.Drawing.Point(13, 62);
+            this.volver.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.volver.Name = "volver";
-            this.volver.Size = new System.Drawing.Size(120, 30);
+            this.volver.Size = new System.Drawing.Size(160, 37);
             this.volver.TabIndex = 2;
             this.volver.Text = "<< Volver";
             this.volver.UseVisualStyleBackColor = true;
@@ -77,14 +82,15 @@
             // 
             // SeleccionFuncionalidades
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(291, 115);
+            this.ClientSize = new System.Drawing.Size(388, 142);
             this.Controls.Add(this.groupBox1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "SeleccionFuncionalidades";
             this.Text = "SeleccionFuncionalidades";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SeleccionFuncionalidades_FormClosed);
+            this.Load += new System.EventHandler(this.SeleccionFuncionalidades_Load);
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 

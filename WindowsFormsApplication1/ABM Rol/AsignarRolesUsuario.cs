@@ -74,12 +74,17 @@ namespace WindowsFormsApplication1.ABM_Rol
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
-            formAnterior.Show();
-
             Hide();
+
+            formAnterior.Show();
         }
 
         private void usuariosDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void AsignarRolesUsuario_Load(object sender, EventArgs e)
         {
 
         }

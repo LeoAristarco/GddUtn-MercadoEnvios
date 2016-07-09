@@ -71,8 +71,8 @@ namespace WindowsFormsApplication1.ABM_Rol
 
         private void Volver_Button_Click(object sender, EventArgs e)
         {
-            formAnterior.Show();
             Hide();
+            formAnterior.Show();
         }
 
         private void Nuevo_Button_Click(object sender, EventArgs e)
@@ -86,9 +86,10 @@ namespace WindowsFormsApplication1.ABM_Rol
         private void btnAsignarRoles_Click(object sender, EventArgs e)
         {
             AsignarRolesUsuario asignarRolesUsuario = new AsignarRolesUsuario(this);
-            asignarRolesUsuario.Show();
 
             Hide();
+
+            asignarRolesUsuario.Show();
         }
 
         private void Modificar_Button_Click(object sender, EventArgs e)

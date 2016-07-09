@@ -142,8 +142,8 @@ namespace WindowsFormsApplication1.Historial_Cliente
         private void btnAbrirPublicacion_Click(object sender, EventArgs e)
         {
             DetallePublicacion verPublicacion = new DetallePublicacion(publicacionSeleccionada, this, usuario);
-            verPublicacion.ShowDialog();
             Hide();
+            verPublicacion.ShowDialog();
         }
 
         private void btnVolver_Click(object sender, EventArgs e)

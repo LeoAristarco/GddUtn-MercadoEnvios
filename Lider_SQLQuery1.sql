@@ -198,6 +198,43 @@ create trigger tr_insertarCompra
 	
 
 go
+
+
+create procedure st_buscar_publicaciones_ULTIMA_PAGINA
+@descripcion nvarchar(255) = null,
+@rubroId nvarchar(255)= null,
+@ultimaPagina int output
+AS
+begin
+declare @paginas int
+
+ select @paginas=count(publicaciones)
+ from(
+      select (row_number() over (order by id_publicacion desc) ) as publicaciones
+      from PUBLICACION
+      inner join VISIBILIDAD on id_visibilidad = visibilidad
+      inner join ESTADO_PUBLICACION on id_estado = estado_publicacion
+      inner join TIPO_PUBLICACION on id_tipo = tipo_publicacion
+      inner join RUBRO on id_rubro = rubro
+      where (descripcion like '%' + @descripcion + '%') and 
+      estado_nombre <> 'BORRADOR' and estado_nombre <> 'FINALIZADO' and
+      (id_rubro = @rubroId OR @rubroId IS NULL)
+      
+      ) gg_vieja
+
+	  if((@paginas%10)<>0)
+	  begin
+	       set @ultimaPagina = (@paginas/10)+1
+	  end
+	  else
+	  begin
+	       set @ultimaPagina = (@paginas/10)
+	  end
+
+end
+
+
+go
 	
 -------------- FIN  funcionalidad Comprar/Ofertar----------------------------------------------------------------------
 

@@ -85,9 +85,9 @@ namespace WindowsFormsApplication1.ABM_Usuario.Empresa
         {
             ModificarEmpresa modificar = new ModificarEmpresa(empresaSeleccionada, this);
 
-            modificar.ShowDialog();
-
             Hide();
+
+            modificar.ShowDialog();
         }
     }
 }

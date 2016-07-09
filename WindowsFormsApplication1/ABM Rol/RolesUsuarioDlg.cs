@@ -95,6 +95,11 @@ namespace WindowsFormsApplication1.ABM_Rol
                 rolesDelSistema[indice].habilitado = !rolesDelSistema[indice].habilitado;
             }
         }
+
+        private void RolesUsuarioDlg_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 
