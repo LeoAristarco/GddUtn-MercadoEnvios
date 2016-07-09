@@ -27,9 +27,9 @@ drop procedure st_resumenDeEstrellasDadas
 
 drop procedure st_ultimas5compras
 
-drop PROCEDUR st_comprasYSubastasDeCliente
+drop procedure st_comprasYSubastasDeCliente
 
-drop PROCEDUR st_cantidadPaginasDeComprasYSubastasCliente
+drop procedure st_cantidadPaginasDeComprasYSubastasCliente
 
 drop PROCEDURE sp_AgregarVisibilidad
 
@@ -44,30 +44,27 @@ drop function fu_precio_visibilidad
 
 drop PROCEDURE sp_AgregarPublicacion
 
-drop PROCEDUR st_top5_vendedores_menos_venta
+drop procedure st_top5_vendedores_menos_venta
 
-drop PROCEDUR st_top5_clientes_mas_compras
+drop procedure st_top5_clientes_mas_compras
 
-drop PROCEDUR st_top5_vendedores_mayor_facturas
+drop procedure st_top5_vendedores_mayor_facturas
 
 
-drop PROCEDUR st_buscar_clientes
+drop procedure st_buscar_clientes
 
-drop PROCEDUR st_agregar_cliente
+drop procedure st_agregar_cliente
 
-drop PROCEDUR st_modificar_cliente
+drop procedure st_modificar_cliente
 
-drop PROCEDUR st_buscar_empresas
+drop procedure st_buscar_empresas
 
-drop PROCEDUR st_agregar_empresa
+drop procedure st_agregar_empresa
 
-drop PROCEDUR st_modificar_empresa
+drop procedure st_modificar_empresa
 
 
 drop PROCEDURE st_actualizar_publicaciones_vencidas
-
-
-
 
 
 
