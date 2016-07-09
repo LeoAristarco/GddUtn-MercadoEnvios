@@ -237,40 +237,46 @@
     </Compile>
     <Compile Include="Clases\RubroRepository.cs" />
     <Compile Include="Clases\TipoPublicacionRepository.cs" />
-    <Compile Include="Historial Cliente\Historial.cs">
+    <Compile Include="Historial Cliente\HistorialCliente.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Historial Cliente\Historial.Designer.cs">
+    <Compile Include="Historial Cliente\HistorialCliente.Designer.cs">
+      <DependentUpon>HistorialCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Historial Cliente\viejo\Historial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Historial Cliente\viejo\Historial.Designer.cs">
       <DependentUpon>Historial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Historial Cliente\HistorialCompras.cs">
+    <Compile Include="Historial Cliente\viejo\HistorialCompras.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Historial Cliente\HistorialCompras.Designer.cs">
+    <Compile Include="Historial Cliente\viejo\HistorialCompras.Designer.cs">
       <DependentUpon>HistorialCompras.cs</DependentUpon>
     </Compile>
-    <Compile Include="Historial Cliente\HistorialOfertas.cs">
+    <Compile Include="Historial Cliente\viejo\HistorialOfertas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Historial Cliente\HistorialOfertas.Designer.cs">
+    <Compile Include="Historial Cliente\viejo\HistorialOfertas.Designer.cs">
       <DependentUpon>HistorialOfertas.cs</DependentUpon>
     </Compile>
-    <Compile Include="Historial Cliente\HistorialSubastas.cs">
+    <Compile Include="Historial Cliente\viejo\HistorialSubastas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Historial Cliente\HistorialSubastas.Designer.cs">
+    <Compile Include="Historial Cliente\viejo\HistorialSubastas.Designer.cs">
       <DependentUpon>HistorialSubastas.cs</DependentUpon>
     </Compile>
-    <Compile Include="Historial Cliente\SeleccionHistorial.cs">
+    <Compile Include="Historial Cliente\viejo\SeleccionHistorial.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Historial Cliente\SeleccionHistorial.Designer.cs">
+    <Compile Include="Historial Cliente\viejo\SeleccionHistorial.Designer.cs">
       <DependentUpon>SeleccionHistorial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Historial Cliente\VerPublicacion.cs">
+    <Compile Include="Historial Cliente\viejo\VerPublicacion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Historial Cliente\VerPublicacion.Designer.cs">
+    <Compile Include="Historial Cliente\viejo\VerPublicacion.Designer.cs">
       <DependentUpon>VerPublicacion.cs</DependentUpon>
     </Compile>
     <Compile Include="Listado Estadistico\ClientesMasCompras.cs" />
@@ -397,16 +403,19 @@
     <EmbeddedResource Include="Generar Publicación\GenerarPublicacion.resx">
       <DependentUpon>GenerarPublicacion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Historial Cliente\HistorialOfertas.resx">
+    <EmbeddedResource Include="Historial Cliente\HistorialCliente.resx">
+      <DependentUpon>HistorialCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Historial Cliente\viejo\HistorialOfertas.resx">
       <DependentUpon>HistorialOfertas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Historial Cliente\HistorialSubastas.resx">
+    <EmbeddedResource Include="Historial Cliente\viejo\HistorialSubastas.resx">
       <DependentUpon>HistorialSubastas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Historial Cliente\SeleccionHistorial.resx">
+    <EmbeddedResource Include="Historial Cliente\viejo\SeleccionHistorial.resx">
       <DependentUpon>SeleccionHistorial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Historial Cliente\VerPublicacion.resx">
+    <EmbeddedResource Include="Historial Cliente\viejo\VerPublicacion.resx">
       <DependentUpon>VerPublicacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Listado Estadistico\ListadoEstadistico.resx">

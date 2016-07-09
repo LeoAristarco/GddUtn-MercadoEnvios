@@ -14,14 +14,14 @@ namespace WindowsFormsApplication1.ComprarOfertar
 {
     public partial class DetallePublicacion : Form
     {
-        private Comprar_Ofertar comprarOfertar;
+        private Form formAnterior;
         private Publicacion publicacion;
         private Usuario user;
 
-        public DetallePublicacion(Publicacion publicacionSeleccionada, Comprar_Ofertar comprarOfertar,Usuario usuario)
+        public DetallePublicacion(Publicacion publicacionSeleccionada, Form formAnterior, Usuario usuario)
         {
             this.publicacion = publicacionSeleccionada;
-            this.comprarOfertar = comprarOfertar;
+            this.formAnterior = formAnterior;
             user = usuario;
             InitializeComponent();
         }
@@ -74,7 +74,7 @@ namespace WindowsFormsApplication1.ComprarOfertar
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            comprarOfertar.Show();
+            formAnterior.Show();
             Close();
         }
     }

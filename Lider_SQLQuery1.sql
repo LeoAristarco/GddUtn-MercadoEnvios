@@ -271,6 +271,68 @@ as begin
 	  where comprador = @id_usuario and calif_estrellas is null
 end
 
+go
+
+create procedure st_comprasYSubastasDeCliente
+@idUsuario numeric(10,0),
+@pagina int
+as
+begin	
+	 select*
+ from(
+      select id_publicacion,
+			 descripcion,
+			 stock,
+			 fecha_inicio,
+			 fecha_vencimiento,
+			 precio,
+			 rubro,
+			 visibilidad,
+			 estado_publicacion,
+			 usuario_responsable,
+			 tipo_publicacion,
+			 envio,
+			 factura,
+			 precio_visibilidad,
+	  (row_number() over (order by id_publicacion desc) ) as publicaciones
+      from PUBLICACION
+	  inner join OFERTA on OFERTA.publicacion=id_publicacion
+	  inner join COMPRA on COMPRA.publicacion=id_publicacion
+      inner join VISIBILIDAD on id_visibilidad = visibilidad
+      inner join ESTADO_PUBLICACION on id_estado = estado_publicacion
+      inner join TIPO_PUBLICACION on id_tipo = tipo_publicacion
+      inner join RUBRO on id_rubro = rubro
+      where (comprador=@idUsuario or ofertante=@idUsuario)
+      
+      ) gg_vieja
+ where publicaciones between (@pagina*10)-9 and (@pagina*10)
+ order by precio_visibilidad desc
+
+end
+
+go
+
+create procedure st_cantidadPaginasDeComprasYSubastasCliente
+@idUsuario numeric(10,0),
+@ultimaPagina numeric(10,0) out
+as
+begin	
+      select @ultimaPagina=count(*)
+      from PUBLICACION
+	  inner join OFERTA on OFERTA.publicacion=id_publicacion
+	  inner join COMPRA on COMPRA.publicacion=id_publicacion
+      where (comprador=@idUsuario or ofertante=@idUsuario)
+
+	  if(((@ultimaPagina/10) - floor(@ultimaPagina/10))>0)
+		set @ultimaPagina = (@ultimaPagina/10) + 1;
+
+	  else
+		set @ultimaPagina = @ultimaPagina/10;
+end
+
+go
+
+
 --resumen de estrallas dadadas, ya fue creado en "Calificar al vendedor" (se recicla)
 -- "st_resumenDeEstrellasDadas"
 
@@ -652,14 +714,14 @@ create procedure st_agregar_cliente
 @tipo_documento nvarchar(255)
 as
 begin
-
-declare @idUsuario numeric(10,0)=(select max(id_usuario) from USUARIO)+1;
 	
 	insert into USUARIO(nick,pass,intentos_login,primer_ingreso,baja_logica,fecha_alta_sistema,fecha_nacimiento,
 						mail,telefono,calle,numero_calle,numero_piso,departamento,localidad,codigo_postal
 					   )
 	values (@nick,@pass,@fechaAltaSistema,0,0,0,@fechaAltaSistema,@fechaNacimiento,@mail,@telefono,@calle,@numeroCalle,
 			@numeroPiso,@departamento,@localidad,@codigoPostal)
+
+	declare @idUsuario numeric(10,0)=scope_identity()
 
 	insert into CLIENTE(id_usuario,nombre,apellido,dni,tipo_documento)
 	values (@idUsuario,@nombre,@apellido,@dni,@tipo_documento)
@@ -735,14 +797,14 @@ create procedure st_agregar_empresa
 @rubro nvarchar(255)
 as
 begin
-
-declare @idUsuario numeric(10,0)=(select max(id_usuario) from USUARIO)+1;
 	
 	insert into USUARIO(nick,pass,intentos_login,primer_ingreso,baja_logica,fecha_alta_sistema,fecha_nacimiento,
 						mail,telefono,calle,numero_calle,numero_piso,departamento,localidad,codigo_postal
 					   )
 	values (@nick,@pass,@fechaAltaSistema,0,0,0,@fechaAltaSistema,@fechaNacimiento,@mail,@telefono,@calle,@numeroCalle,
 			@numeroPiso,@departamento,@localidad,@codigoPostal)
+
+	declare @idUsuario numeric(10,0)=scope_identity()
 
 	insert into EMPRESA(razon_social,cuit,nombre_contacto,ciudad,reputacion,rubro,cantidad_votos)
 	values (@razonSocial,@cuit,@nombreContacto,@ciudad,0,@rubro,0)

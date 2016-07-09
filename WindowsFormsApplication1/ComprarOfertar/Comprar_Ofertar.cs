@@ -89,7 +89,7 @@ namespace WindowsFormsApplication1.ComprarOfertar
 
             if (cantidadMaxDePags==0)
             {
-                cantidadMaxDePags = repositorio.cantidadDePaginasFiltradas(filtroDescripcion.Text, rubroSeleccionado, numeroPagina);
+                cantidadMaxDePags = repositorio.cantidadDePaginasFiltradas(filtroDescripcion.Text, rubroSeleccionado);
             }
 
             if (publicacionesFiltradas.Count>0)

@@ -59,6 +59,37 @@ namespace WindowsFormsApplication1.Clases
             db.ejecutarConsulta(insert + valores, parametros);
         }
 
+        internal int cantidadDePaginasComprasYOfertasDeCliente(Usuario usuario)
+        {
+            int cantidadPaginas = 0;
+
+            List<SqlParameter> parametros = new List<SqlParameter>();
+
+            db.agregarParametro(parametros, "@idUsuario", usuario.id);
+
+            cantidadPaginas = toInt(db.ejecutarStoredConRetorno("st_cantidadPaginasDeComprasYSubastasCliente", parametros, "@ultimaPagina", 0));
+
+            return cantidadPaginas;
+        }
+
+        internal List<Publicacion> obtenerComprasYOfertasPorPagina(Usuario usuario, int numeroPagina)
+        {
+            List<SqlParameter> parametros = new List<SqlParameter>();
+            db.agregarParametro(parametros, "@idUsuario", usuario.id);
+            db.agregarParametro(parametros, "@pagina", numeroPagina);
+
+            List<Dictionary<string, object>> tabla = db.ejecutarStoredProcedure("st_comprasYSubastasDeCliente", parametros);
+
+            List<Publicacion> publicaciones = new List<Publicacion>();
+
+            foreach (Dictionary<string, object> item in tabla)
+            {
+                publicaciones.Add(deserializarPublicacionConIdYSinDatosFactura(item));
+            }
+
+            return publicaciones;
+        }
+
         internal List<Publicacion> obtenerPublicacionesPorFiltro(string text, Rubro rubroSeleccionado, int numeroPagina)
         {
             List<SqlParameter> parametros = new List<SqlParameter>();
@@ -114,7 +145,7 @@ namespace WindowsFormsApplication1.Clases
             return publicacion;
         }
 
-        internal int cantidadDePaginasFiltradas(string text, Rubro rubroSeleccionado, int numeroPagina)
+        internal int cantidadDePaginasFiltradas(string text, Rubro rubroSeleccionado)
         {
             int cantidadPaginas = 0;
 
