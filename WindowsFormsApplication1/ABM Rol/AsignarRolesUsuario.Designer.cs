@@ -83,6 +83,7 @@
             this.usuariosDataGrid.Size = new System.Drawing.Size(426, 287);
             this.usuariosDataGrid.TabIndex = 2;
             this.usuariosDataGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.UsuariosDataGrid_CellClick);
+            this.usuariosDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.usuariosDataGrid_CellContentClick);
             // 
             // AsignarRolesUsuario
             // 

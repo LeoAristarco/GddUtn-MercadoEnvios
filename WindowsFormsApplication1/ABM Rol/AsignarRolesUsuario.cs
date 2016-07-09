@@ -36,9 +36,12 @@ namespace WindowsFormsApplication1.ABM_Rol
         private void UsuariosDataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             //hay que validar que no clickee el la ultima fila que rome todo
-
-            usuario.nick = usuariosDataGrid.CurrentRow.Cells[0].Value.ToString();
-            usuario.id = Convert.ToInt64(usuariosDataGrid.CurrentRow.Cells[1].Value);
+            //intento validarlo pero no funciona
+            if (usuariosDataGrid.CurrentRow.Index < usuariosDataGrid.RowCount)
+            {
+                usuario.nick = usuariosDataGrid.CurrentRow.Cells[0].Value.ToString();
+                usuario.id = Convert.ToInt64(usuariosDataGrid.CurrentRow.Cells[1].Value);
+            }
         }
 
         private void inicializarDataGrid()
@@ -74,6 +77,11 @@ namespace WindowsFormsApplication1.ABM_Rol
             formAnterior.Show();
 
             Hide();
+        }
+
+        private void usuariosDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

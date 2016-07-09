@@ -71,6 +71,22 @@ namespace WindowsFormsApplication1.ABM_Rol
 
             return usuarios;
         }
+        
+        public void actualizarRolPorUsuario(Usuario user, List<Rol> rolesActualizados)
+        {
+            foreach (Rol rol in rolesActualizados)
+            {
+                string procedimiento = "ACTUALIZAR_ROL_POR_USUARIO";
+
+                SqlParameter pIdSUsuario = new SqlParameter("@id_usuario", user.id);
+                SqlParameter pIdRol = new SqlParameter("@id_rol", rol.id);
+                SqlParameter pLoTieneElUSuario = new SqlParameter("@lo_tiene_el_usuario", rol.habilitado);
+
+                List<SqlParameter> parametros = new List<SqlParameter> { pIdSUsuario , pIdRol, pLoTieneElUSuario};
+
+                db.ejecutarStoredProcedure(procedimiento, parametros);
+            }
+        }
     }
 }
 

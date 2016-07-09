@@ -35,6 +35,7 @@ namespace WindowsFormsApplication1.Login.ClasesLogin
         {
             dataBase.abrirConexion();
 
+            logueo.roles.Clear();
             dataReader = dataBase.getDataReader(nombreProcedimientoSQL, 'P', parametros);
 
             if (!dataReader.HasRows)

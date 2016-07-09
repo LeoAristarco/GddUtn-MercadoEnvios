@@ -40,18 +40,60 @@ namespace WindowsFormsApplication1.ABM_Rol
             //carga de la lista de checkboc
             foreach (Rol rol in rolesDelSistema)
             {
-                cblRoles.Items.Add(rol.nombre, rolesDelUsuario.Any(x => x.id == rol.id));
+                if (rolesDelUsuario.Any(x => x.id == rol.id))
+                {
+                    rol.habilitado = true;
+                }
+                else
+                {
+                    rol.habilitado = false;
+                }
+
+                cblRoles.Items.Add(rol.nombre, rol.habilitado);
             }
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
+            try
+            {
+                repo.actualizarRolPorUsuario(usuario, rolesDelSistema);
+                MessageBox.Show("Actualizacion Realizada", "Aviso", MessageBoxButtons.OK);
+                Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error al actualizar", "Error", MessageBoxButtons.OK);
+                throw;
+            }
 
+            
         }
 
         private void cblRoles_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void cblRoles_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void cblRoles_SelectedValueChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void cblRoles_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            //cada vez que hago click modifico la lista de roles del sistema porque cuando guarde mando esa a guardar
+
+            int indice = cblRoles.SelectedIndex;
+            if (indice >= 0)
+            {
+                rolesDelSistema[indice].habilitado = !rolesDelSistema[indice].habilitado;
+            }
         }
     }
 }

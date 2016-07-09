@@ -35,6 +35,8 @@ namespace WindowsFormsApplication1.Login
 
         public void cargarComboBoxConDiccionarioRoles()
         {
+            logueoDAO.loguear(logueo);
+
             comboBox_Roles.Items.Clear();
             foreach (KeyValuePair<double, string> rol in logueo.roles)
             {

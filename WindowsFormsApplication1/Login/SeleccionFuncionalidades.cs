@@ -58,20 +58,23 @@ namespace WindowsFormsApplication1.Login
 
         private void continuar_Click(object sender, EventArgs e)
         {
-            string funcionalidadSeleccionada = cbFuncionalidades.SelectedItem.ToString();
+            cbFuncionalidades.ResetText();
 
-            if (cbFuncionalidades.SelectedIndex == -1)
+            if (cbFuncionalidades.SelectedItem == null)
             {
                 MessageBox.Show("No ha seleccionado ninguna Funcionalidad", "Error", MessageBoxButtons.OK);
                 return;
             }
 
+            string funcionalidadSeleccionada = cbFuncionalidades.SelectedItem.ToString();
+            
             redirigirAFuncionalidadElegida(funcionalidadSeleccionada);
         }
 
         private void volver_Click(object sender, EventArgs e)
         {
             formPadre.Show();
+            formPadre.cargarComboBoxConDiccionarioRoles();
             Hide();
         }
 

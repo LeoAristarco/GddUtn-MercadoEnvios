@@ -118,6 +118,9 @@
             this.cblRoles.Name = "cblRoles";
             this.cblRoles.Size = new System.Drawing.Size(182, 94);
             this.cblRoles.TabIndex = 1;
+            this.cblRoles.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.cblRoles_ItemCheck);
+            this.cblRoles.Click += new System.EventHandler(this.cblRoles_Click);
+            this.cblRoles.SelectedValueChanged += new System.EventHandler(this.cblRoles_SelectedValueChanged);
             // 
             // lblRoles
             // 
@@ -137,7 +140,7 @@
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.groupBox1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "RolesUsuarioDlg";
             this.Text = "RolesUsuarioDlg";
             this.groupBox1.ResumeLayout(false);

@@ -670,6 +670,7 @@ end
 
 go 
 
+
 --esto hay que mejorarlo agregandole paginado
 if EXISTS (SELECT * FROM sysobjects WHERE name='OBTENER_USUARIOS_PARA_ABM_ROL') 
 drop procedure OBTENER_USUARIOS_PARA_ABM_ROL
@@ -680,6 +681,47 @@ create procedure OBTENER_USUARIOS_PARA_ABM_ROL
 as begin 
 	select id_usuario, nick
 	from USUARIO
+end
+
+go 
+
+
+if EXISTS (SELECT * FROM sysobjects WHERE name='ACTUALIZAR_ROL_POR_USUARIO') 
+drop procedure ACTUALIZAR_ROL_POR_USUARIO
+
+go
+
+create procedure ACTUALIZAR_ROL_POR_USUARIO
+	@id_usuario numeric(18,0),
+	@id_rol numeric(18,0),
+	@lo_tiene_el_usuario bit
+as begin 
+	
+	declare @cont int;
+
+	select @cont = COUNT(*)
+	from ROL_POR_USUARIO
+	where 
+		id_rol = @id_rol and
+		id_usuario = @id_usuario;
+
+	if @cont > 0 begin
+		if @lo_tiene_el_usuario = 0 begin
+			delete
+			from ROL_POR_USUARIO
+			where 
+				id_rol = @id_rol and
+				id_usuario = @id_usuario;
+		end
+	end
+	else begin
+		if @lo_tiene_el_usuario = 1 begin
+			insert into ROL_POR_USUARIO
+			values
+				(@id_usuario, @id_rol);
+		end
+	end
+
 end
 
 go 
