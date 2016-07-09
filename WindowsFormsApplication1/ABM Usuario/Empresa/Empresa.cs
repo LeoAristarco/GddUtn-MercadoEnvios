@@ -7,7 +7,7 @@ using WindowsFormsApplication1.Clases;
 
 namespace WindowsFormsApplication1.ABM_Usuario.Empresa
 {
-    class Empresa:Usuario
+    public class Empresa:Usuario
     {
         public long idEmpresa;
 	    public string razonSocial;

@@ -73,6 +73,7 @@
             this.bModificar.TabIndex = 2;
             this.bModificar.Text = "Modificar";
             this.bModificar.UseVisualStyleBackColor = true;
+            this.bModificar.Click += new System.EventHandler(this.bModificar_Click);
             // 
             // bVolver
             // 

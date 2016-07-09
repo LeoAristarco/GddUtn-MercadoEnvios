@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using WindowsFormsApplication1.ABM_Usuario.Cliente;
+using WindowsFormsApplication1.ABM_Usuario.Empresa;
 
 namespace WindowsFormsApplication1.Clases
 {
@@ -40,6 +41,76 @@ namespace WindowsFormsApplication1.Clases
             }
 
             return clientesEncontrados;
+        }
+
+        internal void agregarEmpresa(Empresa nuevaEmpresa)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal bool yaExisteCuit(string cuit)
+        {
+            string consulta = "select count(*) from EMPRESA where cuit='" + cuit + "'";
+
+            return toInt(db.ejecutarConsulta(consulta)) > 0;
+        }
+
+        internal List<Empresa> buscarEmpresas(string razonSocial, string cuit, string mail)
+        {
+
+            List<SqlParameter> parametros = new List<SqlParameter>();
+
+            db.agregarParametro(parametros, "@razonSocial", razonSocial);
+            db.agregarParametro(parametros, "@cuit", cuit);
+            db.agregarParametro(parametros, "@mail", mail);
+
+            List<Dictionary<string, object>> tabla = db.ejecutarStoredProcedure("st_buscar_empresas", parametros);
+
+            List<Empresa> empresasEncontradas = new List<Empresa>();
+
+            foreach (Dictionary<string, object> fila in tabla)
+            {
+                empresasEncontradas.Add(deserializarEmpresa(fila));
+            }
+
+            return empresasEncontradas;
+
+        }
+
+        internal bool yaExisteRazonSocial(string razonSocial)
+        {
+            string consulta = "select count(*) from EMPRESA where razon_social='" + razonSocial + "'";
+
+            return toInt(db.ejecutarConsulta(consulta)) > 0;
+        }
+
+        private Empresa deserializarEmpresa(Dictionary<string, object> fila)
+        {
+            Empresa empresa = new Empresa();
+
+            empresa.id = toLong(fila["id_usuario"]);
+            empresa.idEmpresa = toLong(fila["id_empresa"]);
+            empresa.mail = fila["mail"].ToString();
+            empresa.nick = fila["nick"].ToString();
+            empresa.pass = fila["pass"].ToString();
+            empresa.calle = fila["calle"].ToString();
+            empresa.codigoPostal = toInt(fila["codigo_postal"]);
+            empresa.departamento = fila["departamento"].ToString();
+            empresa.localidad = fila["localidad"].ToString();
+            empresa.numeroDeCalle = toInt(fila["numero_calle"]);
+            empresa.numeroDePiso = toInt(fila["numero_piso"]);
+            empresa.telefono = fila["telefono"].ToString();
+            empresa.bajaLogica = toBool(fila["baja_logica"]);
+            empresa.fechaDeNacimiento = toDate(fila["fecha_nacimiento"]);
+            empresa.razonSocial = fila["razon_social"].ToString();
+            empresa.nombreDeContacto = fila["nombre_contacto"].ToString();
+            empresa.ciudad = fila["ciudad"].ToString();
+            empresa.rubro = fila["rubro"].ToString();
+            empresa.cuit = fila["cuit"].ToString();
+            empresa.reputacion = toDouble(fila["reputacion"]);
+            empresa.cantidadDeVotos = toInt(fila["cantidad_votos"]);
+
+            return empresa;
         }
 
         private Cliente deserializarCliente(Dictionary<string, object> fila)

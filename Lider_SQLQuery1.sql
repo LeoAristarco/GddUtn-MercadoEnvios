@@ -635,6 +635,26 @@ go
 
 --------------------------FIN ABM CLIENTE-------------------------------------------------------------------------------------
 
+-------------------------------------ABM EMPRESA---------------------------------------------------------------------------------------
+
+create procedure st_buscar_empresas
+@razonSocial nvarchar(255)='',
+@cuit nvarchar(50)='',
+@mail nvarchar(255)=''
+as
+begin
+
+	select * from EMPRESA as e
+	inner join USUARIO as u on e.id_usuario=u.id_usuario
+	where (e.razon_social=@razonSocial or @razonSocial='') and 
+		  (e.cuit=@cuit or @cuit='') and
+		  (u.mail=@mail or @mail='')
+end
+
+go
+
+--------------------------FIN ABM EMPRESA-------------------------------------------------------------------------------------
+
 
 
 --Al iniciar la aplicación se tiene que barrer la base de datos para saber que publicaciones

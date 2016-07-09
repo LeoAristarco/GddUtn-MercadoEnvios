@@ -32,39 +32,54 @@
             this.back = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.registrar = new System.Windows.Forms.Button();
-            this.tNombreDeContacto = new System.Windows.Forms.TextBox();
-            this.tCuit = new System.Windows.Forms.TextBox();
-            this.tCiudad = new System.Windows.Forms.TextBox();
-            this.tCodigoPostal = new System.Windows.Forms.TextBox();
-            this.tDireccion = new System.Windows.Forms.TextBox();
-            this.tTelefono = new System.Windows.Forms.TextBox();
-            this.tEmail = new System.Windows.Forms.TextBox();
-            this.tRazonSocial = new System.Windows.Forms.TextBox();
+            this.nombreDeContacto = new System.Windows.Forms.TextBox();
+            this.cuit = new System.Windows.Forms.TextBox();
+            this.ciudad = new System.Windows.Forms.TextBox();
+            this.codigoPostal = new System.Windows.Forms.TextBox();
+            this.telefono = new System.Windows.Forms.TextBox();
+            this.email = new System.Windows.Forms.TextBox();
+            this.razonSocial = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.localidad = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.departamento = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.numeroDePiso = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.numeroDeCalle = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.nacimientoAnio = new System.Windows.Forms.ComboBox();
+            this.nacimientoMes = new System.Windows.Forms.ComboBox();
+            this.nacimientoDia = new System.Windows.Forms.ComboBox();
+            this.calle = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.rubro = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(301, 395);
+            this.btnLimpiar.Location = new System.Drawing.Point(299, 664);
             this.btnLimpiar.Margin = new System.Windows.Forms.Padding(4);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(113, 37);
             this.btnLimpiar.TabIndex = 6;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // back
             // 
-            this.back.Location = new System.Drawing.Point(13, 395);
+            this.back.Location = new System.Drawing.Point(11, 664);
             this.back.Margin = new System.Windows.Forms.Padding(4);
             this.back.Name = "back";
             this.back.Size = new System.Drawing.Size(113, 37);
@@ -74,119 +89,125 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.rubro);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.nacimientoAnio);
+            this.groupBox1.Controls.Add(this.localidad);
+            this.groupBox1.Controls.Add(this.nacimientoMes);
             this.groupBox1.Controls.Add(this.registrar);
-            this.groupBox1.Controls.Add(this.tNombreDeContacto);
-            this.groupBox1.Controls.Add(this.tCuit);
-            this.groupBox1.Controls.Add(this.tCiudad);
-            this.groupBox1.Controls.Add(this.tCodigoPostal);
-            this.groupBox1.Controls.Add(this.tDireccion);
-            this.groupBox1.Controls.Add(this.tTelefono);
-            this.groupBox1.Controls.Add(this.tEmail);
-            this.groupBox1.Controls.Add(this.tRazonSocial);
+            this.groupBox1.Controls.Add(this.nacimientoDia);
+            this.groupBox1.Controls.Add(this.label14);
+            this.groupBox1.Controls.Add(this.nombreDeContacto);
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.departamento);
+            this.groupBox1.Controls.Add(this.cuit);
+            this.groupBox1.Controls.Add(this.label13);
+            this.groupBox1.Controls.Add(this.ciudad);
+            this.groupBox1.Controls.Add(this.numeroDePiso);
+            this.groupBox1.Controls.Add(this.codigoPostal);
+            this.groupBox1.Controls.Add(this.label12);
+            this.groupBox1.Controls.Add(this.telefono);
+            this.groupBox1.Controls.Add(this.numeroDeCalle);
+            this.groupBox1.Controls.Add(this.email);
+            this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Controls.Add(this.razonSocial);
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.calle);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.label16);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Location = new System.Drawing.Point(13, 13);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(400, 363);
+            this.groupBox1.Size = new System.Drawing.Size(400, 634);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Nueva empresa";
             // 
             // registrar
             // 
-            this.registrar.Location = new System.Drawing.Point(187, 316);
+            this.registrar.Location = new System.Drawing.Point(189, 583);
             this.registrar.Margin = new System.Windows.Forms.Padding(4);
             this.registrar.Name = "registrar";
             this.registrar.Size = new System.Drawing.Size(203, 37);
             this.registrar.TabIndex = 8;
             this.registrar.Text = "Registrar";
             this.registrar.UseVisualStyleBackColor = true;
+            this.registrar.Click += new System.EventHandler(this.registrar_Click);
             // 
-            // tNombreDeContacto
+            // nombreDeContacto
             // 
-            this.tNombreDeContacto.Location = new System.Drawing.Point(187, 279);
-            this.tNombreDeContacto.Margin = new System.Windows.Forms.Padding(4);
-            this.tNombreDeContacto.MaxLength = 50;
-            this.tNombreDeContacto.Name = "tNombreDeContacto";
-            this.tNombreDeContacto.Size = new System.Drawing.Size(201, 22);
-            this.tNombreDeContacto.TabIndex = 7;
+            this.nombreDeContacto.Location = new System.Drawing.Point(187, 493);
+            this.nombreDeContacto.Margin = new System.Windows.Forms.Padding(4);
+            this.nombreDeContacto.MaxLength = 50;
+            this.nombreDeContacto.Name = "nombreDeContacto";
+            this.nombreDeContacto.Size = new System.Drawing.Size(201, 22);
+            this.nombreDeContacto.TabIndex = 7;
             // 
-            // tCuit
+            // cuit
             // 
-            this.tCuit.Location = new System.Drawing.Point(187, 242);
-            this.tCuit.Margin = new System.Windows.Forms.Padding(4);
-            this.tCuit.MaxLength = 50;
-            this.tCuit.Name = "tCuit";
-            this.tCuit.Size = new System.Drawing.Size(201, 22);
-            this.tCuit.TabIndex = 6;
+            this.cuit.Location = new System.Drawing.Point(187, 456);
+            this.cuit.Margin = new System.Windows.Forms.Padding(4);
+            this.cuit.MaxLength = 50;
+            this.cuit.Name = "cuit";
+            this.cuit.Size = new System.Drawing.Size(201, 22);
+            this.cuit.TabIndex = 6;
             // 
-            // tCiudad
+            // ciudad
             // 
-            this.tCiudad.Location = new System.Drawing.Point(187, 206);
-            this.tCiudad.Margin = new System.Windows.Forms.Padding(4);
-            this.tCiudad.MaxLength = 50;
-            this.tCiudad.Name = "tCiudad";
-            this.tCiudad.Size = new System.Drawing.Size(201, 22);
-            this.tCiudad.TabIndex = 5;
+            this.ciudad.Location = new System.Drawing.Point(187, 420);
+            this.ciudad.Margin = new System.Windows.Forms.Padding(4);
+            this.ciudad.MaxLength = 50;
+            this.ciudad.Name = "ciudad";
+            this.ciudad.Size = new System.Drawing.Size(201, 22);
+            this.ciudad.TabIndex = 5;
             // 
-            // tCodigoPostal
+            // codigoPostal
             // 
-            this.tCodigoPostal.Location = new System.Drawing.Point(187, 169);
-            this.tCodigoPostal.Margin = new System.Windows.Forms.Padding(4);
-            this.tCodigoPostal.MaxLength = 50;
-            this.tCodigoPostal.Name = "tCodigoPostal";
-            this.tCodigoPostal.Size = new System.Drawing.Size(201, 22);
-            this.tCodigoPostal.TabIndex = 4;
+            this.codigoPostal.Location = new System.Drawing.Point(187, 333);
+            this.codigoPostal.Margin = new System.Windows.Forms.Padding(4);
+            this.codigoPostal.MaxLength = 50;
+            this.codigoPostal.Name = "codigoPostal";
+            this.codigoPostal.Size = new System.Drawing.Size(201, 22);
+            this.codigoPostal.TabIndex = 4;
             // 
-            // tDireccion
+            // telefono
             // 
-            this.tDireccion.Location = new System.Drawing.Point(187, 132);
-            this.tDireccion.Margin = new System.Windows.Forms.Padding(4);
-            this.tDireccion.MaxLength = 255;
-            this.tDireccion.Name = "tDireccion";
-            this.tDireccion.Size = new System.Drawing.Size(201, 22);
-            this.tDireccion.TabIndex = 3;
+            this.telefono.Location = new System.Drawing.Point(187, 95);
+            this.telefono.Margin = new System.Windows.Forms.Padding(4);
+            this.telefono.MaxLength = 18;
+            this.telefono.Name = "telefono";
+            this.telefono.Size = new System.Drawing.Size(201, 22);
+            this.telefono.TabIndex = 2;
             // 
-            // tTelefono
+            // email
             // 
-            this.tTelefono.Location = new System.Drawing.Point(187, 95);
-            this.tTelefono.Margin = new System.Windows.Forms.Padding(4);
-            this.tTelefono.MaxLength = 18;
-            this.tTelefono.Name = "tTelefono";
-            this.tTelefono.Size = new System.Drawing.Size(201, 22);
-            this.tTelefono.TabIndex = 2;
+            this.email.Location = new System.Drawing.Point(187, 58);
+            this.email.Margin = new System.Windows.Forms.Padding(4);
+            this.email.MaxLength = 50;
+            this.email.Name = "email";
+            this.email.Size = new System.Drawing.Size(201, 22);
+            this.email.TabIndex = 1;
             // 
-            // tEmail
+            // razonSocial
             // 
-            this.tEmail.Location = new System.Drawing.Point(187, 58);
-            this.tEmail.Margin = new System.Windows.Forms.Padding(4);
-            this.tEmail.MaxLength = 50;
-            this.tEmail.Name = "tEmail";
-            this.tEmail.Size = new System.Drawing.Size(201, 22);
-            this.tEmail.TabIndex = 1;
-            // 
-            // tRazonSocial
-            // 
-            this.tRazonSocial.Location = new System.Drawing.Point(187, 21);
-            this.tRazonSocial.Margin = new System.Windows.Forms.Padding(4);
-            this.tRazonSocial.MaxLength = 255;
-            this.tRazonSocial.Name = "tRazonSocial";
-            this.tRazonSocial.Size = new System.Drawing.Size(201, 22);
-            this.tRazonSocial.TabIndex = 0;
+            this.razonSocial.Location = new System.Drawing.Point(187, 21);
+            this.razonSocial.Margin = new System.Windows.Forms.Padding(4);
+            this.razonSocial.MaxLength = 255;
+            this.razonSocial.Name = "razonSocial";
+            this.razonSocial.Size = new System.Drawing.Size(201, 22);
+            this.razonSocial.TabIndex = 0;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(8, 327);
+            this.label11.Location = new System.Drawing.Point(10, 594);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(153, 17);
@@ -203,20 +224,10 @@
             this.label3.TabIndex = 10;
             this.label3.Text = "Teléfono";
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(8, 135);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(86, 17);
-            this.label4.TabIndex = 11;
-            this.label4.Text = "Dirección (*)";
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(8, 172);
+            this.label5.Location = new System.Drawing.Point(8, 336);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(113, 17);
@@ -226,7 +237,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(8, 283);
+            this.label8.Location = new System.Drawing.Point(8, 497);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(136, 17);
@@ -236,7 +247,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(8, 209);
+            this.label6.Location = new System.Drawing.Point(8, 423);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(52, 17);
@@ -266,23 +277,175 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(8, 246);
+            this.label2.Location = new System.Drawing.Point(8, 460);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(58, 17);
             this.label2.TabIndex = 4;
             this.label2.Text = "CUIT (*)";
             // 
-            // ABMEmpresas
+            // localidad
+            // 
+            this.localidad.Location = new System.Drawing.Point(187, 294);
+            this.localidad.Margin = new System.Windows.Forms.Padding(4);
+            this.localidad.MaxLength = 255;
+            this.localidad.Name = "localidad";
+            this.localidad.Size = new System.Drawing.Size(201, 22);
+            this.localidad.TabIndex = 56;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(8, 298);
+            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(88, 17);
+            this.label14.TabIndex = 57;
+            this.label14.Text = "Localidad (*)";
+            // 
+            // departamento
+            // 
+            this.departamento.Location = new System.Drawing.Point(187, 253);
+            this.departamento.Margin = new System.Windows.Forms.Padding(4);
+            this.departamento.MaxLength = 255;
+            this.departamento.Name = "departamento";
+            this.departamento.Size = new System.Drawing.Size(201, 22);
+            this.departamento.TabIndex = 54;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(8, 257);
+            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(121, 17);
+            this.label13.TabIndex = 55;
+            this.label13.Text = " Departamento (*)";
+            // 
+            // numeroDePiso
+            // 
+            this.numeroDePiso.Location = new System.Drawing.Point(187, 213);
+            this.numeroDePiso.Margin = new System.Windows.Forms.Padding(4);
+            this.numeroDePiso.MaxLength = 255;
+            this.numeroDePiso.Name = "numeroDePiso";
+            this.numeroDePiso.Size = new System.Drawing.Size(201, 22);
+            this.numeroDePiso.TabIndex = 52;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(8, 217);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(127, 17);
+            this.label12.TabIndex = 53;
+            this.label12.Text = "Numero de piso (*)";
+            // 
+            // numeroDeCalle
+            // 
+            this.numeroDeCalle.Location = new System.Drawing.Point(187, 172);
+            this.numeroDeCalle.Margin = new System.Windows.Forms.Padding(4);
+            this.numeroDeCalle.MaxLength = 255;
+            this.numeroDeCalle.Name = "numeroDeCalle";
+            this.numeroDeCalle.Size = new System.Drawing.Size(201, 22);
+            this.numeroDeCalle.TabIndex = 50;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(8, 176);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(130, 17);
+            this.label10.TabIndex = 51;
+            this.label10.Text = "Numero de calle (*)";
+            // 
+            // nacimientoAnio
+            // 
+            this.nacimientoAnio.FormattingEnabled = true;
+            this.nacimientoAnio.Location = new System.Drawing.Point(320, 376);
+            this.nacimientoAnio.Margin = new System.Windows.Forms.Padding(4);
+            this.nacimientoAnio.Name = "nacimientoAnio";
+            this.nacimientoAnio.Size = new System.Drawing.Size(68, 24);
+            this.nacimientoAnio.TabIndex = 49;
+            // 
+            // nacimientoMes
+            // 
+            this.nacimientoMes.FormattingEnabled = true;
+            this.nacimientoMes.Location = new System.Drawing.Point(253, 376);
+            this.nacimientoMes.Margin = new System.Windows.Forms.Padding(4);
+            this.nacimientoMes.Name = "nacimientoMes";
+            this.nacimientoMes.Size = new System.Drawing.Size(52, 24);
+            this.nacimientoMes.TabIndex = 48;
+            // 
+            // nacimientoDia
+            // 
+            this.nacimientoDia.FormattingEnabled = true;
+            this.nacimientoDia.Location = new System.Drawing.Point(187, 376);
+            this.nacimientoDia.Margin = new System.Windows.Forms.Padding(4);
+            this.nacimientoDia.Name = "nacimientoDia";
+            this.nacimientoDia.Size = new System.Drawing.Size(52, 24);
+            this.nacimientoDia.TabIndex = 46;
+            // 
+            // calle
+            // 
+            this.calle.Location = new System.Drawing.Point(187, 132);
+            this.calle.Margin = new System.Windows.Forms.Padding(4);
+            this.calle.MaxLength = 255;
+            this.calle.Name = "calle";
+            this.calle.Size = new System.Drawing.Size(201, 22);
+            this.calle.TabIndex = 42;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(8, 380);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(158, 17);
+            this.label9.TabIndex = 47;
+            this.label9.Text = "Fecha de nacimiento (*)";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(8, 136);
+            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(58, 17);
+            this.label16.TabIndex = 43;
+            this.label16.Text = "Calle (*)";
+            // 
+            // rubro
+            // 
+            this.rubro.Location = new System.Drawing.Point(185, 536);
+            this.rubro.Margin = new System.Windows.Forms.Padding(4);
+            this.rubro.MaxLength = 50;
+            this.rubro.Name = "rubro";
+            this.rubro.Size = new System.Drawing.Size(201, 22);
+            this.rubro.TabIndex = 58;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 540);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(66, 17);
+            this.label4.TabIndex = 59;
+            this.label4.Text = "Rubro (*)";
+            // 
+            // CrearEmpresa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(427, 445);
+            this.ClientSize = new System.Drawing.Size(425, 711);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.back);
             this.Controls.Add(this.groupBox1);
-            this.Name = "ABMEmpresas";
-            this.Text = "ABMEmpresas";
+            this.Name = "CrearEmpresa";
+            this.Text = "CrearEmpresa";
+            this.Load += new System.EventHandler(this.CrearEmpresa_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -295,22 +458,36 @@
         private System.Windows.Forms.Button back;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button registrar;
-        private System.Windows.Forms.TextBox tNombreDeContacto;
-        private System.Windows.Forms.TextBox tCuit;
-        private System.Windows.Forms.TextBox tCiudad;
-        private System.Windows.Forms.TextBox tCodigoPostal;
-        private System.Windows.Forms.TextBox tDireccion;
-        private System.Windows.Forms.TextBox tTelefono;
-        private System.Windows.Forms.TextBox tEmail;
-        private System.Windows.Forms.TextBox tRazonSocial;
+        private System.Windows.Forms.TextBox nombreDeContacto;
+        private System.Windows.Forms.TextBox cuit;
+        private System.Windows.Forms.TextBox ciudad;
+        private System.Windows.Forms.TextBox codigoPostal;
+        private System.Windows.Forms.TextBox telefono;
+        private System.Windows.Forms.TextBox email;
+        private System.Windows.Forms.TextBox razonSocial;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox nacimientoAnio;
+        private System.Windows.Forms.TextBox localidad;
+        private System.Windows.Forms.ComboBox nacimientoMes;
+        private System.Windows.Forms.ComboBox nacimientoDia;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox departamento;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox numeroDePiso;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox numeroDeCalle;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox calle;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox rubro;
+        private System.Windows.Forms.Label label4;
     }
 }
