@@ -48,7 +48,8 @@ drop procedure st_top5_vendedores_menos_venta
 
 drop procedure st_top5_clientes_mas_compras
 
-drop procedure st_top5_vendedores_mayor_facturas
+drop procedure st_top5_vendedores_mayor_monto_facturado
+
 
 
 drop procedure st_buscar_clientes
@@ -62,6 +63,8 @@ drop procedure st_buscar_empresas
 drop procedure st_agregar_empresa
 
 drop procedure st_modificar_empresa
+drop procedure st_cantidadDeOperacionesSinCalificar
+
 
 
 drop PROCEDURE st_actualizar_publicaciones_vencidas
