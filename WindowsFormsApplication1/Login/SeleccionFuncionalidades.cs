@@ -8,7 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsFormsApplication1.ABM_Rol;
+using WindowsFormsApplication1.ABM_Usuario;
+using WindowsFormsApplication1.ABM_Visibilidad;
+using WindowsFormsApplication1.Calificar;
 using WindowsFormsApplication1.Clases;
+using WindowsFormsApplication1.ComprarOfertar;
+using WindowsFormsApplication1.Facturas;
+using WindowsFormsApplication1.Generar_Publicación;
+using WindowsFormsApplication1.Historial_Cliente;
+using WindowsFormsApplication1.Listado_Estadistico;
 using WindowsFormsApplication1.Login.ClasesLogin;
 
 namespace WindowsFormsApplication1.Login
@@ -86,16 +94,50 @@ namespace WindowsFormsApplication1.Login
              * CONOSCA EL PADRE PARA QUE EL USUARIO PUEDA VOLVER HACIA ATRAS*/
 
             /*ES IMPORTANTE QUE ESTE ACTUALIZADO Y TENGA LAS OPCIONES IGUALES A LAS QUE ESTAN EN LA BD*/
+            Form proximoForm = new Form();
 
             switch (funcionalidadElegida)
             {
                 case "ABM_ROL":
-                    ABMRol formRol = new ABMRol(this, usuario);
-                    formRol.Show();
+                    proximoForm  = new ABMRol(this, usuario);
+                    break;
 
-                    Hide();
+                case "ABM_USUARIO":
+                    proximoForm = new RegistrarUsuario(this);
+                    break;
+
+                case "ABM_VISIBILIDAD":
+                    proximoForm = new ABMVisibilidad(this);
+                    break;
+
+                case "GENERAR_PUBLICACION":
+                    proximoForm = new GenerarPublicacion(new Publicacion(), this);
+                    break;
+
+                case "COMPRAR / OFERTAR":
+                    proximoForm = new Comprar_Ofertar(usuario, this);
+                    break;
+
+                case "HISTORIAL_CLIENTE":
+                    proximoForm = new HistorialCliente(usuario, this);
+                    break;
+
+                case "CALIFICAR_VENDEDOR":
+                    proximoForm = new CalificarVendedor(usuario, this);
+                    break;
+
+                case "FACTURAS_REALIZADAS":
+                    proximoForm = new FacturasRealizadas(this);
+                    break;
+
+                case "ESTADISTICAS":
+                    proximoForm = new ListadoEstadistico(this);
                     break;
             }
+
+            proximoForm.ShowDialog();
+
+            Hide();
         }
     }
 }

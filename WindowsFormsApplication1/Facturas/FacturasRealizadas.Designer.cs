@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApplication1.Facturas
 {
-    partial class FacturarForm
+    partial class FacturasRealizadas
     {
         /// <summary>
         /// Required designer variable.
