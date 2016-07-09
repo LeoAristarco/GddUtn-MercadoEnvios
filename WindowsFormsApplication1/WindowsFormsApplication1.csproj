@@ -82,6 +82,7 @@
     <Compile Include="ABM Usuario\RegistrarUsuario.Designer.cs">
       <DependentUpon>RegistrarUsuario.cs</DependentUpon>
     </Compile>
+    <Compile Include="Clases\Funcionalidad.cs" />
     <Compile Include="Clases\RolRepository.cs" />
     <Compile Include="ABM Rubro\ABMRubro.cs">
       <SubType>Form</SubType>

@@ -78,6 +78,7 @@
             this.Funcionalidades_Checkboxlist.Name = "Funcionalidades_Checkboxlist";
             this.Funcionalidades_Checkboxlist.Size = new System.Drawing.Size(182, 94);
             this.Funcionalidades_Checkboxlist.TabIndex = 2;
+            this.Funcionalidades_Checkboxlist.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.Funcionalidades_Checkboxlist_ItemCheck);
             // 
             // Habilitado_Checkbox
             // 
@@ -134,7 +135,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.Guardar_Button);
             this.Controls.Add(this.Cancelar_Button);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "EditorDeRoles";
             this.Text = "EditorDeRoles";
             this.groupBox1.ResumeLayout(false);

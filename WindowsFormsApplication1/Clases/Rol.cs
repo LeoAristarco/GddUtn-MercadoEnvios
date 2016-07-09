@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApplication1.Clases
 {
-    class Rol
+    public class Rol
     {
         public long id;
         public string nombre;

@@ -138,7 +138,7 @@ namespace WindowsFormsApplication1.Login
                     break;
             }
 
-            proximoForm.ShowDialog();
+            proximoForm.Show();
 
             Hide();
         }
