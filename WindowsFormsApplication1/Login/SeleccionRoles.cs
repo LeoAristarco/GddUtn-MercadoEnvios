@@ -60,10 +60,11 @@ namespace WindowsFormsApplication1.Login
             logueoDAO.cargarFuncionalidadesDelRolElegido(idRolSeleccionado ,logueo);
 
             logueo.idRolSeleccionado = idRolSeleccionado;
-            formSiguiente = new SeleccionFuncionalidades(this);
-                formSiguiente.Show();
 
             Hide();
+
+            formSiguiente = new SeleccionFuncionalidades(this);
+                formSiguiente.Show();
         }
 
         private void SeleccionRoles_Load(object sender, EventArgs e)
@@ -73,7 +74,7 @@ namespace WindowsFormsApplication1.Login
 
         private void SeleccionRoles_FormClosed(object sender, FormClosedEventArgs e)
         {
-            formPadre.Close();
+            formPadre.Show();//Close();
         }
     }
 }

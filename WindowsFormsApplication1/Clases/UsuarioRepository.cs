@@ -89,9 +89,9 @@ namespace WindowsFormsApplication1.Clases
 
         internal bool yaExisteCuit(string cuit)
         {
-            string consulta = "select count(*) from EMPRESA where cuit='" + cuit + "'";
+            string consulta = "select count(*) as cuenta from EMPRESA where cuit='" + cuit + "'";
 
-            return toInt(db.ejecutarConsulta(consulta)) > 0;
+            return toInt(db.ejecutarConsulta(consulta)[0]["cuenta"]) > 0;
         }
 
         internal List<Empresa> buscarEmpresas(string razonSocial, string cuit, string mail)
@@ -118,9 +118,9 @@ namespace WindowsFormsApplication1.Clases
 
         internal bool yaExisteRazonSocial(string razonSocial)
         {
-            string consulta = "select count(*) from EMPRESA where razon_social='" + razonSocial + "'";
+            string consulta = "select count(*) as cuenta from EMPRESA where razon_social='" + razonSocial + "'";
 
-            return toInt(db.ejecutarConsulta(consulta)) > 0;
+            return toInt(db.ejecutarConsulta(consulta)[0]["cuenta"]) > 0;
         }
 
         private Empresa deserializarEmpresa(Dictionary<string, object> fila)
@@ -234,9 +234,9 @@ namespace WindowsFormsApplication1.Clases
 
         internal bool yaExisteEseDni(string dni)
         {
-            string consulta = "select count(*) from CLIENTE where dni='" + dni + "'";
+            string consulta = "select count(*) as cuenta from CLIENTE where dni='" + dni + "'";
 
-            return toInt(db.ejecutarConsulta(consulta)) > 0;
+            return toInt(db.ejecutarConsulta(consulta)[0]["cuenta"]) > 0;
         }
 
         internal void agregarCliente(Cliente nuevoCliente)
@@ -265,9 +265,9 @@ namespace WindowsFormsApplication1.Clases
 
         internal bool yaExisteEseNick(string nick)
         {
-            string consulta = "select count(*) from USUARIO where nick='" + nick + "'";
+            string consulta = "select count(*) as cuenta from USUARIO where nick='" + nick + "'";
 
-            return toInt(db.ejecutarConsulta(consulta)) > 0;
+            return toInt(db.ejecutarConsulta(consulta)[0]["cuenta"]) > 0;
         }
 
         internal void updatePassword(Usuario usuario, string nuevaPass)

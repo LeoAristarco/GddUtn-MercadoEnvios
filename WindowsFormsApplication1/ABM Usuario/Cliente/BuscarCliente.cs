@@ -45,9 +45,9 @@ namespace WindowsFormsApplication1.ABM_Usuario.Cliente
         {
             ModificarCliente modificar = new ModificarCliente(clienteSeleccionado, this);
 
-            modificar.ShowDialog();
-
             Hide();
+
+            modificar.ShowDialog();
         }
 
         private void BuscarCliente_Load(object sender, EventArgs e)
