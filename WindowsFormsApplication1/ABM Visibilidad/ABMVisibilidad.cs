@@ -50,7 +50,7 @@ namespace WindowsFormsApplication1.ABM_Visibilidad
         private void volverButton_Click(object sender, EventArgs e)
         {
             Hide();
-            formAnterior.ShowDialog();
+            formAnterior.Show();
         }
 
         private void ABMVisibilidad_Load(object sender, EventArgs e)

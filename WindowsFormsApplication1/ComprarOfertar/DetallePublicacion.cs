@@ -35,7 +35,7 @@ namespace WindowsFormsApplication1.ComprarOfertar
             if (mensaje!="todo piolaa")
             {
                 MessageBox.Show(mensaje.ToUpper());
-                //return;
+                return;
             }
 
             if (publicacion.sosSubasta())

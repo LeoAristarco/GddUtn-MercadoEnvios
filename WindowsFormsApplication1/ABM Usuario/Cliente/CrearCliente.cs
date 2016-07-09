@@ -35,6 +35,10 @@ namespace WindowsFormsApplication1.ABM_Usuario.Cliente
         private void inicializarFormulario()
         {
             tiposDocumento.Items.Add("DNI");
+            numeroDeCalle.Text = "0";
+            numeroDePiso.Text = "0";
+            codigoPostal.Text = "0";
+
         }
 
         private void cargarClienteVacio()
@@ -98,7 +102,7 @@ namespace WindowsFormsApplication1.ABM_Usuario.Cliente
             nuevoCliente.apellido = apellido.Text;
             nuevoCliente.calle = calle.Text;
             nuevoCliente.bajaLogica = false;
-            nuevoCliente.codigoPostal = Convert.ToInt16(codigoPostal.Text);
+            nuevoCliente.codigoPostal = codigoPostal.Text=="" ? 0 : Convert.ToInt16(codigoPostal.Text);
             nuevoCliente.departamento = departamento.Text;
             nuevoCliente.dni = numeroDocumento.Text;
             nuevoCliente.localidad = localidad.Text;

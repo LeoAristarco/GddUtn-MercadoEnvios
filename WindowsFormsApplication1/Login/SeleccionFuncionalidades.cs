@@ -41,7 +41,7 @@ namespace WindowsFormsApplication1.Login
             //transformo objeto logueo a usuario
             
             usuario = new Usuario();
-                usuario.id = Convert.ToInt64(logueo.idUsuario);
+                usuario.id = Convert.ToInt32(logueo.idUsuario);
                 usuario.nick = logueo.nick;
                 usuario.pass = logueo.pass;
 
@@ -114,7 +114,7 @@ namespace WindowsFormsApplication1.Login
                     break;
 
                 case "GENERAR_PUBLICACION":
-                    proximoForm = new GenerarPublicacion(new Publicacion(), this);
+                    proximoForm = new GenerarPublicacion(usuario, this);
                     break;
 
                 case "COMPRAR/OFERTAR":

@@ -19,9 +19,11 @@ namespace WindowsFormsApplication1.Generar_Publicación
         private Form formularioAnterior;
         private List<Rubro> rubros;
         private List<TipoPublicacion> tipos;
+        private Usuario usuario;
 
-        public GenerarPublicacion(Publicacion publicacion, Form formularioAnterior)
+        public GenerarPublicacion(Usuario usuario,Publicacion publicacion, Form formularioAnterior)
         {
+            this.usuario = usuario;
 
             this.publicacion = publicacion;
 

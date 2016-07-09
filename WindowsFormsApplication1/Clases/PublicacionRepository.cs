@@ -137,10 +137,10 @@ namespace WindowsFormsApplication1.Clases
             publicacion.rubro = repoRubro.traerPorId(toLong(item["rubro"]));
             publicacion.visibilidad = repoVisib.traerPorId(toLong(item["visibilidad"]));
             publicacion.estado = repoEstado.traerPorId(toLong(item["estado_publicacion"]));
-            publicacion.responsable = repoUser.traerPorId(toLong(item["usuario_responsable"]));//MAPEAR BIEN USUARIO
             publicacion.tipo = repoTipo.traerPorId(toLong(item["tipo_publicacion"]));
             publicacion.factura = new Factura();
             publicacion.factura.id = toLong(item["factura"]);
+            publicacion.responsable = repoUser.traerPorId(toLong(item["usuario_responsable"]));//MAPEAR BIEN USUARIO
 
             return publicacion;
         }

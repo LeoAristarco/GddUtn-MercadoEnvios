@@ -64,6 +64,8 @@ namespace WindowsFormsApplication1.Calificar
 
             //tipoError = db.ejecutarStoredProcedure("st_validacion_de_compra_oferta", parametros)[0]["tipo_de_error"].ToString();
 
+            //tipoError = db.ejecutarStoredProcedure("st_validacion_de_compra_oferta", parametros)[0]["error"].ToString();
+
 
             tipoError = db.ejecutarStoredConRetorno("st_validacion_de_compra_oferta", parametros, "@tipoError", "").ToString();
 
@@ -81,7 +83,7 @@ namespace WindowsFormsApplication1.Calificar
                     tipoError = "Error, un usuario no puede comprar con mas de 5 compras sin calificar";
                     break;
 
-                case "t":
+                default:
                     tipoError = "todo piolaa";
                     break;
             }

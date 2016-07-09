@@ -19,6 +19,8 @@ namespace WindowsFormsApplication1.Clases
         {
             Usuario user = new Usuario();
             user.id = toLong(dictionary["id_usuario"]);//POR AHORA MAPEO SOLO ESTO
+            user.nick = dictionary["nick"].ToString();
+            user.pass = dictionary["pass"].ToString();
             return user;
         }
 
