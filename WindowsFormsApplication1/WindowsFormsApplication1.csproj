@@ -216,11 +216,11 @@
     <Compile Include="ComprarOfertar\Ofertar.Designer.cs">
       <DependentUpon>Ofertar.cs</DependentUpon>
     </Compile>
-    <Compile Include="Facturas\FacturarForm.cs">
+    <Compile Include="Facturas\FacturasRealizadas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Facturas\FacturarForm.Designer.cs">
-      <DependentUpon>FacturarForm.cs</DependentUpon>
+    <Compile Include="Facturas\FacturasRealizadas.Designer.cs">
+      <DependentUpon>FacturasRealizadas.cs</DependentUpon>
     </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -394,8 +394,8 @@
     <EmbeddedResource Include="ComprarOfertar\Ofertar.resx">
       <DependentUpon>Ofertar.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Facturas\FacturarForm.resx">
-      <DependentUpon>FacturarForm.cs</DependentUpon>
+    <EmbeddedResource Include="Facturas\FacturasRealizadas.resx">
+      <DependentUpon>FacturasRealizadas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
