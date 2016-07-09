@@ -668,6 +668,33 @@ end
 
 go
 
+create procedure st_modificar_cliente
+@idUsuario numeric(10,0),
+@idCliente numeric(10,0),
+@mail nvarchar(255),
+@telefono nvarchar(60),
+@calle nvarchar(255),
+@numeroCalle nvarchar(30),
+@numeroPiso nvarchar(30),
+@departamento nvarchar(50),
+@localidad nvarchar(255),
+@codigoPostal nvarchar(50),
+@nombre nvarchar(255),
+@apellido nvarchar(255)
+as
+begin
+	
+	update USUARIO set mail=@mail,telefono=@telefono,calle=@calle,numero_calle=@numeroCalle,numero_piso=@numeroPiso,
+					   departamento=@departamento,localidad=@localidad,codigo_postal=@codigoPostal
+	where id_usuario=@idUsuario
+
+	update CLIENTE set nombre=@nombre,apellido=@apellido
+	where id_cliente=@idCliente
+
+end
+
+go
+
 --------------------------FIN ABM CLIENTE-------------------------------------------------------------------------------------
 
 -------------------------------------ABM EMPRESA---------------------------------------------------------------------------------------
@@ -719,6 +746,34 @@ declare @idUsuario numeric(10,0)=(select max(id_usuario) from USUARIO)+1;
 
 	insert into EMPRESA(razon_social,cuit,nombre_contacto,ciudad,reputacion,rubro,cantidad_votos)
 	values (@razonSocial,@cuit,@nombreContacto,@ciudad,0,@rubro,0)
+
+end
+
+go
+
+create procedure st_modificar_empresa
+@idUsuario numeric(10,0),
+@idEmpresa numeric(10,0),
+@mail nvarchar(255),
+@telefono nvarchar(60),
+@calle nvarchar(255),
+@numeroCalle nvarchar(30),
+@numeroPiso nvarchar(30),
+@departamento nvarchar(50),
+@localidad nvarchar(255),
+@codigoPostal nvarchar(50),
+@nombreContacto nvarchar(255),
+@ciudad nvarchar(255),
+@rubro nvarchar(255)
+as
+begin
+	
+	update USUARIO set mail=@mail,telefono=@telefono,calle=@calle,numero_calle=@numeroCalle,numero_piso=@numeroPiso,
+					   departamento=@departamento,localidad=@localidad,codigo_postal=@codigoPostal
+	where id_usuario=@idUsuario
+
+	update EMPRESA set nombre_contacto=@nombreContacto,ciudad=@ciudad,rubro=@rubro
+	where id_empresa=@idEmpresa
 
 end
 

@@ -45,7 +45,21 @@ namespace WindowsFormsApplication1.Clases
 
         internal void modificarEmpresa(Empresa empresa)
         {
-            throw new NotImplementedException();
+            List<SqlParameter> parametros = new List<SqlParameter>();
+
+            db.agregarParametro(parametros, "@mail", empresa.mail);
+            db.agregarParametro(parametros, "@telefono", empresa.telefono);
+            db.agregarParametro(parametros, "@calle", empresa.calle);
+            db.agregarParametro(parametros, "@numeroCalle", empresa.numeroDeCalle);
+            db.agregarParametro(parametros, "@numeroPiso", empresa.numeroDePiso);
+            db.agregarParametro(parametros, "@departamento", empresa.departamento);
+            db.agregarParametro(parametros, "@localidad", empresa.localidad);
+            db.agregarParametro(parametros, "@codigoPostal", empresa.codigoPostal);
+            db.agregarParametro(parametros, "@nombreContacto", empresa.nombreDeContacto);
+            db.agregarParametro(parametros, "@ciudad", empresa.ciudad);
+            db.agregarParametro(parametros, "@rubro", empresa.rubro);
+
+            db.ejecutarStoredProcedure("st_modificar_empresa", parametros);
         }
 
         internal void agregarEmpresa(Empresa nuevaEmpresa)
@@ -203,10 +217,20 @@ namespace WindowsFormsApplication1.Clases
         {
             List<SqlParameter> parametros = new List<SqlParameter>();
 
-            //cargo parametros
-            //hay que checkear el nombre del stored
-            db.ejecutarStoredProcedure("st_ingresar_Cliente", parametros);
+            db.agregarParametro(parametros, "@mail", cliente.mail);
+            db.agregarParametro(parametros, "@telefono", cliente.telefono);
+            db.agregarParametro(parametros, "@calle", cliente.calle);
+            db.agregarParametro(parametros, "@numeroCalle", cliente.numeroDeCalle);
+            db.agregarParametro(parametros, "@numeroPiso", cliente.numeroDePiso);
+            db.agregarParametro(parametros, "@departamento", cliente.departamento);
+            db.agregarParametro(parametros, "@localidad", cliente.localidad);
+            db.agregarParametro(parametros, "@codigoPostal", cliente.codigoPostal);
+            db.agregarParametro(parametros, "@nombre", cliente.nombre);
+            db.agregarParametro(parametros, "@apellido", cliente.apellido);
+
+            db.ejecutarStoredProcedure("st_modificar_cliente", parametros);
         }
+
 
         internal bool yaExisteEseDni(string dni)
         {

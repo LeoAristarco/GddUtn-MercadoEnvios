@@ -129,9 +129,9 @@
             this.label23.Location = new System.Drawing.Point(8, 32);
             this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(66, 17);
+            this.label23.Size = new System.Drawing.Size(47, 17);
             this.label23.TabIndex = 72;
-            this.label23.Text = "E-mail (*)";
+            this.label23.Text = "E-mail";
             // 
             // label5
             // 
@@ -139,9 +139,9 @@
             this.label5.Location = new System.Drawing.Point(6, 423);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(66, 17);
+            this.label5.Size = new System.Drawing.Size(47, 17);
             this.label5.TabIndex = 89;
-            this.label5.Text = "Rubro (*)";
+            this.label5.Text = "Rubro";
             // 
             // label25
             // 
@@ -149,9 +149,9 @@
             this.label25.Location = new System.Drawing.Point(8, 106);
             this.label25.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(58, 17);
+            this.label25.Size = new System.Drawing.Size(39, 17);
             this.label25.TabIndex = 75;
-            this.label25.Text = "Calle (*)";
+            this.label25.Text = "Calle";
             // 
             // localidad
             // 
@@ -178,9 +178,9 @@
             this.label14.Location = new System.Drawing.Point(8, 268);
             this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(88, 17);
+            this.label14.Size = new System.Drawing.Size(69, 17);
             this.label14.TabIndex = 87;
-            this.label14.Text = "Localidad (*)";
+            this.label14.Text = "Localidad";
             // 
             // calle
             // 
@@ -225,9 +225,9 @@
             this.label20.Location = new System.Drawing.Point(8, 306);
             this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(113, 17);
+            this.label20.Size = new System.Drawing.Size(94, 17);
             this.label20.TabIndex = 70;
-            this.label20.Text = "Código postal (*)";
+            this.label20.Text = "Código postal";
             // 
             // label16
             // 
@@ -235,9 +235,9 @@
             this.label16.Location = new System.Drawing.Point(8, 227);
             this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(121, 17);
+            this.label16.Size = new System.Drawing.Size(102, 17);
             this.label16.TabIndex = 85;
-            this.label16.Text = " Departamento (*)";
+            this.label16.Text = " Departamento";
             // 
             // label19
             // 
@@ -264,9 +264,9 @@
             this.label18.Location = new System.Drawing.Point(8, 146);
             this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(130, 17);
+            this.label18.Size = new System.Drawing.Size(111, 17);
             this.label18.TabIndex = 81;
-            this.label18.Text = "Numero de calle (*)";
+            this.label18.Text = "Numero de calle";
             // 
             // numeroDePiso
             // 
@@ -310,9 +310,9 @@
             this.label17.Location = new System.Drawing.Point(8, 187);
             this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(127, 17);
+            this.label17.Size = new System.Drawing.Size(108, 17);
             this.label17.TabIndex = 83;
-            this.label17.Text = "Numero de piso (*)";
+            this.label17.Text = "Numero de piso";
             // 
             // telefono
             // 
