@@ -43,9 +43,34 @@ namespace WindowsFormsApplication1.Clases
             return clientesEncontrados;
         }
 
-        internal void agregarEmpresa(Empresa nuevaEmpresa)
+        internal void modificarEmpresa(Empresa empresa)
         {
             throw new NotImplementedException();
+        }
+
+        internal void agregarEmpresa(Empresa nuevaEmpresa)
+        {
+            List<SqlParameter> parametros = new List<SqlParameter>();
+
+            db.agregarParametro(parametros, "@nick", nuevaEmpresa.nick);
+            db.agregarParametro(parametros, "@pass", nuevaEmpresa.pass);
+            db.agregarParametro(parametros, "@fechaAltaSistema", Sistema.Instance.getDate());
+            db.agregarParametro(parametros, "@fechaNacimiento", nuevaEmpresa.fechaDeNacimiento);
+            db.agregarParametro(parametros, "@mail", nuevaEmpresa.mail);
+            db.agregarParametro(parametros, "@telefono", nuevaEmpresa.telefono);
+            db.agregarParametro(parametros, "@calle", nuevaEmpresa.calle);
+            db.agregarParametro(parametros, "@numeroCalle", nuevaEmpresa.numeroDeCalle);
+            db.agregarParametro(parametros, "@numeroPiso", nuevaEmpresa.numeroDePiso);
+            db.agregarParametro(parametros, "@departamento", nuevaEmpresa.departamento);
+            db.agregarParametro(parametros, "@localidad", nuevaEmpresa.localidad);
+            db.agregarParametro(parametros, "@codigoPostal", nuevaEmpresa.codigoPostal);
+            db.agregarParametro(parametros, "@razonSocial", nuevaEmpresa.razonSocial);
+            db.agregarParametro(parametros, "@cuit", nuevaEmpresa.cuit);
+            db.agregarParametro(parametros, "@nombreContacto", nuevaEmpresa.nombreDeContacto);
+            db.agregarParametro(parametros, "@ciudad", nuevaEmpresa.ciudad);
+            db.agregarParametro(parametros, "@rubro", nuevaEmpresa.rubro);
+
+            db.ejecutarStoredProcedure("st_agregar_empresa", parametros);
         }
 
         internal bool yaExisteCuit(string cuit)
@@ -194,9 +219,24 @@ namespace WindowsFormsApplication1.Clases
         {
             List<SqlParameter> parametros = new List<SqlParameter>();
 
-            //cargo parametros
-            //hay que checkear el nombre del stored
-            db.ejecutarStoredProcedure("st_ingresar_Cliente", parametros);
+            db.agregarParametro(parametros, "@nick", nuevoCliente.nick);
+            db.agregarParametro(parametros, "@pass", nuevoCliente.pass);
+            db.agregarParametro(parametros, "@fechaAltaSistema", Sistema.Instance.getDate());
+            db.agregarParametro(parametros, "@fechaNacimiento", nuevoCliente.fechaDeNacimiento);
+            db.agregarParametro(parametros, "@mail", nuevoCliente.mail);
+            db.agregarParametro(parametros, "@telefono", nuevoCliente.telefono);
+            db.agregarParametro(parametros, "@calle", nuevoCliente.calle);
+            db.agregarParametro(parametros, "@numeroCalle", nuevoCliente.numeroDeCalle);
+            db.agregarParametro(parametros, "@numeroPiso", nuevoCliente.numeroDePiso);
+            db.agregarParametro(parametros, "@departamento", nuevoCliente.departamento);
+            db.agregarParametro(parametros, "@localidad", nuevoCliente.localidad);
+            db.agregarParametro(parametros, "@codigoPostal", nuevoCliente.codigoPostal);
+            db.agregarParametro(parametros, "@nombre", nuevoCliente.nombre);
+            db.agregarParametro(parametros, "@apellido", nuevoCliente.apellido);
+            db.agregarParametro(parametros, "@dni", nuevoCliente.dni);
+            db.agregarParametro(parametros, "@tipo_documento", nuevoCliente.tipoDeDocumento);
+
+            db.ejecutarStoredProcedure("st_agregar_cliente", parametros);
         }
 
         internal bool yaExisteEseNick(string nick)

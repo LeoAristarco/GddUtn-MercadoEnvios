@@ -50,8 +50,8 @@ namespace WindowsFormsApplication1.ABM_Usuario.Empresa
 
         private void cargarFormConDatosDeEmpresa()
         {
-            nick.Text = empresa.nick;
-            pass.Text = empresa.pass;
+            //nick.Text = empresa.nick;
+            //pass.Text = empresa.pass;
             habilitado.Checked = !empresa.bajaLogica;
             email.Text = empresa.mail;
             calle.Text = empresa.calle;

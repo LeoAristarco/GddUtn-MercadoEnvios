@@ -633,6 +633,41 @@ end
 
 go
 
+create procedure st_agregar_cliente
+@nick nvarchar(255),
+@pass nvarchar(255),
+@fechaAltaSistema date,
+@fechaNacimiento date,		
+@mail nvarchar(255),
+@telefono nvarchar(60),
+@calle nvarchar(255),
+@numeroCalle nvarchar(30),
+@numeroPiso nvarchar(30),
+@departamento nvarchar(50),
+@localidad nvarchar(255),
+@codigoPostal nvarchar(50),
+@nombre nvarchar(255),
+@apellido nvarchar(255),
+@dni nvarchar(255),
+@tipo_documento nvarchar(255)
+as
+begin
+
+declare @idUsuario numeric(10,0)=(select max(id_usuario) from USUARIO)+1;
+	
+	insert into USUARIO(nick,pass,intentos_login,primer_ingreso,baja_logica,fecha_alta_sistema,fecha_nacimiento,
+						mail,telefono,calle,numero_calle,numero_piso,departamento,localidad,codigo_postal
+					   )
+	values (@nick,@pass,@fechaAltaSistema,0,0,0,@fechaAltaSistema,@fechaNacimiento,@mail,@telefono,@calle,@numeroCalle,
+			@numeroPiso,@departamento,@localidad,@codigoPostal)
+
+	insert into CLIENTE(id_usuario,nombre,apellido,dni,tipo_documento)
+	values (@idUsuario,@nombre,@apellido,@dni,@tipo_documento)
+
+end
+
+go
+
 --------------------------FIN ABM CLIENTE-------------------------------------------------------------------------------------
 
 -------------------------------------ABM EMPRESA---------------------------------------------------------------------------------------
@@ -649,6 +684,42 @@ begin
 	where (e.razon_social=@razonSocial or @razonSocial='') and 
 		  (e.cuit=@cuit or @cuit='') and
 		  (u.mail=@mail or @mail='')
+end
+
+go
+
+create procedure st_agregar_empresa
+@nick nvarchar(255),
+@pass nvarchar(255),
+@fechaAltaSistema date,
+@fechaNacimiento date,		
+@mail nvarchar(255),
+@telefono nvarchar(60),
+@calle nvarchar(255),
+@numeroCalle nvarchar(30),
+@numeroPiso nvarchar(30),
+@departamento nvarchar(50),
+@localidad nvarchar(255),
+@codigoPostal nvarchar(50),
+@razonSocial nvarchar(255),
+@cuit nvarchar(50),
+@nombreContacto nvarchar(255),
+@ciudad nvarchar(255),
+@rubro nvarchar(255)
+as
+begin
+
+declare @idUsuario numeric(10,0)=(select max(id_usuario) from USUARIO)+1;
+	
+	insert into USUARIO(nick,pass,intentos_login,primer_ingreso,baja_logica,fecha_alta_sistema,fecha_nacimiento,
+						mail,telefono,calle,numero_calle,numero_piso,departamento,localidad,codigo_postal
+					   )
+	values (@nick,@pass,@fechaAltaSistema,0,0,0,@fechaAltaSistema,@fechaNacimiento,@mail,@telefono,@calle,@numeroCalle,
+			@numeroPiso,@departamento,@localidad,@codigoPostal)
+
+	insert into EMPRESA(razon_social,cuit,nombre_contacto,ciudad,reputacion,rubro,cantidad_votos)
+	values (@razonSocial,@cuit,@nombreContacto,@ciudad,0,@rubro,0)
+
 end
 
 go

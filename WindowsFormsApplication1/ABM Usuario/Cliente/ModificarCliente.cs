@@ -33,8 +33,8 @@ namespace WindowsFormsApplication1.ABM_Usuario.Cliente
         {
             nombre.Text = cliente.nombre;
             email.Text = cliente.mail;
-            nick.Text = cliente.nick;
-            pass.Text = cliente.pass;
+            //nick.Text = cliente.nick;
+            //pass.Text = cliente.pass;
             //tiposDocumento.SelectedItem = cliente.tipoDeDocumento;
             apellido.Text = cliente.apellido;
             calle.Text = cliente.calle;
