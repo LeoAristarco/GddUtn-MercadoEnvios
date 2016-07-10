@@ -1,3 +1,7 @@
+
+
+
+
 USE GD1C2016
 
 go
@@ -6,73 +10,12 @@ go
 /*VERIFICO EXISTENCIA DE TABLAS ANTSES DE CREARLAS*/
 /********************************************************************************************************************************/
 
-if EXISTS (SELECT * FROM sysobjects WHERE name='FUNCIONALIDAD') 
-drop table FUNCIONALIDAD
 
-go
 
-if EXISTS (SELECT * FROM sysobjects WHERE name='ROL') 
-drop table ROL
 
-go
 
-if EXISTS (SELECT * FROM sysobjects WHERE name='FUNCIONALIDAD_POR_ROL') 
-drop table FUNCIONALIDAD_POR_ROL
-
-go
-
-if EXISTS (SELECT * FROM sysobjects WHERE name='EMPRESA') 
-drop table EMPRESA
-
-go
-
-if EXISTS (SELECT * FROM sysobjects WHERE name='CLIENTE') 
-drop table CLIENTE
-
-go
-
-if EXISTS (SELECT * FROM sysobjects WHERE name='ROL_POR_USUARIO') 
-drop table ROL_POR_USUARIO
-
-go
-
-if EXISTS (SELECT * FROM sysobjects WHERE name='RUBRO') 
-drop table RUBRO
-
-go
-
-if EXISTS (SELECT * FROM sysobjects WHERE name='VISIBILIDAD') 
-drop table VISIBILIDAD
-
-go
-
-if EXISTS (SELECT * FROM sysobjects WHERE name='ESTADO_PUBLICACION') 
-drop table ESTADO_PUBLICACION
-
-go
-
-if EXISTS (SELECT * FROM sysobjects WHERE name='TIPO_PUBLICACION') 
-drop table TIPO_PUBLICACION
-
-go
-
-if EXISTS (SELECT * FROM sysobjects WHERE name='FACTURA') 
-drop table FACTURA
-
-go
-
-if EXISTS (SELECT * FROM sysobjects WHERE name='ITEM_FACTURA') 
-drop table ITEM_FACTURA
-
-go
-
-if EXISTS (SELECT * FROM sysobjects WHERE name='PUBLICACION') 
-drop table PUBLICACION
-
-go
-
-if EXISTS (SELECT * FROM sysobjects WHERE name='OFERTA') 
-drop table OFERTA
+if EXISTS (SELECT * FROM sysobjects WHERE name='COMPRA') 
+drop table COMPRA
 
 go
 
@@ -81,8 +24,85 @@ drop table CALIFICACION
 
 go
 
-if EXISTS (SELECT * FROM sysobjects WHERE name='COMPRA') 
-drop table COMPRA
+if EXISTS (SELECT * FROM sysobjects WHERE name='OFERTA') 
+drop table OFERTA
+
+go
+
+if EXISTS (SELECT * FROM sysobjects WHERE name='ESTADO_PUBLICACION') 
+drop table ESTADO_PUBLICACION
+
+go
+
+
+if EXISTS (SELECT * FROM sysobjects WHERE name='TIPO_PUBLICACION') 
+drop table TIPO_PUBLICACION
+
+go
+
+
+if EXISTS (SELECT * FROM sysobjects WHERE name='PUBLICACION') 
+drop table PUBLICACION
+
+go
+
+
+if EXISTS (SELECT * FROM sysobjects WHERE name='ITEM_FACTURA') 
+drop table ITEM_FACTURA
+
+go
+
+if EXISTS (SELECT * FROM sysobjects WHERE name='FACTURA') 
+drop table FACTURA
+
+go
+
+if EXISTS (SELECT * FROM sysobjects WHERE name='VISIBILIDAD') 
+drop table VISIBILIDAD
+
+go
+
+if EXISTS (SELECT * FROM sysobjects WHERE name='RUBRO') 
+drop table RUBRO
+
+go
+
+if EXISTS (SELECT * FROM sysobjects WHERE name='ROL_POR_USUARIO') 
+drop table ROL_POR_USUARIO
+
+go
+
+
+
+if EXISTS (SELECT * FROM sysobjects WHERE name='CLIENTE') 
+drop table CLIENTE
+
+go
+
+if EXISTS (SELECT * FROM sysobjects WHERE name='EMPRESA') 
+drop table EMPRESA
+
+go
+
+
+if EXISTS (SELECT * FROM sysobjects WHERE name='USUARIO') 
+drop table USUARIO
+
+go
+
+if EXISTS (SELECT * FROM sysobjects WHERE name='FUNCIONALIDAD_POR_ROL') 
+drop table FUNCIONALIDAD_POR_ROL
+
+go
+
+if EXISTS (SELECT * FROM sysobjects WHERE name='ROL') 
+drop table ROL
+
+go
+
+
+if EXISTS (SELECT * FROM sysobjects WHERE name='FUNCIONALIDAD') 
+drop table FUNCIONALIDAD
 
 go
 
@@ -1016,3 +1036,25 @@ values
 	(96,1);
 
 go
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
