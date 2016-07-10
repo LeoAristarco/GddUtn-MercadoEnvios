@@ -375,38 +375,25 @@ if EXISTS (SELECT * FROM sysobjects WHERE name='tg_hashear_pass')
 drop trigger tg_hashear_pass
 
 go
+
 create trigger tg_hashear_pass
 on USUARIO
-instead of insert
+after insert,update
 as begin
 	
-	insert into USUARIO
-		select
-			nick,
-			dbo.fn_hashear_pass(pass),
-			intentos_login,
-			primer_ingreso,
-			baja_logica,
-			fecha_alta_sistema,
-			fecha_nacimiento,
-			mail,
-			telefono,
-			calle,
-			numero_calle,
-			numero_piso,
-			departamento,
-			localidad,
-			codigo_postal
-		from inserted
+	declare @id_usuario numeric(18,0);
 
-	declare @id_usuario_insertado numeric(18,0);
-
-	select @id_usuario_insertado = id_usuario
+	select @id_usuario = id_usuario
 	from inserted
+
+	if update(pass)
+   begin
 
 	update USUARIO
 	set pass = dbo.fn_hashear_pass(pass)
-	where id_usuario = @id_usuario_insertado
+	where id_usuario = @id_usuario
+
+   end;
 
 end
 
