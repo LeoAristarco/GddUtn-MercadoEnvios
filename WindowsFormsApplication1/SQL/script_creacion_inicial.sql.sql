@@ -29,6 +29,13 @@ drop table OFERTA
 
 go
 
+
+if EXISTS (SELECT * FROM sysobjects WHERE name='PUBLICACION') 
+drop table PUBLICACION
+
+go
+
+
 if EXISTS (SELECT * FROM sysobjects WHERE name='ESTADO_PUBLICACION') 
 drop table ESTADO_PUBLICACION
 
@@ -37,12 +44,6 @@ go
 
 if EXISTS (SELECT * FROM sysobjects WHERE name='TIPO_PUBLICACION') 
 drop table TIPO_PUBLICACION
-
-go
-
-
-if EXISTS (SELECT * FROM sysobjects WHERE name='PUBLICACION') 
-drop table PUBLICACION
 
 go
 
@@ -1036,25 +1037,3 @@ values
 	(96,1);
 
 go
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
