@@ -864,6 +864,38 @@ values
 go
 
 /********************************************************************************************************************************/
+/*FUNCIONALIDAD POR ROL*/
+/********************************************************************************************************************************/
+--administrador
+insert into FUNCIONALIDAD_POR_ROL
+values
+	(1,3),
+	(2,3),
+	(3,3),
+	(4,3),
+	(10,3);
+
+go
+
+--cliente
+insert into FUNCIONALIDAD_POR_ROL
+values
+	(5,2),
+	(6,2),
+	(7,2),
+	(8,2);
+
+go
+
+--empresa
+insert into FUNCIONALIDAD_POR_ROL
+values
+	(5,2),
+	(9,2);
+
+go
+
+/********************************************************************************************************************************/
 /*ELIMINACION DE CAMPOS INNECESARIOS*/
 /********************************************************************************************************************************/
 
@@ -895,17 +927,11 @@ values
 
 go
 
+--le doy los 3 roles como se pide en el enunciado
 insert into ROL_POR_USUARIO
-	select id_usuario, 3 
-	from USUARIO 
-	where 
-		nick= 'admin' and 
-		pass= 'w23e';
-
-go
-
-insert into FUNCIONALIDAD_POR_ROL
-	select id_funcionalidad, 3
-	from FUNCIONALIDAD
+values
+	(96,3),
+	(96,2),
+	(96,1);
 
 go
