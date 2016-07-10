@@ -38,7 +38,6 @@ namespace WindowsFormsApplication1.ABM_Usuario.Cliente
             numeroDeCalle.Text = "0";
             numeroDePiso.Text = "0";
             codigoPostal.Text = "0";
-
         }
 
         private void cargarClienteVacio()
@@ -109,7 +108,7 @@ namespace WindowsFormsApplication1.ABM_Usuario.Cliente
             nuevoCliente.numeroDeCalle = Convert.ToInt16(numeroDeCalle.Text);
             nuevoCliente.numeroDePiso = Convert.ToInt16(numeroDePiso.Text);
             nuevoCliente.telefono = telefono.Text;
-            nuevoCliente.fechaDeNacimiento=new DateTime(Convert.ToInt16(nacimientoAnio.Text), Convert.ToInt16(nacimientoMes.Text), Convert.ToInt16(nacimientoDia.Text));
+            nuevoCliente.fechaDeNacimiento = fechaNacimiento.Value;
         }
 
         private void back_Click(object sender, EventArgs e)

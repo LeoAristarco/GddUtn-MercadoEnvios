@@ -203,7 +203,7 @@ go
 create procedure st_buscar_publicaciones_ULTIMA_PAGINA
 @descripcion nvarchar(255) = null,
 @rubroId nvarchar(255)= null,
-@ultimaPagina int output
+@ultimaPagina int=0 output
 AS
 begin
 declare @paginas int
@@ -351,7 +351,7 @@ go
 
 create procedure st_cantidadPaginasDeComprasYSubastasCliente
 @idUsuario numeric(10,0),
-@ultimaPagina numeric(10,0) out
+@ultimaPagina numeric(10,0)=0 out
 as
 begin	
       select @ultimaPagina=count(*)
@@ -881,6 +881,72 @@ go
 --------------------------FIN ABM EMPRESA-------------------------------------------------------------------------------------
 
 
+--------------------------COMIENZO FACTURAS VENDEDOR-------------------------------------------------------------------------------------
+
+create procedure st_obtenerFacturasVendedorPorPaginas
+@idUsuario numeric(10,0),
+@pagina int,
+@montoDesde numeric(10,2)=null,
+@montoHasta numeric(10,2)=null,
+@fechaDesde datetime=null,
+@fechaHasta datetime=null
+as
+begin	
+	 select*
+ from(
+      select f.id_factura,
+			 f.forma_pago,
+			 f.tipo_visibilidad,
+			 f.costo_visibilidad,
+			 f.factura_fecha,
+			 sum(i.cantidad_vendida*i.precio_unitario+i.precio_envio) as total_facturar,
+			(row_number() over (order by f.id_factura desc) ) as facturas
+      from FACTURA as f
+	  inner join ITEM_FACTURA as i on i.id_factura=f.id_factura
+	  where (f.factura_fecha>=@fechaDesde or @fechaDesde is null) and
+			(f.factura_fecha<=@fechaHasta or @fechaHasta is null)
+	  group by f.id_factura,f.forma_pago,f.tipo_visibilidad,f.costo_visibilidad,f.factura_fecha
+	  having (sum(i.cantidad_vendida*i.precio_unitario+i.precio_envio)<=@montoHasta or @montoHasta is null) and 
+			 (sum(i.cantidad_vendida*i.precio_unitario+i.precio_envio)>=@montoDesde or @montoDesde is null)
+      
+      ) gg_vieja
+ where facturas between (@pagina*10)-9 and (@pagina*10)
+
+end
+
+go
+
+create procedure st_obtenerMaximaPaginaFacturasFiltradas
+@idUsuario numeric(10,0),
+@pagina int,
+@montoDesde numeric(10,2)=null,
+@montoHasta numeric(10,2)=null,
+@fechaDesde datetime=null,
+@fechaHasta datetime=null,
+@maxPagina numeric(10,0)=0 out
+as
+begin	
+
+      select @maxPagina=count(*)
+	  from FACTURA as f
+	  inner join ITEM_FACTURA as i on i.id_factura=f.id_factura
+	  where (f.factura_fecha>=@fechaDesde or @fechaDesde is null) and
+			(f.factura_fecha<=@fechaHasta or @fechaHasta is null)
+	  group by f.id_factura,f.forma_pago,f.tipo_visibilidad,f.costo_visibilidad,f.factura_fecha
+	  having (sum(i.cantidad_vendida*i.precio_unitario+i.precio_envio)<=@montoHasta or @montoHasta is null) and 
+			 (sum(i.cantidad_vendida*i.precio_unitario+i.precio_envio)>=@montoDesde or @montoDesde is null)
+
+	  if(((@maxPagina/10) - floor(@maxPagina/10))>0)
+		set @maxPagina = (@maxPagina/10) + 1;
+
+	  else
+		set @maxPagina = @maxPagina/10;
+
+end
+
+go
+
+--------------------------FIN FACTURAS VENDEDOR-------------------------------------------------------------------------------------
 
 --Al iniciar la aplicación se tiene que barrer la base de datos para saber que publicaciones
 --estan vencidas, a las q estan vencidas hay que finalizarlas y cerrar la factura

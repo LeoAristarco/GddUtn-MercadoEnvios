@@ -68,7 +68,9 @@ drop procedure st_agregar_empresa
 drop procedure st_modificar_empresa
 drop procedure st_cantidadDeOperacionesSinCalificar
 
+drop procedure st_obtenerFacturasVendedorPorPaginas
 
+drop procedure st_obtenerFacturasVendedorPorPaginas
 
 drop PROCEDURE st_actualizar_publicaciones_vencidas
 

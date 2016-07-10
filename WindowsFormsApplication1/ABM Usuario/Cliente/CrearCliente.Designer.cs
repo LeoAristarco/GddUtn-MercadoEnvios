@@ -31,11 +31,16 @@
             this.limpiarButton = new System.Windows.Forms.Button();
             this.back = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.localidad = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.departamento = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.numeroDePiso = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.numeroDeCalle = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.registrar = new System.Windows.Forms.Button();
-            this.nacimientoAnio = new System.Windows.Forms.ComboBox();
-            this.nacimientoMes = new System.Windows.Forms.ComboBox();
-            this.nacimientoDia = new System.Windows.Forms.ComboBox();
             this.tiposDocumento = new System.Windows.Forms.ComboBox();
             this.nombre = new System.Windows.Forms.TextBox();
             this.apellido = new System.Windows.Forms.TextBox();
@@ -53,14 +58,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.numeroDeCalle = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.numeroDePiso = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.departamento = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.localidad = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
+            this.fechaNacimiento = new System.Windows.Forms.DateTimePicker();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -88,6 +86,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.fechaNacimiento);
             this.groupBox1.Controls.Add(this.localidad);
             this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.departamento);
@@ -98,9 +97,6 @@
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.registrar);
-            this.groupBox1.Controls.Add(this.nacimientoAnio);
-            this.groupBox1.Controls.Add(this.nacimientoMes);
-            this.groupBox1.Controls.Add(this.nacimientoDia);
             this.groupBox1.Controls.Add(this.tiposDocumento);
             this.groupBox1.Controls.Add(this.nombre);
             this.groupBox1.Controls.Add(this.apellido);
@@ -127,6 +123,82 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Nuevo cliente";
             // 
+            // localidad
+            // 
+            this.localidad.Location = new System.Drawing.Point(187, 404);
+            this.localidad.Margin = new System.Windows.Forms.Padding(4);
+            this.localidad.MaxLength = 255;
+            this.localidad.Name = "localidad";
+            this.localidad.Size = new System.Drawing.Size(201, 22);
+            this.localidad.TabIndex = 28;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(8, 408);
+            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(88, 17);
+            this.label14.TabIndex = 29;
+            this.label14.Text = "Localidad (*)";
+            // 
+            // departamento
+            // 
+            this.departamento.Location = new System.Drawing.Point(187, 363);
+            this.departamento.Margin = new System.Windows.Forms.Padding(4);
+            this.departamento.MaxLength = 255;
+            this.departamento.Name = "departamento";
+            this.departamento.Size = new System.Drawing.Size(201, 22);
+            this.departamento.TabIndex = 26;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(8, 367);
+            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(121, 17);
+            this.label13.TabIndex = 27;
+            this.label13.Text = " Departamento (*)";
+            // 
+            // numeroDePiso
+            // 
+            this.numeroDePiso.Location = new System.Drawing.Point(187, 323);
+            this.numeroDePiso.Margin = new System.Windows.Forms.Padding(4);
+            this.numeroDePiso.MaxLength = 255;
+            this.numeroDePiso.Name = "numeroDePiso";
+            this.numeroDePiso.Size = new System.Drawing.Size(201, 22);
+            this.numeroDePiso.TabIndex = 24;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(8, 327);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(127, 17);
+            this.label12.TabIndex = 25;
+            this.label12.Text = "Numero de piso (*)";
+            // 
+            // numeroDeCalle
+            // 
+            this.numeroDeCalle.Location = new System.Drawing.Point(187, 282);
+            this.numeroDeCalle.Margin = new System.Windows.Forms.Padding(4);
+            this.numeroDeCalle.MaxLength = 255;
+            this.numeroDeCalle.Name = "numeroDeCalle";
+            this.numeroDeCalle.Size = new System.Drawing.Size(201, 22);
+            this.numeroDeCalle.TabIndex = 22;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(8, 286);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(130, 17);
+            this.label10.TabIndex = 23;
+            this.label10.Text = "Numero de calle (*)";
+            // 
             // label11
             // 
             this.label11.AutoSize = true;
@@ -147,33 +219,6 @@
             this.registrar.Text = "Registrar";
             this.registrar.UseVisualStyleBackColor = true;
             this.registrar.Click += new System.EventHandler(this.registrar_Click);
-            // 
-            // nacimientoAnio
-            // 
-            this.nacimientoAnio.FormattingEnabled = true;
-            this.nacimientoAnio.Location = new System.Drawing.Point(320, 482);
-            this.nacimientoAnio.Margin = new System.Windows.Forms.Padding(4);
-            this.nacimientoAnio.Name = "nacimientoAnio";
-            this.nacimientoAnio.Size = new System.Drawing.Size(68, 24);
-            this.nacimientoAnio.TabIndex = 10;
-            // 
-            // nacimientoMes
-            // 
-            this.nacimientoMes.FormattingEnabled = true;
-            this.nacimientoMes.Location = new System.Drawing.Point(253, 482);
-            this.nacimientoMes.Margin = new System.Windows.Forms.Padding(4);
-            this.nacimientoMes.Name = "nacimientoMes";
-            this.nacimientoMes.Size = new System.Drawing.Size(52, 24);
-            this.nacimientoMes.TabIndex = 9;
-            // 
-            // nacimientoDia
-            // 
-            this.nacimientoDia.FormattingEnabled = true;
-            this.nacimientoDia.Location = new System.Drawing.Point(187, 482);
-            this.nacimientoDia.Margin = new System.Windows.Forms.Padding(4);
-            this.nacimientoDia.Name = "nacimientoDia";
-            this.nacimientoDia.Size = new System.Drawing.Size(52, 24);
-            this.nacimientoDia.TabIndex = 8;
             // 
             // tiposDocumento
             // 
@@ -337,81 +382,13 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Nombre (*)";
             // 
-            // numeroDeCalle
+            // fechaNacimiento
             // 
-            this.numeroDeCalle.Location = new System.Drawing.Point(187, 282);
-            this.numeroDeCalle.Margin = new System.Windows.Forms.Padding(4);
-            this.numeroDeCalle.MaxLength = 255;
-            this.numeroDeCalle.Name = "numeroDeCalle";
-            this.numeroDeCalle.Size = new System.Drawing.Size(201, 22);
-            this.numeroDeCalle.TabIndex = 22;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(8, 286);
-            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(130, 17);
-            this.label10.TabIndex = 23;
-            this.label10.Text = "Numero de calle (*)";
-            // 
-            // numeroDePiso
-            // 
-            this.numeroDePiso.Location = new System.Drawing.Point(187, 323);
-            this.numeroDePiso.Margin = new System.Windows.Forms.Padding(4);
-            this.numeroDePiso.MaxLength = 255;
-            this.numeroDePiso.Name = "numeroDePiso";
-            this.numeroDePiso.Size = new System.Drawing.Size(201, 22);
-            this.numeroDePiso.TabIndex = 24;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(8, 327);
-            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(127, 17);
-            this.label12.TabIndex = 25;
-            this.label12.Text = "Numero de piso (*)";
-            // 
-            // departamento
-            // 
-            this.departamento.Location = new System.Drawing.Point(187, 363);
-            this.departamento.Margin = new System.Windows.Forms.Padding(4);
-            this.departamento.MaxLength = 255;
-            this.departamento.Name = "departamento";
-            this.departamento.Size = new System.Drawing.Size(201, 22);
-            this.departamento.TabIndex = 26;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(8, 367);
-            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(121, 17);
-            this.label13.TabIndex = 27;
-            this.label13.Text = " Departamento (*)";
-            // 
-            // localidad
-            // 
-            this.localidad.Location = new System.Drawing.Point(187, 404);
-            this.localidad.Margin = new System.Windows.Forms.Padding(4);
-            this.localidad.MaxLength = 255;
-            this.localidad.Name = "localidad";
-            this.localidad.Size = new System.Drawing.Size(201, 22);
-            this.localidad.TabIndex = 28;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(8, 408);
-            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(88, 17);
-            this.label14.TabIndex = 29;
-            this.label14.Text = "Localidad (*)";
+            this.fechaNacimiento.Location = new System.Drawing.Point(187, 486);
+            this.fechaNacimiento.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.fechaNacimiento.Name = "fechaNacimiento";
+            this.fechaNacimiento.Size = new System.Drawing.Size(201, 22);
+            this.fechaNacimiento.TabIndex = 30;
             // 
             // CrearCliente
             // 
@@ -437,9 +414,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button registrar;
-        private System.Windows.Forms.ComboBox nacimientoAnio;
-        private System.Windows.Forms.ComboBox nacimientoMes;
-        private System.Windows.Forms.ComboBox nacimientoDia;
         private System.Windows.Forms.ComboBox tiposDocumento;
         private System.Windows.Forms.TextBox nombre;
         private System.Windows.Forms.TextBox apellido;
@@ -465,5 +439,6 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox numeroDeCalle;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.DateTimePicker fechaNacimiento;
     }
 }

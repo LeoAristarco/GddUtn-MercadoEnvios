@@ -64,6 +64,19 @@ namespace WindowsFormsApplication1.Clases
             db.ejecutarStoredProcedure("st_modificar_empresa", parametros);
         }
 
+        internal long obtenerIdUsuarioPorNick(string text)
+        {
+            string consulta = "select id_usuario from USUARIO where nick=" + text;
+            List<Dictionary<string, object>> tabla = db.ejecutarConsulta(consulta);
+
+            if (tabla.Count==0)
+            {
+                return -1;
+            }
+
+            return toLong(tabla[0]["id_usuario"]);
+        }
+
         internal void agregarEmpresa(Empresa nuevaEmpresa)
         {
             List<SqlParameter> parametros = new List<SqlParameter>();

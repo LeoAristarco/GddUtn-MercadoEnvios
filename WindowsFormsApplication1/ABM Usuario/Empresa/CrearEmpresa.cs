@@ -56,7 +56,7 @@ namespace WindowsFormsApplication1.ABM_Usuario.Empresa
             nuevaEmpresa.numeroDeCalle = Convert.ToInt16(numeroDeCalle.Text);
             nuevaEmpresa.numeroDePiso = Convert.ToInt16(numeroDePiso.Text);
             nuevaEmpresa.telefono = telefono.Text;
-            nuevaEmpresa.fechaDeNacimiento = new DateTime(Convert.ToInt16(nacimientoAnio.Text), Convert.ToInt16(nacimientoMes.Text), Convert.ToInt16(nacimientoDia.Text));
+            nuevaEmpresa.fechaDeNacimiento = fechaNacimiento.Value;
             nuevaEmpresa.razonSocial = razonSocial.Text;
             nuevaEmpresa.cuit = cuit.Text;
             nuevaEmpresa.nombreDeContacto = nombreDeContacto.Text;

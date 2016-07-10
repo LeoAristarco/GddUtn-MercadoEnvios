@@ -138,7 +138,7 @@ namespace WindowsFormsApplication1.Generar_Publicación
         {
             publicacion.descripcion = descripcion.Text;
             publicacion.estado = estados[estado.SelectedIndex];
-            publicacion.fechaInicio = DateTime.Now.Date;//Vaya a saber vieja como la obtengo
+            publicacion.fechaInicio = Sistema.Instance.getDate();//Vaya a saber vieja como la obtengo
             publicacion.fechaVencimiento = fechaFinalizacion.Value;
             publicacion.hayEnvio = hayEnvio.Checked;
             publicacion.precio = Convert.ToDouble(precio.Text);
