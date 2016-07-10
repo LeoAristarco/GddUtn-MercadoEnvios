@@ -16,15 +16,11 @@ namespace WindowsFormsApplication1.ABM_Usuario.Cliente
         private Usuario nuevoUser;
         private RegistrarUsuario registrarUsuario;
 
-        public Confirmacion()
-        {
-            InitializeComponent();
-        }
-
         public Confirmacion(Usuario nuevoUser, RegistrarUsuario registrarUsuario)
         {
             this.nuevoUser = nuevoUser;
             this.registrarUsuario = registrarUsuario;
+            InitializeComponent();
         }
 
         private void Confirmacion_Load(object sender, EventArgs e)

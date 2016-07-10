@@ -77,6 +77,8 @@ namespace WindowsFormsApplication1.ABM_Usuario.Cliente
 
             Confirmacion confirmacion = new Confirmacion(nuevoUser, registrarUsuario);
 
+            Hide();
+
             confirmacion.ShowDialog();
 
             Close();

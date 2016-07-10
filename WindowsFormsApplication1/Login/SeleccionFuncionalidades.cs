@@ -136,6 +136,10 @@ namespace WindowsFormsApplication1.Login
                 case "ESTADISTICAS":
                     proximoForm = new ListadoEstadistico(this);
                     break;
+
+                case "ABM_RUBRO":
+                    MessageBox.Show("Esta funcionalidad esta en proceso...");
+                    return;
             }
 
             Hide();
