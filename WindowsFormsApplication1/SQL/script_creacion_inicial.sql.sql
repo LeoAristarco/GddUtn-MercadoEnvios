@@ -1,3 +1,7 @@
+
+
+
+
 USE GD1C2016
 
 go
@@ -6,73 +10,12 @@ go
 /*VERIFICO EXISTENCIA DE TABLAS ANTSES DE CREARLAS*/
 /********************************************************************************************************************************/
 
-if EXISTS (SELECT * FROM sysobjects WHERE name='FUNCIONALIDAD') 
-drop table FUNCIONALIDAD
 
-go
 
-if EXISTS (SELECT * FROM sysobjects WHERE name='ROL') 
-drop table ROL
 
-go
 
-if EXISTS (SELECT * FROM sysobjects WHERE name='FUNCIONALIDAD_POR_ROL') 
-drop table FUNCIONALIDAD_POR_ROL
-
-go
-
-if EXISTS (SELECT * FROM sysobjects WHERE name='EMPRESA') 
-drop table EMPRESA
-
-go
-
-if EXISTS (SELECT * FROM sysobjects WHERE name='CLIENTE') 
-drop table CLIENTE
-
-go
-
-if EXISTS (SELECT * FROM sysobjects WHERE name='ROL_POR_USUARIO') 
-drop table ROL_POR_USUARIO
-
-go
-
-if EXISTS (SELECT * FROM sysobjects WHERE name='RUBRO') 
-drop table RUBRO
-
-go
-
-if EXISTS (SELECT * FROM sysobjects WHERE name='VISIBILIDAD') 
-drop table VISIBILIDAD
-
-go
-
-if EXISTS (SELECT * FROM sysobjects WHERE name='ESTADO_PUBLICACION') 
-drop table ESTADO_PUBLICACION
-
-go
-
-if EXISTS (SELECT * FROM sysobjects WHERE name='TIPO_PUBLICACION') 
-drop table TIPO_PUBLICACION
-
-go
-
-if EXISTS (SELECT * FROM sysobjects WHERE name='FACTURA') 
-drop table FACTURA
-
-go
-
-if EXISTS (SELECT * FROM sysobjects WHERE name='ITEM_FACTURA') 
-drop table ITEM_FACTURA
-
-go
-
-if EXISTS (SELECT * FROM sysobjects WHERE name='PUBLICACION') 
-drop table PUBLICACION
-
-go
-
-if EXISTS (SELECT * FROM sysobjects WHERE name='OFERTA') 
-drop table OFERTA
+if EXISTS (SELECT * FROM sysobjects WHERE name='COMPRA') 
+drop table COMPRA
 
 go
 
@@ -81,8 +24,86 @@ drop table CALIFICACION
 
 go
 
-if EXISTS (SELECT * FROM sysobjects WHERE name='COMPRA') 
-drop table COMPRA
+if EXISTS (SELECT * FROM sysobjects WHERE name='OFERTA') 
+drop table OFERTA
+
+go
+
+
+if EXISTS (SELECT * FROM sysobjects WHERE name='PUBLICACION') 
+drop table PUBLICACION
+
+go
+
+
+if EXISTS (SELECT * FROM sysobjects WHERE name='ESTADO_PUBLICACION') 
+drop table ESTADO_PUBLICACION
+
+go
+
+
+if EXISTS (SELECT * FROM sysobjects WHERE name='TIPO_PUBLICACION') 
+drop table TIPO_PUBLICACION
+
+go
+
+
+if EXISTS (SELECT * FROM sysobjects WHERE name='ITEM_FACTURA') 
+drop table ITEM_FACTURA
+
+go
+
+if EXISTS (SELECT * FROM sysobjects WHERE name='FACTURA') 
+drop table FACTURA
+
+go
+
+if EXISTS (SELECT * FROM sysobjects WHERE name='VISIBILIDAD') 
+drop table VISIBILIDAD
+
+go
+
+if EXISTS (SELECT * FROM sysobjects WHERE name='RUBRO') 
+drop table RUBRO
+
+go
+
+if EXISTS (SELECT * FROM sysobjects WHERE name='ROL_POR_USUARIO') 
+drop table ROL_POR_USUARIO
+
+go
+
+
+
+if EXISTS (SELECT * FROM sysobjects WHERE name='CLIENTE') 
+drop table CLIENTE
+
+go
+
+if EXISTS (SELECT * FROM sysobjects WHERE name='EMPRESA') 
+drop table EMPRESA
+
+go
+
+
+if EXISTS (SELECT * FROM sysobjects WHERE name='USUARIO') 
+drop table USUARIO
+
+go
+
+if EXISTS (SELECT * FROM sysobjects WHERE name='FUNCIONALIDAD_POR_ROL') 
+drop table FUNCIONALIDAD_POR_ROL
+
+go
+
+if EXISTS (SELECT * FROM sysobjects WHERE name='ROL') 
+drop table ROL
+
+go
+
+
+if EXISTS (SELECT * FROM sysobjects WHERE name='FUNCIONALIDAD') 
+drop table FUNCIONALIDAD
 
 go
 
@@ -263,7 +284,6 @@ CREATE TABLE ITEM_FACTURA
 (
 	id_item			 numeric(10,0) identity (1,1), 
 	id_factura		 numeric(10,0) NOT NULL,
-	descripcion		 nvarchar(255) NOT NULL,
 	cantidad_vendida numeric(10,0) NOT NULL,
 	precio_unitario  numeric(10,2) NOT NULL,
 	precio_envio     numeric(10,2),
@@ -700,7 +720,7 @@ create procedure MIGRAR_TABLA_ITEM_FACTURA
 as begin
 
 	insert into ITEM_FACTURA
-		select FACTURA.id_factura, '', v.cantidad, v.precio, 0
+		select FACTURA.id_factura, v.cantidad, v.precio, 0
 		from vista_items_factura as v
 		inner join FACTURA
 		on v.factura_numero = FACTURA.factura_numero;
