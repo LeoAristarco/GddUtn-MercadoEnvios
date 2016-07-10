@@ -350,6 +350,68 @@ CREATE TABLE COMPRA
 go
 
 /********************************************************************************************************************************/
+/*FUNCION HASH Y TRIGGER PARA LA CONTRASEÑA*/
+/********************************************************************************************************************************/
+
+--funcion
+if EXISTS (SELECT * FROM sysobjects WHERE name='fn_hashear_pass') 
+drop function fn_hashear_pass
+
+go
+
+create function fn_hashear_pass (@pass nvarchar(255))
+returns nvarchar(255)
+as begin
+	return(
+		SUBSTRING(master.dbo.fn_varbintohexstr(HashBytes('SHA2_256', @pass)), 3, 40)
+	)
+end
+
+go
+
+
+--trigger
+if EXISTS (SELECT * FROM sysobjects WHERE name='tg_hashear_pass') 
+drop trigger tg_hashear_pass
+
+go
+create trigger tg_hashear_pass
+on USUARIO
+instead of insert
+as begin
+	
+	insert into USUARIO
+		select
+			nick,
+			dbo.fn_hashear_pass(pass),
+			intentos_login,
+			primer_ingreso,
+			baja_logica,
+			fecha_alta_sistema,
+			fecha_nacimiento,
+			mail,
+			telefono,
+			calle,
+			numero_calle,
+			numero_piso,
+			departamento,
+			localidad,
+			codigo_postal
+		from inserted
+
+	declare @id_usuario_insertado numeric(18,0);
+
+	select @id_usuario_insertado = id_usuario
+	from inserted
+
+	update USUARIO
+	set pass = dbo.fn_hashear_pass(pass)
+	where id_usuario = @id_usuario_insertado
+
+end
+
+go
+/********************************************************************************************************************************/
 /*CLIENTE*/
 /********************************************************************************************************************************/
 
