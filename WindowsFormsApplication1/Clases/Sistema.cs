@@ -57,11 +57,11 @@ namespace WindowsFormsApplication1.Clases
                 listaParser.Add(line);
             }
 
-            datosConexion = @"Data Source=localhost\" + listaParser[1].Split('=')[1] + ";"
-                           + "Initial Catalog=" + listaParser[2].Split('=')[1] + "; Integrated Security=false;"
-                           + "UID=" + listaParser[3].Split('=')[1] + ";PWD=" + listaParser[4].Split('=')[1] + ";";
+            datosConexion = @"Data Source=localhost\" + listaParser[1].Split('=')[1].Trim() + ";"
+                           + "Initial Catalog=" + listaParser[2].Split('=')[1].Trim() + "; Integrated Security=false;"
+                           + "UID=" + listaParser[3].Split('=')[1].Trim() + ";PWD=" + listaParser[4].Split('=')[1].Trim() + ";";
 
-            string[] listaFecha = listaParser[0].Split('=')[1].Split('/');
+            string[] listaFecha = listaParser[0].Split('=')[1].Trim().Split('/');
 
             fechaSistema = new DateTime(Convert.ToInt16(listaFecha[2]), Convert.ToInt16(listaFecha[1]), Convert.ToInt16(listaFecha[0]));
         }
