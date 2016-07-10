@@ -363,7 +363,7 @@ create function fn_hashear_pass (@pass nvarchar(255))
 returns nvarchar(255)
 as begin
 	return(
-		SUBSTRING(master.dbo.fn_varbintohexstr(HashBytes('SHA2_256', @pass)), 3, 40)
+		SUBSTRING(master.dbo.fn_varbintohexstr(HashBytes('SHA2_256', @pass)), 3, 255)
 	)
 end
 
