@@ -788,7 +788,7 @@ begin
 	insert into USUARIO(nick,pass,intentos_login,primer_ingreso,baja_logica,fecha_alta_sistema,fecha_nacimiento,
 						mail,telefono,calle,numero_calle,numero_piso,departamento,localidad,codigo_postal
 					   )
-	values (@nick,@pass,@fechaAltaSistema,0,0,0,@fechaAltaSistema,@fechaNacimiento,@mail,@telefono,@calle,@numeroCalle,
+	values (@nick,@pass,0,1,0,@fechaAltaSistema,@fechaNacimiento,@mail,@telefono,@calle,@numeroCalle,
 			@numeroPiso,@departamento,@localidad,@codigoPostal)
 
 	declare @idUsuario numeric(10,0)=scope_identity()
@@ -871,7 +871,7 @@ begin
 	insert into USUARIO(nick,pass,intentos_login,primer_ingreso,baja_logica,fecha_alta_sistema,fecha_nacimiento,
 						mail,telefono,calle,numero_calle,numero_piso,departamento,localidad,codigo_postal
 					   )
-	values (@nick,@pass,@fechaAltaSistema,0,0,0,@fechaAltaSistema,@fechaNacimiento,@mail,@telefono,@calle,@numeroCalle,
+	values (@nick,@pass,0,1,0,@fechaAltaSistema,@fechaNacimiento,@mail,@telefono,@calle,@numeroCalle,
 			@numeroPiso,@departamento,@localidad,@codigoPostal)
 
 	declare @idUsuario numeric(10,0)=scope_identity()
