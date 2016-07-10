@@ -26,13 +26,55 @@ namespace WindowsFormsApplication1.Clases
             }
             return instancia;
         }
-        private Sistema() { }
+
 
         #endregion
 
+        private string datosConexion; /*= @"Data Source=localhost\SQLSERVER2012;"
+                        + "Initial Catalog=GD1C2016;Integrated Security=false;"
+                        + "UID=gd;PWD=gd2016;";*/
+
+        private DateTime fechaSistema;
+
+        internal string getDBConfigurations()
+        {
+            return datosConexion;
+        }
+
+        private Sistema()
+        {
+            cargarDatosDeSistema();
+        }
+
+        private void cargarDatosDeSistema()
+        {
+            System.IO.StreamReader file = new System.IO.StreamReader("configuracion_sistema.txt");
+            string line;
+            List<string> listaParser = new List<string>();
+
+            while ((line = file.ReadLine()) != null)
+            {
+                listaParser.Add(line);
+            }
+
+            datosConexion = @"Data Source=localhost\" + listaParser[1].Split('=')[1] + ";"
+                           + "Initial Catalog=" + listaParser[2].Split('=')[1] + "; Integrated Security=false;"
+                           + "UID=" + listaParser[3].Split('=')[1] + ";PWD=" + listaParser[4].Split('=')[1] + ";";
+
+            string[] listaFecha = listaParser[0].Split('=')[1].Split('/');
+
+            fechaSistema = new DateTime(Convert.ToInt16(listaFecha[2]), Convert.ToInt16(listaFecha[1]), Convert.ToInt16(listaFecha[0]));
+        }
+
         internal DateTime getDate()
         {
-            return DateTime.Now.Date;//POR AHORA NADA
+            return fechaSistema;
+        }
+
+        public void darDeBajaPublicacionesVencidas()
+        {
+            PublicacionRepository repoPublicacion = new PublicacionRepository();
+            repoPublicacion.darDeBajaPublicacionesVencidas(fechaSistema);
         }
 
     }

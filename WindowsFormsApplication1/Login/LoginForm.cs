@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApplication1.Clases;
 using WindowsFormsApplication1.Login.ClasesLogin;
 
 namespace WindowsFormsApplication1.Login
@@ -14,6 +15,7 @@ namespace WindowsFormsApplication1.Login
     public partial class LoginForm : Form
     {
         public Logueo logueo { get; set; }
+        private Sistema sistema = Sistema.Instance;
 
         private LogueoDAO logueoDAO;
 
@@ -51,7 +53,7 @@ namespace WindowsFormsApplication1.Login
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
-
+            sistema.darDeBajaPublicacionesVencidas();//Al inicio del login doy de baja las publicaciones vencidas
         }
     }
 }

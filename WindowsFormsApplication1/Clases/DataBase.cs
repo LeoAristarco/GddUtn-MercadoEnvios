@@ -33,9 +33,7 @@ namespace WindowsFormsApplication1.Clases
         #endregion
         //Para obtener instancia escribir Database.Instance
 
-        private string datosConexion = @"Data Source=localhost\SQLSERVER2012;"
-                                + "Initial Catalog=GD1C2016;Integrated Security=false;"
-                                + "UID=gd;PWD=gd2016;";
+        private string datosConexion = Sistema.Instance.getDBConfigurations();
 
         private DataBase()
         {

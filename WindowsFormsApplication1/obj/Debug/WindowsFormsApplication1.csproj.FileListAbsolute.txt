@@ -94,3 +94,4 @@ C:\Users\Alexis\Downloads\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\GddU
 C:\Users\Alexis\Downloads\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Facturas.FacturasRealizadas.resources
 D:\Documentos\visual studio 2015\Projects\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Facturas.FacturasRealizadas.resources
 D:\Documentos\visual studio 2015\Projects\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Historial_Cliente.HistorialCliente.resources
+C:\Users\Alexis\Downloads\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\GddUtn-MercadoEnvios\WindowsFormsApplication1\bin\Debug\configuracion_sistema.txt

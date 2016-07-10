@@ -35,6 +35,15 @@ namespace WindowsFormsApplication1.Clases
             db.ejecutarStoredProcedure("sp_AgregarPublicacion", parametros);
         }
 
+        internal void darDeBajaPublicacionesVencidas(DateTime fechaSistema)
+        {
+            List<SqlParameter> parametros = new List<SqlParameter>();
+
+            db.agregarParametro(parametros, "@fechaDelSistema", fechaSistema);
+
+            db.ejecutarStoredProcedure("st_actualizar_publicaciones_vencidas", parametros);
+        }
+
         private void hacerInsert(Dictionary<string, object> filaPublicacion)
         {
             List<SqlParameter> parametros = new List<SqlParameter>();

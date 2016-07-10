@@ -217,6 +217,7 @@
     <Compile Include="ComprarOfertar\Ofertar.Designer.cs">
       <DependentUpon>Ofertar.cs</DependentUpon>
     </Compile>
+    <Compile Include="Facturas\FacturaRepository.cs" />
     <Compile Include="Facturas\FacturasRealizadas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -456,7 +457,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="configuracion_sistema.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApplication1.Clases;
 
 namespace WindowsFormsApplication1.Login.ClasesLogin
 {
@@ -13,9 +14,7 @@ namespace WindowsFormsApplication1.Login.ClasesLogin
     {
         private SqlConnection conexion = new SqlConnection();
 
-        private string datosConexion = @"Data Source=localhost\SQLSERVER2012;"
-                                + "Initial Catalog=GD1C2016;Integrated Security=false;"
-                                + "UID=gd;PWD=gd2016;";
+        private string datosConexion = Sistema.Instance.getDBConfigurations();
 
         #region Singleton
         private static volatile BD instancia = new BD();

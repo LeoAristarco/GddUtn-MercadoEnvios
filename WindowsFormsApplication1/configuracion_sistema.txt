@@ -1,0 +1,7 @@
+﻿fecha del sistema=10/07/2016
+instancia de sql=SQLSERVER2012
+base de datos=GD1C2016
+usuario=gd
+contraseña=gd2016
+
+//No poner espacio luego del "="
