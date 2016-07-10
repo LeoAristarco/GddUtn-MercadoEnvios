@@ -520,7 +520,7 @@ AS BEGIN
 			(@descripcion, @stock, @fecha_inicio, @fecha_vencimiento, @precio, @rubro, @visibilidad,
 			 @estado_publicacion, @usuario_responsable, @tipo_publicacion, @envio, @factura)
 
-	update USUARIO set 	update USUARIO set primer_ingreso=0
+	update USUARIO set primer_ingreso=0
 	where id_usuario=@usuario_responsable
 
 END
