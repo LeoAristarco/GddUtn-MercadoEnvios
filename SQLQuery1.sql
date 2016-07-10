@@ -573,7 +573,7 @@ as begin
 	from USUARIO
 	where 
 		nick = @nick and 
-		pass = @pass;
+		pass = dbo.fn_hashear_pass(@pass);
 
 	if(@filas = 0) begin
 		update USUARIO
@@ -594,7 +594,7 @@ as begin
 	on ru.id_rol = r.id_rol
 	where 
 		u.nick = @nick and 
-		u.pass = @pass and
+		u.pass = dbo.fn_hashear_pass(@pass) and
 		r.habilitado = 1;
 end
 
