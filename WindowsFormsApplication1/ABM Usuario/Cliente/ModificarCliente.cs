@@ -55,10 +55,27 @@ namespace WindowsFormsApplication1.ABM_Usuario.Cliente
                 return;
             }
 
+            cargarDatosACliente();
+
             repositorio.modificarCliente(cliente);
 
             formAnterior.Show();
             Close();
+        }
+
+        private void cargarDatosACliente()
+        {
+            cliente.nombre = nombre.Text;
+            cliente.mail = email.Text;
+            cliente.apellido = apellido.Text;
+            cliente.calle = calle.Text;
+            cliente.bajaLogica = !habilitado.Checked;
+            cliente.codigoPostal = codigoPostal.Text == "" ? 0 : Convert.ToInt16(codigoPostal.Text);
+            cliente.departamento = departamento.Text;
+            cliente.localidad = localidad.Text;
+            cliente.numeroDeCalle = numeroDeCalle.Text == "" ? 0 : Convert.ToInt16(numeroDeCalle.Text);
+            cliente.numeroDePiso = numeroDePiso.Text == "" ? 0 : Convert.ToInt16(numeroDePiso.Text);
+            cliente.telefono = telefono.Text;
         }
 
         private bool ejecutarValidaciones()

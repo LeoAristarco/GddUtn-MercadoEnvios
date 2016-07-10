@@ -107,8 +107,8 @@ namespace WindowsFormsApplication1.ABM_Usuario.Cliente
             nuevoCliente.departamento = departamento.Text;
             nuevoCliente.dni = numeroDocumento.Text;
             nuevoCliente.localidad = localidad.Text;
-            nuevoCliente.numeroDeCalle = Convert.ToInt16(numeroDeCalle.Text);
-            nuevoCliente.numeroDePiso = Convert.ToInt16(numeroDePiso.Text);
+            nuevoCliente.numeroDeCalle = numeroDeCalle.Text=="" ? 0 : Convert.ToInt16(numeroDeCalle.Text);
+            nuevoCliente.numeroDePiso = numeroDePiso.Text=="" ? 0 : Convert.ToInt16(numeroDePiso.Text);
             nuevoCliente.telefono = telefono.Text;
             nuevoCliente.fechaDeNacimiento = fechaNacimiento.Value;
         }

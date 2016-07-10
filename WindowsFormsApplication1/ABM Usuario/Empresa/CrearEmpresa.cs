@@ -50,11 +50,11 @@ namespace WindowsFormsApplication1.ABM_Usuario.Empresa
             nuevaEmpresa.mail = email.Text;
             nuevaEmpresa.calle = calle.Text;
             nuevaEmpresa.bajaLogica = false;
-            nuevaEmpresa.codigoPostal = Convert.ToInt16(codigoPostal.Text);
+            nuevaEmpresa.codigoPostal = codigoPostal.Text=="" ? 0 : Convert.ToInt16(codigoPostal.Text);
             nuevaEmpresa.departamento = departamento.Text;
             nuevaEmpresa.localidad = localidad.Text;
-            nuevaEmpresa.numeroDeCalle = Convert.ToInt16(numeroDeCalle.Text);
-            nuevaEmpresa.numeroDePiso = Convert.ToInt16(numeroDePiso.Text);
+            nuevaEmpresa.numeroDeCalle = numeroDeCalle.Text=="" ? 0 : Convert.ToInt16(numeroDeCalle.Text);
+            nuevaEmpresa.numeroDePiso = numeroDePiso.Text=="" ? 0 : Convert.ToInt16(numeroDePiso.Text);
             nuevaEmpresa.telefono = telefono.Text;
             nuevaEmpresa.fechaDeNacimiento = fechaNacimiento.Value;
             nuevaEmpresa.razonSocial = razonSocial.Text;

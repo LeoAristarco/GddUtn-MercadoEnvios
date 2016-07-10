@@ -138,7 +138,7 @@ namespace WindowsFormsApplication1.Login
                     break;
 
                 case "ABM_RUBRO":
-                    MessageBox.Show("Esta funcionalidad esta en proceso...");
+                    MessageBox.Show("Esta funcionalidad esta deshabilitada");
                     return;
             }
 

@@ -31,10 +31,27 @@ namespace WindowsFormsApplication1.ABM_Usuario.Empresa
                 return;
             }
 
+            cargarDatosEmpresa();
+
             repositorio.modificarEmpresa(empresa);
 
             formAnterior.Show();
             Close();
+        }
+
+        private void cargarDatosEmpresa()
+        {
+            empresa.mail = email.Text;
+            empresa.bajaLogica = !habilitado.Checked;
+            empresa.codigoPostal = codigoPostal.Text == "" ? 0 : Convert.ToInt16(codigoPostal.Text);
+            empresa.departamento = departamento.Text;
+            empresa.localidad = localidad.Text;
+            empresa.numeroDeCalle = numeroDeCalle.Text == "" ? 0 : Convert.ToInt16(numeroDeCalle.Text);
+            empresa.numeroDePiso = numeroDePiso.Text == "" ? 0 : Convert.ToInt16(numeroDePiso.Text);
+            empresa.telefono = telefono.Text;
+            empresa.nombreDeContacto = nombreDeContacto.Text;
+            empresa.ciudad = ciudad.Text;
+            empresa.rubro = rubro.Text;
         }
 
         private bool ejecutarValidaciones()
