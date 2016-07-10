@@ -284,7 +284,6 @@ CREATE TABLE ITEM_FACTURA
 (
 	id_item			 numeric(10,0) identity (1,1), 
 	id_factura		 numeric(10,0) NOT NULL,
-	descripcion		 nvarchar(255) NOT NULL,
 	cantidad_vendida numeric(10,0) NOT NULL,
 	precio_unitario  numeric(10,2) NOT NULL,
 	precio_envio     numeric(10,2),
@@ -721,7 +720,7 @@ create procedure MIGRAR_TABLA_ITEM_FACTURA
 as begin
 
 	insert into ITEM_FACTURA
-		select FACTURA.id_factura, '', v.cantidad, v.precio, 0
+		select FACTURA.id_factura, v.cantidad, v.precio, 0
 		from vista_items_factura as v
 		inner join FACTURA
 		on v.factura_numero = FACTURA.factura_numero;
