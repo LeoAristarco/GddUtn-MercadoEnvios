@@ -494,6 +494,39 @@ END
 
 go
 
+create PROCEDURE sp_AgregarPublicacionGratiss
+	(@descripcion nvarchar(255),@stock numeric(10,0), @fecha_inicio datetime, 
+	 @fecha_vencimiento datetime,@precio numeric(10,2), @rubro numeric(10,0), 
+	 @visibilidad numeric(10,0), @estado_publicacion numeric(10,0), @usuario_responsable numeric(10,0),
+	 @tipo_publicacion numeric(10,0), @envio bit)
+AS BEGIN
+
+        declare @factura numeric (10,0)
+		
+	   if (@estado_publicacion <> 1)
+	       begin
+		        INSERT INTO FACTURA 
+		          ( tipo_visibilidad,costo_visibilidad)
+			       values
+			      (dbo.fu_nombre_visibilidad(@visibilidad),0)
+			    SET @factura = SCOPE_IDENTITY();
+		   end
+		
+
+		INSERT INTO PUBLICACION
+			(descripcion, stock, fecha_inicio,fecha_vencimiento, precio, rubro, visibilidad,
+			 estado_publicacion, usuario_responsable, tipo_publicacion, envio, factura)
+			VALUES
+			(@descripcion, @stock, @fecha_inicio, @fecha_vencimiento, @precio, @rubro, @visibilidad,
+			 @estado_publicacion, @usuario_responsable, @tipo_publicacion, @envio, @factura)
+
+	update USUARIO set 	update USUARIO set primer_ingreso=0
+	where id_usuario=@usuario_responsable
+
+END
+
+go
+
 ----------------------  FIN DE GENERAR PUBLICACION----------------------------------------------------------------------
 
 
