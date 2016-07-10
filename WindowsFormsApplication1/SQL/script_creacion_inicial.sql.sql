@@ -971,8 +971,8 @@ go
 --empresa
 insert into FUNCIONALIDAD_POR_ROL
 values
-	(5,2),
-	(9,2);
+	(5,1),
+	(9,1);
 
 go
 
