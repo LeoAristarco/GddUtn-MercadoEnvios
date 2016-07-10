@@ -19,6 +19,7 @@ drop trigger tr_insertarCompra
 
 drop procedure st_buscar_publicaciones_ULTIMA_PAGINA
 
+
 drop procedure st_mostrarPublicacionesSinCalificar
 
 drop procedure st_insertarCalificacion
@@ -27,9 +28,12 @@ drop procedure st_resumenDeEstrellasDadas
 
 drop procedure st_ultimas5compras
 
+
+drop procedure st_cantidadDeOperacionesSinCalificar
 drop procedure st_comprasYSubastasDeCliente
 
 drop procedure st_cantidadPaginasDeComprasYSubastasCliente
+
 
 drop PROCEDURE sp_AgregarVisibilidad
 
@@ -61,16 +65,20 @@ drop procedure st_agregar_cliente
 
 drop procedure st_modificar_cliente
 
+
 drop procedure st_buscar_empresas
 
 drop procedure st_agregar_empresa
 
 drop procedure st_modificar_empresa
-drop procedure st_cantidadDeOperacionesSinCalificar
+
 
 drop procedure st_obtenerFacturasVendedorPorPaginas
 
-drop procedure st_obtenerFacturasVendedorPorPaginas
+drop procedure st_obtenerMaximaPaginaFacturasFiltradas
+
+
+
 
 drop PROCEDURE st_actualizar_publicaciones_vencidas
 
