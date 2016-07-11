@@ -180,7 +180,7 @@ CREATE TABLE CLIENTE
 	dni	                  nvarchar(255),
 	tipo_documento		  nvarchar(255),
 		
-	
+	UNIQUE(dni),
 	PRIMARY KEY(id_cliente),
 	FOREIGN KEY(id_usuario) references USUARIO(id_usuario)
 )
