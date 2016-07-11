@@ -182,18 +182,6 @@ namespace WindowsFormsApplication1.ABM_Rol
                 db.ejecutarStoredProcedure(procedimiento, parametros);
             }
         }
-
-        public bool tieneRolAdministrativo(Usuario user)
-        {
-            foreach (Rol rol in obtenerRolesDe(user))
-            {
-                if (rol.nombre=="ADMINISTRATIVO")
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
     }
 }
 

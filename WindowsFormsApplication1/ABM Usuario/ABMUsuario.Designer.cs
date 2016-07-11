@@ -61,6 +61,7 @@
             this.Controls.Add(this.button2);
             this.Name = "ABMUsuario";
             this.Text = "ABMUsuario";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ABMUsuario_FormClosing);
             this.Load += new System.EventHandler(this.ABMUsuario_Load);
             this.ResumeLayout(false);
 

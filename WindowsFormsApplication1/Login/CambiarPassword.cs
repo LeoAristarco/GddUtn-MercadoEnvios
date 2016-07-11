@@ -15,11 +15,13 @@ namespace WindowsFormsApplication1.Login
     public partial class CambiarPassword : Form
     {
         private Form formAnterior;
+        private bool passUserHasheada;
         private UsuarioRepository repositorio;
         private Usuario usuario;
 
-        public CambiarPassword(Form formAnterior,Usuario user)
+        public CambiarPassword(Form formAnterior,Usuario user,bool passUserHasheada)
         {
+            this.passUserHasheada = passUserHasheada;
             this.formAnterior = formAnterior;
             usuario = user;
             repositorio = new UsuarioRepository();
@@ -35,7 +37,9 @@ namespace WindowsFormsApplication1.Login
                 return;
             }
 
-            if (Hash.hashear(passVieja.Text)!=usuario.pass)
+            string password = passUserHasheada ? repositorio.valorHasheado(passVieja.Text) : passVieja.Text;
+
+            if (password!=usuario.pass)
             {
                 MessageBox.Show("La contraseña actual no coincide con la especificada");
                 return;
@@ -50,7 +54,7 @@ namespace WindowsFormsApplication1.Login
 
         private void CambiarPassword_Load(object sender, EventArgs e)
         {
-            
+
         }
     }
 }

@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsFormsApplication1.Clases;
 
@@ -33,7 +26,7 @@ namespace WindowsFormsApplication1.Login
             }
             Usuario user = repositorio.obtenerUsuarioPorNick(nick.Text);
 
-            CambiarPassword cambiarPass = new CambiarPassword(formAnterior, user);
+            CambiarPassword cambiarPass = new CambiarPassword(formAnterior, user,true);
             Hide();
             cambiarPass.ShowDialog();
             Close();
@@ -41,9 +34,9 @@ namespace WindowsFormsApplication1.Login
 
         private void SeleccionarUsuarioCambiarPassword_Load(object sender, EventArgs e)
         {
-            if (!usuario.tenesRolAdministrativo())
+            if (Sistema.Instance.rolActualUsuarioLogueado != "ADMINISTRATIVO")
             {
-                CambiarPassword cambiarPass = new CambiarPassword(formAnterior, usuario);
+                CambiarPassword cambiarPass = new CambiarPassword(formAnterior, usuario,false);
                 Hide();
                 cambiarPass.ShowDialog();
                 Close();

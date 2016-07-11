@@ -36,6 +36,8 @@ namespace WindowsFormsApplication1.Clases
 
         private DateTime fechaSistema;
 
+        public string rolActualUsuarioLogueado = "";
+
         internal string getDBConfigurations()
         {
             return datosConexion;

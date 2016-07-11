@@ -40,5 +40,10 @@ namespace WindowsFormsApplication1.ABM_Usuario
             Hide();
             modificarUser.ShowDialog();
         }
+
+        private void ABMUsuario_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            formAnterior.Show();
+        }
     }
 }

@@ -21,10 +21,5 @@ namespace WindowsFormsApplication1.Clases
 	    public string departamento;
 	    public string localidad;
 	    public int codigoPostal;
-
-        public bool tenesRolAdministrativo()
-        {
-            return (new RolRepository()).tieneRolAdministrativo(this);
-        }
     }
 }

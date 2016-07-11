@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApplication1.Clases;
 using WindowsFormsApplication1.Login.ClasesLogin;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Header;
 
@@ -60,6 +61,8 @@ namespace WindowsFormsApplication1.Login
             logueoDAO.cargarFuncionalidadesDelRolElegido(idRolSeleccionado ,logueo);
 
             logueo.idRolSeleccionado = idRolSeleccionado;
+
+            Sistema.Instance.rolActualUsuarioLogueado = logueo.roles[idRolSeleccionado];//Seteo el rol actual
 
             Hide();
 
