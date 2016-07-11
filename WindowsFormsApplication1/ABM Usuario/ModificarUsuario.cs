@@ -16,14 +16,10 @@ namespace WindowsFormsApplication1.ABM_Usuario
         private Form formAnterior;
         private UsuarioRepository repositorio = new UsuarioRepository();
 
-        public ModificarUsuario()
-        {
-            InitializeComponent();
-        }
-
         public ModificarUsuario(Form formAnterior)
         {
             this.formAnterior = formAnterior;
+            InitializeComponent();
         }
 
         private void RegistrarUsuario_Button_Click(object sender, EventArgs e)

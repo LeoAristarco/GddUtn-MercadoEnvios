@@ -59,16 +59,48 @@ namespace WindowsFormsApplication1.Clases
         {
             long idUsuario = obtenerIdUsuarioPorNick(nick);
 
-            string consulta = "select * from EMPRESA where id_usuario=" + idUsuario.ToString();
+            string consulta = "select * from EMPRESA as e inner join USUARIO as u on e.id_usuario = u.id_usuario " +
+                              "where u.id_usuario =" + idUsuario.ToString();
 
             List<Dictionary<string, object>> tabla = db.ejecutarConsulta(consulta);
 
             if (tabla.Count>0)
             {
-                return deserializarEmpresa(tabla[0]);
+                Empresa empresa = deserializarEmpresaSinIdUsuario(tabla[0]);
+                empresa.id = idUsuario;
+                return empresa;
             }
 
             return null;
+        }
+
+        private Empresa deserializarEmpresaSinIdUsuario(Dictionary<string, object> fila)
+        {
+            Empresa empresa = new Empresa();
+
+            //empresa.id = toLong(fila["id_usuario"]);
+            empresa.idEmpresa = toLong(fila["id_empresa"]);
+            empresa.mail = fila["mail"].ToString();
+            empresa.nick = fila["nick"].ToString();
+            empresa.pass = fila["pass"].ToString();
+            empresa.calle = fila["calle"].ToString();
+            empresa.codigoPostal = toInt(fila["codigo_postal"]);
+            empresa.departamento = fila["departamento"].ToString();
+            empresa.localidad = fila["localidad"].ToString();
+            empresa.numeroDeCalle = toInt(fila["numero_calle"]);
+            empresa.numeroDePiso = toInt(fila["numero_piso"]);
+            empresa.telefono = fila["telefono"].ToString();
+            empresa.bajaLogica = toBool(fila["baja_logica"]);
+            empresa.fechaDeNacimiento = toDate(fila["fecha_nacimiento"]);
+            empresa.razonSocial = fila["razon_social"].ToString();
+            empresa.nombreDeContacto = fila["nombre_contacto"].ToString();
+            empresa.ciudad = fila["ciudad"].ToString();
+            empresa.rubro = fila["rubro"].ToString();
+            empresa.cuit = fila["cuit"].ToString();
+            empresa.reputacion = toDouble(fila["reputacion"]);
+            empresa.cantidadDeVotos = toInt(fila["cantidad_votos"]);
+
+            return empresa;
         }
 
         internal void modificarEmpresa(Empresa empresa)
@@ -94,14 +126,17 @@ namespace WindowsFormsApplication1.Clases
         {
             long idUsuario = obtenerIdUsuarioPorNick(nick);
 
-            string consulta = "select * from CLIENTE where id_usuario=" + idUsuario.ToString();
+            string consulta = "select * from CLIENTE as c inner join USUARIO as u on c.id_usuario = u.id_usuario "+
+                              "where u.id_usuario =" + idUsuario.ToString();
 
             List<Dictionary<string, object>> tabla = db.ejecutarConsulta(consulta);
 
             if (tabla.Count > 0)
             {
-                return deserializarCliente(tabla[0]);
-            }
+                Cliente cliente = deserializarClienteSinIdUser(tabla[0]);
+                cliente.id = idUsuario;
+                return cliente;
+            } 
 
             return null;
         }
@@ -214,6 +249,32 @@ namespace WindowsFormsApplication1.Clases
             Cliente nuevoCliente = new Cliente();
 
             nuevoCliente.id = toLong(fila["id_usuario"]);
+            nuevoCliente.idCliente = toLong(fila["id_cliente"]);
+            nuevoCliente.nombre = fila["nombre"].ToString();
+            nuevoCliente.mail = fila["mail"].ToString();
+            nuevoCliente.nick = fila["nick"].ToString();
+            nuevoCliente.pass = fila["pass"].ToString();
+            nuevoCliente.tipoDeDocumento = fila["tipo_documento"].ToString();
+            nuevoCliente.apellido = fila["apellido"].ToString();
+            nuevoCliente.calle = fila["calle"].ToString();
+            nuevoCliente.codigoPostal = toInt(fila["codigo_postal"]);
+            nuevoCliente.departamento = fila["departamento"].ToString();
+            nuevoCliente.dni = fila["dni"].ToString();
+            nuevoCliente.localidad = fila["localidad"].ToString();
+            nuevoCliente.numeroDeCalle = toInt(fila["numero_calle"]);
+            nuevoCliente.numeroDePiso = toInt(fila["numero_piso"]);
+            nuevoCliente.telefono = fila["telefono"].ToString();
+            nuevoCliente.bajaLogica = toBool(fila["baja_logica"]);
+            nuevoCliente.fechaDeNacimiento = toDate(fila["fecha_nacimiento"]);
+
+            return nuevoCliente;
+        }
+
+        private Cliente deserializarClienteSinIdUser(Dictionary<string, object> fila)
+        {
+            Cliente nuevoCliente = new Cliente();
+
+            //nuevoCliente.id = toLong(fila["id_usuario"]);
             nuevoCliente.idCliente = toLong(fila["id_cliente"]);
             nuevoCliente.nombre = fila["nombre"].ToString();
             nuevoCliente.mail = fila["mail"].ToString();
