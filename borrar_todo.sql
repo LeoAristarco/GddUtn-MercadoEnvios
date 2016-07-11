@@ -48,6 +48,8 @@ drop function fu_precio_visibilidad
 
 drop PROCEDURE sp_AgregarPublicacion
 
+drop procedure sp_AgregarPublicacionGratiss
+
 
 drop procedure st_top5_vendedores_mayor_facturas
 

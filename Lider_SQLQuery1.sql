@@ -79,14 +79,14 @@ go
 	create procedure st_insertarCompraSubasta(@comprador numeric(10,0), 
 	    @publicacion numeric(10,0), 
 	    @fecha_operacion datetime, @monto numeric(10,2), @cantidad int,
-		@precio_envio int,@factura numeric(10,0),@descripcion nvarchar(255))
+		@precio_envio int,@factura numeric(10,0))
 	as begin
 	        
 			insert into COMPRA ( comprador, publicacion, fecha_operacion,monto, cantidad )
 	           values (@comprador , @publicacion , @fecha_operacion , @monto ,@cantidad )
 			   
-			insert into ITEM_FACTURA(id_factura ,descripcion,cantidad_vendida ,precio_unitario,precio_envio )
-			   values (@factura , @descripcion, @cantidad, @monto ,@precio_envio )
+			insert into ITEM_FACTURA(id_factura,cantidad_vendida ,precio_unitario,precio_envio )
+			   values (@factura , @cantidad, @monto ,@precio_envio )
 			   
 			exec st_actualizar_Estado_Publicacion_a_Finalizado @publicacion,@factura,@fecha_operacion
 
@@ -986,7 +986,7 @@ end
 
 go
 
-alter procedure st_obtenerMaximaPaginaFacturasFiltradas
+create procedure st_obtenerMaximaPaginaFacturasFiltradas
 @idUsuario numeric(10,0),
 @montoDesde numeric(10,2)=null,
 @montoHasta numeric(10,2)=null,
@@ -1078,7 +1078,7 @@ begin
 	       if(@ofertante is not null) --valido que alguien oferto por lo menos una vez
 	       begin
 	            exec st_insertarCompraSubasta @ofertante,@id_publicacion ,@fechaDelSistema, @precio, 
-                              1 ,@precio_envio ,@factura ,@descripcion 
+                              1 ,@precio_envio ,@factura  
            end
        end
 
