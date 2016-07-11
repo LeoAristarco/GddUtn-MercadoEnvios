@@ -31,6 +31,7 @@
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.back = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.fechaNacimiento = new System.Windows.Forms.DateTimePicker();
             this.rubro = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.localidad = new System.Windows.Forms.TextBox();
@@ -60,7 +61,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.fechaNacimiento = new System.Windows.Forms.DateTimePicker();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -126,6 +126,14 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Nueva empresa";
             // 
+            // fechaNacimiento
+            // 
+            this.fechaNacimiento.Location = new System.Drawing.Point(187, 380);
+            this.fechaNacimiento.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.fechaNacimiento.Name = "fechaNacimiento";
+            this.fechaNacimiento.Size = new System.Drawing.Size(201, 22);
+            this.fechaNacimiento.TabIndex = 60;
+            // 
             // rubro
             // 
             this.rubro.Location = new System.Drawing.Point(185, 536);
@@ -171,9 +179,9 @@
             this.label14.Location = new System.Drawing.Point(8, 298);
             this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(88, 17);
+            this.label14.Size = new System.Drawing.Size(69, 17);
             this.label14.TabIndex = 57;
-            this.label14.Text = "Localidad (*)";
+            this.label14.Text = "Localidad";
             // 
             // nombreDeContacto
             // 
@@ -218,9 +226,9 @@
             this.label13.Location = new System.Drawing.Point(8, 257);
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(121, 17);
+            this.label13.Size = new System.Drawing.Size(102, 17);
             this.label13.TabIndex = 55;
-            this.label13.Text = " Departamento (*)";
+            this.label13.Text = " Departamento";
             // 
             // ciudad
             // 
@@ -255,9 +263,9 @@
             this.label12.Location = new System.Drawing.Point(8, 217);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(127, 17);
+            this.label12.Size = new System.Drawing.Size(108, 17);
             this.label12.TabIndex = 53;
-            this.label12.Text = "Numero de piso (*)";
+            this.label12.Text = "Numero de piso";
             // 
             // telefono
             // 
@@ -403,14 +411,6 @@
             this.label2.Size = new System.Drawing.Size(58, 17);
             this.label2.TabIndex = 4;
             this.label2.Text = "CUIT (*)";
-            // 
-            // fechaNacimiento
-            // 
-            this.fechaNacimiento.Location = new System.Drawing.Point(187, 380);
-            this.fechaNacimiento.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.fechaNacimiento.Name = "fechaNacimiento";
-            this.fechaNacimiento.Size = new System.Drawing.Size(201, 22);
-            this.fechaNacimiento.TabIndex = 60;
             // 
             // CrearEmpresa
             // 

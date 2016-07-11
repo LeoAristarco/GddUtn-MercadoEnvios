@@ -28,6 +28,7 @@ namespace WindowsFormsApplication1.ABM_Usuario
         private void inicializarFormulario()
         {
             tiposDocumento.Items.Add("DNI");
+            tiposDocumento.SelectedIndex = 0;
             numeroDeCalle.Text = "0";
             numeroDePiso.Text = "0";
             codigoPostal.Text = "0";
@@ -85,12 +86,26 @@ namespace WindowsFormsApplication1.ABM_Usuario
 
         private bool ejecutarValidaciones()
         {
-            if (repositorio.yaExisteEseDni(numeroDocumento.Text))
+            if (numeroDocumento.Text == "")
             {
-                MessageBox.Show("Error, DNI ya existente");
+                MessageBox.Show("Debe ingresarse el numero de documento");
                 return false;
             }
-
+            if (nombre.Text == "")
+            {
+                MessageBox.Show("Debe ingresarse el nombre");
+                return false;
+            }
+            if (apellido.Text == "")
+            {
+                MessageBox.Show("Debe ingresarse el apellido");
+                return false;
+            }
+            if (email.Text == "")
+            {
+                MessageBox.Show("Debe ingresarse el mail");
+                return false;
+            }
             return true;
         }
 

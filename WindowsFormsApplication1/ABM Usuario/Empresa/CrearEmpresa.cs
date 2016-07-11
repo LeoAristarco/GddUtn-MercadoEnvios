@@ -65,15 +65,29 @@ namespace WindowsFormsApplication1.ABM_Usuario
 
         private bool ejecutarValidaciones()
         {
-            if (repositorio.yaExisteRazonSocial(razonSocial.Text))
+            if (razonSocial.Text=="")
             {
-                MessageBox.Show("Error, razon social ya existente");
+                MessageBox.Show("Debe completarse el campo razon social");
                 return false;
             }
-
-            if (repositorio.yaExisteCuit(cuit.Text))
+            if (email.Text == "")
             {
-                MessageBox.Show("Error, cuit ya existente");
+                MessageBox.Show("Debe completarse el campo email");
+                return false;
+            }
+            if (calle.Text == "")
+            {
+                MessageBox.Show("Debe completarse el campo calle");
+                return false;
+            }
+            if (cuit.Text == "")
+            {
+                MessageBox.Show("Debe completarse el campo cuit");
+                return false;
+            }
+            if (rubro.Text == "")
+            {
+                MessageBox.Show("Debe completarse el campo rubro");
                 return false;
             }
 
