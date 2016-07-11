@@ -85,7 +85,10 @@ namespace WindowsFormsApplication1.Login.ClasesLogin
                 double keyFunc = dataReader.GetSqlDecimal(0).ToDouble();
                 string value = dataReader.GetString(1);
 
-                dic.Add(keyFunc, value);
+                if (dic.ContainsKey(keyFunc))
+                {
+                    dic.Add(keyFunc, value);
+                }
             }
 
             logueo.funcionalidadesPorRol.Add(keyRol, dic);
