@@ -137,6 +137,10 @@ namespace WindowsFormsApplication1.Login
                     proximoForm = new ListadoEstadistico(this);
                     break;
 
+                case "MODIFICAR_PASSWORD"://Hay que ver que nombre se le pone
+                    proximoForm = new SeleccionarUsuarioCambiarPassword(this);
+                    break;
+
                 case "ABM_RUBRO":
                     MessageBox.Show("Esta funcionalidad esta deshabilitada");
                     return;

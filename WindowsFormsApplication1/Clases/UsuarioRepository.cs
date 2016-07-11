@@ -329,7 +329,7 @@ namespace WindowsFormsApplication1.Clases
 
         internal void updatePassword(Usuario usuario, string nuevaPass)
         {
-            string update = "update Usuario set pass=" + nuevaPass + " where id_usuario=" + usuario.id.ToString();
+            string update = "update Usuario set pass='" + nuevaPass + "' where id_usuario=" + usuario.id.ToString();
             db.ejecutarConsulta(update);
         }
 

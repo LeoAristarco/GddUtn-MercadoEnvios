@@ -95,6 +95,7 @@
       <DependentUpon>RegistrarUsuario.cs</DependentUpon>
     </Compile>
     <Compile Include="Clases\Funcionalidad.cs" />
+    <Compile Include="Clases\Hash.cs" />
     <Compile Include="Clases\RolRepository.cs" />
     <Compile Include="ABM Rubro\ABMRubro.cs">
       <SubType>Form</SubType>
@@ -319,6 +320,12 @@
     <Compile Include="Login\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Login\SeleccionarUsuarioCambiarPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login\SeleccionarUsuarioCambiarPassword.Designer.cs">
+      <DependentUpon>SeleccionarUsuarioCambiarPassword.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login\SeleccionFuncionalidades.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -446,6 +453,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Login\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login\SeleccionarUsuarioCambiarPassword.resx">
+      <DependentUpon>SeleccionarUsuarioCambiarPassword.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\SeleccionFuncionalidades.resx">
       <DependentUpon>SeleccionFuncionalidades.cs</DependentUpon>
