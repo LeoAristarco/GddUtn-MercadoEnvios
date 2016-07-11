@@ -960,7 +960,8 @@ values
 	('HISTORIAL_CLIENTE', 1),
 	('CALIFICAR_VENDEDOR', 1),
 	('FACTURAS_REALIZADAS', 1),
-	('ESTADISTICAS', 1);
+	('ESTADISTICAS', 1),
+	('CAMBIAR_PASSWORD', 1);
 
 go
 
@@ -974,7 +975,8 @@ values
 	(2,3),
 	(3,3),
 	(4,3),
-	(10,3);
+	(10,3),
+	(11,3);
 
 go
 
@@ -984,7 +986,8 @@ values
 	(5,2),
 	(6,2),
 	(7,2),
-	(8,2);
+	(8,2),
+	(11,2);
 
 go
 
@@ -992,7 +995,8 @@ go
 insert into FUNCIONALIDAD_POR_ROL
 values
 	(5,1),
-	(9,1);
+	(9,1),
+	(11,1);
 
 go
 

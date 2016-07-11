@@ -138,7 +138,7 @@ namespace WindowsFormsApplication1.Login
                     break;
 
                 case "MODIFICAR_PASSWORD"://Hay que ver que nombre se le pone
-                    proximoForm = new SeleccionarUsuarioCambiarPassword(this);
+                    proximoForm = new SeleccionarUsuarioCambiarPassword(usuario,this);
                     break;
 
                 case "ABM_RUBRO":

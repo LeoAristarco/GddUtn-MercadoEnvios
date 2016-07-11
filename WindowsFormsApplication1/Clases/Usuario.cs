@@ -1,4 +1,5 @@
 ﻿using System;
+using WindowsFormsApplication1.ABM_Rol;
 
 namespace WindowsFormsApplication1.Clases
 {
@@ -20,5 +21,10 @@ namespace WindowsFormsApplication1.Clases
 	    public string departamento;
 	    public string localidad;
 	    public int codigoPostal;
+
+        public bool tenesRolAdministrativo()
+        {
+            return (new RolRepository()).tieneRolAdministrativo(this);
+        }
     }
 }

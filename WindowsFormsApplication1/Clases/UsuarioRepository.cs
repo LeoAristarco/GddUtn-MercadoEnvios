@@ -124,7 +124,7 @@ namespace WindowsFormsApplication1.Clases
             return toLong(tabla[0]["id_usuario"]);
         }
 
-        internal void agregarEmpresa(Empresa nuevaEmpresa)
+        internal string agregarEmpresa(Empresa nuevaEmpresa)
         {
             List<SqlParameter> parametros = new List<SqlParameter>();
 
@@ -146,7 +146,19 @@ namespace WindowsFormsApplication1.Clases
             db.agregarParametro(parametros, "@ciudad", nuevaEmpresa.ciudad);
             db.agregarParametro(parametros, "@rubro", nuevaEmpresa.rubro);
 
-            db.ejecutarStoredProcedure("st_agregar_empresa", parametros);
+            string retorno="";
+
+            retorno = db.ejecutarStoredConRetorno("st_agregar_empresa", parametros, "@error", retorno).ToString();
+
+            switch (retorno)
+            {
+                case "t":retorno = "todo piola";
+                    break;
+                case "e": retorno = "Error, la empresa no pudo ser creada";
+                    break;
+            }
+
+            return retorno;
         }
 
         internal bool yaExisteCuit(string cuit)
@@ -303,7 +315,7 @@ namespace WindowsFormsApplication1.Clases
             return toInt(db.ejecutarConsulta(consulta)[0]["cuenta"]) > 0;
         }
 
-        internal void agregarCliente(Cliente nuevoCliente)
+        internal string agregarCliente(Cliente nuevoCliente)
         {
             List<SqlParameter> parametros = new List<SqlParameter>();
 
@@ -324,7 +336,21 @@ namespace WindowsFormsApplication1.Clases
             db.agregarParametro(parametros, "@dni", nuevoCliente.dni);
             db.agregarParametro(parametros, "@tipo_documento", nuevoCliente.tipoDeDocumento);
 
-            db.ejecutarStoredProcedure("st_agregar_cliente", parametros);
+            string retorno = "";
+
+            retorno = db.ejecutarStoredConRetorno("st_agregar_cliente", parametros, "@error", retorno).ToString();
+
+            switch (retorno)
+            {
+                case "t":
+                    retorno = "todo piola";
+                    break;
+                case "e":
+                    retorno = "Error, la empresa no pudo ser creada";
+                    break;
+            }
+
+            return retorno;
         }
 
         internal bool yaExisteEseNick(string nick)

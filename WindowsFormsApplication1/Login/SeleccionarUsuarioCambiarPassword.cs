@@ -15,9 +15,11 @@ namespace WindowsFormsApplication1.Login
     {
         private Form formAnterior;
         private UsuarioRepository repositorio = new UsuarioRepository();
+        private Usuario usuario;
 
-        public SeleccionarUsuarioCambiarPassword(Form formAnterior)
+        public SeleccionarUsuarioCambiarPassword(Usuario usuario,Form formAnterior)
         {
+            this.usuario = usuario;
             this.formAnterior = formAnterior;
             InitializeComponent();
         }
@@ -35,6 +37,17 @@ namespace WindowsFormsApplication1.Login
             Hide();
             cambiarPass.ShowDialog();
             Close();
+        }
+
+        private void SeleccionarUsuarioCambiarPassword_Load(object sender, EventArgs e)
+        {
+            if (!usuario.tenesRolAdministrativo())
+            {
+                CambiarPassword cambiarPass = new CambiarPassword(formAnterior, usuario);
+                Hide();
+                cambiarPass.ShowDialog();
+                Close();
+            }
         }
     }
 }
