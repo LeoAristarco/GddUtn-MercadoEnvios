@@ -85,7 +85,7 @@ namespace WindowsFormsApplication1.Login.ClasesLogin
                 double keyFunc = dataReader.GetSqlDecimal(0).ToDouble();
                 string value = dataReader.GetString(1);
 
-                if (dic.ContainsKey(keyFunc))
+                if (!dic.ContainsKey(keyFunc))
                 {
                     dic.Add(keyFunc, value);
                 }
