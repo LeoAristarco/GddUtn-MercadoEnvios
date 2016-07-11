@@ -1,28 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using WindowsFormsApplication1.ABM_Usuario.Cliente;
 using WindowsFormsApplication1.Clases;
 
-namespace WindowsFormsApplication1.ABM_Usuario.Empresa
+namespace WindowsFormsApplication1.ABM_Usuario
 {
     public partial class CrearEmpresa : Form
     {
         private Usuario nuevoUser;
-        private RegistrarUsuario registrarUsuario;
         private UsuarioRepository repositorio = new UsuarioRepository();
         private Empresa nuevaEmpresa;
+        private Form formAnterior;
 
-        public CrearEmpresa(Usuario nuevoUser, RegistrarUsuario registrarUsuario)
+        public CrearEmpresa(Usuario nuevoUser, Form formAnterior)
         {
             this.nuevoUser = nuevoUser;
-            this.registrarUsuario = registrarUsuario;
+            this.formAnterior = formAnterior;
             nuevaEmpresa = new Empresa();
             InitializeComponent();
         }
@@ -38,7 +30,7 @@ namespace WindowsFormsApplication1.ABM_Usuario.Empresa
 
             repositorio.agregarEmpresa(nuevaEmpresa);
 
-            Confirmacion confirmacion = new Confirmacion(nuevoUser, registrarUsuario);
+            Confirmacion confirmacion = new Confirmacion(nuevoUser, formAnterior);
 
             confirmacion.ShowDialog();
 

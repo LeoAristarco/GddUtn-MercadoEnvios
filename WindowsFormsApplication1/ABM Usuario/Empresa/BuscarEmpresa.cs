@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsFormsApplication1.Clases;
 
-namespace WindowsFormsApplication1.ABM_Usuario.Empresa
+namespace WindowsFormsApplication1.ABM_Usuario
 {
     public partial class BuscarEmpresa : Form
     {

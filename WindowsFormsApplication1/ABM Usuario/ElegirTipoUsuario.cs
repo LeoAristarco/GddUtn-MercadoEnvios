@@ -1,56 +1,96 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using WindowsFormsApplication1.ABM_Usuario.Cliente;
-using WindowsFormsApplication1.ABM_Usuario.Empresa;
 using WindowsFormsApplication1.Clases;
 
 namespace WindowsFormsApplication1.ABM_Usuario
 {
     public partial class ElegirTipoUsuario : Form
     {
-        private Usuario nuevoUser;
-        private RegistrarUsuario registrarUsuario;
         private string tipoDeUserSeleccionado = "";//Lo inicializo en ninguno
+        private Usuario usuario;
+        private bool update;
+        private Form formAnterior;
+        private UsuarioRepository repositorio = new UsuarioRepository();
 
-        public ElegirTipoUsuario(RegistrarUsuario registrarUsuario, Usuario nuevoUser)
+        public ElegirTipoUsuario(Form formAnterior, Usuario usuario,bool update)
         {
-            this.registrarUsuario = registrarUsuario;
-            this.nuevoUser = nuevoUser;
+            this.update = update;
+            this.formAnterior = formAnterior;
+            this.usuario = usuario;
             InitializeComponent();
         }
 
         private void inicializarListBox()
         {
-            tiposDeUsuario.Items.Add("Cliente");
-            tiposDeUsuario.Items.Add("Empresa");
+            tiposDeUsuario.Items.Add("CLIENTE");
+            tiposDeUsuario.Items.Add("EMPRESA");
         }
 
         private void continuar_Boton_Click(object sender, EventArgs e)
         {
-            Form crearUsuarioCompleto = new Form();
-
             switch (tipoDeUserSeleccionado)
             {
-                case "Cliente": crearUsuarioCompleto = new CrearCliente(nuevoUser, registrarUsuario);
+                case "CLIENTE": ejecutarAbmCliente();
                     break;
 
-                case "Empresa":
-                    crearUsuarioCompleto = new CrearEmpresa(nuevoUser, registrarUsuario);
+                case "EMPRESA": ejecutarAbmEmpresa();
                     break;
 
                 case "":
                     MessageBox.Show("Error, debe seleccionar un tipo de usuario a registrar");
                     return;
             }
+        }
 
-            crearUsuarioCompleto.ShowDialog();
+        private void ejecutarAbmEmpresa()
+        {
+            Form formACargar = new Form();
+
+            if (update)
+            {
+                Empresa empresa = repositorio.traerEmpresaPorNick(usuario.nick);
+
+                if (empresa==null)
+                {
+                    MessageBox.Show("Error, el usuario ingresado no es del tipo Empresa");
+                    return;
+                }
+
+                formACargar = new ModificarEmpresa(empresa, formAnterior);
+            }
+            else
+            {
+                formACargar = new CrearEmpresa(usuario, formAnterior);
+            }
+
+            Hide();
+            formACargar.ShowDialog();
+            Close();
+        }
+
+        private void ejecutarAbmCliente()
+        {
+            Form formACargar = new Form();
+
+            if (update)
+            {
+                Cliente cliente = repositorio.traerClientePorNick(usuario.nick);
+
+                if (cliente == null)
+                {
+                    MessageBox.Show("Error, el usuario ingresado no es del tipo Cliente");
+                    return;
+                }
+
+                formACargar = new ModificarCliente(cliente, formAnterior);
+            }
+            else
+            {
+                formACargar = new CrearCliente(usuario, formAnterior);
+            }
+
+            Hide();
+            formACargar.ShowDialog();
             Close();
         }
 

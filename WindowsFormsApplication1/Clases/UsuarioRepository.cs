@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Windows.Forms;
-using WindowsFormsApplication1.ABM_Usuario.Cliente;
-using WindowsFormsApplication1.ABM_Usuario.Empresa;
+using WindowsFormsApplication1.ABM_Usuario;
 
 namespace WindowsFormsApplication1.Clases
 {
@@ -45,6 +43,22 @@ namespace WindowsFormsApplication1.Clases
             return clientesEncontrados;
         }
 
+        internal Empresa traerEmpresaPorNick(string nick)
+        {
+            long idUsuario = obtenerIdUsuarioPorNick(nick);
+
+            string consulta = "select * from EMPRESA where id_usuario=" + idUsuario.ToString();
+
+            List<Dictionary<string, object>> tabla = db.ejecutarConsulta(consulta);
+
+            if (tabla.Count>0)
+            {
+                return deserializarEmpresa(tabla[0]);
+            }
+
+            return null;
+        }
+
         internal void modificarEmpresa(Empresa empresa)
         {
             List<SqlParameter> parametros = new List<SqlParameter>();
@@ -62,6 +76,22 @@ namespace WindowsFormsApplication1.Clases
             db.agregarParametro(parametros, "@rubro", empresa.rubro);
 
             db.ejecutarStoredProcedure("st_modificar_empresa", parametros);
+        }
+
+        internal Cliente traerClientePorNick(string nick)
+        {
+            long idUsuario = obtenerIdUsuarioPorNick(nick);
+
+            string consulta = "select * from CLIENTE where id_usuario=" + idUsuario.ToString();
+
+            List<Dictionary<string, object>> tabla = db.ejecutarConsulta(consulta);
+
+            if (tabla.Count > 0)
+            {
+                return deserializarCliente(tabla[0]);
+            }
+
+            return null;
         }
 
         internal long obtenerIdUsuarioPorNick(string text)

@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsFormsApplication1.Clases;
 
@@ -40,7 +33,7 @@ namespace WindowsFormsApplication1.ABM_Usuario
             nuevoUser.nick = nick.Text;
             nuevoUser.pass = pass.Text;
 
-            ElegirTipoUsuario elegirTipoUser = new ElegirTipoUsuario(this, nuevoUser);
+            ElegirTipoUsuario elegirTipoUser = new ElegirTipoUsuario(this, nuevoUser,false);
 
             Hide();
 
@@ -50,6 +43,11 @@ namespace WindowsFormsApplication1.ABM_Usuario
         private void RegistrarUsuario_FormClosing(object sender, FormClosingEventArgs e)
         {
             formAnterior.Show();
+        }
+
+        private void RegistrarUsuario_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

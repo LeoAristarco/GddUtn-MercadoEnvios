@@ -1,27 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsFormsApplication1.Clases;
 
-namespace WindowsFormsApplication1.ABM_Usuario.Cliente
+namespace WindowsFormsApplication1.ABM_Usuario
 {
     public partial class CrearCliente : Form
     {
         private Cliente nuevoCliente;
         private Usuario nuevoUser;
-        private RegistrarUsuario registrarUsuario;
         private UsuarioRepository repositorio = new UsuarioRepository();
+        private Form formAnterior;
 
-        public CrearCliente(Usuario nuevoUser, RegistrarUsuario registrarUsuario)
+        public CrearCliente(Usuario nuevoUser, Form formAnterior)
         {
             this.nuevoUser = nuevoUser;
-            this.registrarUsuario = registrarUsuario;
+            this.formAnterior = formAnterior;
             nuevoCliente = new Cliente();
             InitializeComponent();
         }
@@ -75,7 +68,7 @@ namespace WindowsFormsApplication1.ABM_Usuario.Cliente
 
             repositorio.agregarCliente(nuevoCliente);
 
-            Confirmacion confirmacion = new Confirmacion(nuevoUser, registrarUsuario);
+            Confirmacion confirmacion = new Confirmacion(nuevoUser, formAnterior);
 
             Hide();
 
@@ -115,7 +108,7 @@ namespace WindowsFormsApplication1.ABM_Usuario.Cliente
 
         private void back_Click(object sender, EventArgs e)
         {
-            registrarUsuario.Show();
+            formAnterior.Show();
             Close();
         }
     }

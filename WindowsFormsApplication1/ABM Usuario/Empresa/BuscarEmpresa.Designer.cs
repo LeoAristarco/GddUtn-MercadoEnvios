@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApplication1.ABM_Usuario.Empresa
+﻿namespace WindowsFormsApplication1.ABM_Usuario
 {
     partial class BuscarEmpresa
     {

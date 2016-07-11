@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WindowsFormsApplication1.Clases;
 
-namespace WindowsFormsApplication1.ABM_Usuario.Empresa
+namespace WindowsFormsApplication1.ABM_Usuario
 {
     public class Empresa:Usuario
     {

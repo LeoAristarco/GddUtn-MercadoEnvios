@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApplication1.ABM_Usuario.Cliente
+﻿namespace WindowsFormsApplication1.ABM_Usuario
 {
     partial class BuscarCliente
     {

@@ -9,17 +9,17 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsFormsApplication1.Clases;
 
-namespace WindowsFormsApplication1.ABM_Usuario.Cliente
+namespace WindowsFormsApplication1.ABM_Usuario
 {
     public partial class Confirmacion : Form
     {
         private Usuario nuevoUser;
-        private RegistrarUsuario registrarUsuario;
+        private Form formAnterior;
 
-        public Confirmacion(Usuario nuevoUser, RegistrarUsuario registrarUsuario)
+        public Confirmacion(Usuario nuevoUser, Form formAnterior)
         {
             this.nuevoUser = nuevoUser;
-            this.registrarUsuario = registrarUsuario;
+            this.formAnterior = formAnterior;
             InitializeComponent();
         }
 
@@ -31,7 +31,7 @@ namespace WindowsFormsApplication1.ABM_Usuario.Cliente
 
         private void button1_Click(object sender, EventArgs e)
         {
-            registrarUsuario.Show();
+            formAnterior.Show();
             Close();
         }
     }

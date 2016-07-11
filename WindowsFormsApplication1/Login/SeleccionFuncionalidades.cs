@@ -106,7 +106,7 @@ namespace WindowsFormsApplication1.Login
                     break;
 
                 case "ABM_USUARIO":
-                    proximoForm = new RegistrarUsuario(this);
+                    proximoForm = new ABMUsuario(this);
                     break;
 
                 case "ABM_VISIBILIDAD":
