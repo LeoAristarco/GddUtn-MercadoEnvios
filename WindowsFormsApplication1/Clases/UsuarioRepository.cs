@@ -13,6 +13,13 @@ namespace WindowsFormsApplication1.Clases
             return deserializarUsuario(db.ejecutarConsulta(consulta)[0]);
         }
 
+        internal string valorHasheado(string texto)
+        {
+            string consulta = "select dbo.fn_hashear_pass('" + texto + "') as hashValue";
+
+            return db.ejecutarConsulta(consulta)[0]["hashValue"].ToString();
+        }
+
         private Usuario deserializarUsuario(Dictionary<string, object> dictionary)
         {
             Usuario user = new Usuario();
@@ -41,6 +48,11 @@ namespace WindowsFormsApplication1.Clases
             }
 
             return clientesEncontrados;
+        }
+
+        internal Usuario obtenerUsuarioPorNick(string text)
+        {
+            return traerPorId(obtenerIdUsuarioPorNick(text));
         }
 
         internal Empresa traerEmpresaPorNick(string nick)
@@ -96,7 +108,7 @@ namespace WindowsFormsApplication1.Clases
 
         internal long obtenerIdUsuarioPorNick(string text)
         {
-            string consulta = "select id_usuario from USUARIO where nick=" + text;
+            string consulta = "select id_usuario from USUARIO where nick='" + text+"'";
             List<Dictionary<string, object>> tabla = db.ejecutarConsulta(consulta);
 
             if (tabla.Count==0)

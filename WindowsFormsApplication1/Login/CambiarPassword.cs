@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -34,6 +35,12 @@ namespace WindowsFormsApplication1.Login
                 return;
             }
 
+            if (Hash.hashear(passVieja.Text)!=usuario.pass)
+            {
+                MessageBox.Show("La contraseña actual no coincide con la especificada");
+                return;
+            }
+
             repositorio.updatePassword(usuario, nuevaPass1.Text);//Por ahi deberia de hacer mas validaciones
 
             formAnterior.Show();
@@ -43,7 +50,7 @@ namespace WindowsFormsApplication1.Login
 
         private void CambiarPassword_Load(object sender, EventArgs e)
         {
-
+            
         }
     }
 }
