@@ -153,7 +153,7 @@ namespace WindowsFormsApplication1.ComprarOfertar
 
         private void btnAbrirPublicacion_Click(object sender, EventArgs e)
         {
-            DetallePublicacion verPublicacion = new DetallePublicacion(publicacionSeleccionada,this,usuario);
+            DetallePublicacion verPublicacion = new DetallePublicacion(publicacionSeleccionada,this,usuario,true);
             Hide();
             verPublicacion.ShowDialog();
         }

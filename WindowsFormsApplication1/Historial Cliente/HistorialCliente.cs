@@ -136,12 +136,17 @@ namespace WindowsFormsApplication1.Historial_Cliente
 
         private void tablaPublicaciones_Click(object sender, EventArgs e)
         {
+            if (tablaPublicaciones.Rows.Count==0)
+            {
+                return;
+            }
+
             publicacionSeleccionada = publicaciones[tablaPublicaciones.CurrentCell.RowIndex];
         }
 
         private void btnAbrirPublicacion_Click(object sender, EventArgs e)
         {
-            DetallePublicacion verPublicacion = new DetallePublicacion(publicacionSeleccionada, this, usuario);
+            DetallePublicacion verPublicacion = new DetallePublicacion(publicacionSeleccionada, this, usuario,false);
             Hide();
             verPublicacion.ShowDialog();
         }

@@ -17,9 +17,11 @@ namespace WindowsFormsApplication1.ComprarOfertar
         private Form formAnterior;
         private Publicacion publicacion;
         private Usuario user;
+        private bool botonComprarActivado;
 
-        public DetallePublicacion(Publicacion publicacionSeleccionada, Form formAnterior, Usuario usuario)
+        public DetallePublicacion(Publicacion publicacionSeleccionada, Form formAnterior, Usuario usuario,bool botonComprarActivado)
         {
+            this.botonComprarActivado = botonComprarActivado;
             this.publicacion = publicacionSeleccionada;
             this.formAnterior = formAnterior;
             user = usuario;
@@ -70,6 +72,7 @@ namespace WindowsFormsApplication1.ComprarOfertar
             stock.Text = publicacion.stock.ToString();
             username.Text = publicacion.responsable.nick;
             codigoPublicacion.Text = publicacion.id.ToString();
+            btnComprar.Visible = botonComprarActivado;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
