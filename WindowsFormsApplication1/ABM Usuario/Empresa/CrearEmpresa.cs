@@ -28,7 +28,13 @@ namespace WindowsFormsApplication1.ABM_Usuario
 
             cargarDatosAEmpresa();
 
-            repositorio.agregarEmpresa(nuevaEmpresa);
+            string mensaje = repositorio.agregarEmpresa(nuevaEmpresa);
+
+            if (mensaje!="todo piola")
+            {
+                MessageBox.Show(mensaje.ToUpper());
+                return;
+            }
 
             Confirmacion confirmacion = new Confirmacion(nuevoUser, formAnterior);
 
