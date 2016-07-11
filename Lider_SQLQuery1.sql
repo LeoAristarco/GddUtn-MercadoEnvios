@@ -962,15 +962,22 @@ begin
 			 f.tipo_visibilidad,
 			 f.costo_visibilidad,
 			 f.factura_fecha,
-			 sum(i.cantidad_vendida*i.precio_unitario+i.precio_envio) as total_facturar,
+			 sum(i.cantidad_vendida*i.precio_unitario*v.porcentaje_venta+i.precio_envio+
+			 	f.costo_visibilidad) as total_facturar,
 			(row_number() over (order by f.id_factura desc) ) as facturas
       from FACTURA as f
 	  inner join ITEM_FACTURA as i on i.id_factura=f.id_factura
-	  where (f.factura_fecha>=@fechaDesde or @fechaDesde is null) and
-			(f.factura_fecha<=@fechaHasta or @fechaHasta is null)
+	  inner join VISIBILIDAD v on f.tipo_visibilidad=v.visibilidad_nombre
+	  inner join PUBLICACION p on f.id_factura =p.factura
+	  where (CAST(f.factura_fecha as DATE)>=@fechaDesde or @fechaDesde is null) and
+			(CAST(f.factura_fecha as DATE)<=@fechaHasta or @fechaHasta is null) and
+			p.usuario_responsable=@idUsuario 
+
 	  group by f.id_factura,f.forma_pago,f.tipo_visibilidad,f.costo_visibilidad,f.factura_fecha
-	  having (sum(i.cantidad_vendida*i.precio_unitario+i.precio_envio)<=@montoHasta or @montoHasta is null) and 
-			 (sum(i.cantidad_vendida*i.precio_unitario+i.precio_envio)>=@montoDesde or @montoDesde is null)
+	  having (sum(i.cantidad_vendida*i.precio_unitario*
+	              v.porcentaje_venta+i.precio_envio+f.costo_visibilidad) <=@montoHasta or @montoHasta is null) and 
+			 (sum(i.cantidad_vendida*i.precio_unitario*
+			      v.porcentaje_venta+i.precio_envio+f.costo_visibilidad) >=@montoDesde or @montoDesde is null)
       
       ) gg_vieja
  where facturas between (@pagina*10)-9 and (@pagina*10)
@@ -979,31 +986,45 @@ end
 
 go
 
-create procedure st_obtenerMaximaPaginaFacturasFiltradas
+alter procedure st_obtenerMaximaPaginaFacturasFiltradas
 @idUsuario numeric(10,0),
-@pagina int,
 @montoDesde numeric(10,2)=null,
 @montoHasta numeric(10,2)=null,
 @fechaDesde datetime=null,
 @fechaHasta datetime=null,
-@maxPagina numeric(10,0)=0 out
-as
-begin	
+@ultimaPagina numeric(10,0)=0 out
+AS
+begin
+declare @paginas int
 
-      select @maxPagina=count(*)
-	  from FACTURA as f
+ select @paginas=count(*)
+ from(
+      select f.id_factura
+      from FACTURA as f
 	  inner join ITEM_FACTURA as i on i.id_factura=f.id_factura
-	  where (f.factura_fecha>=@fechaDesde or @fechaDesde is null) and
-			(f.factura_fecha<=@fechaHasta or @fechaHasta is null)
+	  inner join VISIBILIDAD v on f.tipo_visibilidad=v.visibilidad_nombre
+	  inner join PUBLICACION p on f.id_factura =p.factura
+	  where (CAST(f.factura_fecha as DATE)>=@fechaDesde or @fechaDesde is null) and
+			(CAST(f.factura_fecha as DATE)<=@fechaHasta or @fechaHasta is null) and
+			p.usuario_responsable=@idUsuario 
+
 	  group by f.id_factura,f.forma_pago,f.tipo_visibilidad,f.costo_visibilidad,f.factura_fecha
-	  having (sum(i.cantidad_vendida*i.precio_unitario+i.precio_envio)<=@montoHasta or @montoHasta is null) and 
-			 (sum(i.cantidad_vendida*i.precio_unitario+i.precio_envio)>=@montoDesde or @montoDesde is null)
+	  having (sum(i.cantidad_vendida*i.precio_unitario*
+	              v.porcentaje_venta+i.precio_envio+f.costo_visibilidad) <=@montoHasta or @montoHasta is null) and 
+			 (sum(i.cantidad_vendida*i.precio_unitario*
+			      v.porcentaje_venta+i.precio_envio+f.costo_visibilidad) >=@montoDesde or @montoDesde is null)
+      
+      ) gg_vieja
 
-	  if(((@maxPagina/10) - floor(@maxPagina/10))>0)
-		set @maxPagina = (@maxPagina/10) + 1;
-
+	  if((@paginas%10)<>0)
+	  begin
+	       set @ultimaPagina = (@paginas/10)+1
+	  end
 	  else
-		set @maxPagina = @maxPagina/10;
+	  begin
+	       set @ultimaPagina = (@paginas/10)
+	  end
+
 
 end
 
