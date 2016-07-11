@@ -146,7 +146,10 @@ namespace WindowsFormsApplication1.Clases
 
                     columna = reader.GetName(i);
 
-                    filaDiccionario.Add(columna, reader[columna]);
+                        if (!filaDiccionario.ContainsKey(columna))
+                        {
+                            filaDiccionario.Add(columna, reader[columna]);
+                        }
                     }
 
                     lista.Add(filaDiccionario);
