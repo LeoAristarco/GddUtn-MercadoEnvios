@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsFormsApplication1.Clases;
 using WindowsFormsApplication1.Login.ClasesLogin;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Header;
 
 namespace WindowsFormsApplication1.Login
 {

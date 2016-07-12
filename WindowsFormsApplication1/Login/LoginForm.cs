@@ -53,7 +53,8 @@ namespace WindowsFormsApplication1.Login
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
-            sistema.darDeBajaPublicacionesVencidas();//Al inicio del login doy de baja las publicaciones vencidas
+            Hide();
+            (new Form1(this)).ShowDialog();//Muestro la barra de progreso
         }
     }
 }
