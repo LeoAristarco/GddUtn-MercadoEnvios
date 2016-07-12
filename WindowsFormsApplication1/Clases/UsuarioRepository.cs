@@ -452,5 +452,13 @@ namespace WindowsFormsApplication1.Clases
 
             return dictionaryUsersMasCompras;
         }
+
+        public int cantidadOpercaionesSinCalificar(Usuario usuario)
+        {
+            List<SqlParameter> parametros = new List<SqlParameter>();
+            db.agregarParametro(parametros, "@id_usuario", usuario.id);
+
+            return toInt(db.ejecutarStoredProcedure("st_cantidadDeOperacionesSinCalificar", parametros)[0]["alexisManco"]);
+        }
     }
 }

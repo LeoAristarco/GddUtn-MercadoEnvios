@@ -31,6 +31,11 @@ namespace WindowsFormsApplication1.Calificar
 
         private void btnCalificar_Click(object sender, EventArgs e)
         {
+            if (comprasSinCalificar.Count==0)
+            {
+                return;
+            }
+
             CalificarDetalle calificar = new CalificarDetalle(this,compraSeleccionada.calificacion,usuario);
 
             Hide();
@@ -87,6 +92,10 @@ namespace WindowsFormsApplication1.Calificar
 
         private void tablaPublicacionesCalificar_Click(object sender, EventArgs e)
         {
+            if (comprasSinCalificar.Count==0)
+            {
+                return;
+            }
             compraSeleccionada = comprasSinCalificar[tablaPublicacionesCalificar.CurrentCell.RowIndex];
         }
 

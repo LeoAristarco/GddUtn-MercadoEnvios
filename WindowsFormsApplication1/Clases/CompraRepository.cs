@@ -23,7 +23,7 @@ namespace WindowsFormsApplication1.Calificar
             db.agregarParametro(parametros, "@cantidad",cantidad );
             db.agregarParametro(parametros, "@precio_envio", hayEnvio ? PRECIO_DE_ENVIO : 0);
             db.agregarParametro(parametros, "@factura", publicacion.factura.id);
-            db.agregarParametro(parametros, "@descripcion", publicacion.descripcion);
+            //db.agregarParametro(parametros, "@descripcion", publicacion.descripcion);
             db.agregarParametro(parametros, "@comprador", user.id);
 
             db.ejecutarStoredProcedure("st_insertarCompraSubasta", parametros);

@@ -44,12 +44,14 @@ namespace WindowsFormsApplication1.ComprarOfertar
 
         private void txtAceptar_Click(object sender, EventArgs e)
         {
-            int monto = Convert.ToInt32(montoOferta.Text);
             if (montoOferta.Text.Contains(",")|| montoOferta.Text.Contains("."))
             {
                 MessageBox.Show("No se permiten ofertas con valores decimales");
                 return;
             }
+
+            int monto = Convert.ToInt32(montoOferta.Text);
+
             if (monto<=publicacion.precio)
             {
                 MessageBox.Show("La cantidad ofertada debe ser mayor a la actual");

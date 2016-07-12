@@ -17,6 +17,7 @@ namespace WindowsFormsApplication1.Historial_Cliente
     {
         private Publicacion publicacionSeleccionada;
         private PublicacionRepository repositorio = new PublicacionRepository();
+        private UsuarioRepository repoUsuario = new UsuarioRepository();
         private int numeroPagina = 1;
         private int cantidadMaxDePags = 0;
         private List<Publicacion> publicaciones;
@@ -36,6 +37,7 @@ namespace WindowsFormsApplication1.Historial_Cliente
         private void HistorialCliente_Load(object sender, EventArgs e)
         {
             inicializarFormulario();
+            buscarPagina();
         }
 
         private void inicializarFormulario()
@@ -53,6 +55,8 @@ namespace WindowsFormsApplication1.Historial_Cliente
             estrellas3.Text = calificaciones[2].ToString();
             estrellas4.Text = calificaciones[3].ToString();
             estrellas5.Text = calificaciones[4].ToString();
+
+            cantOperacionesSinCalificar.Text = repoUsuario.cantidadOpercaionesSinCalificar(usuario).ToString();
         }
 
         private void inicializarDataGrid()
