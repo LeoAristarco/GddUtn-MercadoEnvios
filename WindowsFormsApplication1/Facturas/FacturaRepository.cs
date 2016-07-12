@@ -52,12 +52,12 @@ namespace WindowsFormsApplication1.Facturas
             return facturas;
         }
 
-        internal int cantidadMaximaPaginasFiltradas(long idUsuario, double montoMinimo, double montoMaximo, bool montoActivado, DateTime fechaMinima, DateTime fechaMaxima, bool fechaActivada, int pagina)
+        internal int cantidadMaximaPaginasFacturasClienteFiltradas(long idUsuario, double montoMinimo, double montoMaximo, bool montoActivado, DateTime fechaMinima, DateTime fechaMaxima, bool fechaActivada)
         {
             List<SqlParameter> parametros = new List<SqlParameter>();
 
             db.agregarParametro(parametros, "@idUsuario", idUsuario);
-            db.agregarParametro(parametros, "@pagina", pagina);
+            //db.agregarParametro(parametros, "@pagina", pagina);
 
             if (montoActivado)
             {
@@ -84,7 +84,7 @@ namespace WindowsFormsApplication1.Facturas
 
             int cantPaginas = 0;
 
-            cantPaginas = toInt(db.ejecutarStoredConRetorno("st_obtenerFacturasVendedorPorPaginas", parametros,"@maxPagina",cantPaginas));
+            cantPaginas = toInt(db.ejecutarStoredConRetorno("st_obtenerMaximaPaginaFacturasFiltradas", parametros, "@ultimaPagina", cantPaginas));
 
             return cantPaginas;
         }
@@ -97,6 +97,7 @@ namespace WindowsFormsApplication1.Facturas
             factura.tipoVisibilidad = item["tipo_visibilidad"].ToString();
             factura.costoVisibilidad = toDouble(item["costo_visibilidad"]);
             factura.totalAFacturar = toDouble(item["total_facturar"]);
+            factura.fecha = toDate(item["factura_fecha"]);
 
             return factura;
         }

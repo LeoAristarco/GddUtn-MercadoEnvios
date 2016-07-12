@@ -38,7 +38,7 @@ namespace WindowsFormsApplication1.Facturas
 
             if (cantidadMaxDePags==0)
             {
-                cantidadMaxDePags = repositorioFactura.cantidadMaximaPaginasFiltradas(idUsuario, montoMinimo, montoMaximo, filtroMontoActivado.Checked, fechaMinima, fechaMaxima, filtroFechaActivado.Checked, numeroPagina);
+                cantidadMaxDePags = repositorioFactura.cantidadMaximaPaginasFacturasClienteFiltradas(idUsuario, montoMinimo, montoMaximo, filtroMontoActivado.Checked, fechaMinima, fechaMaxima, filtroFechaActivado.Checked);
             }
 
             facturasFiltradas = repositorioFactura.buscarFacturasPorFiltro(idUsuario, montoMinimo, montoMaximo, filtroMontoActivado.Checked, fechaMinima, fechaMaxima, filtroFechaActivado.Checked,numeroPagina);
@@ -62,8 +62,8 @@ namespace WindowsFormsApplication1.Facturas
             idUsuario = repositorioUsuario.obtenerIdUsuarioPorNick(username.Text);
             fechaMinima = fechaDesde.Value;
             fechaMaxima = fechaHasta.Value;
-            montoMinimo = Convert.ToDouble(montoDesde.Text);
-            montoMaximo = Convert.ToDouble(montoHasta.Text);
+            montoMinimo = montoDesde.Text=="" ? 0 : Convert.ToDouble(montoDesde.Text);
+            montoMaximo = montoHasta.Text=="" ? 0 : Convert.ToDouble(montoHasta.Text);
         }
 
         private void FacturasRealizadas_Load(object sender, EventArgs e)

@@ -83,5 +83,11 @@ namespace WindowsFormsApplication1.ABM_Usuario
             ciudad.Text = empresa.ciudad;
             rubro.Text = empresa.rubro;
         }
+
+        private void bVolver_Click(object sender, EventArgs e)
+        {
+            formAnterior.Show();
+            Close();
+        }
     }
 }

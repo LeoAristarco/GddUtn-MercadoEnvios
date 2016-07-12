@@ -58,7 +58,7 @@ namespace WindowsFormsApplication1.Calificar
             setCalificacion();
             repositorio.updateCalificacion(calificacion);
 
-            HistorialCalificaciones historial = new HistorialCalificaciones(this, usuario);
+            HistorialCalificaciones historial = new HistorialCalificaciones(formAnterior, usuario);
 
             Hide();
 

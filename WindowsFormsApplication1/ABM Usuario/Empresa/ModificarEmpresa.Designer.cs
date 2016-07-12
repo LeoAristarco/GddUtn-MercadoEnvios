@@ -31,6 +31,8 @@
             this.bModificar = new System.Windows.Forms.Button();
             this.bVolver = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.habilitado = new System.Windows.Forms.CheckBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.rubro = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -53,8 +55,6 @@
             this.numeroDeCalle = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.telefono = new System.Windows.Forms.TextBox();
-            this.habilitado = new System.Windows.Forms.CheckBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -78,6 +78,7 @@
             this.bVolver.TabIndex = 4;
             this.bVolver.Text = "<< Volver";
             this.bVolver.UseVisualStyleBackColor = true;
+            this.bVolver.Click += new System.EventHandler(this.bVolver_Click);
             // 
             // groupBox2
             // 
@@ -113,6 +114,25 @@
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Datos corporativos";
+            // 
+            // habilitado
+            // 
+            this.habilitado.AutoSize = true;
+            this.habilitado.Location = new System.Drawing.Point(186, 459);
+            this.habilitado.Name = "habilitado";
+            this.habilitado.Size = new System.Drawing.Size(18, 17);
+            this.habilitado.TabIndex = 91;
+            this.habilitado.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(8, 459);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(71, 17);
+            this.label4.TabIndex = 90;
+            this.label4.Text = "Habilitado";
             // 
             // rubro
             // 
@@ -322,25 +342,6 @@
             this.telefono.Name = "telefono";
             this.telefono.Size = new System.Drawing.Size(201, 22);
             this.telefono.TabIndex = 62;
-            // 
-            // habilitado
-            // 
-            this.habilitado.AutoSize = true;
-            this.habilitado.Location = new System.Drawing.Point(186, 459);
-            this.habilitado.Name = "habilitado";
-            this.habilitado.Size = new System.Drawing.Size(18, 17);
-            this.habilitado.TabIndex = 91;
-            this.habilitado.UseVisualStyleBackColor = true;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(8, 459);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(71, 17);
-            this.label4.TabIndex = 90;
-            this.label4.Text = "Habilitado";
             // 
             // ModificarEmpresa
             // 
