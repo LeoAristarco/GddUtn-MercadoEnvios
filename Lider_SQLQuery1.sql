@@ -79,7 +79,7 @@ go
 	create procedure st_insertarCompraSubasta(@comprador numeric(10,0), 
 	    @publicacion numeric(10,0), 
 	    @fecha_operacion datetime, @monto numeric(10,2), @cantidad int,
-		@precio_envio int,@factura numeric(10,0),@descripcion nvarchar(255))
+		@precio_envio int,@factura numeric(10,0))
 	as begin
 	        
 			insert into COMPRA ( comprador, publicacion, fecha_operacion,monto, cantidad )
@@ -217,7 +217,7 @@ declare @paginas int
       inner join TIPO_PUBLICACION on id_tipo = tipo_publicacion
       inner join RUBRO on id_rubro = rubro
       where (descripcion like '%' + @descripcion + '%') and 
-      estado_nombre <> 'BORRADOR' and estado_nombre <> 'FINALIZADO' and
+      estado_nombre <> 'BORRADOR' and estado_nombre <> 'FINALIZADA' and
       (id_rubro = @rubroId OR @rubroId IS NULL)
       
       ) gg_vieja
@@ -986,7 +986,7 @@ end
 
 go
 
-alter procedure st_obtenerMaximaPaginaFacturasFiltradas
+create procedure st_obtenerMaximaPaginaFacturasFiltradas
 @idUsuario numeric(10,0),
 @montoDesde numeric(10,2)=null,
 @montoHasta numeric(10,2)=null,
