@@ -217,7 +217,7 @@ declare @paginas int
       inner join TIPO_PUBLICACION on id_tipo = tipo_publicacion
       inner join RUBRO on id_rubro = rubro
       where (descripcion like '%' + @descripcion + '%') and 
-      estado_nombre <> 'BORRADOR' and estado_nombre <> 'FINALIZADO' and
+      estado_nombre <> 'BORRADOR' and estado_nombre <> 'FINALIZADA' and
       (id_rubro = @rubroId OR @rubroId IS NULL)
       
       ) gg_vieja
@@ -1094,4 +1094,3 @@ end
 
 	
 			
-
