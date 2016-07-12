@@ -79,7 +79,7 @@ go
 	create procedure st_insertarCompraSubasta(@comprador numeric(10,0), 
 	    @publicacion numeric(10,0), 
 	    @fecha_operacion datetime, @monto numeric(10,2), @cantidad int,
-		@precio_envio int,@factura numeric(10,0))
+		@precio_envio int,@factura numeric(10,0),@descripcion nvarchar(255))
 	as begin
 	        
 			insert into COMPRA ( comprador, publicacion, fecha_operacion,monto, cantidad )
@@ -986,7 +986,7 @@ end
 
 go
 
-create procedure st_obtenerMaximaPaginaFacturasFiltradas
+alter procedure st_obtenerMaximaPaginaFacturasFiltradas
 @idUsuario numeric(10,0),
 @montoDesde numeric(10,2)=null,
 @montoHasta numeric(10,2)=null,
@@ -1094,4 +1094,3 @@ end
 
 	
 			
-
