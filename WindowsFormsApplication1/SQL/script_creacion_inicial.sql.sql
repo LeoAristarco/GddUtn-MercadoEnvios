@@ -951,17 +951,17 @@ go
 
 insert into FUNCIONALIDAD
 values
-	('ABM_USUARIO', 1),
-	('ABM_ROL', 1),
-	('ABM_RUBRO', 1),
-	('ABM_VISIBILIDAD', 1),
-	('GENERAR_PUBLICACION', 1),
-	('COMPRAR/OFERTAR', 1),
-	('HISTORIAL_CLIENTE', 1),
-	('CALIFICAR_VENDEDOR', 1),
-	('FACTURAS_REALIZADAS', 1),
-	('ESTADISTICAS', 1),
-	('CAMBIAR_PASSWORD', 1);
+	('ABM_USUARIO', 1), --1
+	('ABM_ROL', 1),     --2
+	('ABM_RUBRO', 1),   --3
+	('ABM_VISIBILIDAD', 1), --4
+	('GENERAR_PUBLICACION', 1),--5
+	('COMPRAR/OFERTAR', 1),--6
+	('HISTORIAL_CLIENTE', 1),--7
+	('CALIFICAR_VENDEDOR', 1),--8
+	('FACTURAS_REALIZADAS', 1),--9
+	('ESTADISTICAS', 1),--10
+	('CAMBIAR_PASSWORD', 1);--11
 
 go
 
@@ -975,6 +975,7 @@ values
 	(2,3),
 	(3,3),
 	(4,3),
+	(9,3),
 	(10,3),
 	(11,3);
 
@@ -983,7 +984,7 @@ go
 --cliente
 insert into FUNCIONALIDAD_POR_ROL
 values
-	(5,2),
+	
 	(6,2),
 	(7,2),
 	(8,2),
@@ -995,7 +996,6 @@ go
 insert into FUNCIONALIDAD_POR_ROL
 values
 	(5,1),
-	(9,1),
 	(11,1);
 
 go
