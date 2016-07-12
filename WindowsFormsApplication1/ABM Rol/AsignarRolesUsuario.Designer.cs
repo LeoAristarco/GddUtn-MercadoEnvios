@@ -40,7 +40,7 @@
             // 
             this.btnVolver.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnVolver.Location = new System.Drawing.Point(497, 441);
-            this.btnVolver.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnVolver.Margin = new System.Windows.Forms.Padding(4);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.Size = new System.Drawing.Size(100, 28);
             this.btnVolver.TabIndex = 1;
@@ -53,9 +53,9 @@
             this.groupBox1.Controls.Add(this.btnModificar);
             this.groupBox1.Controls.Add(this.usuariosDataGrid);
             this.groupBox1.Location = new System.Drawing.Point(13, 14);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(584, 420);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
@@ -64,7 +64,7 @@
             // btnModificar
             // 
             this.btnModificar.Location = new System.Drawing.Point(439, 23);
-            this.btnModificar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnModificar.Margin = new System.Windows.Forms.Padding(4);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(137, 28);
             this.btnModificar.TabIndex = 3;
@@ -79,7 +79,7 @@
             this.usuariosDataGrid.BackgroundColor = System.Drawing.SystemColors.Window;
             this.usuariosDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.usuariosDataGrid.Location = new System.Drawing.Point(16, 59);
-            this.usuariosDataGrid.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.usuariosDataGrid.Margin = new System.Windows.Forms.Padding(4);
             this.usuariosDataGrid.MultiSelect = false;
             this.usuariosDataGrid.Name = "usuariosDataGrid";
             this.usuariosDataGrid.ReadOnly = true;
@@ -100,6 +100,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "AsignarRolesUsuario";
             this.Text = "AsignarRolesUsuario";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AsignarRolesUsuario_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AsignarRolesUsuario_FormClosed);
             this.Load += new System.EventHandler(this.AsignarRolesUsuario_Load);
             this.groupBox1.ResumeLayout(false);

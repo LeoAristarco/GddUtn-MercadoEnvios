@@ -104,5 +104,10 @@ namespace WindowsFormsApplication1.Calificar
         {
 
         }
+
+        private void CalificarVendedor_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            formAnterior.Show();
+        }
     }
 }

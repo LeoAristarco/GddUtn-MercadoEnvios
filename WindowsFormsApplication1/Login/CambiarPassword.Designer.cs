@@ -123,6 +123,7 @@
             this.Controls.Add(this.button1);
             this.Name = "CambiarPassword";
             this.Text = "CambiarPassword";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CambiarPassword_FormClosing);
             this.Load += new System.EventHandler(this.CambiarPassword_Load);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();

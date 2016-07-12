@@ -31,12 +31,12 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.btnBorrar = new System.Windows.Forms.Button();
             this.textoLibre = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.estrellas = new System.Windows.Forms.ComboBox();
             this.lblEstrellas = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -79,6 +79,15 @@
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Seleccione la cantidad de estrellas que desea puntuar:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(8, 142);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(78, 17);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Texto libre:";
             // 
             // btnBorrar
             // 
@@ -131,15 +140,6 @@
             this.lblEstrellas.TabIndex = 2;
             this.lblEstrellas.Text = "Estrellas:";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(8, 142);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(78, 17);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Texto libre:";
-            // 
             // CalificarDetalle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -150,6 +150,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "CalificarDetalle";
             this.Text = "CalificarDlg";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CalificarDetalle_FormClosing);
             this.Load += new System.EventHandler(this.CalificarDetalle_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

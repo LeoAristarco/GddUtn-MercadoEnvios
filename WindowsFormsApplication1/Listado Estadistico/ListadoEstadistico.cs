@@ -193,5 +193,10 @@ namespace WindowsFormsApplication1.Listado_Estadistico
         {
             listado.seleccionarFiltro(filtro.SelectedIndex);
         }
+
+        private void ListadoEstadistico_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            formAnterior.Show();
+        }
     }
 }

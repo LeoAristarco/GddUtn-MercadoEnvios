@@ -44,17 +44,18 @@
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnCancelar.Location = new System.Drawing.Point(157, 286);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(100, 28);
             this.btnCancelar.TabIndex = 5;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnGuardar
             // 
             this.btnGuardar.Location = new System.Drawing.Point(265, 286);
-            this.btnGuardar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnGuardar.Margin = new System.Windows.Forms.Padding(4);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(100, 28);
             this.btnGuardar.TabIndex = 6;
@@ -71,9 +72,9 @@
             this.groupBox1.Controls.Add(this.cblRoles);
             this.groupBox1.Controls.Add(this.lblRoles);
             this.groupBox1.Location = new System.Drawing.Point(13, 14);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(352, 265);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
@@ -93,7 +94,7 @@
             // txtUsername
             // 
             this.txtUsername.Location = new System.Drawing.Point(93, 43);
-            this.txtUsername.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtUsername.Margin = new System.Windows.Forms.Padding(4);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.ReadOnly = true;
             this.txtUsername.Size = new System.Drawing.Size(241, 22);
@@ -113,7 +114,7 @@
             // txtIdUser
             // 
             this.txtIdUser.Location = new System.Drawing.Point(93, 79);
-            this.txtIdUser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtIdUser.Margin = new System.Windows.Forms.Padding(4);
             this.txtIdUser.Name = "txtIdUser";
             this.txtIdUser.ReadOnly = true;
             this.txtIdUser.Size = new System.Drawing.Size(241, 22);
@@ -123,7 +124,7 @@
             // 
             this.cblRoles.FormattingEnabled = true;
             this.cblRoles.Location = new System.Drawing.Point(93, 111);
-            this.cblRoles.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cblRoles.Margin = new System.Windows.Forms.Padding(4);
             this.cblRoles.Name = "cblRoles";
             this.cblRoles.Size = new System.Drawing.Size(241, 106);
             this.cblRoles.TabIndex = 1;
@@ -153,6 +154,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "RolesUsuarioDlg";
             this.Text = "RolesUsuarioDlg";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.RolesUsuarioDlg_FormClosing);
             this.Load += new System.EventHandler(this.RolesUsuarioDlg_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

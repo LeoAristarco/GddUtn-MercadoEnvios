@@ -353,6 +353,7 @@
             this.Controls.Add(this.groupBox2);
             this.Name = "ModificarEmpresa";
             this.Text = "ModificarEmpresa";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ModificarEmpresa_FormClosing);
             this.Load += new System.EventHandler(this.ModificarEmpresa_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();

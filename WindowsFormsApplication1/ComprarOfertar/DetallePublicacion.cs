@@ -80,5 +80,10 @@ namespace WindowsFormsApplication1.ComprarOfertar
             formAnterior.Show();
             Close();
         }
+
+        private void DetallePublicacion_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            formAnterior.Show();
+        }
     }
 }

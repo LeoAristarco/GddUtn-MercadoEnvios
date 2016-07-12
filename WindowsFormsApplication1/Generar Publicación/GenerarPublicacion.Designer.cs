@@ -290,6 +290,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "GenerarPublicacion";
             this.Text = "Form1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GenerarPublicacion_FormClosing);
             this.Load += new System.EventHandler(this.GenerarPublicacion_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

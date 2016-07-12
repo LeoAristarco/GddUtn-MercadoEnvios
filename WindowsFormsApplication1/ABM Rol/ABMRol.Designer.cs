@@ -44,9 +44,11 @@
             this.groupBox1.Controls.Add(this.Nuevo_Button);
             this.groupBox1.Controls.Add(this.tablaRoles);
             this.groupBox1.Controls.Add(this.Modificar_Button);
-            this.groupBox1.Location = new System.Drawing.Point(10, 11);
+            this.groupBox1.Location = new System.Drawing.Point(13, 14);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(410, 276);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Size = new System.Drawing.Size(547, 340);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Gestión de Roles";
@@ -54,9 +56,10 @@
             // btnAsignarRoles
             // 
             this.btnAsignarRoles.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAsignarRoles.Location = new System.Drawing.Point(308, 19);
+            this.btnAsignarRoles.Location = new System.Drawing.Point(411, 23);
+            this.btnAsignarRoles.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAsignarRoles.Name = "btnAsignarRoles";
-            this.btnAsignarRoles.Size = new System.Drawing.Size(96, 23);
+            this.btnAsignarRoles.Size = new System.Drawing.Size(128, 28);
             this.btnAsignarRoles.TabIndex = 4;
             this.btnAsignarRoles.Text = "Asignar roles";
             this.btnAsignarRoles.UseVisualStyleBackColor = true;
@@ -64,9 +67,10 @@
             // 
             // Nuevo_Button
             // 
-            this.Nuevo_Button.Location = new System.Drawing.Point(6, 19);
+            this.Nuevo_Button.Location = new System.Drawing.Point(8, 23);
+            this.Nuevo_Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Nuevo_Button.Name = "Nuevo_Button";
-            this.Nuevo_Button.Size = new System.Drawing.Size(75, 23);
+            this.Nuevo_Button.Size = new System.Drawing.Size(100, 28);
             this.Nuevo_Button.TabIndex = 1;
             this.Nuevo_Button.Text = "Nuevo";
             this.Nuevo_Button.UseVisualStyleBackColor = true;
@@ -81,21 +85,23 @@
             this.tablaRoles.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.tablaRoles.BackgroundColor = System.Drawing.SystemColors.Window;
             this.tablaRoles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tablaRoles.Location = new System.Drawing.Point(6, 48);
+            this.tablaRoles.Location = new System.Drawing.Point(8, 59);
+            this.tablaRoles.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tablaRoles.MultiSelect = false;
             this.tablaRoles.Name = "tablaRoles";
             this.tablaRoles.ReadOnly = true;
             this.tablaRoles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.tablaRoles.Size = new System.Drawing.Size(398, 222);
+            this.tablaRoles.Size = new System.Drawing.Size(531, 273);
             this.tablaRoles.TabIndex = 4;
             this.tablaRoles.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tablaRoles_CellClick);
             this.tablaRoles.Click += new System.EventHandler(this.tablaRoles_Click);
             // 
             // Modificar_Button
             // 
-            this.Modificar_Button.Location = new System.Drawing.Point(87, 19);
+            this.Modificar_Button.Location = new System.Drawing.Point(116, 23);
+            this.Modificar_Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Modificar_Button.Name = "Modificar_Button";
-            this.Modificar_Button.Size = new System.Drawing.Size(75, 23);
+            this.Modificar_Button.Size = new System.Drawing.Size(100, 28);
             this.Modificar_Button.TabIndex = 2;
             this.Modificar_Button.Text = "Modificar";
             this.Modificar_Button.UseVisualStyleBackColor = true;
@@ -104,9 +110,10 @@
             // Volver_Button
             // 
             this.Volver_Button.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.Volver_Button.Location = new System.Drawing.Point(345, 292);
+            this.Volver_Button.Location = new System.Drawing.Point(460, 359);
+            this.Volver_Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Volver_Button.Name = "Volver_Button";
-            this.Volver_Button.Size = new System.Drawing.Size(75, 23);
+            this.Volver_Button.Size = new System.Drawing.Size(100, 28);
             this.Volver_Button.TabIndex = 7;
             this.Volver_Button.Text = "Volver";
             this.Volver_Button.UseVisualStyleBackColor = true;
@@ -114,14 +121,15 @@
             // 
             // ABMRol
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(443, 327);
+            this.ClientSize = new System.Drawing.Size(591, 402);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.Volver_Button);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "ABMRol";
             this.Text = "AbmRolForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ABMRol_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ABMRol_FormClosed);
             this.Load += new System.EventHandler(this.ABMRol_Load);
             this.groupBox1.ResumeLayout(false);

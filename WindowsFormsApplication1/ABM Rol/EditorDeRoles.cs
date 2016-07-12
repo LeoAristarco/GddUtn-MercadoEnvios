@@ -19,9 +19,12 @@ namespace WindowsFormsApplication1.ABM_Rol
         private Rol rol;
         private List<Funcionalidad> funcionalidades;
         private List<Funcionalidad> funcionalidadesDelRol;
+        private Form formAnterior;
 
-        public EditorDeRoles(Rol rol, bool modificarONuevo)
+        public EditorDeRoles(Rol rol, bool modificarONuevo,Form formAnterior)
         {
+            this.formAnterior = formAnterior;
+
             InitializeComponent();
 
             repo = new RolRepository();
@@ -129,6 +132,17 @@ namespace WindowsFormsApplication1.ABM_Rol
             {
                 funcionalidades[indice].habilitado = !funcionalidades[indice].habilitado;
             }
+        }
+
+        private void EditorDeRoles_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            formAnterior.Show();
+        }
+
+        private void Cancelar_Button_Click(object sender, EventArgs e)
+        {
+            formAnterior.Show();
+            Close();
         }
     }
 }

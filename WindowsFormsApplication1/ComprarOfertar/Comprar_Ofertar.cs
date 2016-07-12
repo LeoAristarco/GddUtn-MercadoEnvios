@@ -163,5 +163,10 @@ namespace WindowsFormsApplication1.ComprarOfertar
             formAnterior.Show();
             Close();
         }
+
+        private void Comprar_Ofertar_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            formAnterior.Show();
+        }
     }
 }

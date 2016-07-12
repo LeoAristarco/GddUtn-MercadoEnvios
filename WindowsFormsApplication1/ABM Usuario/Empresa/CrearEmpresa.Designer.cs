@@ -422,6 +422,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "CrearEmpresa";
             this.Text = "CrearEmpresa";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CrearEmpresa_FormClosing);
             this.Load += new System.EventHandler(this.CrearEmpresa_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

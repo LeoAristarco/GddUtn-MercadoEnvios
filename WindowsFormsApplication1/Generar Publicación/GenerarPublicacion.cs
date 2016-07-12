@@ -183,5 +183,10 @@ namespace WindowsFormsApplication1.Generar_Publicación
             inicializarFormulario();
             tipo_SelectedIndexChanged(new object(), new EventArgs());
         }
+
+        private void GenerarPublicacion_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            formularioAnterior.Show();
+        }
     }
 }

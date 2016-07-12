@@ -46,5 +46,10 @@ namespace WindowsFormsApplication1.ABM_Usuario
         {
 
         }
+
+        private void ModificarUsuario_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            formAnterior.Show();
+        }
     }
 }

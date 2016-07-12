@@ -76,5 +76,10 @@ namespace WindowsFormsApplication1.ABM_Usuario
             //Por ahora nada
             return true;
         }
+
+        private void ModificarCliente_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            formAnterior.Show();
+        }
     }
 }

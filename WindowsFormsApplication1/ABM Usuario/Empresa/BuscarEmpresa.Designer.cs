@@ -179,6 +179,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "BuscarEmpresa";
             this.Text = "BuscarEmpresa";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.BuscarEmpresa_FormClosing);
             this.Load += new System.EventHandler(this.BuscarEmpresa_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tablaEmpresas)).EndInit();

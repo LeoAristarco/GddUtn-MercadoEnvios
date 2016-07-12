@@ -31,13 +31,13 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.txtAceptar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.btnBorrar = new System.Windows.Forms.Button();
             this.montoOferta = new System.Windows.Forms.TextBox();
             this.ofertaActual = new System.Windows.Forms.TextBox();
             this.lblOferta = new System.Windows.Forms.Label();
             this.lblOfertaActual = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -82,6 +82,25 @@
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Ingrese una oferta entera mayor a la actual";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(7, 132);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(72, 17);
+            this.label2.TabIndex = 18;
+            this.label2.Text = "Con Envio";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(116, 133);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(18, 17);
+            this.checkBox1.TabIndex = 17;
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // btnBorrar
             // 
@@ -133,25 +152,6 @@
             this.lblOfertaActual.TabIndex = 2;
             this.lblOfertaActual.Text = "Oferta actual:";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(7, 132);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(72, 17);
-            this.label2.TabIndex = 18;
-            this.label2.Text = "Con Envio";
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(116, 133);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(18, 17);
-            this.checkBox1.TabIndex = 17;
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-            // 
             // Ofertar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -162,6 +162,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "Ofertar";
             this.Text = "OfertaDlg";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Ofertar_FormClosing);
             this.Load += new System.EventHandler(this.Ofertar_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

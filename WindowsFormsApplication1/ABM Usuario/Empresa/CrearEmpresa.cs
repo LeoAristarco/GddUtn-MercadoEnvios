@@ -130,5 +130,10 @@ namespace WindowsFormsApplication1.ABM_Usuario
             InitializeComponent();
             CrearEmpresa_Load(new object(), new EventArgs());
         }
+
+        private void CrearEmpresa_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            formAnterior.Show();
+        }
     }
 }

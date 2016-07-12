@@ -62,5 +62,10 @@ namespace WindowsFormsApplication1.ComprarOfertar
         {
             btnCancelar_Click(new object(), new EventArgs());
         }
+
+        private void AgregarFiltrosRubro_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            formAnterior.Show();
+        }
     }
 }

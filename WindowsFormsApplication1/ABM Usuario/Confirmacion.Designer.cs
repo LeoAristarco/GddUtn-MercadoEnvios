@@ -136,6 +136,7 @@
             this.Controls.Add(this.label1);
             this.Name = "Confirmacion";
             this.Text = "Confirmacion";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Confirmacion_FormClosing);
             this.Load += new System.EventHandler(this.Confirmacion_Load);
             this.tGB.ResumeLayout(false);
             this.tGB.PerformLayout();

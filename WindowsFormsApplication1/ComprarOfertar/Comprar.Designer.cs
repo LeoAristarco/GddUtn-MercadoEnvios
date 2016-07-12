@@ -108,6 +108,7 @@
             this.Controls.Add(this.btnComprar);
             this.Name = "Comprar";
             this.Text = "Comprar";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Comprar_FormClosing);
             this.Load += new System.EventHandler(this.Comprar_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

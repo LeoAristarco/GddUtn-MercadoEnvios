@@ -298,6 +298,7 @@
             this.Controls.Add(this.groupBox3);
             this.Name = "HistorialCliente";
             this.Text = "HistorialCliente";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.HistorialCliente_FormClosing);
             this.Load += new System.EventHandler(this.HistorialCliente_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tablaPublicaciones)).EndInit();
             this.groupBox1.ResumeLayout(false);

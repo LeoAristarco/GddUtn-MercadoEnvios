@@ -263,6 +263,7 @@
             this.Controls.Add(this.volverButton);
             this.Name = "ListadoEstadistico";
             this.Text = "ListadoEstadisticoForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ListadoEstadistico_FormClosing);
             this.Load += new System.EventHandler(this.ListadoEstadistico_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();

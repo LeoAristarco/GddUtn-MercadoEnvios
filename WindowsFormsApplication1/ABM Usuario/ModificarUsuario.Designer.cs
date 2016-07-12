@@ -86,6 +86,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "ModificarUsuario";
             this.Text = "ModificarUsuario";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ModificarUsuario_FormClosing);
             this.Load += new System.EventHandler(this.ModificarUsuario_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

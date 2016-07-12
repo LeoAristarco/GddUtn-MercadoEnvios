@@ -132,5 +132,10 @@ namespace WindowsFormsApplication1.ABM_Usuario
             formAnterior.Show();
             Close();
         }
+
+        private void CrearCliente_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            formAnterior.Show();
+        }
     }
 }

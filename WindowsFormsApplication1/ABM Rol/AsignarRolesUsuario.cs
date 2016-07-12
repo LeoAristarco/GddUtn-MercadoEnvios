@@ -29,7 +29,7 @@ namespace WindowsFormsApplication1.ABM_Rol
         {
             usuariosDataGrid.CellClick += UsuariosDataGrid_CellClick;
             
-            RolesUsuarioDlg rolesUsuarioDlg = new RolesUsuarioDlg(usuario);
+            RolesUsuarioDlg rolesUsuarioDlg = new RolesUsuarioDlg(usuario,this);
             rolesUsuarioDlg.ShowDialog();
         }
 
@@ -87,6 +87,11 @@ namespace WindowsFormsApplication1.ABM_Rol
         private void AsignarRolesUsuario_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void AsignarRolesUsuario_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            formAnterior.Show();
         }
     }
 }

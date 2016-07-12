@@ -31,6 +31,8 @@
             this.bModificar = new System.Windows.Forms.Button();
             this.bVolver = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.habilitado = new System.Windows.Forms.CheckBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.localidad = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.departamento = new System.Windows.Forms.TextBox();
@@ -51,8 +53,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.habilitado = new System.Windows.Forms.CheckBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -109,6 +109,25 @@
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Datos personales";
+            // 
+            // habilitado
+            // 
+            this.habilitado.AutoSize = true;
+            this.habilitado.Location = new System.Drawing.Point(197, 431);
+            this.habilitado.Name = "habilitado";
+            this.habilitado.Size = new System.Drawing.Size(18, 17);
+            this.habilitado.TabIndex = 59;
+            this.habilitado.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(12, 431);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(71, 17);
+            this.label4.TabIndex = 58;
+            this.label4.Text = "Habilitado";
             // 
             // localidad
             // 
@@ -300,25 +319,6 @@
             this.label16.TabIndex = 30;
             this.label16.Text = "Nombre";
             // 
-            // habilitado
-            // 
-            this.habilitado.AutoSize = true;
-            this.habilitado.Location = new System.Drawing.Point(197, 431);
-            this.habilitado.Name = "habilitado";
-            this.habilitado.Size = new System.Drawing.Size(18, 17);
-            this.habilitado.TabIndex = 59;
-            this.habilitado.UseVisualStyleBackColor = true;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 431);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(71, 17);
-            this.label4.TabIndex = 58;
-            this.label4.Text = "Habilitado";
-            // 
             // ModificarCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -329,6 +329,7 @@
             this.Controls.Add(this.groupBox2);
             this.Name = "ModificarCliente";
             this.Text = "ModificarCliente";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ModificarCliente_FormClosing);
             this.Load += new System.EventHandler(this.ModificarCliente_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();

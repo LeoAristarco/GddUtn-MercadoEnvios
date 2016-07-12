@@ -78,7 +78,7 @@ namespace WindowsFormsApplication1.ABM_Rol
         private void Nuevo_Button_Click(object sender, EventArgs e)
         {
             Rol rolNuevo = new Rol(Convert.ToInt64(tablaRoles.RowCount), "", true);
-            EditorDeRoles editorForm = new EditorDeRoles(rolNuevo, false);
+            EditorDeRoles editorForm = new EditorDeRoles(rolNuevo, false,this);
 
             editorForm.ShowDialog();
         }
@@ -94,7 +94,7 @@ namespace WindowsFormsApplication1.ABM_Rol
 
         private void Modificar_Button_Click(object sender, EventArgs e)
         {
-            EditorDeRoles editorForm = new EditorDeRoles(rolSeleccionado, true);
+            EditorDeRoles editorForm = new EditorDeRoles(rolSeleccionado, true,this);
 
             editorForm.ShowDialog();
         }
@@ -107,6 +107,11 @@ namespace WindowsFormsApplication1.ABM_Rol
                 rolSeleccionado.nombre = roles[e.RowIndex].nombre;
                 rolSeleccionado.habilitado = roles[e.RowIndex].habilitado;
             }
+        }
+
+        private void ABMRol_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            formAnterior.Show();
         }
     }
 }

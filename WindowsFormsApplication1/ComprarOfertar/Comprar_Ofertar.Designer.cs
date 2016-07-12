@@ -228,7 +228,7 @@
             this.tablaPublicacionesFiltradas.TabIndex = 13;
             this.tablaPublicacionesFiltradas.Click += new System.EventHandler(this.tablaPublicacionesFiltradas_Click);
             // 
-            // ComprarOfertar
+            // Comprar_Ofertar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -241,8 +241,9 @@
             this.Controls.Add(this.btnSiguientePag);
             this.Controls.Add(this.btnAnteriorPag);
             this.Controls.Add(this.tablaPublicacionesFiltradas);
-            this.Name = "ComprarOfertar";
+            this.Name = "Comprar_Ofertar";
             this.Text = "ComprarOfertar";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Comprar_Ofertar_FormClosing);
             this.Load += new System.EventHandler(this.ComprarOfertar_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

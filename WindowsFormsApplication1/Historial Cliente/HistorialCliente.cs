@@ -160,5 +160,10 @@ namespace WindowsFormsApplication1.Historial_Cliente
             formAnterior.Show();
             Close();
         }
+
+        private void HistorialCliente_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            formAnterior.Show();
+        }
     }
 }

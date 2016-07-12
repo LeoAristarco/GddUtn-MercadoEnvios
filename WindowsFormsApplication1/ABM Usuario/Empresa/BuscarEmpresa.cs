@@ -89,5 +89,10 @@ namespace WindowsFormsApplication1.ABM_Usuario
 
             modificar.ShowDialog();
         }
+
+        private void BuscarEmpresa_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            formAnterior.Show();
+        }
     }
 }

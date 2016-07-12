@@ -70,5 +70,10 @@ namespace WindowsFormsApplication1.Calificar
             calificacion.estrellas = Convert.ToInt16(estrellas.SelectedItem);
             calificacion.comentarios = textoLibre.Text;
         }
+
+        private void CalificarDetalle_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            formAnterior.Show();
+        }
     }
 }

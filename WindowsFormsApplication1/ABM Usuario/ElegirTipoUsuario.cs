@@ -103,5 +103,10 @@ namespace WindowsFormsApplication1.ABM_Usuario
         {
             tipoDeUserSeleccionado = tiposDeUsuario.SelectedItem.ToString();
         }
+
+        private void ElegirTipoUsuario_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            formAnterior.Show();
+        }
     }
 }

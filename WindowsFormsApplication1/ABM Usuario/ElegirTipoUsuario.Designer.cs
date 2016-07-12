@@ -88,6 +88,7 @@
             this.Controls.Add(this.label1);
             this.Name = "ElegirTipoUsuario";
             this.Text = "ElegirTipoUsuario";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ElegirTipoUsuario_FormClosing);
             this.Load += new System.EventHandler(this.ElegirTipoUsuario_Load);
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);

@@ -83,5 +83,10 @@ namespace WindowsFormsApplication1.ABM_Usuario
             formAnterior.Show();
             Close();
         }
+
+        private void BuscarCliente_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            formAnterior.Show();
+        }
     }
 }

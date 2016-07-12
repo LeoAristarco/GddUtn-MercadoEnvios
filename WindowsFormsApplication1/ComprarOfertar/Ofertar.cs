@@ -83,5 +83,10 @@ namespace WindowsFormsApplication1.ComprarOfertar
                 MessageBox.Show("Esta publicacion no permite envio");
             }
         }
+
+        private void Ofertar_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            detallePublicacion.Show();
+        }
     }
 }

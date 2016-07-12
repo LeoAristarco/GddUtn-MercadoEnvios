@@ -102,5 +102,10 @@ namespace WindowsFormsApplication1.ABM_Visibilidad
                 MessageBox.Show(mensaje.ToUpper());
             }
         }
+
+        private void ABMVisibilidad_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            formAnterior.Show();
+        }
     }
 }

@@ -151,5 +151,10 @@ namespace WindowsFormsApplication1.Facturas
             filtroFechaActivado.Checked = false;
             filtroMontoActivado.Checked = false;
         }
+
+        private void FacturasRealizadas_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            formAnterior.Show();
+        }
     }
 }

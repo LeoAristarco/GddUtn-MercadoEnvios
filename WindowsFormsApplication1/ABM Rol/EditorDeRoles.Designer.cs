@@ -48,9 +48,11 @@
             this.groupBox1.Controls.Add(this.Habilitado_Checkbox);
             this.groupBox1.Controls.Add(this.Funcionalidades_Label);
             this.groupBox1.Controls.Add(this.Habilitado_Label);
-            this.groupBox1.Location = new System.Drawing.Point(10, 11);
+            this.groupBox1.Location = new System.Drawing.Point(13, 14);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(293, 244);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Size = new System.Drawing.Size(391, 300);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Seleccione las funcionalidades:";
@@ -58,60 +60,67 @@
             // Nombre_Label
             // 
             this.Nombre_Label.AutoSize = true;
-            this.Nombre_Label.Location = new System.Drawing.Point(6, 33);
+            this.Nombre_Label.Location = new System.Drawing.Point(8, 41);
+            this.Nombre_Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Nombre_Label.Name = "Nombre_Label";
-            this.Nombre_Label.Size = new System.Drawing.Size(44, 13);
+            this.Nombre_Label.Size = new System.Drawing.Size(58, 17);
             this.Nombre_Label.TabIndex = 0;
             this.Nombre_Label.Text = "Nombre";
             // 
             // Nombre_Textbox
             // 
-            this.Nombre_Textbox.Location = new System.Drawing.Point(95, 33);
+            this.Nombre_Textbox.Location = new System.Drawing.Point(127, 41);
+            this.Nombre_Textbox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Nombre_Textbox.Name = "Nombre_Textbox";
-            this.Nombre_Textbox.Size = new System.Drawing.Size(182, 20);
+            this.Nombre_Textbox.Size = new System.Drawing.Size(241, 22);
             this.Nombre_Textbox.TabIndex = 1;
             // 
             // Funcionalidades_Checkboxlist
             // 
             this.Funcionalidades_Checkboxlist.FormattingEnabled = true;
-            this.Funcionalidades_Checkboxlist.Location = new System.Drawing.Point(95, 70);
+            this.Funcionalidades_Checkboxlist.Location = new System.Drawing.Point(127, 86);
+            this.Funcionalidades_Checkboxlist.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Funcionalidades_Checkboxlist.Name = "Funcionalidades_Checkboxlist";
-            this.Funcionalidades_Checkboxlist.Size = new System.Drawing.Size(182, 94);
+            this.Funcionalidades_Checkboxlist.Size = new System.Drawing.Size(241, 106);
             this.Funcionalidades_Checkboxlist.TabIndex = 2;
             this.Funcionalidades_Checkboxlist.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.Funcionalidades_Checkboxlist_ItemCheck);
             // 
             // Habilitado_Checkbox
             // 
             this.Habilitado_Checkbox.AutoSize = true;
-            this.Habilitado_Checkbox.Location = new System.Drawing.Point(95, 204);
+            this.Habilitado_Checkbox.Location = new System.Drawing.Point(127, 251);
+            this.Habilitado_Checkbox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Habilitado_Checkbox.Name = "Habilitado_Checkbox";
-            this.Habilitado_Checkbox.Size = new System.Drawing.Size(15, 14);
+            this.Habilitado_Checkbox.Size = new System.Drawing.Size(18, 17);
             this.Habilitado_Checkbox.TabIndex = 3;
             this.Habilitado_Checkbox.UseVisualStyleBackColor = true;
             // 
             // Funcionalidades_Label
             // 
             this.Funcionalidades_Label.AutoSize = true;
-            this.Funcionalidades_Label.Location = new System.Drawing.Point(6, 70);
+            this.Funcionalidades_Label.Location = new System.Drawing.Point(8, 86);
+            this.Funcionalidades_Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Funcionalidades_Label.Name = "Funcionalidades_Label";
-            this.Funcionalidades_Label.Size = new System.Drawing.Size(84, 13);
+            this.Funcionalidades_Label.Size = new System.Drawing.Size(111, 17);
             this.Funcionalidades_Label.TabIndex = 3;
             this.Funcionalidades_Label.Text = "Funcionalidades";
             // 
             // Habilitado_Label
             // 
             this.Habilitado_Label.AutoSize = true;
-            this.Habilitado_Label.Location = new System.Drawing.Point(6, 204);
+            this.Habilitado_Label.Location = new System.Drawing.Point(8, 251);
+            this.Habilitado_Label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Habilitado_Label.Name = "Habilitado_Label";
-            this.Habilitado_Label.Size = new System.Drawing.Size(54, 13);
+            this.Habilitado_Label.Size = new System.Drawing.Size(71, 17);
             this.Habilitado_Label.TabIndex = 4;
             this.Habilitado_Label.Text = "Habilitado";
             // 
             // Guardar_Button
             // 
-            this.Guardar_Button.Location = new System.Drawing.Point(228, 260);
+            this.Guardar_Button.Location = new System.Drawing.Point(304, 320);
+            this.Guardar_Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Guardar_Button.Name = "Guardar_Button";
-            this.Guardar_Button.Size = new System.Drawing.Size(75, 23);
+            this.Guardar_Button.Size = new System.Drawing.Size(100, 28);
             this.Guardar_Button.TabIndex = 10;
             this.Guardar_Button.Text = "Guardar";
             this.Guardar_Button.UseVisualStyleBackColor = true;
@@ -120,24 +129,27 @@
             // Cancelar_Button
             // 
             this.Cancelar_Button.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.Cancelar_Button.Location = new System.Drawing.Point(147, 260);
+            this.Cancelar_Button.Location = new System.Drawing.Point(196, 320);
+            this.Cancelar_Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Cancelar_Button.Name = "Cancelar_Button";
-            this.Cancelar_Button.Size = new System.Drawing.Size(75, 23);
+            this.Cancelar_Button.Size = new System.Drawing.Size(100, 28);
             this.Cancelar_Button.TabIndex = 9;
             this.Cancelar_Button.Text = "Cancelar";
             this.Cancelar_Button.UseVisualStyleBackColor = true;
+            this.Cancelar_Button.Click += new System.EventHandler(this.Cancelar_Button_Click);
             // 
             // EditorDeRoles
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(320, 292);
+            this.ClientSize = new System.Drawing.Size(427, 359);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.Guardar_Button);
             this.Controls.Add(this.Cancelar_Button);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "EditorDeRoles";
             this.Text = "EditorDeRoles";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EditorDeRoles_FormClosing);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

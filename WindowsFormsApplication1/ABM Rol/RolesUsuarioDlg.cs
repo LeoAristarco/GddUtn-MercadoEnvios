@@ -18,9 +18,11 @@ namespace WindowsFormsApplication1.ABM_Rol
         private RolRepository repo;
         private List<Rol> rolesDelUsuario;
         private List<Rol> rolesDelSistema;
+        private Form formAnterior;
 
-        public RolesUsuarioDlg(Usuario usuario)
+        public RolesUsuarioDlg(Usuario usuario,Form formAnterior)
         {
+            this.formAnterior = formAnterior;
             InitializeComponent();
 
             this.usuario = usuario;
@@ -99,6 +101,17 @@ namespace WindowsFormsApplication1.ABM_Rol
         private void RolesUsuarioDlg_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void RolesUsuarioDlg_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            formAnterior.Show();
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            formAnterior.Show();
+            Close();
         }
     }
 }

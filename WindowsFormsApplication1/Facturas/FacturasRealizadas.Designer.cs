@@ -333,6 +333,7 @@
             this.Controls.Add(this.groupBox2);
             this.Name = "FacturasRealizadas";
             this.Text = "FacturarForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FacturasRealizadas_FormClosing);
             this.Load += new System.EventHandler(this.FacturasRealizadas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tablaFacturas)).EndInit();
             this.groupBox1.ResumeLayout(false);

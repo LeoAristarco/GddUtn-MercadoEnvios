@@ -78,5 +78,10 @@ namespace WindowsFormsApplication1.ABM_Visibilidad
             Hide();
             formAnterior.Show();
         }
+
+        private void GenerarVisibilidad_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            formAnterior.Show();
+        }
     }
 }

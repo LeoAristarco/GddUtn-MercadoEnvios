@@ -109,6 +109,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "ABMVisibilidad";
             this.Text = "ABMVisibilidad";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ABMVisibilidad_FormClosing);
             this.Load += new System.EventHandler(this.ABMVisibilidad_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tablaVisibilidad)).EndInit();
             this.ResumeLayout(false);

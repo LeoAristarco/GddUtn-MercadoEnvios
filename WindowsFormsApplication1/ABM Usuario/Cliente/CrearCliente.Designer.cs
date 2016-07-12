@@ -400,6 +400,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "CrearCliente";
             this.Text = "ABMClientes";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CrearCliente_FormClosing);
             this.Load += new System.EventHandler(this.CrearCliente_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

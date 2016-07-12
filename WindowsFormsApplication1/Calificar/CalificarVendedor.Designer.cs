@@ -95,6 +95,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "CalificarVendedor";
             this.Text = "CalificarVendedor";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CalificarVendedor_FormClosing);
             this.Load += new System.EventHandler(this.CalificarVendedor_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tablaPublicacionesCalificar)).EndInit();

@@ -72,5 +72,10 @@ namespace WindowsFormsApplication1.Calificar
             formAnterior.Show();
             Close();
         }
+
+        private void HistorialCalificaciones_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            formAnterior.Show();
+        }
     }
 }

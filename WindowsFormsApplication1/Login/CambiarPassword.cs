@@ -56,5 +56,10 @@ namespace WindowsFormsApplication1.Login
         {
 
         }
+
+        private void CambiarPassword_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            formAnterior.Show();
+        }
     }
 }

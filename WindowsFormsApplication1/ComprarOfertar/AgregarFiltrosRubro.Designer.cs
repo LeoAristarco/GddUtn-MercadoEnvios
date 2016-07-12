@@ -105,6 +105,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "AgregarFiltrosRubro";
             this.Text = "AgregarRubros";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AgregarFiltrosRubro_FormClosing);
             this.Load += new System.EventHandler(this.AgregarFiltrosRubro_Load);
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);

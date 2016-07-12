@@ -34,5 +34,10 @@ namespace WindowsFormsApplication1.ABM_Usuario
             formAnterior.Show();
             Close();
         }
+
+        private void Confirmacion_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            formAnterior.Show();
+        }
     }
 }
