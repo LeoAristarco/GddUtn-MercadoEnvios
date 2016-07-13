@@ -109,12 +109,12 @@ go
 /*CREO ESQUEMA*/
 /********************************************************************************************************************************/
 
-if EXISTS (SELECT * FROM sys.schemas  WHERE name='VARCHAR_DE_30') 
-drop schema VARCHAR_DE_30 
+if EXISTS (SELECT * FROM sys.schemas  WHERE name='CHAR_DE_30') 
+drop schema CHAR_DE_30 
 
 go
 
-create schema VARCHAR_DE_30 authorization gd
+create schema CHAR_DE_30 authorization gd
 
 go
 
