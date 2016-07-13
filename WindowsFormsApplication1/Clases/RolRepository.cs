@@ -12,7 +12,7 @@ namespace WindowsFormsApplication1.ABM_Rol
         {
             List<Rol> roles = new List<Rol>();
 
-            string procedimiento = "OBTENER_ROLES_POR_ID_USUARIO";
+            string procedimiento = "VARCHAR_DE_30.OBTENER_ROLES_POR_ID_USUARIO";
 
             SqlParameter pIdSUsuario = new SqlParameter("@id_usuario", usuario.id);
             List<SqlParameter> parametros = new List<SqlParameter> { pIdSUsuario };
@@ -55,7 +55,7 @@ namespace WindowsFormsApplication1.ABM_Rol
         {
             List<Usuario> usuarios = new List<Usuario>() { };
 
-            string procedimiento = "OBTENER_USUARIOS_PARA_ABM_ROL";
+            string procedimiento = "VARCHAR_DE_30.OBTENER_USUARIOS_PARA_ABM_ROL";
             List<SqlParameter> parametros = new List<SqlParameter> { };
 
             List<Dictionary<string, object>> listaBD = db.ejecutarStoredProcedure(procedimiento, parametros);
@@ -76,7 +76,7 @@ namespace WindowsFormsApplication1.ABM_Rol
         {
             foreach (Rol rol in rolesActualizados)
             {
-                string procedimiento = "ACTUALIZAR_ROL_POR_USUARIO";
+                string procedimiento = "VARCHAR_DE_30.ACTUALIZAR_ROL_POR_USUARIO";
 
                 SqlParameter pIdSUsuario = new SqlParameter("@id_usuario", user.id);
                 SqlParameter pIdRol = new SqlParameter("@id_rol", rol.id);
@@ -92,7 +92,7 @@ namespace WindowsFormsApplication1.ABM_Rol
         {
             List<Funcionalidad> funcionalidades = new List<Funcionalidad>();
 
-            string sql = "select * from FUNCIONALIDAD";
+            string sql = "select * from VARCHAR_DE_30.FUNCIONALIDAD";
 
             List<Dictionary<string, object>> listaBD = db.ejecutarConsulta(sql);
 
@@ -109,7 +109,7 @@ namespace WindowsFormsApplication1.ABM_Rol
         {
             List<Funcionalidad> funcionalidades = new List<Funcionalidad>();
 
-            string procedimiento = "OBTENER_FUNCIONALIDADES_DEL_ROL";
+            string procedimiento = "VARCHAR_DE_30.OBTENER_FUNCIONALIDADES_DEL_ROL";
             SqlParameter p1 = new SqlParameter("@id_rol", rol.id);
             List<SqlParameter> parametros = new List<SqlParameter> { p1};
 
@@ -127,7 +127,7 @@ namespace WindowsFormsApplication1.ABM_Rol
         public void crearNuevoRol(Rol rol, List<Funcionalidad> funcionalidades)
         {
             //inserto nuevo rol
-            string procedimiento = "INSERTAR_NUEVO_ROL";
+            string procedimiento = "VARCHAR_DE_30.INSERTAR_NUEVO_ROL";
 
             SqlParameter p1 = new SqlParameter("@nombre", rol.nombre);
             SqlParameter p2 = new SqlParameter("@hab", rol.habilitado);
@@ -137,13 +137,13 @@ namespace WindowsFormsApplication1.ABM_Rol
             db.ejecutarStoredProcedure(procedimiento, parametros);
 
             //obtengo el id del nuevo rol que inserte
-            string sql = "select id_rol from ROL where rol_nombre = '"+rol.nombre+"'";
+            string sql = "select id_rol from VARCHAR_DE_30.ROL where rol_nombre = '" + rol.nombre+"'";
             rol.id = Convert.ToInt64(db.ejecutarConsulta(sql)[0]["id_rol"]);
 
             //ahora inserto las funcionalidades
             foreach (Funcionalidad fun in funcionalidades)
             {
-                string procedimiento2 = "ACTUALIZAR_FUNCIONALIDADES_DE_ROL";
+                string procedimiento2 = "VARCHAR_DE_30.ACTUALIZAR_FUNCIONALIDADES_DE_ROL";
 
                 SqlParameter pIdRol = new SqlParameter("@id_rol", rol.id);
                 SqlParameter pIdFun = new SqlParameter("@id_funcionalidad", fun.id);
@@ -158,7 +158,7 @@ namespace WindowsFormsApplication1.ABM_Rol
         public void actualizarRolYSusFuncionalidades(Rol rol, List<Funcionalidad> funcionalidades)
         {
             //actualizo el rol
-            string procedimiento2 = "ACTUALIZAR_ROL";
+            string procedimiento2 = "VARCHAR_DE_30.ACTUALIZAR_ROL";
 
             SqlParameter pIdRol = new SqlParameter("@id_rol", rol.id);
             SqlParameter pNombre = new SqlParameter("@nombre", rol.nombre);
@@ -171,7 +171,7 @@ namespace WindowsFormsApplication1.ABM_Rol
             //actualizo las funcionalidades
             foreach (Funcionalidad fun in funcionalidades)
             {
-                string procedimiento = "ACTUALIZAR_FUNCIONALIDADES_DE_ROL";
+                string procedimiento = "VARCHAR_DE_30.ACTUALIZAR_FUNCIONALIDADES_DE_ROL";
 
                 SqlParameter p1 = new SqlParameter("@id_rol", rol.id);
                 SqlParameter p2 = new SqlParameter("@id_funcionalidad", fun.id);

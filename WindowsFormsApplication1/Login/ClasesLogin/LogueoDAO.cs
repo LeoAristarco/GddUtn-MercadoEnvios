@@ -22,7 +22,7 @@ namespace WindowsFormsApplication1.Login.ClasesLogin
 
         public void loguear(Logueo logueo)
         {
-            string procedimientoSql = "VERIFICAR_LOGUEO";
+            string procedimientoSql = "VARCHAR_DE_30.VERIFICAR_LOGUEO";
 
             SqlParameter pNick = new SqlParameter("@nick", logueo.nick);
             SqlParameter pPass = new SqlParameter("@pass", logueo.pass);
@@ -64,7 +64,7 @@ namespace WindowsFormsApplication1.Login.ClasesLogin
 
             dataBase.abrirConexion();
 
-            string procedimiento = "OBTENER_FUNCIONALIDADES_POR_ID_ROL";
+            string procedimiento = "VARCHAR_DE_30.OBTENER_FUNCIONALIDADES_POR_ID_ROL";
 
             SqlParameter pIdRol = new SqlParameter("@id_rol", idRol);
             List<SqlParameter> parametros = new List<SqlParameter> { pIdRol };
