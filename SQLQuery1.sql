@@ -1,4 +1,4 @@
-	CREATE PROCEDURE sp_actualizarUsuario(
+	CREATE PROCEDURE VARCHAR_DE_30.sp_actualizarUsuario(
 		@id_usuario			numeric(10,0),				
 		@mail				nvarchar(255),
 		@fecha_nacimiento	date,
@@ -24,7 +24,7 @@
 	END
 	GO
 	
-	CREATE PROCEDURE sp_darDeBajaLogicaAUsuario(@id_usuario numeric(10,0))
+	CREATE PROCEDURE VARCHAR_DE_30.sp_darDeBajaLogicaAUsuario(@id_usuario numeric(10,0))
 	AS BEGIN
 		UPDATE USUARIO SET
 		baja_logica = 1
@@ -34,59 +34,6 @@
 
 	
 /**********************Fin de ABM de Usuario*******************************/
-
-
---------------HISTORIAL DE CLIENTE------------
-
-CREATE PROCEDURE sp_HistorialDelCliente (@dni varchar(255))
-AS BEGIN
-	SELECT descripcion
-	FROM PUBLICACION INNER JOIN COMPRA ON id_publicacion = publicacion
-		INNER JOIN USUARIO U ON U.id_usuario = comprador
-		INNER JOIN CLIENTE C ON U.id_usuario = C.id_usuario 
-	WHERE dni = @dni
-
-	UNION
-
-	SELECT  descripcion
-	FROM PUBLICACION INNER JOIN OFERTA ON id_publicacion = publicacion
-		INNER JOIN USUARIO U ON U.id_usuario = ofertante
-		INNER JOIN CLIENTE C On U.id_usuario = C.id_usuario
-	WHERE dni = @dni
-END
-GO
-
-
-CREATE FUNCTION fu_cantDeOperacionesSinCalificar(@cliente numeric(10,0))
-	RETURNS int
-AS BEGIN
-	DECLARE @cant int
-		SELECT @cant = COUNT(*)
-		FROM COMPRA INNER JOIN USUARIO U ON comprador = U.id_usuario
-				INNER JOIN CLIENTE C ON U.id_usuario = C.id_usuario
-		WHERE id_cliente = @cliente AND calificacion IS NULL
-
-	RETURN @cant
-END
-GO
-
-
-CREATE FUNCTION fu_resumenDeEstrellasDadas(@cliente numeric(10,0))
-	RETURNS int
-AS BEGIN
-	DECLARE @resumen int
-		SELECT @resumen = AVG(calif_estrellas)
-		FROM CALIFICACION INNER JOIN COMPRA ON calificacion = id_calificacion
-			INNER JOIN USUARIO U ON comprador = id_usuario
-			INNER JOIN CLIENTE C ON U.id_usuario = C.id_usuario
-		WHERE id_cliente = @cliente
-	RETURN @resumen
-END
-GO
-
-
---------FIN DE HISTORIAL DEL CLIENTE-----------------------
-
 
 ------------------------------------------------ INICIO LOGUIN----------------------------------------------------------------------
 --borro si existen versiones viejas
