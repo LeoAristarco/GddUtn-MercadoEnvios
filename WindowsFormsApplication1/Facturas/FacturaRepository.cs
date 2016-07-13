@@ -40,7 +40,7 @@ namespace WindowsFormsApplication1.Facturas
                 db.agregarParametro(parametros, "@fechaHasta", null);
             }
 
-            List<Dictionary<string,object>> tabla = db.ejecutarStoredProcedure("st_obtenerFacturasVendedorPorPaginas", parametros);
+            List<Dictionary<string, object>> tabla = db.ejecutarStoredProcedure("VARCHAR_DE_30.st_obtenerFacturasVendedorPorPaginas", parametros);
 
             List<Factura> facturas = new List<Factura>();
 
@@ -84,7 +84,7 @@ namespace WindowsFormsApplication1.Facturas
 
             int cantPaginas = 0;
 
-            cantPaginas = toInt(db.ejecutarStoredConRetorno("st_obtenerMaximaPaginaFacturasFiltradas", parametros, "@ultimaPagina", cantPaginas));
+            cantPaginas = toInt(db.ejecutarStoredConRetorno("VARCHAR_DE_30.st_obtenerMaximaPaginaFacturasFiltradas", parametros, "@ultimaPagina", cantPaginas));
 
             return cantPaginas;
         }

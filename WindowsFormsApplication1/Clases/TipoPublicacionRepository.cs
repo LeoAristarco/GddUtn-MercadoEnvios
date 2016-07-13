@@ -17,7 +17,7 @@ namespace WindowsFormsApplication1.Generar_Publicación
 
         internal List<TipoPublicacion> obtenerTiposPublicacion()
         {
-            List<Dictionary<string, object>> tabla = db.ejecutarConsulta("select * from TIPO_PUBLICACION");
+            List<Dictionary<string, object>> tabla = db.ejecutarConsulta("select * from VARCHAR_DE_30.TIPO_PUBLICACION");
 
             List<TipoPublicacion> tipos = new List<TipoPublicacion>();
 
@@ -31,7 +31,7 @@ namespace WindowsFormsApplication1.Generar_Publicación
 
         internal TipoPublicacion traerPorId(long v)
         {
-            string consulta = "select * from TIPO_PUBLICACION where id_tipo=" + v.ToString();
+            string consulta = "select * from VARCHAR_DE_30.TIPO_PUBLICACION where id_tipo=" + v.ToString();
             return deserializarTipoPublicacion(db.ejecutarConsulta(consulta)[0]);
         }
     }

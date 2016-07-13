@@ -9,7 +9,7 @@ namespace WindowsFormsApplication1.Calificar
     {
         internal void updateCalificacion(Calificacion calificacion)
         {
-            string update = "update CALIFICACION set calif_estrellas=" + calificacion.estrellas.ToString() + ", "
+            string update = "update VARCHAR_DE_30.CALIFICACION set calif_estrellas=" + calificacion.estrellas.ToString() + ", "
                 + "calif_detalle='" + calificacion.comentarios + "' where id_calificacion=" + calificacion.id.ToString();
 
             db.ejecutarConsulta(update);
@@ -17,7 +17,7 @@ namespace WindowsFormsApplication1.Calificar
 
         internal Calificacion traerPorId(long v)
         {
-            string consulta = "select * from CALIFICACION where id_calificacion=" + v.ToString();
+            string consulta = "select * from VARCHAR_DE_30.CALIFICACION where id_calificacion=" + v.ToString();
             return deserializarCalificacion(db.ejecutarConsulta(consulta)[0]);
         }
 
@@ -43,7 +43,7 @@ namespace WindowsFormsApplication1.Calificar
 
             db.agregarParametro(parametros, "@id_usuario", usuario.id);
 
-            List<Dictionary<string,object>> tabla = db.ejecutarStoredProcedure("st_resumenDeEstrellasDadas", parametros);
+            List<Dictionary<string, object>> tabla = db.ejecutarStoredProcedure("VARCHAR_DE_30.st_resumenDeEstrellasDadas", parametros);
 
             for (int i = 1; i < 6; i++)
             {

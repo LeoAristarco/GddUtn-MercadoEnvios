@@ -26,7 +26,7 @@ namespace WindowsFormsApplication1.Calificar
             //db.agregarParametro(parametros, "@descripcion", publicacion.descripcion);
             db.agregarParametro(parametros, "@comprador", user.id);
 
-            db.ejecutarStoredProcedure("st_insertarCompraSubasta", parametros);
+            db.ejecutarStoredProcedure("VARCHAR_DE_30.st_insertarCompraSubasta", parametros);
         }
 
         internal List<Compra> obtenerUltimas5Compras(Usuario usuario)
@@ -36,7 +36,7 @@ namespace WindowsFormsApplication1.Calificar
 
             db.agregarParametro(parametros, "@id_usuario", usuario.id);
 
-            List<Dictionary<string,object>> tabla = db.ejecutarStoredProcedure("st_ultimas5compras", parametros);
+            List<Dictionary<string, object>> tabla = db.ejecutarStoredProcedure("VARCHAR_DE_30.st_ultimas5compras", parametros);
 
             foreach (Dictionary<string,object> item in tabla)
             {
@@ -67,7 +67,7 @@ namespace WindowsFormsApplication1.Calificar
             //tipoError = db.ejecutarStoredProcedure("st_validacion_de_compra_oferta", parametros)[0]["error"].ToString();
 
 
-            tipoError = db.ejecutarStoredConRetorno("st_validacion_de_compra_oferta", parametros, "@tipoError", "").ToString();
+            tipoError = db.ejecutarStoredConRetorno("VARCHAR_DE_30.st_validacion_de_compra_oferta", parametros, "@tipoError", "").ToString();
 
             switch (tipoError)
             {
@@ -95,7 +95,7 @@ namespace WindowsFormsApplication1.Calificar
         {
             List<SqlParameter> parametros = new List<SqlParameter>();
             db.agregarParametro(parametros, "@id_usuario", usuario.id);
-            List<Dictionary<string, object>> tabla = db.ejecutarStoredProcedure("st_mostrarPublicacionesSinCalificar", parametros);
+            List<Dictionary<string, object>> tabla = db.ejecutarStoredProcedure("VARCHAR_DE_30.st_mostrarPublicacionesSinCalificar", parametros);
             List<Compra> comprasSinCalificar = new List<Compra>();
 
             foreach (Dictionary<string, object> item in tabla)
@@ -125,7 +125,7 @@ namespace WindowsFormsApplication1.Calificar
 
             db.agregarParametro(parametros,"@pagina",numeroPaginaCompra);
 
-            List<Dictionary<string,object>> tabla = db.ejecutarStoredProcedure("st_comprasDeCliente",parametros);
+            List<Dictionary<string, object>> tabla = db.ejecutarStoredProcedure("VARCHAR_DE_30.st_comprasDeCliente", parametros);
 
             List<Compra> compras = new List<Compra>();
 
@@ -159,7 +159,7 @@ namespace WindowsFormsApplication1.Calificar
             List<SqlParameter> parametros = new List<SqlParameter>();
             db.agregarParametro(parametros, "@idUsuario", usuario.id);
 
-            cantidadPaginas = toInt(db.ejecutarStoredConRetorno("st_cantidadPaginasComprasDeCliente", parametros, "@ultimaPagina", 0));
+            cantidadPaginas = toInt(db.ejecutarStoredConRetorno("VARCHAR_DE_30.st_cantidadPaginasComprasDeCliente", parametros, "@ultimaPagina", 0));
 
             return cantidadPaginas;
         }

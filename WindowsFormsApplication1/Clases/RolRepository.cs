@@ -32,7 +32,7 @@ namespace WindowsFormsApplication1.ABM_Rol
         {
             List<Rol> roles = new List<Rol>();
 
-            string sql = "select * from ROL";
+            string sql = "select * from VARCHAR_DE_30.ROL";
 
             List<Dictionary<string, object>> listaBD = db.ejecutarConsulta(sql);
 
