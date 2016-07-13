@@ -1,11 +1,10 @@
 
-
 --------------------------------------COMIENZO funcionalidad Comprar/Ofertar----------------------------------------------------------------------
 
 -- Procedemiento para busqueda de un producto, se puede filtrar por id_rubro ( o no , segun que decida el usuario)
 -- te devuelve 10 productos por paginas
 
-create procedure VARCHAR_DE_30.st_buscar_publicaciones
+create procedure st_buscar_publicaciones
 @descripcion nvarchar(255) = null,
 @rubroId nvarchar(255)= null,
 @pagina int
@@ -33,7 +32,7 @@ end
 go
 
 -- Procedimientos que usa el store st_insertarCompraSubasta
-create procedure VARCHAR_DE_30.st_actualizar_Estado_Publicacion_a_Finalizado
+create procedure st_actualizar_Estado_Publicacion_a_Finalizado
 @publicacion numeric(10,0),
 @factura numeric(10,0),
 @fecha_operacion datetime
@@ -58,7 +57,7 @@ end
 
 go
 
-create PROCEDURE VARCHAR_DE_30.sp_AgregarOferta(@ofertante numeric(10,0),@publicacion numeric(10,0),
+create PROCEDURE sp_AgregarOferta(@ofertante numeric(10,0),@publicacion numeric(10,0),
                                   @fecha_oferta datetime,
                                   @monto_ofertado numeric(10,2),@precio_envio int)
 AS BEGIN
@@ -76,7 +75,7 @@ END
 
 go
 
-	create procedure VARCHAR_DE_30.st_insertarCompraSubasta(@comprador numeric(10,0), 
+	create procedure st_insertarCompraSubasta(@comprador numeric(10,0), 
 	    @publicacion numeric(10,0), 
 	    @fecha_operacion datetime, @monto numeric(10,2), @cantidad int,
 		@precio_envio int,@factura numeric(10,0))
@@ -97,7 +96,7 @@ go
 go
 
 --validaciones
-create function VARCHAR_DE_30.mas_de_tres_sin_calificar(@id_cliente numeric(10,0))
+create function mas_de_tres_sin_calificar(@id_cliente numeric(10,0))
 returns bit
 as
 begin
@@ -119,7 +118,7 @@ end
 
 go
 
-create function VARCHAR_DE_30.publicacion_en_estado_pausado(@id_publicacion numeric(10,0))
+create function publicacion_en_estado_pausado(@id_publicacion numeric(10,0))
 returns bit
 as
 begin
@@ -141,7 +140,7 @@ end
 go
 
 --procedemiento para validar antes de comprar, segun el @tipoError deriba en distintas ventanas de c#
-create procedure VARCHAR_DE_30.st_validacion_de_compra_oferta
+create procedure st_validacion_de_compra_oferta
 @id_cliente numeric(10,0),
 @usuario_responsable numeric(10,0),
 @id_publicacion numeric(10,0),
@@ -161,7 +160,7 @@ end
 go
 
 -- Procedimientos que usa el tr_insertarCompra
-create procedure VARCHAR_DE_30.st_agregarCalificacion(@id_calificacion numeric(10,0) output )
+create procedure st_agregarCalificacion(@id_calificacion numeric(10,0) output )
 as begin
 		insert into CALIFICACION (calif_estrellas,calif_detalle)
 		values (null, null)
@@ -171,7 +170,7 @@ go
 
 
 -- Se dispara cada vez q se inserta una compra ( post-migracion)
-create trigger VARCHAR_DE_30.tr_insertarCompra
+create trigger tr_insertarCompra
 	on COMPRA
 	instead of insert
 
@@ -200,7 +199,7 @@ create trigger VARCHAR_DE_30.tr_insertarCompra
 go
 
 
-create procedure VARCHAR_DE_30.st_buscar_publicaciones_ULTIMA_PAGINA
+create procedure st_buscar_publicaciones_ULTIMA_PAGINA
 @descripcion nvarchar(255) = null,
 @rubroId nvarchar(255)= null,
 @ultimaPagina int=0 output
@@ -240,7 +239,7 @@ go
 
 -------------- Comienzo de Calificar al vendedor----------------------------------------------------------------------
 
-create procedure VARCHAR_DE_30.st_mostrarPublicacionesSinCalificar(@id_usuario numeric(10,0))
+create procedure st_mostrarPublicacionesSinCalificar(@id_usuario numeric(10,0))
 as begin  
 	  select  id_publicacion,descripcion,stock,fecha_inicio,
 	          fecha_vencimiento,precio,rubro,visibilidad,estado_publicacion,
@@ -253,7 +252,7 @@ end
 
 go
 
-create procedure VARCHAR_DE_30.st_insertarCalificacion(
+create procedure st_insertarCalificacion(
 @id_calificacion numeric(10,0),
 @calif_estrellas int,
 @calif_detalle nvarchar(255) )
@@ -264,7 +263,7 @@ end
 
 go
 
-create procedure VARCHAR_DE_30.st_resumenDeEstrellasDadas(@id_usuario numeric(10,0))
+create procedure st_resumenDeEstrellasDadas(@id_usuario numeric(10,0))
 as begin
 
 select * into #TablaTemporal --Tabla Temporal
@@ -284,7 +283,7 @@ end
 
 go
 
-create procedure VARCHAR_DE_30.st_ultimas5compras(@id_usuario numeric(10,0))
+create procedure st_ultimas5compras(@id_usuario numeric(10,0))
 as begin  
 	  select top 5 descripcion,calif_estrellas
 	  from COMPRA
@@ -299,7 +298,7 @@ go
 
 -------------- Historial de Cliente ----------------------------------------------------------------------
 
-create procedure VARCHAR_DE_30.st_cantidadDeOperacionesSinCalificar(@id_usuario numeric(10,0))
+create procedure st_cantidadDeOperacionesSinCalificar(@id_usuario numeric(10,0))
 as begin  
 	  select  count (*) as alexisManco
 	  from COMPRA
@@ -310,7 +309,7 @@ end
 
 go
 
-create procedure VARCHAR_DE_30.st_subastasDeCliente
+create procedure st_subastasDeCliente
 @idUsuario numeric(10,0),
 @pagina int
 as
@@ -331,7 +330,7 @@ end
 go
 
 
-create procedure VARCHAR_DE_30.st_comprasDeCliente
+create procedure st_comprasDeCliente
 @idUsuario numeric(10,0),
 @pagina int
 as
@@ -351,7 +350,7 @@ end
 
 go
 
-create procedure VARCHAR_DE_30.st_cantidadPaginasSubastasDeCliente
+create procedure st_cantidadPaginasSubastasDeCliente
 @idUsuario numeric(10,0),
 @ultimaPagina numeric(10,0)=0 out
 as
@@ -371,7 +370,7 @@ end
 
 go
 
-create procedure VARCHAR_DE_30.st_cantidadPaginasComprasDeCliente
+create procedure st_cantidadPaginasComprasDeCliente
 @idUsuario numeric(10,0),
 @ultimaPagina numeric(10,0)=0 out
 as
@@ -402,7 +401,7 @@ go
 --------------------------------------------------COMIENZO ABM VISIBILIDAD----------------------------------------------------------------
 
 go
-CREATE PROCEDURE VARCHAR_DE_30.sp_AgregarVisibilidad
+CREATE PROCEDURE sp_AgregarVisibilidad
 	(@visibilidad_nombre nvarchar(255), @precio_visibilidad numeric(10,0), @porcentaje_venta  numeric(10,2))
 AS BEGIN
 	INSERT INTO VISIBILIDAD
@@ -415,7 +414,7 @@ GO
 
 /* SP Editar VISIBILIDAD */
 
-CREATE PROCEDURE VARCHAR_DE_30.sp_EditarVisibilidad
+CREATE PROCEDURE sp_EditarVisibilidad
 	(@id_visibilidad numeric(10,0), @visibilidad_nombre nvarchar(255), @precio_visibilidad numeric(10,0), 
 		@porcentaje_venta  numeric(10,2))
 AS BEGIN
@@ -428,7 +427,7 @@ GO
 
 /* SP Eliminar VISIBILIDAD */
 
-create PROCEDURE VARCHAR_DE_30.sp_EliminarVisibilidad
+create PROCEDURE sp_EliminarVisibilidad
 	@id_visibilidad numeric(10,0),
 	@tipoError varchar(50) = 'todo piolaa' out
 AS BEGIN
@@ -453,7 +452,7 @@ GO
 
 -------------- GENERAR PUBLICACION----------------------------------------------------------------------
 
-create function VARCHAR_DE_30.fu_nombre_visibilidad(@visibilidad numeric(10,0))
+create function fu_nombre_visibilidad(@visibilidad numeric(10,0))
 returns nvarchar(255)
 as
 begin
@@ -469,7 +468,7 @@ end
 
 go
 
-create function VARCHAR_DE_30.fu_precio_visibilidad(@visibilidad numeric(10,0))
+create function fu_precio_visibilidad(@visibilidad numeric(10,0))
 returns numeric(10,2)
 as
 begin
@@ -485,7 +484,7 @@ end
 
 go
 
-create PROCEDURE VARCHAR_DE_30.sp_AgregarPublicacion
+create PROCEDURE sp_AgregarPublicacion
 	(@descripcion nvarchar(255),@stock numeric(10,0), @fecha_inicio datetime, 
 	 @fecha_vencimiento datetime,@precio numeric(10,2), @rubro numeric(10,0), 
 	 @visibilidad numeric(10,0), @estado_publicacion numeric(10,0), @usuario_responsable numeric(10,0),
@@ -516,7 +515,7 @@ END
 
 go
 
-create PROCEDURE VARCHAR_DE_30.sp_AgregarPublicacionGratiss
+create PROCEDURE sp_AgregarPublicacionGratiss
 	(@descripcion nvarchar(255),@stock numeric(10,0), @fecha_inicio datetime, 
 	 @fecha_vencimiento datetime,@precio numeric(10,2), @rubro numeric(10,0), 
 	 @visibilidad numeric(10,0), @estado_publicacion numeric(10,0), @usuario_responsable numeric(10,0),
@@ -556,10 +555,10 @@ go
 
 
 --Vendedores con mayor cantidad de productos no vendidos, 
---dicho listado debe filtrarse por grado de visibilidad de la publicaci√≥n y
---por mes-a√±o. Primero se deber√° ordenar por fecha y luego por visibilidad.
+--dicho listado debe filtrarse por grado de visibilidad de la publicaciÛn y
+--por mes-aÒo. Primero se deber· ordenar por fecha y luego por visibilidad.
 
-create procedure VARCHAR_DE_30.st_top5_vendedores_menos_venta
+create procedure st_top5_vendedores_menos_venta
 @mes1 int,
 @mes2 int,
 @mes3 int,
@@ -609,12 +608,10 @@ group by nick,mail,factura,factura_fecha,precio_visibilidad
 having 0 =(select count(*) from ITEM_FACTURA
                                    where factura = id_factura )
  order by factura_fecha,precio_visibilidad desc
-
  end
-
  go
  */
- create procedure VARCHAR_DE_30.st_top5_clientes_mas_compras
+ create procedure st_top5_clientes_mas_compras
 @mes1 int=null,
 @mes2 int=null,
 @mes3 int=null,
@@ -637,7 +634,7 @@ as begin
  end
 
  go
---Clientes con mayor cantidad de productos comprados, por mes y por a√±o, dentro de un rubro particular
+--Clientes con mayor cantidad de productos comprados, por mes y por aÒo, dentro de un rubro particular
 /*
 create procedure st_top5_clientes_mas_compras
 @mes1 int,
@@ -645,9 +642,7 @@ create procedure st_top5_clientes_mas_compras
 @mes3 int,
 @anio int,
 @rubro int=null
-
 AS BEGIN
-
 select top 5 nick,mail,sum(cantidad) as cant_de_productos_comprados
 FROM COMPRA
 inner join USUARIO on comprador = id_usuario
@@ -657,15 +652,13 @@ where (@mes1=month(fecha_operacion) or @mes1 IS NULL) and ( @mes2=month(fecha_op
 @anio=year(fecha_operacion) and (rubro = @rubro or  @rubro IS NULL)
 group by nick,mail
 order by cant_de_productos_comprados desc
-
 end
-
 go
 */
 
---Vendedores con mayor cantidad de facturas dentro de un mes y a√±o particular
+--Vendedores con mayor cantidad de facturas dentro de un mes y aÒo particular
 
-create procedure VARCHAR_DE_30.st_top5_vendedores_mayor_facturas
+create procedure st_top5_vendedores_mayor_facturas
 @mes1 int=null,
 @mes2 int=null,
 @mes3 int=null,
@@ -690,14 +683,11 @@ end
 go
 
 /*create procedure st_top5_vendedores_mayor_facturas
-
 @mes1 int,
 @mes2 int,
 @mes3 int,
 @anio int
-
 AS BEGIN
-
 select top 5 nick,mail,count(*) as cant_de_facturas
 FROM PUBLICACION
 inner join USUARIO on usuario_responsable = id_usuario
@@ -707,15 +697,13 @@ where (@mes1=month(factura_fecha) or @mes1 IS NULL) and ( @mes2=month(factura_fe
 @anio=year(factura_fecha)
 group by nick,mail
 order by cant_de_facturas desc
-
 end
-
 go*/
 
 
---Vendedores con mayor monto facturado dentro de un mes y a√±o particular.
+--Vendedores con mayor monto facturado dentro de un mes y aÒo particular.
 
-create procedure VARCHAR_DE_30.st_top5_vendedores_mayor_monto_facturado
+create procedure st_top5_vendedores_mayor_monto_facturado
 
 @mes1 int,
 @mes2 int,
@@ -742,14 +730,11 @@ end
 go
 
 /*create procedure st_top5_vendedores_mayor_monto_facturado
-
 @mes1 int,
 @mes2 int,
 @mes3 int,
 @anio int
-
 AS BEGIN
-
 select top 5 nick,mail,sum(precio_unitario*cantidad_vendida+precio_envio) as mayor_monto_facturado
 FROM PUBLICACION
 inner join USUARIO on usuario_responsable = id_usuario
@@ -760,16 +745,14 @@ where (@mes1=month(factura_fecha) or @mes1 IS NULL) and ( @mes2=month(factura_fe
 @anio=year(factura_fecha)
 group by nick,mail
 order by mayor_monto_facturado desc
-
 end
-
 go*/
 
 ----------------------  FIN DE ESTADISTICAS----------------------------------------------------------------------
 
 -------------------------------------ABM CLIENTE---------------------------------------------------------------------------------------
 
-create procedure VARCHAR_DE_30.st_buscar_clientes
+create procedure st_buscar_clientes
 @nombre nvarchar(255)='',
 @apellido nvarchar(255)='',
 @numeroDocumento nvarchar(255)='',
@@ -787,7 +770,7 @@ end
 
 go
 
-CREATE procedure VARCHAR_DE_30.st_agregar_cliente
+CREATE procedure st_agregar_cliente
 @nick nvarchar(255),
 @pass nvarchar(255),
 @fechaAltaSistema date,
@@ -838,7 +821,7 @@ end
 
 go
 
-create procedure VARCHAR_DE_30.st_modificar_cliente
+create procedure st_modificar_cliente
 @idUsuario numeric(10,0),
 @idCliente numeric(10,0),
 @mail nvarchar(255),
@@ -869,7 +852,7 @@ go
 
 -------------------------------------ABM EMPRESA---------------------------------------------------------------------------------------
 
-create procedure VARCHAR_DE_30.st_buscar_empresas
+create procedure st_buscar_empresas
 @razonSocial nvarchar(255)='',
 @cuit nvarchar(50)='',
 @mail nvarchar(255)=''
@@ -885,7 +868,7 @@ end
 
 go
 
-CREATE procedure VARCHAR_DE_30.st_agregar_empresa
+CREATE procedure st_agregar_empresa
 @nick nvarchar(255),
 @pass nvarchar(255),
 @fechaAltaSistema date,
@@ -935,7 +918,7 @@ end
 
 go
 
-create procedure VARCHAR_DE_30.st_modificar_empresa
+create procedure st_modificar_empresa
 @idUsuario numeric(10,0),
 @idEmpresa numeric(10,0),
 @mail nvarchar(255),
@@ -968,7 +951,7 @@ go
 
 --------------------------COMIENZO FACTURAS VENDEDOR-------------------------------------------------------------------------------------
 
-create procedure VARCHAR_DE_30.st_obtenerFacturasVendedorPorPaginas
+create procedure st_obtenerFacturasVendedorPorPaginas
 @idUsuario numeric(10,0),
 @pagina int,
 @montoDesde numeric(10,2)=null,
@@ -1008,7 +991,7 @@ end
 
 go
 
-create procedure VARCHAR_DE_30.st_obtenerMaximaPaginaFacturasFiltradas
+create procedure st_obtenerMaximaPaginaFacturasFiltradas
 @idUsuario numeric(10,0),
 @montoDesde numeric(10,2)=null,
 @montoHasta numeric(10,2)=null,
@@ -1054,10 +1037,10 @@ go
 
 --------------------------FIN FACTURAS VENDEDOR-------------------------------------------------------------------------------------
 
---Al iniciar la aplicaci√≥n se tiene que barrer la base de datos para saber que publicaciones
+--Al iniciar la aplicaciÛn se tiene que barrer la base de datos para saber que publicaciones
 --estan vencidas, a las q estan vencidas hay que finalizarlas y cerrar la factura
 --Las subasta vencidas hay q hacer lo mismo, y tambien insertar esa oferta como compra
-create procedure VARCHAR_DE_30.st_actualizar_publicaciones_vencidas
+create procedure st_actualizar_publicaciones_vencidas
 @fechaDelSistema date
 
 AS BEGIN
