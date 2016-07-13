@@ -32,7 +32,7 @@ namespace WindowsFormsApplication1.Clases
             db.agregarParametro(parametros, "@envio", publicacion.hayEnvio);
 
             //hacerInsert(filaPublicacion);
-            db.ejecutarStoredProcedure("VARCHAR_DE_30.sp_AgregarPublicacion", parametros);
+            db.ejecutarStoredProcedure("CHAR_DE_30.sp_AgregarPublicacion", parametros);
         }
 
         internal void darDeBajaPublicacionesVencidas(DateTime fechaSistema)
@@ -41,14 +41,14 @@ namespace WindowsFormsApplication1.Clases
 
             db.agregarParametro(parametros, "@fechaDelSistema", fechaSistema);
 
-            db.ejecutarStoredProcedure("VARCHAR_DE_30.st_actualizar_publicaciones_vencidas", parametros);
+            db.ejecutarStoredProcedure("CHAR_DE_30.st_actualizar_publicaciones_vencidas", parametros);
         }
 
         private void hacerInsert(Dictionary<string, object> filaPublicacion)
         {
             List<SqlParameter> parametros = new List<SqlParameter>();
 
-            string insert = "insert into VARCHAR_DE_30.publicacion (";
+            string insert = "insert into CHAR_DE_30.publicacion (";
 
             string valores = "values(";
 
@@ -84,7 +84,7 @@ namespace WindowsFormsApplication1.Clases
 
             db.agregarParametro(parametros, "@pagina", numeroPagina);
 
-            List<Dictionary<string, object>> tabla = db.ejecutarStoredProcedure("VARCHAR_DE_30.st_buscar_publicaciones", parametros);
+            List<Dictionary<string, object>> tabla = db.ejecutarStoredProcedure("CHAR_DE_30.st_buscar_publicaciones", parametros);
 
             List<Publicacion> publicacionesFiltradas = new List<Publicacion>();
 
@@ -142,7 +142,7 @@ namespace WindowsFormsApplication1.Clases
             //db.agregarParametro(parametros, "@pagina", numeroPagina);
             //db.agregarParametro(parametros, "@ultimaPagina", cantidadPaginas);
 
-            cantidadPaginas = toInt(db.ejecutarStoredConRetorno("VARCHAR_DE_30.st_buscar_publicaciones_ULTIMA_PAGINA", parametros, "@ultimaPagina", 0));
+            cantidadPaginas = toInt(db.ejecutarStoredConRetorno("CHAR_DE_30.st_buscar_publicaciones_ULTIMA_PAGINA", parametros, "@ultimaPagina", 0));
 
             return cantidadPaginas;//No se como hacer con un stored que devuelve un int
         }
@@ -197,7 +197,7 @@ namespace WindowsFormsApplication1.Clases
 
             List<SqlParameter> parametros = new List<SqlParameter>();
 
-            string update = "update VARCHAR_DE_30.publicacion set ";
+            string update = "update CHAR_DE_30.publicacion set ";
 
             foreach (string clave in filaPublicacion.Keys)
             {

@@ -9,13 +9,13 @@ namespace WindowsFormsApplication1.Clases
     {
         internal Usuario traerPorId(long v)
         {
-            string consulta = "select * from VARCHAR_DE_30.USUARIO where id_usuario=" + v.ToString();
+            string consulta = "select * from CHAR_DE_30.USUARIO where id_usuario=" + v.ToString();
             return deserializarUsuario(db.ejecutarConsulta(consulta)[0]);
         }
 
         internal string valorHasheado(string texto)
         {
-            string consulta = "select dbo.VARCHAR_DE_30.fn_hashear_pass('" + texto + "') as hashValue";
+            string consulta = "select dbo.CHAR_DE_30.fn_hashear_pass('" + texto + "') as hashValue";
 
             return db.ejecutarConsulta(consulta)[0]["hashValue"].ToString();
         }
@@ -38,7 +38,7 @@ namespace WindowsFormsApplication1.Clases
             db.agregarParametro(parametros, "@numeroDocumento", dni);
             db.agregarParametro(parametros, "@mail", mail);
 
-            List<Dictionary<string, object>> tabla = db.ejecutarStoredProcedure("VARCHAR_DE_30.st_buscar_clientes", parametros);
+            List<Dictionary<string, object>> tabla = db.ejecutarStoredProcedure("CHAR_DE_30.st_buscar_clientes", parametros);
 
             List<Cliente> clientesEncontrados = new List<Cliente>();
 
@@ -59,7 +59,7 @@ namespace WindowsFormsApplication1.Clases
         {
             long idUsuario = obtenerIdUsuarioPorNick(nick);
 
-            string consulta = "select * from VARCHAR_DE_30.EMPRESA as e inner join VARCHAR_DE_30.USUARIO as u on e.id_usuario = u.id_usuario " +
+            string consulta = "select * from CHAR_DE_30.EMPRESA as e inner join CHAR_DE_30.USUARIO as u on e.id_usuario = u.id_usuario " +
                               "where u.id_usuario =" + idUsuario.ToString();
 
             List<Dictionary<string, object>> tabla = db.ejecutarConsulta(consulta);
@@ -91,14 +91,14 @@ namespace WindowsFormsApplication1.Clases
             db.agregarParametro(parametros, "@ciudad", empresa.ciudad);
             db.agregarParametro(parametros, "@rubro", empresa.rubro);
 
-            db.ejecutarStoredProcedure("VARCHAR_DE_30.st_modificar_empresa", parametros);
+            db.ejecutarStoredProcedure("CHAR_DE_30.st_modificar_empresa", parametros);
         }
 
         internal Cliente traerClientePorNick(string nick)
         {
             long idUsuario = obtenerIdUsuarioPorNick(nick);
 
-            string consulta = "select * from VARCHAR_DE_30.CLIENTE as c inner join VARCHAR_DE_30.USUARIO as u on c.id_usuario = u.id_usuario " +
+            string consulta = "select * from CHAR_DE_30.CLIENTE as c inner join CHAR_DE_30.USUARIO as u on c.id_usuario = u.id_usuario " +
                               "where u.id_usuario =" + idUsuario.ToString();
 
             List<Dictionary<string, object>> tabla = db.ejecutarConsulta(consulta);
@@ -113,7 +113,7 @@ namespace WindowsFormsApplication1.Clases
 
         internal long obtenerIdUsuarioPorNick(string text)
         {
-            string consulta = "select id_usuario from VARCHAR_DE_30.USUARIO where nick='" + text + "'";
+            string consulta = "select id_usuario from CHAR_DE_30.USUARIO where nick='" + text + "'";
             List<Dictionary<string, object>> tabla = db.ejecutarConsulta(consulta);
 
             if (tabla.Count==0)
@@ -148,7 +148,7 @@ namespace WindowsFormsApplication1.Clases
 
             string retorno="";
 
-            retorno = db.ejecutarStoredConRetorno("VARCHAR_DE_30.st_agregar_empresa", parametros, "@error", retorno).ToString();
+            retorno = db.ejecutarStoredConRetorno("CHAR_DE_30.st_agregar_empresa", parametros, "@error", retorno).ToString();
 
             switch (retorno)
             {
@@ -163,7 +163,7 @@ namespace WindowsFormsApplication1.Clases
 
         internal bool yaExisteCuit(string cuit)
         {
-            string consulta = "select count(*) as cuenta from VARCHAR_DE_30.EMPRESA where cuit='" + cuit + "'";
+            string consulta = "select count(*) as cuenta from CHAR_DE_30.EMPRESA where cuit='" + cuit + "'";
 
             return toInt(db.ejecutarConsulta(consulta)[0]["cuenta"]) > 0;
         }
@@ -177,7 +177,7 @@ namespace WindowsFormsApplication1.Clases
             db.agregarParametro(parametros, "@cuit", cuit);
             db.agregarParametro(parametros, "@mail", mail);
 
-            List<Dictionary<string, object>> tabla = db.ejecutarStoredProcedure("VARCHAR_DE_30.st_buscar_empresas", parametros);
+            List<Dictionary<string, object>> tabla = db.ejecutarStoredProcedure("CHAR_DE_30.st_buscar_empresas", parametros);
 
             List<Empresa> empresasEncontradas = new List<Empresa>();
 
@@ -192,7 +192,7 @@ namespace WindowsFormsApplication1.Clases
 
         internal bool yaExisteRazonSocial(string razonSocial)
         {
-            string consulta = "select count(*) as cuenta from VARCHAR_DE_30.EMPRESA where razon_social='" + razonSocial + "'";
+            string consulta = "select count(*) as cuenta from CHAR_DE_30.EMPRESA where razon_social='" + razonSocial + "'";
 
             return toInt(db.ejecutarConsulta(consulta)[0]["cuenta"]) > 0;
         }
@@ -272,7 +272,7 @@ namespace WindowsFormsApplication1.Clases
                 db.agregarParametro(parametros, "@visibilidad", visibilidad.id);
             }
 
-            List<Dictionary<string, object>> tabla = db.ejecutarStoredProcedure("VARCHAR_DE_30.st_top5_vendedores_menos_venta", parametros);
+            List<Dictionary<string, object>> tabla = db.ejecutarStoredProcedure("CHAR_DE_30.st_top5_vendedores_menos_venta", parametros);
 
             Dictionary<Usuario, int> dictionaryUsersVentasFallidas = new Dictionary<Usuario, int>();
 
@@ -304,13 +304,13 @@ namespace WindowsFormsApplication1.Clases
             db.agregarParametro(parametros, "@nombre", cliente.nombre);
             db.agregarParametro(parametros, "@apellido", cliente.apellido);
 
-            db.ejecutarStoredProcedure("VARCHAR_DE_30.st_modificar_cliente", parametros);
+            db.ejecutarStoredProcedure("CHAR_DE_30.st_modificar_cliente", parametros);
         }
 
 
         internal bool yaExisteEseDni(string dni)
         {
-            string consulta = "select count(*) as cuenta from VARCHAR_DE_30.CLIENTE where dni='" + dni + "'";
+            string consulta = "select count(*) as cuenta from CHAR_DE_30.CLIENTE where dni='" + dni + "'";
 
             return toInt(db.ejecutarConsulta(consulta)[0]["cuenta"]) > 0;
         }
@@ -338,7 +338,7 @@ namespace WindowsFormsApplication1.Clases
 
             string retorno = "";
 
-            retorno = db.ejecutarStoredConRetorno("VARCHAR_DE_30.st_agregar_cliente", parametros, "@error", retorno).ToString();
+            retorno = db.ejecutarStoredConRetorno("CHAR_DE_30.st_agregar_cliente", parametros, "@error", retorno).ToString();
 
             switch (retorno)
             {
@@ -355,14 +355,14 @@ namespace WindowsFormsApplication1.Clases
 
         internal bool yaExisteEseNick(string nick)
         {
-            string consulta = "select count(*) as cuenta from VARCHAR_DE_30.USUARIO where nick='" + nick + "'";
+            string consulta = "select count(*) as cuenta from CHAR_DE_30.USUARIO where nick='" + nick + "'";
 
             return toInt(db.ejecutarConsulta(consulta)[0]["cuenta"]) > 0;
         }
 
         internal void updatePassword(Usuario usuario, string nuevaPass)
         {
-            string update = "update VARCHAR_DE_30.Usuario set pass='" + nuevaPass + "' where id_usuario=" + usuario.id.ToString();
+            string update = "update CHAR_DE_30.Usuario set pass='" + nuevaPass + "' where id_usuario=" + usuario.id.ToString();
             db.ejecutarConsulta(update);
         }
 
@@ -377,7 +377,7 @@ namespace WindowsFormsApplication1.Clases
 
             db.agregarParametro(parametros, "@anio", anio);
 
-            List<Dictionary<string, object>> tabla = db.ejecutarStoredProcedure("VARCHAR_DE_30.st_top5_vendedores_mayor_monto_facturado", parametros);
+            List<Dictionary<string, object>> tabla = db.ejecutarStoredProcedure("CHAR_DE_30.st_top5_vendedores_mayor_monto_facturado", parametros);
 
             Dictionary<Usuario, long> dictionaryUsersMayorFactura = new Dictionary<Usuario, long>();
 
@@ -403,7 +403,7 @@ namespace WindowsFormsApplication1.Clases
 
             db.agregarParametro(parametros, "@anio", anio);
 
-            List<Dictionary<string, object>> tabla = db.ejecutarStoredProcedure("VARCHAR_DE_30.st_top5_vendedores_mayor_facturas", parametros);
+            List<Dictionary<string, object>> tabla = db.ejecutarStoredProcedure("CHAR_DE_30.st_top5_vendedores_mayor_facturas", parametros);
 
             Dictionary<Usuario, int> dictionaryUsersMasFacturas = new Dictionary<Usuario, int>();
 
@@ -438,7 +438,7 @@ namespace WindowsFormsApplication1.Clases
                 db.agregarParametro(parametros, "@rubro", rubro.id);
             }
 
-            List<Dictionary<string, object>> tabla = db.ejecutarStoredProcedure("VARCHAR_DE_30.st_top5_clientes_mas_compras", parametros);
+            List<Dictionary<string, object>> tabla = db.ejecutarStoredProcedure("CHAR_DE_30.st_top5_clientes_mas_compras", parametros);
 
             Dictionary<Usuario, int> dictionaryUsersMasCompras = new Dictionary<Usuario, int>();
 
@@ -458,7 +458,7 @@ namespace WindowsFormsApplication1.Clases
             List<SqlParameter> parametros = new List<SqlParameter>();
             db.agregarParametro(parametros, "@id_usuario", usuario.id);
 
-            return toInt(db.ejecutarStoredProcedure("VARCHAR_DE_30.st_cantidadDeOperacionesSinCalificar", parametros)[0]["alexisManco"]);
+            return toInt(db.ejecutarStoredProcedure("CHAR_DE_30.st_cantidadDeOperacionesSinCalificar", parametros)[0]["alexisManco"]);
         }
     }
 }

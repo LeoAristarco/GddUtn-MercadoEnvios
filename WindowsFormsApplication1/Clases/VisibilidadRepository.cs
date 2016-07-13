@@ -12,7 +12,7 @@ namespace WindowsFormsApplication1.Clases
     {
         public List<Visibilidad> obtenerVisibilidades()
         {
-            string consulta = "select * from VARCHAR_DE_30.VISIBILIDAD";
+            string consulta = "select * from CHAR_DE_30.VISIBILIDAD";
 
             List<Dictionary<string,object>> tablaVisibilidad = db.ejecutarConsulta(consulta);
 
@@ -46,7 +46,7 @@ namespace WindowsFormsApplication1.Clases
             db.agregarParametro(parametros, "@precio_visibilidad", visibilidad.precio);
             db.agregarParametro(parametros, "@porcentaje_venta", visibilidad.porcentajeVenta);
 
-            db.ejecutarStoredProcedure("VARCHAR_DE_30.sp_AgregarVisibilidad", parametros);
+            db.ejecutarStoredProcedure("CHAR_DE_30.sp_AgregarVisibilidad", parametros);
         }
 
         internal void updateVisibilidad(Visibilidad visibilidad)
@@ -57,12 +57,12 @@ namespace WindowsFormsApplication1.Clases
             db.agregarParametro(parametros, "@precio_visibilidad", visibilidad.precio);
             db.agregarParametro(parametros, "@porcentaje_venta", visibilidad.porcentajeVenta);
 
-            db.ejecutarStoredProcedure("VARCHAR_DE_30.sp_EditarVisibilidad", parametros);
+            db.ejecutarStoredProcedure("CHAR_DE_30.sp_EditarVisibilidad", parametros);
         }
 
         internal Visibilidad traerPorId(long v)
         {
-            string consulta = "select * from VARCHAR_DE_30.VISIBILIDAD where id_visibilidad=" + v.ToString();
+            string consulta = "select * from CHAR_DE_30.VISIBILIDAD where id_visibilidad=" + v.ToString();
             return deserializarVisibilidad(db.ejecutarConsulta(consulta)[0]);
         }
 
@@ -71,7 +71,7 @@ namespace WindowsFormsApplication1.Clases
             List<SqlParameter> parametros = new List<SqlParameter>();
             db.agregarParametro(parametros, "@id_visibilidad", visibilidadSeleccionada.id);
 
-            string error = db.ejecutarStoredConRetorno("VARCHAR_DE_30.sp_EliminarVisibilidad", parametros, "@tipoError", "").ToString();
+            string error = db.ejecutarStoredConRetorno("CHAR_DE_30.sp_EliminarVisibilidad", parametros, "@tipoError", "").ToString();
 
             if (error=="e")
             {

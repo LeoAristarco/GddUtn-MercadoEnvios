@@ -21,7 +21,7 @@ namespace WindowsFormsApplication1.ComprarOfertar
             db.agregarParametro(parametros, "@ofertante", user.id);
             db.agregarParametro(parametros, "@precio_envio", hayEnvio ? PRECIO_DE_ENVIO : 0);
 
-            db.ejecutarStoredProcedure("VARCHAR_DE_30.sp_AgregarOferta", parametros);
+            db.ejecutarStoredProcedure("CHAR_DE_30.sp_AgregarOferta", parametros);
         }
 
         internal string validacionDeOferta(Publicacion publicacion, Usuario user)
@@ -39,7 +39,7 @@ namespace WindowsFormsApplication1.ComprarOfertar
 
             db.agregarParametro(parametros, "@pagina", numeroPaginaOferta);
 
-            List<Dictionary<string, object>> tabla = db.ejecutarStoredProcedure("VARCHAR_DE_30.st_subastasDeCliente", parametros);
+            List<Dictionary<string, object>> tabla = db.ejecutarStoredProcedure("CHAR_DE_30.st_subastasDeCliente", parametros);
 
             List<Oferta> ofertas = new List<Oferta>();
 
@@ -72,7 +72,7 @@ namespace WindowsFormsApplication1.ComprarOfertar
             List<SqlParameter> parametros = new List<SqlParameter>();
             db.agregarParametro(parametros, "@idUsuario", usuario.id);
 
-            cantidadPaginas = toInt(db.ejecutarStoredConRetorno("VARCHAR_DE_30.st_cantidadPaginasSubastasDeCliente", parametros, "@ultimaPagina", 0));
+            cantidadPaginas = toInt(db.ejecutarStoredConRetorno("CHAR_DE_30.st_cantidadPaginasSubastasDeCliente", parametros, "@ultimaPagina", 0));
 
             return cantidadPaginas;
         }

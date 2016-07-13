@@ -10,7 +10,7 @@ namespace WindowsFormsApplication1.Generar_Publicación
     {
         public List<EstadoPublicacion> obetenerEstadosPublicacion()
         {
-            List<Dictionary<string, object>> tabla = db.ejecutarConsulta("select * from VARCHAR_DE_30.ESTADO_PUBLICACION");
+            List<Dictionary<string, object>> tabla = db.ejecutarConsulta("select * from CHAR_DE_30.ESTADO_PUBLICACION");
 
             List<EstadoPublicacion> estados = new List<EstadoPublicacion>();
 
@@ -32,7 +32,7 @@ namespace WindowsFormsApplication1.Generar_Publicación
 
         internal EstadoPublicacion traerPorId(long v)
         {
-            string consulta = "select * from VARCHAR_DE_30.ESTADO_PUBLICACION where id_estado=" + v.ToString();
+            string consulta = "select * from CHAR_DE_30.ESTADO_PUBLICACION where id_estado=" + v.ToString();
             return deserializarEstadoPublicacion(db.ejecutarConsulta(consulta)[0]);
         }
     }
