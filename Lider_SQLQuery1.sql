@@ -310,7 +310,7 @@ end
 
 go
 
-alter procedure st_subastasDeCliente
+create procedure st_subastasDeCliente
 @idUsuario numeric(10,0),
 @pagina int
 as
@@ -331,7 +331,7 @@ end
 go
 
 
-alter procedure st_comprasDeCliente
+create procedure st_comprasDeCliente
 @idUsuario numeric(10,0),
 @pagina int
 as
@@ -351,16 +351,36 @@ end
 
 go
 
-create procedure st_cantidadPaginasDeComprasYSubastasCliente
+create procedure st_cantidadPaginasSubastasDeCliente
 @idUsuario numeric(10,0),
 @ultimaPagina numeric(10,0)=0 out
 as
 begin	
       select @ultimaPagina=count(*)
-      from PUBLICACION
-	  inner join OFERTA on OFERTA.publicacion=id_publicacion
-	  inner join COMPRA on COMPRA.publicacion=id_publicacion
-      where (comprador=@idUsuario or ofertante=@idUsuario)
+			 from OFERTA o,PUBLICACION
+			 inner join TIPO_PUBLICACION on id_tipo = tipo_publicacion
+			 where (o.publicacion=id_publicacion) and
+			 ( o.ofertante=@idUsuario)
+
+	  if(((@ultimaPagina/10) - floor(@ultimaPagina/10))>0)
+		set @ultimaPagina = (@ultimaPagina/10) + 1;
+
+	  else
+		set @ultimaPagina = @ultimaPagina/10;
+end
+
+go
+
+create procedure st_cantidadPaginasComprasDeCliente
+@idUsuario numeric(10,0),
+@ultimaPagina numeric(10,0)=0 out
+as
+begin	
+      select @ultimaPagina=count(*)
+		from COMPRA c,PUBLICACION
+		inner join TIPO_PUBLICACION on id_tipo = tipo_publicacion
+		where (c.publicacion=id_publicacion) and
+		(c.comprador=@idUsuario)
 
 	  if(((@ultimaPagina/10) - floor(@ultimaPagina/10))>0)
 		set @ultimaPagina = (@ultimaPagina/10) + 1;
