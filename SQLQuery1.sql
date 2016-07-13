@@ -47,6 +47,22 @@ drop procedure VARCHAR_DE_30.VERIFICAR_LOGUEO
 
 go
 
+if EXISTS (SELECT * FROM sysobjects WHERE name='fn_hashear_pass') 
+drop function VARCHAR_DE_30.fn_hashear_pass
+
+go
+
+create function VARCHAR_DE_30.fn_hashear_pass (@pass nvarchar(255))
+returns nvarchar(255)
+as begin
+	return(
+		SUBSTRING(master.dbo.fn_varbintohexstr(HashBytes('SHA2_256', @pass)), 3, 255)
+	)
+end
+
+go
+
+
 --creo objetos necesarios
 create procedure VARCHAR_DE_30.VERIFICAR_LOGUEO
 	@nick nvarchar(255), 
@@ -80,7 +96,7 @@ as begin
 	on ru.id_rol = r.id_rol
 	where 
 		u.nick = @nick and 
-		u.pass = dbo.fn_hashear_pass(@pass) and
+		u.pass = VARCHAR_DE_30.fn_hashear_pass(@pass) and
 		r.habilitado = 1;
 end
 
@@ -188,7 +204,7 @@ as begin
 	declare @cont int;
 
 	select @cont = COUNT(*)
-	from ROL_POR_USUARIO
+	from VARCHAR_DE_30.ROL_POR_USUARIO
 	where 
 		id_rol = @id_rol and
 		id_usuario = @id_usuario;
