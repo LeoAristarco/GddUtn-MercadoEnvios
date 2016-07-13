@@ -13,16 +13,16 @@ namespace WindowsFormsApplication1.ComprarOfertar
 {
     public partial class Ofertar : Form
     {
-        private DetallePublicacion detallePublicacion;
+        private Form formAnterior;
         private Publicacion publicacion;
         private Usuario user;
         private OfertaRepository repositorio = new OfertaRepository();
 
-        public Ofertar(Publicacion publicacion, Usuario user, DetallePublicacion detallePublicacion)
+        public Ofertar(Publicacion publicacion, Usuario user, Form formAnterior)
         {
             this.publicacion = publicacion;
             this.user = user;
-            this.detallePublicacion = detallePublicacion;
+            this.formAnterior = formAnterior;
             InitializeComponent();
         }
 
@@ -38,7 +38,7 @@ namespace WindowsFormsApplication1.ComprarOfertar
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            detallePublicacion.Show();
+            formAnterior.Show();
             Close();
         }
 
@@ -66,7 +66,7 @@ namespace WindowsFormsApplication1.ComprarOfertar
             }
 
             repositorio.ofertar(publicacion, user, monto,checkBox1.Checked);
-            detallePublicacion.Show();
+            formAnterior.Show();
             Close();
         }
 
@@ -86,7 +86,7 @@ namespace WindowsFormsApplication1.ComprarOfertar
 
         private void Ofertar_FormClosing(object sender, FormClosingEventArgs e)
         {
-            detallePublicacion.Show();
+            formAnterior.Show();
         }
     }
 }

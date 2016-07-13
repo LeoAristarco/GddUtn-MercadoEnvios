@@ -150,9 +150,9 @@ as
 begin
       if(@id_cliente = @usuario_responsable )
 	    set @tipoError = 'i' --error, cliente es el mismo
-	  if(dbo.CHAR_DE_30.publicacion_en_estado_pausado(@id_publicacion) =1)
+	  if(CHAR_DE_30.publicacion_en_estado_pausado(@id_publicacion) =1)
 	    set @tipoError = 'p' --error, publicacion pausada
-	  if(dbo.CHAR_DE_30.mas_de_tres_sin_calificar(@id_cliente) =1)
+	  if(CHAR_DE_30.mas_de_tres_sin_calificar(@id_cliente) =1)
 	   set @tipoError = 'c' --error, el cliente debe calificar sus compras
 	    
 end
@@ -499,7 +499,7 @@ AS BEGIN
 		        INSERT INTO CHAR_DE_30.FACTURA 
 		          ( tipo_visibilidad,costo_visibilidad)
 			       values
-			      (dbo.fu_nombre_visibilidad(@visibilidad),dbo.CHAR_DE_30.fu_precio_visibilidad(@visibilidad))
+			      (CHAR_DE_30.fu_nombre_visibilidad(@visibilidad),CHAR_DE_30.fu_precio_visibilidad(@visibilidad))
 			    SET @factura = SCOPE_IDENTITY();
 		   end
 		
@@ -530,7 +530,7 @@ AS BEGIN
 		        INSERT INTO CHAR_DE_30.FACTURA 
 		          ( tipo_visibilidad,costo_visibilidad)
 			       values
-			      (dbo.CHAR_DE_30.fu_nombre_visibilidad(@visibilidad),0)
+			      (CHAR_DE_30.fu_nombre_visibilidad(@visibilidad),0)
 			    SET @factura = SCOPE_IDENTITY();
 		   end
 		

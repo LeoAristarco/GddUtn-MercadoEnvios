@@ -9,7 +9,7 @@ namespace WindowsFormsApplication1.Generar_Publicación
     {
         internal List<Rubro> obtenerRubros()
         {
-            List<Dictionary<string, object>> tabla = db.ejecutarConsulta("select * from RUBRO");
+            List<Dictionary<string, object>> tabla = db.ejecutarConsulta("select * from CHAR_DE_30.RUBRO");
 
             List<Rubro> rubros = new List<Rubro>();
 
@@ -35,7 +35,7 @@ namespace WindowsFormsApplication1.Generar_Publicación
             Dictionary<string, object> filaPublicacion = serializarRubro(rubroAModificar);
             List<SqlParameter> parametros = new List<SqlParameter>();
 
-            string update = "update RUBRO set ";
+            string update = "update CHAR_DE_30.RUBRO set ";
 
             foreach (string clave in filaPublicacion.Keys)
             {
@@ -51,7 +51,7 @@ namespace WindowsFormsApplication1.Generar_Publicación
 
         internal void deleteRubro(Rubro rubro)
         {
-            db.ejecutarConsulta("delete from RUBRO where id_rubro=" + rubro.id.ToString());
+            db.ejecutarConsulta("delete from CHAR_DE_30.RUBRO where id_rubro=" + rubro.id.ToString());
         }
 
         private Dictionary<string, object> serializarRubro(Rubro rubroAModificar)
@@ -67,7 +67,7 @@ namespace WindowsFormsApplication1.Generar_Publicación
 
         internal Rubro traerPorId(long v)
         {
-            string consulta = "select * from RUBRO where id_rubro=" + v.ToString();
+            string consulta = "select * from CHAR_DE_30.RUBRO where id_rubro=" + v.ToString();
             return deserializarRubro(db.ejecutarConsulta(consulta)[0]);
         }
     }

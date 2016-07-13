@@ -17,13 +17,13 @@ namespace WindowsFormsApplication1.ComprarOfertar
         private Publicacion publicacion;
         private CompraRepository repositorio = new CompraRepository();
         private Usuario usuario;
-        private DetallePublicacion detallePublicacion;
+        private Form formAnterior;
 
-        public Comprar(Publicacion publicacion,Usuario usuario, DetallePublicacion detallePublicacion)
+        public Comprar(Publicacion publicacion, Usuario usuario, Form formAnterior)
         {
             this.publicacion = publicacion;
             this.usuario = usuario;
-            this.detallePublicacion = detallePublicacion;
+            this.formAnterior = formAnterior;
             InitializeComponent();
         }
 
@@ -41,13 +41,13 @@ namespace WindowsFormsApplication1.ComprarOfertar
             }
             repositorio.comprar(publicacion, usuario, Convert.ToInt32(cantidad.Text), checkBox1.Checked);
             //SI TODO SALE BIEN..
-            detallePublicacion.Show();
+            formAnterior.Show();
             Close();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            detallePublicacion.Show();
+            formAnterior.Show();
             Close();
         }
 
@@ -62,7 +62,7 @@ namespace WindowsFormsApplication1.ComprarOfertar
 
         private void Comprar_FormClosing(object sender, FormClosingEventArgs e)
         {
-            detallePublicacion.Show();
+            formAnterior.Show();
         }
     }
 }

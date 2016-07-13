@@ -42,13 +42,13 @@ namespace WindowsFormsApplication1.ComprarOfertar
 
             if (publicacion.sosSubasta())
             {
-                Ofertar ofertar = new Ofertar(publicacion, user, this);
+                Ofertar ofertar = new Ofertar(publicacion, user, formAnterior);
                 Hide();
                 ofertar.ShowDialog();
             }
             else
             {
-                Comprar comprar = new Comprar(publicacion, user, this);
+                Comprar comprar = new Comprar(publicacion, user, formAnterior);
                 Hide();
                 comprar.ShowDialog();
             }

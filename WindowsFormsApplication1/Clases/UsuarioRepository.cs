@@ -15,7 +15,7 @@ namespace WindowsFormsApplication1.Clases
 
         internal string valorHasheado(string texto)
         {
-            string consulta = "select dbo.CHAR_DE_30.fn_hashear_pass('" + texto + "') as hashValue";
+            string consulta = "select CHAR_DE_30.fn_hashear_pass('" + texto + "') as hashValue";
 
             return db.ejecutarConsulta(consulta)[0]["hashValue"].ToString();
         }
