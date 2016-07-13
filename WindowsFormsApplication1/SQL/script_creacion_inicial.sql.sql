@@ -8,100 +8,100 @@ go
 
 
 if EXISTS (SELECT * FROM sysobjects WHERE name='COMPRA') 
-drop table VARCHAR_DE_30.COMPRA
+drop table CHAR_DE_30.COMPRA
 
 go
 
 if EXISTS (SELECT * FROM sysobjects WHERE name='CALIFICACION') 
-drop table VARCHAR_DE_30.CALIFICACION
+drop table CHAR_DE_30.CALIFICACION
 
 go
 
 if EXISTS (SELECT * FROM sysobjects WHERE name='OFERTA') 
-drop table VARCHAR_DE_30.OFERTA
+drop table CHAR_DE_30.OFERTA
 
 go
 
 
 if EXISTS (SELECT * FROM sysobjects WHERE name='PUBLICACION') 
-drop table VARCHAR_DE_30.PUBLICACION
+drop table CHAR_DE_30.PUBLICACION
 
 go
 
 
 if EXISTS (SELECT * FROM sysobjects WHERE name='ESTADO_PUBLICACION') 
-drop table VARCHAR_DE_30.ESTADO_PUBLICACION
+drop table CHAR_DE_30.ESTADO_PUBLICACION
 
 go
 
 
 if EXISTS (SELECT * FROM sysobjects WHERE name='TIPO_PUBLICACION') 
-drop table VARCHAR_DE_30.TIPO_PUBLICACION
+drop table CHAR_DE_30.TIPO_PUBLICACION
 
 go
 
 
 if EXISTS (SELECT * FROM sysobjects WHERE name='ITEM_FACTURA') 
-drop table VARCHAR_DE_30.ITEM_FACTURA
+drop table CHAR_DE_30.ITEM_FACTURA
 
 go
 
 if EXISTS (SELECT * FROM sysobjects WHERE name='FACTURA') 
-drop table VARCHAR_DE_30.FACTURA
+drop table CHAR_DE_30.FACTURA
 
 go
 
 if EXISTS (SELECT * FROM sysobjects WHERE name='VISIBILIDAD') 
-drop table VARCHAR_DE_30.VISIBILIDAD
+drop table CHAR_DE_30.VISIBILIDAD
 
 go
 
 if EXISTS (SELECT * FROM sysobjects WHERE name='RUBRO') 
-drop table VARCHAR_DE_30.RUBRO
+drop table CHAR_DE_30.RUBRO
 
 go
 
 if EXISTS (SELECT * FROM sysobjects WHERE name='ROL_POR_USUARIO') 
-drop table VARCHAR_DE_30.ROL_POR_USUARIO
+drop table CHAR_DE_30.ROL_POR_USUARIO
 
 go
 
 
 if EXISTS (SELECT * FROM sysobjects WHERE name='CLIENTE') 
-drop table VARCHAR_DE_30.CLIENTE
+drop table CHAR_DE_30.CLIENTE
 
 go
 
 if EXISTS (SELECT * FROM sysobjects WHERE name='EMPRESA') 
-drop table VARCHAR_DE_30.EMPRESA
+drop table CHAR_DE_30.EMPRESA
 
 go
 
 
 if EXISTS (SELECT * FROM sysobjects WHERE name='USUARIO') 
-drop table VARCHAR_DE_30.USUARIO
+drop table CHAR_DE_30.USUARIO
 
 go
 
 if EXISTS (SELECT * FROM sysobjects WHERE name='FUNCIONALIDAD_POR_ROL') 
-drop table VARCHAR_DE_30.FUNCIONALIDAD_POR_ROL
+drop table CHAR_DE_30.FUNCIONALIDAD_POR_ROL
 
 go
 
 if EXISTS (SELECT * FROM sysobjects WHERE name='ROL') 
-drop table VARCHAR_DE_30.ROL
+drop table CHAR_DE_30.ROL
 
 go
 
 
 if EXISTS (SELECT * FROM sysobjects WHERE name='FUNCIONALIDAD') 
-drop table VARCHAR_DE_30.FUNCIONALIDAD
+drop table CHAR_DE_30.FUNCIONALIDAD
 
 go
 
 --funcion
 if EXISTS (SELECT * FROM sysobjects WHERE name='fn_hashear_pass') 
-drop function VARCHAR_DE_30.fn_hashear_pass
+drop function CHAR_DE_30.fn_hashear_pass
 
 go
 
@@ -122,7 +122,7 @@ go
 /*CREACION DE TABLAS*/
 /********************************************************************************************************************************/
 
-create table VARCHAR_DE_30.FUNCIONALIDAD
+create table CHAR_DE_30.FUNCIONALIDAD
 (
 	id_funcionalidad        numeric(10,0) identity (1,1),
 	funcionalidad_nombre    nvarchar(255),
@@ -133,7 +133,7 @@ create table VARCHAR_DE_30.FUNCIONALIDAD
 
 go
 
-create table VARCHAR_DE_30.ROL
+create table CHAR_DE_30.ROL
 (
 	id_rol                 numeric(10,0) identity (1,1),
 	rol_nombre             nvarchar(255),
@@ -144,19 +144,19 @@ create table VARCHAR_DE_30.ROL
 
 go
 
-create table VARCHAR_DE_30.FUNCIONALIDAD_POR_ROL 
+create table CHAR_DE_30.FUNCIONALIDAD_POR_ROL 
 ( 
 	id_funcionalidad    numeric(10,0) NOT NULL, 
 	id_rol			    numeric(10,0) NOT NULL, 
 	
 	--PRIMARY KEY (id_funcionalidad, id_rol), 
-	FOREIGN KEY (id_funcionalidad)           references VARCHAR_DE_30.FUNCIONALIDAD(id_funcionalidad), 
-	FOREIGN KEY (id_rol)		             references VARCHAR_DE_30.ROL(id_rol)
+	FOREIGN KEY (id_funcionalidad)           references CHAR_DE_30.FUNCIONALIDAD(id_funcionalidad), 
+	FOREIGN KEY (id_rol)		             references CHAR_DE_30.ROL(id_rol)
 ) 
 
 go
 
-create table VARCHAR_DE_30.USUARIO
+create table CHAR_DE_30.USUARIO
 (
 	id_usuario             numeric(10,0) identity (1,1),
 	nick			       nvarchar(255),
@@ -182,7 +182,7 @@ create table VARCHAR_DE_30.USUARIO
 
 go
 
-CREATE TABLE VARCHAR_DE_30.CLIENTE
+CREATE TABLE CHAR_DE_30.CLIENTE
 (
 	id_cliente			  numeric(10,0) IDENTITY,
 	id_usuario			  numeric(10,0),
@@ -193,12 +193,12 @@ CREATE TABLE VARCHAR_DE_30.CLIENTE
 		
 	UNIQUE(dni),
 	PRIMARY KEY(id_cliente),
-	FOREIGN KEY(id_usuario) references VARCHAR_DE_30.USUARIO(id_usuario)
+	FOREIGN KEY(id_usuario) references CHAR_DE_30.USUARIO(id_usuario)
 )
 
 go
 
-CREATE TABLE VARCHAR_DE_30.EMPRESA
+CREATE TABLE CHAR_DE_30.EMPRESA
 (
 	id_empresa		      numeric(10,0) IDENTITY,
 	id_usuario		      numeric(10,0),
@@ -213,26 +213,26 @@ CREATE TABLE VARCHAR_DE_30.EMPRESA
 	UNIQUE(razon_social),
 	UNIQUE(cuit),
 	PRIMARY KEY(id_empresa),
-	FOREIGN KEY(id_usuario) REFERENCES VARCHAR_DE_30.USUARIO(id_usuario)
+	FOREIGN KEY(id_usuario) REFERENCES CHAR_DE_30.USUARIO(id_usuario)
 
 )
 
 go
 
-create table VARCHAR_DE_30.ROL_POR_USUARIO 
+create table CHAR_DE_30.ROL_POR_USUARIO 
 ( 
 	id_usuario numeric(10,0) NOT NULL,
 	id_rol     numeric(10,0) NOT NULL,
 
     PRIMARY KEY	(id_usuario, id_rol), 
-	FOREIGN KEY (id_usuario) references VARCHAR_DE_30.USUARIO(id_usuario), 
-	FOREIGN KEY (id_rol)     references VARCHAR_DE_30.ROL(id_rol) 
+	FOREIGN KEY (id_usuario) references CHAR_DE_30.USUARIO(id_usuario), 
+	FOREIGN KEY (id_rol)     references CHAR_DE_30.ROL(id_rol) 
 	
 )
 
 go
 
-create table VARCHAR_DE_30.RUBRO
+create table CHAR_DE_30.RUBRO
 (
 	id_rubro            numeric(10,0)  identity (1,1),
 	descripción_corta   varchar(30) NULL, 
@@ -243,7 +243,7 @@ create table VARCHAR_DE_30.RUBRO
 
 go
 
-create table VARCHAR_DE_30.VISIBILIDAD
+create table CHAR_DE_30.VISIBILIDAD
 (
 	id_visibilidad      numeric(10,0) identity (1,1),
 	visibilidad_nombre              nvarchar(255),
@@ -256,7 +256,7 @@ create table VARCHAR_DE_30.VISIBILIDAD
 
 go
 
-create table VARCHAR_DE_30.ESTADO_PUBLICACION
+create table CHAR_DE_30.ESTADO_PUBLICACION
 (
 	id_estado  numeric(10,0) identity (1,1),
 	estado_nombre     nvarchar(255),
@@ -266,7 +266,7 @@ create table VARCHAR_DE_30.ESTADO_PUBLICACION
 
 go
 
-create table VARCHAR_DE_30.TIPO_PUBLICACION
+create table CHAR_DE_30.TIPO_PUBLICACION
 (
 	id_tipo  numeric(10,0) identity (1,1),
 	tipo     nvarchar(255),
@@ -276,7 +276,7 @@ create table VARCHAR_DE_30.TIPO_PUBLICACION
 
 go
 
-CREATE TABLE VARCHAR_DE_30.FACTURA
+CREATE TABLE CHAR_DE_30.FACTURA
 (
 	id_factura		  numeric(10,0) identity (1,1),
 	forma_pago		  nvarchar(255) ,
@@ -291,7 +291,7 @@ CREATE TABLE VARCHAR_DE_30.FACTURA
 
 go
 
-CREATE TABLE VARCHAR_DE_30.ITEM_FACTURA
+CREATE TABLE CHAR_DE_30.ITEM_FACTURA
 (
 	id_item			 numeric(10,0) identity (1,1), 
 	id_factura		 numeric(10,0) NOT NULL,
@@ -300,12 +300,12 @@ CREATE TABLE VARCHAR_DE_30.ITEM_FACTURA
 	precio_envio     numeric(10,2),
 	
 	PRIMARY KEY (id_item),
-	FOREIGN KEY(id_factura) REFERENCES VARCHAR_DE_30.FACTURA(id_factura)
+	FOREIGN KEY(id_factura) REFERENCES CHAR_DE_30.FACTURA(id_factura)
 )
 
 go
 
-create table VARCHAR_DE_30.PUBLICACION
+create table CHAR_DE_30.PUBLICACION
 (
 	id_publicacion      numeric(10,0) identity (1,1),
 	descripcion         nvarchar(255),
@@ -323,17 +323,17 @@ create table VARCHAR_DE_30.PUBLICACION
 		
 
 	PRIMARY KEY (id_publicacion),
-	FOREIGN KEY (visibilidad)           references VARCHAR_DE_30.VISIBILIDAD(id_visibilidad),
-	FOREIGN KEY	(estado_publicacion)    references VARCHAR_DE_30.ESTADO_PUBLICACION(id_estado),
-	FOREIGN KEY (tipo_publicacion)      references VARCHAR_DE_30.TIPO_PUBLICACION(id_tipo),
-	FOREIGN KEY	(usuario_responsable)   references VARCHAR_DE_30.USUARIO(id_usuario),
-	FOREIGN KEY (rubro)                 references VARCHAR_DE_30.RUBRO(id_rubro),
-	FOREIGN KEY (factura)  references VARCHAR_DE_30.FACTURA(id_factura)
+	FOREIGN KEY (visibilidad)           references CHAR_DE_30.VISIBILIDAD(id_visibilidad),
+	FOREIGN KEY	(estado_publicacion)    references CHAR_DE_30.ESTADO_PUBLICACION(id_estado),
+	FOREIGN KEY (tipo_publicacion)      references CHAR_DE_30.TIPO_PUBLICACION(id_tipo),
+	FOREIGN KEY	(usuario_responsable)   references CHAR_DE_30.USUARIO(id_usuario),
+	FOREIGN KEY (rubro)                 references CHAR_DE_30.RUBRO(id_rubro),
+	FOREIGN KEY (factura)  references CHAR_DE_30.FACTURA(id_factura)
 )
 
 go
 
-create table VARCHAR_DE_30.OFERTA
+create table CHAR_DE_30.OFERTA
 (
 	id_oferta      numeric(10,0) identity (1,1),
 	ofertante      numeric(10,0),
@@ -344,14 +344,14 @@ create table VARCHAR_DE_30.OFERTA
 	precio_envio   int,
 
 	PRIMARY KEY (id_oferta),
-	FOREIGN KEY (ofertante)	  references VARCHAR_DE_30.USUARIO(id_usuario),
-	FOREIGN KEY (publicacion) references VARCHAR_DE_30.PUBLICACION(id_publicacion)
+	FOREIGN KEY (ofertante)	  references CHAR_DE_30.USUARIO(id_usuario),
+	FOREIGN KEY (publicacion) references CHAR_DE_30.PUBLICACION(id_publicacion)
 
 )
 
 go
 
-create table VARCHAR_DE_30.CALIFICACION
+create table CHAR_DE_30.CALIFICACION
 (
 	id_calificacion     numeric(10,0) identity (1,1),
 	calif_estrellas     int           NULL, 
@@ -362,7 +362,7 @@ create table VARCHAR_DE_30.CALIFICACION
 
 go
 
-CREATE TABLE VARCHAR_DE_30.COMPRA
+CREATE TABLE CHAR_DE_30.COMPRA
 (
 	id_compra		   numeric(10,0) identity (1,1),
 	comprador	       numeric(10,0) NOT NULL,
@@ -373,9 +373,9 @@ CREATE TABLE VARCHAR_DE_30.COMPRA
 	calificacion	   numeric(10,0) NULL, 
 	
 	PRIMARY KEY (id_compra),
-	FOREIGN KEY (comprador)	  references VARCHAR_DE_30.USUARIO(id_usuario),
-	FOREIGN KEY (publicacion)  references VARCHAR_DE_30.PUBLICACION(id_publicacion),
-	FOREIGN KEY (calificacion) references VARCHAR_DE_30.CALIFICACION(id_calificacion)
+	FOREIGN KEY (comprador)	  references CHAR_DE_30.USUARIO(id_usuario),
+	FOREIGN KEY (publicacion)  references CHAR_DE_30.PUBLICACION(id_publicacion),
+	FOREIGN KEY (calificacion) references CHAR_DE_30.CALIFICACION(id_calificacion)
 )
 
 go
@@ -386,11 +386,11 @@ go
 
 --funcion
 if EXISTS (SELECT * FROM sysobjects WHERE name='fn_hashear_pass') 
-drop function VARCHAR_DE_30.fn_hashear_pass
+drop function CHAR_DE_30.fn_hashear_pass
 
 go
 
-create function VARCHAR_DE_30.fn_hashear_pass (@pass nvarchar(255))
+create function CHAR_DE_30.fn_hashear_pass (@pass nvarchar(255))
 returns nvarchar(255)
 as begin
 	return(
@@ -403,19 +403,19 @@ go
 
 --trigger
 if EXISTS (SELECT * FROM sysobjects WHERE name='tg_hashear_pass') 
-drop trigger VARCHAR_DE_30.tg_hashear_pass
+drop trigger CHAR_DE_30.tg_hashear_pass
 
 go
 
-create trigger VARCHAR_DE_30.tg_hashear_pass  
-on VARCHAR_DE_30.USUARIO  
+create trigger CHAR_DE_30.tg_hashear_pass  
+on CHAR_DE_30.USUARIO  
 instead of insert  
 as begin  
     
-  insert into VARCHAR_DE_30.USUARIO  
+  insert into CHAR_DE_30.USUARIO  
     select  
       nick,  
-      VARCHAR_DE_30.fn_hashear_pass(pass),  
+      CHAR_DE_30.fn_hashear_pass(pass),  
       intentos_login,  
       primer_ingreso,  
       baja_logica,  
@@ -437,12 +437,12 @@ go
 
 --trigger
 if EXISTS (SELECT * FROM sysobjects WHERE name='tg_hashear_pass_update') 
-drop trigger VARCHAR_DE_30.tg_hashear_pass_update
+drop trigger CHAR_DE_30.tg_hashear_pass_update
 
 go
 
-create trigger VARCHAR_DE_30.tg_hashear_pass_update  
-on VARCHAR_DE_30.USUARIO  
+create trigger CHAR_DE_30.tg_hashear_pass_update  
+on CHAR_DE_30.USUARIO  
 after update
 as
 begin
@@ -453,8 +453,8 @@ declare @id_usuario_insertado numeric(18,0);
 
   if(update(pass))
   begin
-	update VARCHAR_DE_30.USUARIO  
-    set pass = VARCHAR_DE_30.fn_hashear_pass(pass)  
+	update CHAR_DE_30.USUARIO  
+    set pass = CHAR_DE_30.fn_hashear_pass(pass)  
 	where id_usuario = @id_usuario_insertado 
   end
  
@@ -466,7 +466,7 @@ go
 /********************************************************************************************************************************/
 
 --creo vista para recorrer
-create view VARCHAR_DE_30.vista_usuarios_clientes_filtrados as 
+create view CHAR_DE_30.vista_usuarios_clientes_filtrados as 
 select distinct
 	Publ_Cli_Dni as dni, 
 	Publ_Cli_Apeliido as apellido, 
@@ -486,14 +486,14 @@ where
 go
 
 --creo procedimiento
-create procedure VARCHAR_DE_30.MIGRAR_TABLA_USUARIO_CLIENTE
+create procedure CHAR_DE_30.MIGRAR_TABLA_USUARIO_CLIENTE
 as begin 
 
-	insert into VARCHAR_DE_30.USUARIO
+	insert into CHAR_DE_30.USUARIO
 		select dni, dni, 0, 0, 0, GETDATE(), nacimiento, mail, null, UPPER(calle), calle_numero, piso, depto, null, postal
 		from vista_usuarios_clientes_filtrados;
 	
-	insert into VARCHAR_DE_30.CLIENTE
+	insert into CHAR_DE_30.CLIENTE
 		select u.id_usuario, v.nombre, UPPER(v.apellido), v.dni, 'DNI'
 		from vista_usuarios_clientes_filtrados as v
 		inner join USUARIO as u
@@ -503,13 +503,13 @@ end
 go
 
 --ejecuto procedimiento
-exec VARCHAR_DE_30.MIGRAR_TABLA_USUARIO_CLIENTE
+exec CHAR_DE_30.MIGRAR_TABLA_USUARIO_CLIENTE
 
 go
 
 --libero todo
-drop view VARCHAR_DE_30.vista_usuarios_clientes_filtrados;
-drop procedure VARCHAR_DE_30.MIGRAR_TABLA_USUARIO_CLIENTE;
+drop view CHAR_DE_30.vista_usuarios_clientes_filtrados;
+drop procedure CHAR_DE_30.MIGRAR_TABLA_USUARIO_CLIENTE;
 
 go
 
@@ -518,7 +518,7 @@ go
 /********************************************************************************************************************************/
 
 --creo vista para recorrer
-create view VARCHAR_DE_30.vista_usuarios_empresas_filtrados
+create view CHAR_DE_30.vista_usuarios_empresas_filtrados
 as
 select distinct
 	Publ_Empresa_Razon_Social as razon_social,
@@ -538,7 +538,7 @@ where
 go
 
 --creo vista para la reputacion
-create view VARCHAR_DE_30.vista_suma_y_cantidad_de_calificaciones_por_cuit
+create view CHAR_DE_30.vista_suma_y_cantidad_de_calificaciones_por_cuit
 as
 select 
 	Publ_Empresa_Cuit as cuit,
@@ -553,33 +553,33 @@ group by Publ_Empresa_Cuit
 go
 
 --creo procedimiento
-create procedure VARCHAR_DE_30.MIGRAR_TABLA_USUARIO_EMPRESA
+create procedure CHAR_DE_30.MIGRAR_TABLA_USUARIO_EMPRESA
 as begin 
 
-	insert into VARCHAR_DE_30.USUARIO
+	insert into CHAR_DE_30.USUARIO
 		select cuit, cuit, 0, 0, 0, GETDATE(), nacimiento, mail, null, UPPER(calle), calle_numero, piso, depto, null, postal
 		from vista_usuarios_empresas_filtrados;
 	
-	insert into VARCHAR_DE_30.EMPRESA
+	insert into CHAR_DE_30.EMPRESA
 		select u.id_usuario, v.razon_social, v.cuit, null, null, s.suma, null, s.cantidad
 		from vista_usuarios_empresas_filtrados as v
 		inner join USUARIO as u
 		on u.nick = v.cuit
-		inner join VARCHAR_DE_30.vista_suma_y_cantidad_de_calificaciones_por_cuit as s
+		inner join CHAR_DE_30.vista_suma_y_cantidad_de_calificaciones_por_cuit as s
 		on v.cuit = s.cuit;
 end
 
 go
 
 --ejecuto procedimiento
-exec VARCHAR_DE_30.MIGRAR_TABLA_USUARIO_EMPRESA
+exec CHAR_DE_30.MIGRAR_TABLA_USUARIO_EMPRESA
 
 go
 
 --libero todo
-drop view VARCHAR_DE_30.vista_usuarios_empresas_filtrados;
-drop view VARCHAR_DE_30.vista_suma_y_cantidad_de_calificaciones_por_cuit;
-drop procedure VARCHAR_DE_30.MIGRAR_TABLA_USUARIO_EMPRESA;
+drop view CHAR_DE_30.vista_usuarios_empresas_filtrados;
+drop view CHAR_DE_30.vista_suma_y_cantidad_de_calificaciones_por_cuit;
+drop procedure CHAR_DE_30.MIGRAR_TABLA_USUARIO_EMPRESA;
 
 go
 
@@ -587,7 +587,7 @@ go
 /*VISIBILIDAD*/
 /********************************************************************************************************************************/
 
-insert into VARCHAR_DE_30.VISIBILIDAD
+insert into CHAR_DE_30.VISIBILIDAD
 	values
 		('GRATIS', 0, 0),
 		('BRONCE', 60, 0.30),	
@@ -600,7 +600,7 @@ go
 /*ESTADO_PUBLICACION*/
 /********************************************************************************************************************************/
 
-insert into VARCHAR_DE_30.ESTADO_PUBLICACION
+insert into CHAR_DE_30.ESTADO_PUBLICACION
 	values 
 		('BORRADOR'),
 		('ACTIVA'),
@@ -612,7 +612,7 @@ go
 /*TIPO_PUBLICACION*/
 /********************************************************************************************************************************/
 
-insert into VARCHAR_DE_30.TIPO_PUBLICACION
+insert into CHAR_DE_30.TIPO_PUBLICACION
 	values 
 		('COMPRA INMEDIATA'),
 		('SUBASTA');
@@ -622,7 +622,7 @@ go
 /*RUBRO*/
 /********************************************************************************************************************************/
 
-insert into VARCHAR_DE_30.RUBRO
+insert into CHAR_DE_30.RUBRO
 	select distinct UPPER(Publicacion_Rubro_Descripcion), null
 	from gd_esquema.Maestra
 	where 
@@ -637,13 +637,13 @@ go
 /********************************************************************************************************************************/
 
 --agrego un campo necesario para las demas migraciones que voy a eliminar al final
-alter table VARCHAR_DE_30.CALIFICACION 
+alter table CHAR_DE_30.CALIFICACION 
 add codigo_calificacion numeric(18,0); 
 
 go
 
 --creo vista para recorrer la CALIFICACION y la COMPRA
-create view VARCHAR_DE_30.vista_calificaciones
+create view CHAR_DE_30.vista_calificaciones
 as
 select
 	Calificacion_Codigo as codigo,
@@ -660,14 +660,14 @@ where
 
 go
 
-insert into VARCHAR_DE_30.CALIFICACION
+insert into CHAR_DE_30.CALIFICACION
 	select estrellas, descripcion, codigo
-	from VARCHAR_DE_30.vista_calificaciones
+	from CHAR_DE_30.vista_calificaciones
 
 go
 
 --borro todo
-drop view VARCHAR_DE_30.vista_calificaciones
+drop view CHAR_DE_30.vista_calificaciones
 
 go
 
@@ -676,13 +676,13 @@ go
 /********************************************************************************************************************************/
 
 --agrego campo que necesito para la migracion, al final la elimino
-alter table VARCHAR_DE_30.FACTURA
+alter table CHAR_DE_30.FACTURA
 add factura_numero numeric(18,0);
 
 go
 
 --creo vista para recorrer
-create view VARCHAR_DE_30.vista_facturas
+create view CHAR_DE_30.vista_facturas
 as
 select distinct
 	UPPER(Forma_Pago_Desc) as forma_pago,
@@ -696,16 +696,16 @@ where
 
 go
 
-insert into VARCHAR_DE_30.FACTURA
+insert into CHAR_DE_30.FACTURA
 	select v.forma_pago, v.vis_descripcion, VISIBILIDAD.precio_visibilidad, v.fecha, v.total_factura, v.factura_numero
-	from VARCHAR_DE_30.vista_facturas as v
-	inner join VARCHAR_DE_30.VISIBILIDAD 
+	from CHAR_DE_30.vista_facturas as v
+	inner join CHAR_DE_30.VISIBILIDAD 
 	on v.vis_descripcion = VISIBILIDAD.visibilidad_nombre
 
 go
 
 --borro todo
-drop view VARCHAR_DE_30.vista_facturas;
+drop view CHAR_DE_30.vista_facturas;
 
 go
 
@@ -714,7 +714,7 @@ go
 /********************************************************************************************************************************/
 
 --creo vista de items porque la necesito ahora
-create view VARCHAR_DE_30.vista_items_factura
+create view CHAR_DE_30.vista_items_factura
 as
 select 
 	Item_Factura_Cantidad as cantidad,
@@ -727,13 +727,13 @@ where
 go
 
 --creo procedimiento
-create procedure VARCHAR_DE_30.MIGRAR_TABLA_ITEM_FACTURA
+create procedure CHAR_DE_30.MIGRAR_TABLA_ITEM_FACTURA
 as begin
 
-	insert into VARCHAR_DE_30.ITEM_FACTURA
+	insert into CHAR_DE_30.ITEM_FACTURA
 		select f.id_factura, v.cantidad, v.precio, 0
-		from VARCHAR_DE_30.vista_items_factura as v
-		inner join VARCHAR_DE_30.FACTURA as f
+		from CHAR_DE_30.vista_items_factura as v
+		inner join CHAR_DE_30.FACTURA as f
 		on v.factura_numero = f.factura_numero;
 
 end
@@ -741,13 +741,13 @@ end
 go
 
 --ejecuto procedimiento
-exec VARCHAR_DE_30.MIGRAR_TABLA_ITEM_FACTURA;
+exec CHAR_DE_30.MIGRAR_TABLA_ITEM_FACTURA;
 
 go
 
 --borro todo
-drop view VARCHAR_DE_30.vista_items_factura;
-drop procedure VARCHAR_DE_30.MIGRAR_TABLA_ITEM_FACTURA;
+drop view CHAR_DE_30.vista_items_factura;
+drop procedure CHAR_DE_30.MIGRAR_TABLA_ITEM_FACTURA;
 
 go
 
@@ -756,13 +756,13 @@ go
 /********************************************************************************************************************************/
 
 --agrego un campo necesario para las demas migraciones que voy a eliminar al final
-alter table VARCHAR_DE_30.PUBLICACION 
+alter table CHAR_DE_30.PUBLICACION 
 add codigo_publicacion numeric(18,0); 
 
 go
 
 --creo vista para recorrer
-create view VARCHAR_DE_30.vista_publicaciones
+create view CHAR_DE_30.vista_publicaciones
 as
 select distinct
 	Publ_Cli_Dni as dni,
@@ -788,26 +788,26 @@ where
 go
 
 --creo procedimiento
-create procedure VARCHAR_DE_30.MIGRAR_PUBLICACIONES
+create procedure CHAR_DE_30.MIGRAR_PUBLICACIONES
 as begin 
 
-	insert into VARCHAR_DE_30.PUBLICACION
+	insert into CHAR_DE_30.PUBLICACION
 		select v.descripcion, v.stock, v.creacion, v.vencimiento, v.precio, RUBRO.id_rubro, vis.id_visibilidad, 2, u.id_usuario, tp.id_tipo, 0, fa.id_factura,v.codigo
 		from vista_publicaciones as v
-		inner join VARCHAR_DE_30.RUBRO
+		inner join CHAR_DE_30.RUBRO
 		on v.rubro = RUBRO.descripción_corta
-		inner join VARCHAR_DE_30.VISIBILIDAD as vis
+		inner join CHAR_DE_30.VISIBILIDAD as vis
 		on v.vis_nombre = vis.visibilidad_nombre
-		inner join VARCHAR_DE_30.USUARIO as u
+		inner join CHAR_DE_30.USUARIO as u
 		on 
 			case 
 				when v.dni is not null then CAST(v.dni as nvarchar(255))
 				else CAST(v.cuit as nvarchar(255))
 			end
 			 = u.nick
-		inner join VARCHAR_DE_30.TIPO_PUBLICACION as tp
+		inner join CHAR_DE_30.TIPO_PUBLICACION as tp
 		on v.tipo = tp.tipo
-		inner join VARCHAR_DE_30.FACTURA as fa
+		inner join CHAR_DE_30.FACTURA as fa
 		on v.numero_factura = fa.factura_numero
 
 end
@@ -815,13 +815,13 @@ end
 go
 
 --ejecuto procedimiento
-exec VARCHAR_DE_30.MIGRAR_PUBLICACIONES;
+exec CHAR_DE_30.MIGRAR_PUBLICACIONES;
 
 go
 
 --libero todo
-drop view VARCHAR_DE_30.vista_publicaciones;
-drop procedure VARCHAR_DE_30.MIGRAR_PUBLICACIONES;
+drop view CHAR_DE_30.vista_publicaciones;
+drop procedure CHAR_DE_30.MIGRAR_PUBLICACIONES;
 
 go
 
@@ -830,7 +830,7 @@ go
 /********************************************************************************************************************************/
 
 --creo vista necesaria, todas las compras estan calificadas
-create view VARCHAR_DE_30.vista_compras_calificadas
+create view CHAR_DE_30.vista_compras_calificadas
 as
 select  
 	Cli_Dni as dni,
@@ -846,17 +846,17 @@ where
 go
 
 --creo procedimiento
-create procedure VARCHAR_DE_30.MIGRAR_COMPRAS_CALIFICADAS
+create procedure CHAR_DE_30.MIGRAR_COMPRAS_CALIFICADAS
 as begin 
 
-	insert into VARCHAR_DE_30.COMPRA 
+	insert into CHAR_DE_30.COMPRA 
 		select u.id_usuario, p.id_publicacion, v.fecha, p.precio, v.cantidad, c.id_calificacion
 		from vista_compras_calificadas as v
-		inner join VARCHAR_DE_30.USUARIO as u
+		inner join CHAR_DE_30.USUARIO as u
 		on CAST(v.dni as nvarchar(255)) = u.nick
-		inner join VARCHAR_DE_30.PUBLICACION as p
+		inner join CHAR_DE_30.PUBLICACION as p
 		on v.codigo_publicacion = p.codigo_publicacion
-		inner join VARCHAR_DE_30.CALIFICACION as c
+		inner join CHAR_DE_30.CALIFICACION as c
 		on v.codigo_calificacion = c.codigo_calificacion
 
 end
@@ -864,13 +864,13 @@ end
 go
 
 --ejecuto procedimiento
-exec VARCHAR_DE_30.MIGRAR_COMPRAS_CALIFICADAS;
+exec CHAR_DE_30.MIGRAR_COMPRAS_CALIFICADAS;
 
 go
 
 --libero todo
-drop view VARCHAR_DE_30.vista_compras_calificadas;
-drop procedure VARCHAR_DE_30.MIGRAR_COMPRAS_CALIFICADAS;
+drop view CHAR_DE_30.vista_compras_calificadas;
+drop procedure CHAR_DE_30.MIGRAR_COMPRAS_CALIFICADAS;
 
 go
 
@@ -880,7 +880,7 @@ go
 /********************************************************************************************************************************/
 
 --vista de maximos montos para el calculo del campo concretada
-create view VARCHAR_DE_30.vista_montos_maximos
+create view CHAR_DE_30.vista_montos_maximos
 as
 select 
 	Publicacion_Cod as codigo_publicacion,
@@ -893,7 +893,7 @@ group by Publicacion_Cod;
 go
 
 --vista a recorrer
-create view VARCHAR_DE_30.vista_ofertas
+create view CHAR_DE_30.vista_ofertas
 as
 select 
 	Publ_Cli_Dni as dni,
@@ -901,7 +901,7 @@ select
 	Publicacion_Cod as codigo_publicacion,
 	Oferta_Fecha as fecha, 
 	case 
-		when (select vm.monto_maximo from VARCHAR_DE_30.vista_montos_maximos as vm where vm.codigo_publicacion = Publicacion_Cod and vm.monto_maximo = Oferta_Monto) is null then 0
+		when (select vm.monto_maximo from CHAR_DE_30.vista_montos_maximos as vm where vm.codigo_publicacion = Publicacion_Cod and vm.monto_maximo = Oferta_Monto) is null then 0
 		else 1
 	end as concretado,
 	Oferta_Monto as monto
@@ -912,13 +912,13 @@ where
 go 
 
 --creo procedimiento
-create procedure VARCHAR_DE_30.MIGRAR_OFERTAS
+create procedure CHAR_DE_30.MIGRAR_OFERTAS
 as begin 
 
-	insert into VARCHAR_DE_30.OFERTA
+	insert into CHAR_DE_30.OFERTA
 		select u.id_usuario, p.id_publicacion, v.fecha, v.concretado, v.monto, 0
 		from vista_ofertas as v
-		inner join VARCHAR_DE_30.USUARIO as u
+		inner join CHAR_DE_30.USUARIO as u
 		on
 			case 
 				when v.dni is not null then CAST(v.dni as nvarchar(255))
@@ -932,14 +932,14 @@ end
 go
 
 --ejecuto procedimiento
-exec VARCHAR_DE_30.MIGRAR_OFERTAS;
+exec CHAR_DE_30.MIGRAR_OFERTAS;
 
 go
 
 --libero todo
-drop view VARCHAR_DE_30.vista_montos_maximos;
-drop view VARCHAR_DE_30.vista_ofertas;
-drop procedure VARCHAR_DE_30.MIGRAR_OFERTAS;
+drop view CHAR_DE_30.vista_montos_maximos;
+drop view CHAR_DE_30.vista_ofertas;
+drop procedure CHAR_DE_30.MIGRAR_OFERTAS;
 
 go
 
@@ -948,7 +948,7 @@ go
 /*ROLES*/
 /********************************************************************************************************************************/
 
-insert into VARCHAR_DE_30.ROL
+insert into CHAR_DE_30.ROL
 values
 	('EMPRESA', 1),
 	('CLIENTE', 1),
@@ -960,7 +960,7 @@ go
 /*FUNCIONALIDAD*/
 /********************************************************************************************************************************/
 
-insert into VARCHAR_DE_30.FUNCIONALIDAD
+insert into CHAR_DE_30.FUNCIONALIDAD
 values
 	('ABM_USUARIO', 1), --1
 	('ABM_ROL', 1),     --2
@@ -980,7 +980,7 @@ go
 /*FUNCIONALIDAD POR ROL*/
 /********************************************************************************************************************************/
 --administrador
-insert into VARCHAR_DE_30.FUNCIONALIDAD_POR_ROL
+insert into CHAR_DE_30.FUNCIONALIDAD_POR_ROL
 values
 	(1,3),
 	(2,3),
@@ -993,7 +993,7 @@ values
 go
 
 --cliente
-insert into VARCHAR_DE_30.FUNCIONALIDAD_POR_ROL
+insert into CHAR_DE_30.FUNCIONALIDAD_POR_ROL
 values
 	
 	(6,2),
@@ -1004,7 +1004,7 @@ values
 go
 
 --empresa
-insert into VARCHAR_DE_30.FUNCIONALIDAD_POR_ROL
+insert into CHAR_DE_30.FUNCIONALIDAD_POR_ROL
 values
 	(5,1),
 	(11,1);
@@ -1018,17 +1018,17 @@ go
 --estos campos son agregados para la migracios de los datos usandolos con inner join,
 --en el modelo actual son reemplazados por sus respectivos id's
 
-alter table VARCHAR_DE_30.PUBLICACION 
+alter table CHAR_DE_30.PUBLICACION 
 drop column codigo_publicacion;
 
 go
 
-alter table VARCHAR_DE_30.FACTURA
+alter table CHAR_DE_30.FACTURA
 drop column factura_numero;
 
 go
 
-alter table VARCHAR_DE_30.CALIFICACION 
+alter table CHAR_DE_30.CALIFICACION 
 drop column codigo_calificacion;
 
 go
@@ -1037,14 +1037,14 @@ go
 /*CREACION DE USUARIO INICIAL*/
 /********************************************************************************************************************************/
 
-insert into VARCHAR_DE_30.USUARIO
+insert into CHAR_DE_30.USUARIO
 values
 	('admin','w23e', 0, 1, 0, GETDATE(), null, null, null, null, null, null, null, null, null);
 
 go
 
 --le doy los 3 roles como se pide en el enunciado
-insert into VARCHAR_DE_30.ROL_POR_USUARIO
+insert into CHAR_DE_30.ROL_POR_USUARIO
 values
 	(96,3),
 	(96,2),
