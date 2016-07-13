@@ -310,55 +310,77 @@ end
 
 go
 
-create procedure st_comprasYSubastasDeCliente
+create procedure st_subastasDeCliente
 @idUsuario numeric(10,0),
 @pagina int
 as
 begin	
 	 select*
  from(
-      select id_publicacion,
-			 descripcion,
-			 stock,
-			 fecha_inicio,
-			 fecha_vencimiento,
-			 precio,
-			 rubro,
-			 visibilidad,
-			 estado_publicacion,
-			 usuario_responsable,
-			 tipo_publicacion,
-			 envio,
-			 factura,
-			 precio_visibilidad,
+       select id_publicacion,descripcion,tipo,monto_ofertado,concretada,fecha_oferta,
 	  (row_number() over (order by id_publicacion desc) ) as publicaciones
-      from PUBLICACION
-	  inner join OFERTA on OFERTA.publicacion=id_publicacion
-	  inner join COMPRA on COMPRA.publicacion=id_publicacion
-      inner join VISIBILIDAD on id_visibilidad = visibilidad
-      inner join ESTADO_PUBLICACION on id_estado = estado_publicacion
-      inner join TIPO_PUBLICACION on id_tipo = tipo_publicacion
-      inner join RUBRO on id_rubro = rubro
-      where (comprador=@idUsuario or ofertante=@idUsuario)
-      
+			 from OFERTA o,PUBLICACION
+			 inner join TIPO_PUBLICACION on id_tipo = tipo_publicacion
+			 where (o.publicacion=id_publicacion) and
+			 ( o.ofertante=@idUsuario)
       ) gg_vieja
  where publicaciones between (@pagina*10)-9 and (@pagina*10)
- order by precio_visibilidad desc
-
+  order by fecha_oferta
 end
 
 go
 
-create procedure st_cantidadPaginasDeComprasYSubastasCliente
+
+create procedure st_comprasDeCliente
+@idUsuario numeric(10,0),
+@pagina int
+as
+begin	
+	 select*
+ from(
+      select id_publicacion,descripcion,tipo,cantidad,monto,fecha_operacion,
+	  (row_number() over (order by id_publicacion desc) ) as publicaciones
+			 from COMPRA c,PUBLICACION
+			 inner join TIPO_PUBLICACION on id_tipo = tipo_publicacion
+			 where (c.publicacion=id_publicacion) and
+			 (c.comprador=@idUsuario )
+      
+      ) gg_vieja
+ where publicaciones between (@pagina*10)-9 and (@pagina*10)
+end
+
+go
+
+create procedure st_cantidadPaginasSubastasDeCliente
 @idUsuario numeric(10,0),
 @ultimaPagina numeric(10,0)=0 out
 as
 begin	
       select @ultimaPagina=count(*)
-      from PUBLICACION
-	  inner join OFERTA on OFERTA.publicacion=id_publicacion
-	  inner join COMPRA on COMPRA.publicacion=id_publicacion
-      where (comprador=@idUsuario or ofertante=@idUsuario)
+			 from OFERTA o,PUBLICACION
+			 inner join TIPO_PUBLICACION on id_tipo = tipo_publicacion
+			 where (o.publicacion=id_publicacion) and
+			 ( o.ofertante=@idUsuario)
+
+	  if(((@ultimaPagina/10) - floor(@ultimaPagina/10))>0)
+		set @ultimaPagina = (@ultimaPagina/10) + 1;
+
+	  else
+		set @ultimaPagina = @ultimaPagina/10;
+end
+
+go
+
+create procedure st_cantidadPaginasComprasDeCliente
+@idUsuario numeric(10,0),
+@ultimaPagina numeric(10,0)=0 out
+as
+begin	
+      select @ultimaPagina=count(*)
+		from COMPRA c,PUBLICACION
+		inner join TIPO_PUBLICACION on id_tipo = tipo_publicacion
+		where (c.publicacion=id_publicacion) and
+		(c.comprador=@idUsuario)
 
 	  if(((@ultimaPagina/10) - floor(@ultimaPagina/10))>0)
 		set @ultimaPagina = (@ultimaPagina/10) + 1;
