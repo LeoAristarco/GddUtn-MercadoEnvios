@@ -117,8 +117,51 @@ namespace WindowsFormsApplication1.Calificar
             return compra;
         }
 
-        
+        internal List<Compra> obtenerComprasPorPagina(Usuario usuario, int numeroPaginaCompra)
+        {
+            List<SqlParameter> parametros = new List<SqlParameter>();
+
+            db.agregarParametro(parametros,"@idUsuario",usuario.id);
+
+            db.agregarParametro(parametros,"@pagina",numeroPaginaCompra);
+
+            List<Dictionary<string,object>> tabla = db.ejecutarStoredProcedure("st_comprasDeCliente",parametros);
+
+            List<Compra> compras = new List<Compra>();
+
+            foreach (Dictionary<string,object> fila in tabla)
+            {
+                compras.Add(deserializarCompraConPublicacionConDetalle(fila));
+            }
+
+            return compras;
+        }
+
+        private Compra deserializarCompraConPublicacionConDetalle(Dictionary<string, object> fila)
+        {
+            Compra compra = new Compra();
+            Publicacion publicacion=new Publicacion();
+            publicacion.id = toLong(fila["id_publicacion"]);
+            publicacion.descripcion = fila["descripcion"].ToString();
+            compra.publicacion = publicacion;
+            compra.cantidad = toInt(fila["cantidad"]);
+            compra.monto = toDouble(fila["monto"]);
+            compra.fechaDeOperacion = toDate(fila["fecha_operacion"]);
+
+            return compra;
+        }
 
 
+        internal int cantidadDePaginasComprasDeCliente(Usuario usuario)
+        {
+            int cantidadPaginas = 0;
+
+            List<SqlParameter> parametros = new List<SqlParameter>();
+            db.agregarParametro(parametros, "@idUsuario", usuario.id);
+
+            cantidadPaginas = toInt(db.ejecutarStoredConRetorno("st_cantidadPaginasComprasDeCliente", parametros, "@ultimaPagina", 0));
+
+            return cantidadPaginas;
+        }
     }
 }

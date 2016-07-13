@@ -15,12 +15,15 @@ namespace WindowsFormsApplication1.Historial_Cliente
 {
     public partial class HistorialCliente : Form
     {
-        private Publicacion publicacionSeleccionada;
-        private PublicacionRepository repositorio = new PublicacionRepository();
+        private CompraRepository repositorioCompra = new CompraRepository();
+        private OfertaRepository repositorioOferta = new OfertaRepository();
         private UsuarioRepository repoUsuario = new UsuarioRepository();
-        private int numeroPagina = 1;
-        private int cantidadMaxDePags = 0;
-        private List<Publicacion> publicaciones;
+        private int numeroPaginaCompra = 1;
+        private int numeroPaginaOferta = 1;
+        private int cantidadMaxDePagsCompra = 0;
+        private int cantidadMaxDePagsOferta = 0;
+        private List<Compra> compras;
+        private List<Oferta> ofertas;
         private Usuario usuario;
         private Form formAnterior;
         private CalificacionRepository repoCalificaciones = new CalificacionRepository();
@@ -37,13 +40,16 @@ namespace WindowsFormsApplication1.Historial_Cliente
         private void HistorialCliente_Load(object sender, EventArgs e)
         {
             inicializarFormulario();
-            buscarPagina();
+            buscarPaginaCompra();
+            buscarPaginaOferta();
         }
 
         private void inicializarFormulario()
         {
-            inicializarDataGrid();
-            tablaPublicaciones.Rows.Clear();
+            inicializarDataGridCompra();
+            inicializarDataGridOferta();
+            tablaCompras.Rows.Clear();
+            tablaOfertas.Rows.Clear();
             inicializarTextBoxes();
             //NO HACE NADA!!
         }
@@ -59,100 +65,116 @@ namespace WindowsFormsApplication1.Historial_Cliente
             cantOperacionesSinCalificar.Text = repoUsuario.cantidadOpercaionesSinCalificar(usuario).ToString();
         }
 
-        private void inicializarDataGrid()
+        private void inicializarDataGridCompra()
         {
             DataGridViewTextBoxColumn cDescripcion = new DataGridViewTextBoxColumn();
             cDescripcion.HeaderText = "Descripcion";
             cDescripcion.ReadOnly = true;
-            tablaPublicaciones.Columns.Add(cDescripcion);
+            tablaCompras.Columns.Add(cDescripcion);
             DataGridViewTextBoxColumn cConEnvio = new DataGridViewTextBoxColumn();
             cConEnvio.HeaderText = "Con Envio";
             cConEnvio.ReadOnly = true;
-            tablaPublicaciones.Columns.Add(cConEnvio);
+            tablaCompras.Columns.Add(cConEnvio);
             DataGridViewTextBoxColumn cfechaFin = new DataGridViewTextBoxColumn();
             cfechaFin.HeaderText = "Fecha de Finalizacion";
             cfechaFin.ReadOnly = true;
-            tablaPublicaciones.Columns.Add(cfechaFin);
+            tablaCompras.Columns.Add(cfechaFin);
         }
 
-        private void buscarPagina()
+        private void inicializarDataGridOferta()
         {
-            publicaciones = repositorio.obtenerComprasYOfertasPorPagina(usuario, numeroPagina);
-
-            if (cantidadMaxDePags == 0)
-            {
-                cantidadMaxDePags = repositorio.cantidadDePaginasComprasYOfertasDeCliente(usuario);
-            }
-
-            if (publicaciones.Count > 0)
-            {
-                publicacionSeleccionada = publicaciones[0];
-            }
-
-            cargarDataGrid();
+            DataGridViewTextBoxColumn cDescripcion = new DataGridViewTextBoxColumn();
+            cDescripcion.HeaderText = "Descripcion";
+            cDescripcion.ReadOnly = true;
+            tablaCompras.Columns.Add(cDescripcion);
+            DataGridViewTextBoxColumn cConEnvio = new DataGridViewTextBoxColumn();
+            cConEnvio.HeaderText = "Con Envio";
+            cConEnvio.ReadOnly = true;
+            tablaCompras.Columns.Add(cConEnvio);
+            DataGridViewTextBoxColumn cfechaFin = new DataGridViewTextBoxColumn();
+            cfechaFin.HeaderText = "Fecha de Finalizacion";
+            cfechaFin.ReadOnly = true;
+            tablaOfertas.Columns.Add(cfechaFin);
         }
 
-        private void cargarDataGrid()
+        private void buscarPaginaCompra()
         {
-            tablaPublicaciones.Rows.Clear();
-            foreach (Publicacion publicacion in publicaciones)
+            compras = repositorioCompra.obtenerComprasPorPagina(usuario, numeroPaginaCompra);
+
+            if (cantidadMaxDePagsCompra == 0)
             {
-                tablaPublicaciones.Rows.Add(publicacion.descripcion, publicacion.hayEnvio, publicacion.fechaVencimiento);
+                cantidadMaxDePagsCompra = repositorioCompra.cantidadDePaginasComprasDeCliente(usuario);
+            }
+
+            cargarDataGridCompra();
+        }
+
+        private void buscarPaginaOferta()
+        {
+            ofertas = repositorioOferta.obtenerOfertasPorPagina(usuario, numeroPaginaOferta);
+
+            if (cantidadMaxDePagsOferta == 0)
+            {
+                cantidadMaxDePagsOferta = repositorioOferta.cantidadDePaginasOfertasDeCliente(usuario);
+            }
+
+            cargarDataGridOferta();
+        }
+
+        private void cargarDataGridCompra()
+        {
+            tablaCompras.Rows.Clear();
+            foreach (Compra publicacion in compras)
+            {
+                //tablaCompras.Rows.Add(publicacion.descripcion, publicacion.hayEnvio, publicacion.fechaVencimiento);
+            }
+            //POR AHORA SOLO CARGO ESTO,IGUAL SE DEBERIAN MOSTRAR SOLO 3 O 4 DATOS
+        }
+
+        private void cargarDataGridOferta()
+        {
+            tablaCompras.Rows.Clear();
+            foreach (Oferta oferta in ofertas)
+            {
+                //tablaCompras.Rows.Add(publicacion.descripcion, publicacion.hayEnvio, publicacion.fechaVencimiento);
             }
             //POR AHORA SOLO CARGO ESTO,IGUAL SE DEBERIAN MOSTRAR SOLO 3 O 4 DATOS
         }
 
         private void btnPrimerPag_Click(object sender, EventArgs e)
         {
-            numeroPagina = 1;
-            buscarPagina();
+            numeroPaginaCompra = 1;
+            buscarPaginaCompra();
         }
 
         private void btnUltimaPag_Click(object sender, EventArgs e)
         {
-            numeroPagina = cantidadMaxDePags;
-            buscarPagina();
+            numeroPaginaCompra = cantidadMaxDePagsCompra;
+            buscarPaginaCompra();
         }
 
         private void btnSiguientePag_Click(object sender, EventArgs e)
         {
-            numeroPagina++;
+            numeroPaginaCompra++;
 
-            if (numeroPagina > cantidadMaxDePags)
+            if (numeroPaginaCompra > cantidadMaxDePagsCompra)
             {
-                numeroPagina = cantidadMaxDePags;
+                numeroPaginaCompra = cantidadMaxDePagsCompra;
                 return;
             }
-            buscarPagina();
+            buscarPaginaCompra();
         }
 
         private void btnAnteriorPag_Click(object sender, EventArgs e)
         {
-            numeroPagina--;
+            numeroPaginaCompra--;
 
-            if (numeroPagina < 1)
+            if (numeroPaginaCompra < 1)
             {
-                numeroPagina = 1;
+                numeroPaginaCompra = 1;
                 return;
             }
-            buscarPagina();
-        }
-
-        private void tablaPublicaciones_Click(object sender, EventArgs e)
-        {
-            if (tablaPublicaciones.Rows.Count==0)
-            {
-                return;
-            }
-
-            publicacionSeleccionada = publicaciones[tablaPublicaciones.CurrentCell.RowIndex];
-        }
-
-        private void btnAbrirPublicacion_Click(object sender, EventArgs e)
-        {
-            DetallePublicacion verPublicacion = new DetallePublicacion(publicacionSeleccionada, this, usuario,false);
-            Hide();
-            verPublicacion.ShowDialog();
+            buscarPaginaCompra();
         }
 
         private void btnVolver_Click(object sender, EventArgs e)
@@ -164,6 +186,42 @@ namespace WindowsFormsApplication1.Historial_Cliente
         private void HistorialCliente_FormClosing(object sender, FormClosingEventArgs e)
         {
             formAnterior.Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            numeroPaginaOferta = cantidadMaxDePagsOferta;
+            buscarPaginaOferta();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            numeroPaginaOferta++;
+
+            if (numeroPaginaOferta > cantidadMaxDePagsOferta)
+            {
+                numeroPaginaOferta = cantidadMaxDePagsOferta;
+                return;
+            }
+            buscarPaginaOferta();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            numeroPaginaOferta--;
+
+            if (numeroPaginaOferta < 1)
+            {
+                numeroPaginaOferta = 1;
+                return;
+            }
+            buscarPaginaOferta();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            numeroPaginaOferta = 1;
+            buscarPaginaOferta();
         }
     }
 }

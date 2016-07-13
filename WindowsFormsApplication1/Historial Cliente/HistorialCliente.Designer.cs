@@ -29,12 +29,11 @@
         private void InitializeComponent()
         {
             this.btnVolver = new System.Windows.Forms.Button();
-            this.btnAbrirPublicacion = new System.Windows.Forms.Button();
             this.btnUltimaPag = new System.Windows.Forms.Button();
             this.btnPrimerPag = new System.Windows.Forms.Button();
             this.btnSiguientePag = new System.Windows.Forms.Button();
             this.btnAnteriorPag = new System.Windows.Forms.Button();
-            this.tablaPublicaciones = new System.Windows.Forms.DataGridView();
+            this.tablaCompras = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.estrellas5 = new System.Windows.Forms.TextBox();
@@ -50,16 +49,24 @@
             this.cantOperacionesSinCalificar = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            ((System.ComponentModel.ISupportInitialize)(this.tablaPublicaciones)).BeginInit();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.tablaOfertas = new System.Windows.Forms.DataGridView();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaCompras)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaOfertas)).BeginInit();
             this.SuspendLayout();
             // 
             // btnVolver
             // 
             this.btnVolver.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnVolver.Location = new System.Drawing.Point(903, 489);
+            this.btnVolver.Location = new System.Drawing.Point(958, 641);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.Size = new System.Drawing.Size(114, 53);
             this.btnVolver.TabIndex = 27;
@@ -67,21 +74,10 @@
             this.btnVolver.UseVisualStyleBackColor = true;
             this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             // 
-            // btnAbrirPublicacion
-            // 
-            this.btnAbrirPublicacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAbrirPublicacion.Location = new System.Drawing.Point(478, 476);
-            this.btnAbrirPublicacion.Name = "btnAbrirPublicacion";
-            this.btnAbrirPublicacion.Size = new System.Drawing.Size(180, 38);
-            this.btnAbrirPublicacion.TabIndex = 26;
-            this.btnAbrirPublicacion.Text = "Abrir Publicacion";
-            this.btnAbrirPublicacion.UseVisualStyleBackColor = true;
-            this.btnAbrirPublicacion.Click += new System.EventHandler(this.btnAbrirPublicacion_Click);
-            // 
             // btnUltimaPag
             // 
             this.btnUltimaPag.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUltimaPag.Location = new System.Drawing.Point(377, 431);
+            this.btnUltimaPag.Location = new System.Drawing.Point(366, 303);
             this.btnUltimaPag.Name = "btnUltimaPag";
             this.btnUltimaPag.Size = new System.Drawing.Size(75, 23);
             this.btnUltimaPag.TabIndex = 25;
@@ -92,7 +88,7 @@
             // btnPrimerPag
             // 
             this.btnPrimerPag.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPrimerPag.Location = new System.Drawing.Point(217, 431);
+            this.btnPrimerPag.Location = new System.Drawing.Point(206, 303);
             this.btnPrimerPag.Name = "btnPrimerPag";
             this.btnPrimerPag.Size = new System.Drawing.Size(75, 23);
             this.btnPrimerPag.TabIndex = 22;
@@ -102,7 +98,7 @@
             // 
             // btnSiguientePag
             // 
-            this.btnSiguientePag.Location = new System.Drawing.Point(338, 431);
+            this.btnSiguientePag.Location = new System.Drawing.Point(327, 303);
             this.btnSiguientePag.Name = "btnSiguientePag";
             this.btnSiguientePag.Size = new System.Drawing.Size(19, 23);
             this.btnSiguientePag.TabIndex = 24;
@@ -112,7 +108,7 @@
             // 
             // btnAnteriorPag
             // 
-            this.btnAnteriorPag.Location = new System.Drawing.Point(313, 431);
+            this.btnAnteriorPag.Location = new System.Drawing.Point(302, 303);
             this.btnAnteriorPag.Name = "btnAnteriorPag";
             this.btnAnteriorPag.Size = new System.Drawing.Size(19, 23);
             this.btnAnteriorPag.TabIndex = 23;
@@ -120,39 +116,37 @@
             this.btnAnteriorPag.UseVisualStyleBackColor = true;
             this.btnAnteriorPag.Click += new System.EventHandler(this.btnAnteriorPag_Click);
             // 
-            // tablaPublicaciones
+            // tablaCompras
             // 
-            this.tablaPublicaciones.AllowUserToAddRows = false;
-            this.tablaPublicaciones.AllowUserToDeleteRows = false;
-            this.tablaPublicaciones.AllowUserToResizeColumns = false;
-            this.tablaPublicaciones.AllowUserToResizeRows = false;
-            this.tablaPublicaciones.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.tablaPublicaciones.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.tablaPublicaciones.BackgroundColor = System.Drawing.SystemColors.Window;
-            this.tablaPublicaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tablaPublicaciones.Location = new System.Drawing.Point(22, 30);
-            this.tablaPublicaciones.MultiSelect = false;
-            this.tablaPublicaciones.Name = "tablaPublicaciones";
-            this.tablaPublicaciones.ReadOnly = true;
-            this.tablaPublicaciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.tablaPublicaciones.Size = new System.Drawing.Size(636, 380);
-            this.tablaPublicaciones.TabIndex = 21;
-            this.tablaPublicaciones.Click += new System.EventHandler(this.tablaPublicaciones_Click);
+            this.tablaCompras.AllowUserToAddRows = false;
+            this.tablaCompras.AllowUserToDeleteRows = false;
+            this.tablaCompras.AllowUserToResizeColumns = false;
+            this.tablaCompras.AllowUserToResizeRows = false;
+            this.tablaCompras.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.tablaCompras.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.tablaCompras.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.tablaCompras.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tablaCompras.Location = new System.Drawing.Point(22, 30);
+            this.tablaCompras.MultiSelect = false;
+            this.tablaCompras.Name = "tablaCompras";
+            this.tablaCompras.ReadOnly = true;
+            this.tablaCompras.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.tablaCompras.Size = new System.Drawing.Size(636, 267);
+            this.tablaCompras.TabIndex = 21;
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.tablaPublicaciones);
+            this.groupBox1.Controls.Add(this.tablaCompras);
             this.groupBox1.Controls.Add(this.btnUltimaPag);
-            this.groupBox1.Controls.Add(this.btnAbrirPublicacion);
             this.groupBox1.Controls.Add(this.btnPrimerPag);
             this.groupBox1.Controls.Add(this.btnSiguientePag);
             this.groupBox1.Controls.Add(this.btnAnteriorPag);
             this.groupBox1.Location = new System.Drawing.Point(11, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(688, 530);
+            this.groupBox1.Size = new System.Drawing.Size(688, 335);
             this.groupBox1.TabIndex = 28;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Compras y Ofertas hechas";
+            this.groupBox1.Text = "Compras realizadas";
             // 
             // groupBox2
             // 
@@ -281,17 +275,92 @@
             // 
             this.groupBox3.Controls.Add(this.cantOperacionesSinCalificar);
             this.groupBox3.Controls.Add(this.label6);
-            this.groupBox3.Location = new System.Drawing.Point(708, 384);
+            this.groupBox3.Location = new System.Drawing.Point(716, 384);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(373, 82);
+            this.groupBox3.Size = new System.Drawing.Size(365, 82);
             this.groupBox3.TabIndex = 32;
             this.groupBox3.TabStop = false;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.tablaOfertas);
+            this.groupBox4.Controls.Add(this.button1);
+            this.groupBox4.Controls.Add(this.button2);
+            this.groupBox4.Controls.Add(this.button3);
+            this.groupBox4.Controls.Add(this.button4);
+            this.groupBox4.Location = new System.Drawing.Point(11, 353);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(688, 335);
+            this.groupBox4.TabIndex = 29;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Ofertas realizadas";
+            // 
+            // tablaOfertas
+            // 
+            this.tablaOfertas.AllowUserToAddRows = false;
+            this.tablaOfertas.AllowUserToDeleteRows = false;
+            this.tablaOfertas.AllowUserToResizeColumns = false;
+            this.tablaOfertas.AllowUserToResizeRows = false;
+            this.tablaOfertas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.tablaOfertas.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.tablaOfertas.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.tablaOfertas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tablaOfertas.Location = new System.Drawing.Point(22, 30);
+            this.tablaOfertas.MultiSelect = false;
+            this.tablaOfertas.Name = "tablaOfertas";
+            this.tablaOfertas.ReadOnly = true;
+            this.tablaOfertas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.tablaOfertas.Size = new System.Drawing.Size(636, 267);
+            this.tablaOfertas.TabIndex = 21;
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(366, 303);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 25;
+            this.button1.Text = "Ultima";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(206, 303);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 22;
+            this.button2.Text = "Primera";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(327, 303);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(19, 23);
+            this.button3.TabIndex = 24;
+            this.button3.Text = ">";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(302, 303);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(19, 23);
+            this.button4.TabIndex = 23;
+            this.button4.Text = "<";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // HistorialCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1093, 555);
+            this.ClientSize = new System.Drawing.Size(1093, 707);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.groupBox1);
@@ -300,12 +369,14 @@
             this.Text = "HistorialCliente";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.HistorialCliente_FormClosing);
             this.Load += new System.EventHandler(this.HistorialCliente_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.tablaPublicaciones)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tablaCompras)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.tablaOfertas)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -313,12 +384,11 @@
         #endregion
 
         private System.Windows.Forms.Button btnVolver;
-        private System.Windows.Forms.Button btnAbrirPublicacion;
         private System.Windows.Forms.Button btnUltimaPag;
         private System.Windows.Forms.Button btnPrimerPag;
         private System.Windows.Forms.Button btnSiguientePag;
         private System.Windows.Forms.Button btnAnteriorPag;
-        private System.Windows.Forms.DataGridView tablaPublicaciones;
+        private System.Windows.Forms.DataGridView tablaCompras;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox estrellas5;
@@ -334,5 +404,11 @@
         private System.Windows.Forms.TextBox cantOperacionesSinCalificar;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.DataGridView tablaOfertas;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
     }
 }

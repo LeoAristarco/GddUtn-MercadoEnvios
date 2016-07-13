@@ -258,6 +258,7 @@
     <Compile Include="Historial Cliente\HistorialCliente.Designer.cs">
       <DependentUpon>HistorialCliente.cs</DependentUpon>
     </Compile>
+    <Compile Include="Historial Cliente\Oferta.cs" />
     <Compile Include="Historial Cliente\viejo\Historial.cs">
       <SubType>Form</SubType>
     </Compile>
