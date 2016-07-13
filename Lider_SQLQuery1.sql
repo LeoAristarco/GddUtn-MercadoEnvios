@@ -1058,7 +1058,7 @@ go
 --estan vencidas, a las q estan vencidas hay que finalizarlas y cerrar la factura
 --Las subasta vencidas hay q hacer lo mismo, y tambien insertar esa oferta como compra
 create procedure st_actualizar_publicaciones_vencidas
-@fechaDelSistema datetime
+@fechaDelSistema date
 
 AS BEGIN
 declare @id_publicacion numeric(10,0), @tipo_publicacion numeric(10,0), @factura numeric(10,0),@precio numeric(10,2),
@@ -1071,7 +1071,7 @@ declare miCursor cursor
  for select id_publicacion,tipo_publicacion,
             factura,precio,descripcion 
  FROM PUBLICACION
- where  year(fecha_vencimiento) < 2016 and
+ where  (CAST(fecha_vencimiento as DATE)) < @fechaDelSistema and
  estado_publicacion <> 1 AND --distinto de borrador
  estado_publicacion <> 4     --distinto de finalizado
  
@@ -1112,7 +1112,3 @@ close miCursor
 deallocate miCursor
 
 end
-
-
-	
-			
