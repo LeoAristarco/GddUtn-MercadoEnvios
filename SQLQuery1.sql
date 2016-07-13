@@ -1,4 +1,4 @@
-	CREATE PROCEDURE VARCHAR_DE_30.sp_actualizarUsuario(
+	CREATE PROCEDURE CHAR_DE_30.sp_actualizarUsuario(
 		@id_usuario			numeric(10,0),				
 		@mail				nvarchar(255),
 		@fecha_nacimiento	date,
@@ -24,7 +24,7 @@
 	END
 	GO
 	
-	CREATE PROCEDURE VARCHAR_DE_30.sp_darDeBajaLogicaAUsuario(@id_usuario numeric(10,0))
+	CREATE PROCEDURE CHAR_DE_30.sp_darDeBajaLogicaAUsuario(@id_usuario numeric(10,0))
 	AS BEGIN
 		UPDATE USUARIO SET
 		baja_logica = 1
@@ -38,21 +38,21 @@
 ------------------------------------------------ INICIO LOGUIN----------------------------------------------------------------------
 --borro si existen versiones viejas
 if EXISTS (SELECT * FROM sysobjects WHERE name='tg_actualizar_intentos_login') 
-drop trigger VARCHAR_DE_30.tg_actualizar_intentos_login
+drop trigger CHAR_DE_30.tg_actualizar_intentos_login
 
 go
 
 if EXISTS (SELECT * FROM sysobjects WHERE name='VERIFICAR_LOGUEO') 
-drop procedure VARCHAR_DE_30.VERIFICAR_LOGUEO
+drop procedure CHAR_DE_30.VERIFICAR_LOGUEO
 
 go
 
 if EXISTS (SELECT * FROM sysobjects WHERE name='fn_hashear_pass') 
-drop function VARCHAR_DE_30.fn_hashear_pass
+drop function CHAR_DE_30.fn_hashear_pass
 
 go
 
-create function VARCHAR_DE_30.fn_hashear_pass (@pass nvarchar(255))
+create function CHAR_DE_30.fn_hashear_pass (@pass nvarchar(255))
 returns nvarchar(255)
 as begin
 	return(
@@ -64,7 +64,7 @@ go
 
 
 --creo objetos necesarios
-create procedure VARCHAR_DE_30.VERIFICAR_LOGUEO
+create procedure CHAR_DE_30.VERIFICAR_LOGUEO
 	@nick nvarchar(255), 
 	@pass nvarchar(255)
 as begin
@@ -72,38 +72,38 @@ as begin
 	declare @filas int;
 
 	select top 1 @filas = COUNT(baja_logica)
-	from VARCHAR_DE_30.USUARIO
+	from CHAR_DE_30.USUARIO
 	where 
 		nick = @nick and 
-		pass = VARCHAR_DE_30.fn_hashear_pass(@pass);
+		pass = CHAR_DE_30.fn_hashear_pass(@pass);
 
 	if(@filas = 0) begin
-		update VARCHAR_DE_30.USUARIO
+		update CHAR_DE_30.USUARIO
 		set intentos_login = (intentos_login +1)
 		where nick = @nick;
 	end
 	else begin
-		update VARCHAR_DE_30.USUARIO
+		update CHAR_DE_30.USUARIO
 		set intentos_login = 0
 		where nick = @nick;
 	end
 
 	select u.id_usuario, ru.id_rol, r.rol_nombre, u.baja_logica 
-	from VARCHAR_DE_30.USUARIO as u
-	inner join VARCHAR_DE_30.ROL_POR_USUARIO as ru
+	from CHAR_DE_30.USUARIO as u
+	inner join CHAR_DE_30.ROL_POR_USUARIO as ru
 	on  u.id_usuario = ru.id_usuario
-	inner join VARCHAR_DE_30.ROL as r
+	inner join CHAR_DE_30.ROL as r
 	on ru.id_rol = r.id_rol
 	where 
 		u.nick = @nick and 
-		u.pass = VARCHAR_DE_30.fn_hashear_pass(@pass) and
+		u.pass = CHAR_DE_30.fn_hashear_pass(@pass) and
 		r.habilitado = 1;
 end
 
 go
 
-create trigger VARCHAR_DE_30.tg_actualizar_intentos_login
-on VARCHAR_DE_30.USUARIO
+create trigger CHAR_DE_30.tg_actualizar_intentos_login
+on CHAR_DE_30.USUARIO
 after update
 as begin
 
@@ -116,13 +116,13 @@ as begin
 		select 
 			@intentos = i.intentos_login, 
 			@id_usuario_modificado = i.id_usuario
-		from VARCHAR_DE_30.USUARIO as u
+		from CHAR_DE_30.USUARIO as u
 		inner join inserted as i
 		on u.id_usuario = i.id_usuario
 		where u.id_usuario = i.id_usuario;
 
 		if(@intentos = 3) 
-			update VARCHAR_DE_30.USUARIO
+			update CHAR_DE_30.USUARIO
 			set
 				intentos_login = 0,
 				baja_logica = 1
@@ -140,12 +140,12 @@ drop procedure OBTENER_FUNCIONALIDADES_POR_ID_ROL
 
 go
 
-create procedure VARCHAR_DE_30.OBTENER_FUNCIONALIDADES_POR_ID_ROL
+create procedure CHAR_DE_30.OBTENER_FUNCIONALIDADES_POR_ID_ROL
 	@id_rol numeric(18,0)
 as begin 
 	select f.id_funcionalidad, f.funcionalidad_nombre
-	from VARCHAR_DE_30.FUNCIONALIDAD as f
-	inner join VARCHAR_DE_30.FUNCIONALIDAD_POR_ROL as r
+	from CHAR_DE_30.FUNCIONALIDAD as f
+	inner join CHAR_DE_30.FUNCIONALIDAD_POR_ROL as r
 	on r.id_funcionalidad = f.id_funcionalidad
 	where 
 		r.id_rol = @id_rol and
@@ -157,16 +157,16 @@ go
 
 ------------------------------------------------ ABM ROL----------------------------------------------------------------------
 if EXISTS (SELECT * FROM sysobjects WHERE name='OBTENER_ROLES_POR_ID_USUARIO') 
-drop procedure VARCHAR_DE_30.OBTENER_ROLES_POR_ID_USUARIO
+drop procedure CHAR_DE_30.OBTENER_ROLES_POR_ID_USUARIO
 
 go
 
-create procedure VARCHAR_DE_30.OBTENER_ROLES_POR_ID_USUARIO
+create procedure CHAR_DE_30.OBTENER_ROLES_POR_ID_USUARIO
 	@id_usuario numeric(18,0)
 as begin 
 	select r.id_rol, r.rol_nombre, r.habilitado
-	from VARCHAR_DE_30.ROL_POR_USUARIO as ru
-	inner join VARCHAR_DE_30.ROL as r
+	from CHAR_DE_30.ROL_POR_USUARIO as ru
+	inner join CHAR_DE_30.ROL as r
 	on r.id_rol = ru.id_rol
 	where
 		ru.id_usuario = @id_usuario;
@@ -177,25 +177,25 @@ go
 
 --esto hay que mejorarlo agregandole paginado
 if EXISTS (SELECT * FROM sysobjects WHERE name='OBTENER_USUARIOS_PARA_ABM_ROL') 
-drop procedure VARCHAR_DE_30.OBTENER_USUARIOS_PARA_ABM_ROL
+drop procedure CHAR_DE_30.OBTENER_USUARIOS_PARA_ABM_ROL
 
 go
 
-create procedure VARCHAR_DE_30.OBTENER_USUARIOS_PARA_ABM_ROL
+create procedure CHAR_DE_30.OBTENER_USUARIOS_PARA_ABM_ROL
 as begin 
 	select id_usuario, nick
-	from VARCHAR_DE_30.USUARIO
+	from CHAR_DE_30.USUARIO
 end
 
 go 
 
 
 if EXISTS (SELECT * FROM sysobjects WHERE name='ACTUALIZAR_ROL_POR_USUARIO') 
-drop procedure VARCHAR_DE_30.ACTUALIZAR_ROL_POR_USUARIO
+drop procedure CHAR_DE_30.ACTUALIZAR_ROL_POR_USUARIO
 
 go
 
-create procedure VARCHAR_DE_30.ACTUALIZAR_ROL_POR_USUARIO
+create procedure CHAR_DE_30.ACTUALIZAR_ROL_POR_USUARIO
 	@id_usuario numeric(18,0),
 	@id_rol numeric(18,0),
 	@lo_tiene_el_usuario bit
@@ -204,7 +204,7 @@ as begin
 	declare @cont int;
 
 	select @cont = COUNT(*)
-	from VARCHAR_DE_30.ROL_POR_USUARIO
+	from CHAR_DE_30.ROL_POR_USUARIO
 	where 
 		id_rol = @id_rol and
 		id_usuario = @id_usuario;
@@ -212,7 +212,7 @@ as begin
 	if @cont > 0 begin
 		if @lo_tiene_el_usuario = 0 begin
 			delete
-			from VARCHAR_DE_30.ROL_POR_USUARIO
+			from CHAR_DE_30.ROL_POR_USUARIO
 			where 
 				id_rol = @id_rol and
 				id_usuario = @id_usuario;
@@ -220,7 +220,7 @@ as begin
 	end
 	else begin
 		if @lo_tiene_el_usuario = 1 begin
-			insert into VARCHAR_DE_30.ROL_POR_USUARIO
+			insert into CHAR_DE_30.ROL_POR_USUARIO
 			values
 				(@id_usuario, @id_rol);
 		end
@@ -231,16 +231,16 @@ end
 go 
 
 if EXISTS (SELECT * FROM sysobjects WHERE name='OBTENER_FUNCIONALIDADES_DEL_ROL') 
-drop procedure VARCHAR_DE_30.OBTENER_FUNCIONALIDADES_DEL_ROL
+drop procedure CHAR_DE_30.OBTENER_FUNCIONALIDADES_DEL_ROL
 
 go
 
-create procedure VARCHAR_DE_30.OBTENER_FUNCIONALIDADES_DEL_ROL
+create procedure CHAR_DE_30.OBTENER_FUNCIONALIDADES_DEL_ROL
 	@id_rol nvarchar(255)
 as begin 
 	select f.id_funcionalidad, f.funcionalidad_nombre, f.habilitado 
-	from VARCHAR_DE_30.FUNCIONALIDAD as f
-	inner join VARCHAR_DE_30.FUNCIONALIDAD_POR_ROL as fr
+	from CHAR_DE_30.FUNCIONALIDAD as f
+	inner join CHAR_DE_30.FUNCIONALIDAD_POR_ROL as fr
 	on fr.id_funcionalidad = f.id_funcionalidad
 	where
 		fr.id_rol = @id_rol;
@@ -250,15 +250,15 @@ go
 
 
 if EXISTS (SELECT * FROM sysobjects WHERE name='INSERTAR_NUEVO_ROL') 
-drop procedure VARCHAR_DE_30.INSERTAR_NUEVO_ROL
+drop procedure CHAR_DE_30.INSERTAR_NUEVO_ROL
 
 go
 
-create procedure VARCHAR_DE_30.INSERTAR_NUEVO_ROL
+create procedure CHAR_DE_30.INSERTAR_NUEVO_ROL
 	@nombre nvarchar(255),
 	@hab bit
 as begin 
-	insert into VARCHAR_DE_30.ROL
+	insert into CHAR_DE_30.ROL
 	values
 		(@nombre, @hab);
 end
@@ -267,16 +267,16 @@ go
 
 
 if EXISTS (SELECT * FROM sysobjects WHERE name='ACTUALIZAR_ROL') 
-drop procedure VARCHAR_DE_30.ACTUALIZAR_ROL
+drop procedure CHAR_DE_30.ACTUALIZAR_ROL
 
 go
 
-create procedure VARCHAR_DE_30.ACTUALIZAR_ROL
+create procedure CHAR_DE_30.ACTUALIZAR_ROL
 	@id_rol numeric(18,0),
 	@nombre nvarchar(255),
 	@habilitado bit
 as begin 
-	update VARCHAR_DE_30.ROL
+	update CHAR_DE_30.ROL
 	set rol_nombre = @nombre, habilitado = @habilitado
 	where id_rol = @id_rol;
 end
@@ -285,11 +285,11 @@ go
 
 
 if EXISTS (SELECT * FROM sysobjects WHERE name='ACTUALIZAR_FUNCIONALIDADES_DE_ROL') 
-drop procedure VARCHAR_DE_30.ACTUALIZAR_FUNCIONALIDADES_DE_ROL
+drop procedure CHAR_DE_30.ACTUALIZAR_FUNCIONALIDADES_DE_ROL
 
 go
 
-create procedure VARCHAR_DE_30.ACTUALIZAR_FUNCIONALIDADES_DE_ROL
+create procedure CHAR_DE_30.ACTUALIZAR_FUNCIONALIDADES_DE_ROL
 	@id_rol numeric(18,0),
 	@id_funcionalidad numeric(18,0),
 	@lo_tiene bit
@@ -298,7 +298,7 @@ as begin
 	declare @cont int;
 
 	select @cont = COUNT(*)
-	from VARCHAR_DE_30.FUNCIONALIDAD_POR_ROL
+	from CHAR_DE_30.FUNCIONALIDAD_POR_ROL
 	where 
 		id_rol = @id_rol and
 		id_funcionalidad = @id_funcionalidad;
@@ -306,7 +306,7 @@ as begin
 	if @cont > 0 begin
 		if @lo_tiene = 0 begin
 			delete
-			from VARCHAR_DE_30.FUNCIONALIDAD_POR_ROL
+			from CHAR_DE_30.FUNCIONALIDAD_POR_ROL
 			where 
 				id_rol = @id_rol and
 				id_funcionalidad = @id_funcionalidad;
@@ -314,7 +314,7 @@ as begin
 	end
 	else begin
 		if @lo_tiene = 1 begin
-			insert into VARCHAR_DE_30.FUNCIONALIDAD_POR_ROL
+			insert into CHAR_DE_30.FUNCIONALIDAD_POR_ROL
 			values
 				(@id_funcionalidad, @id_rol);
 		end
