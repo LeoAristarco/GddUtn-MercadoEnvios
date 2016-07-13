@@ -5,7 +5,7 @@
 -- Procedemiento para busqueda de un producto, se puede filtrar por id_rubro ( o no , segun que decida el usuario)
 -- te devuelve 10 productos por paginas
 
-create procedure VARCHAR_DE_30.st_buscar_publicaciones
+create procedure CHAR_DE_30.st_buscar_publicaciones
 @descripcion nvarchar(255) = null,
 @rubroId nvarchar(255)= null,
 @pagina int
@@ -15,11 +15,11 @@ begin
  select*
  from(
       select *,(row_number() over (order by id_publicacion desc) ) as publicaciones
-      from VARCHAR_DE_30.PUBLICACION
-      inner join VARCHAR_DE_30.VISIBILIDAD on id_visibilidad = visibilidad
-      inner join VARCHAR_DE_30.ESTADO_PUBLICACION on id_estado = estado_publicacion
-      inner join VARCHAR_DE_30.TIPO_PUBLICACION on id_tipo = tipo_publicacion
-      inner join VARCHAR_DE_30.RUBRO on id_rubro = rubro
+      from CHAR_DE_30.PUBLICACION
+      inner join CHAR_DE_30.VISIBILIDAD on id_visibilidad = visibilidad
+      inner join CHAR_DE_30.ESTADO_PUBLICACION on id_estado = estado_publicacion
+      inner join CHAR_DE_30.TIPO_PUBLICACION on id_tipo = tipo_publicacion
+      inner join CHAR_DE_30.RUBRO on id_rubro = rubro
       where (descripcion like '%' + @descripcion + '%') and 
       estado_nombre <> 'BORRADOR' and estado_nombre <> 'FINALIZADA' and
       (id_rubro = @rubroId OR @rubroId IS NULL)
@@ -33,7 +33,7 @@ end
 go
 
 -- Procedimientos que usa el store st_insertarCompraSubasta
-create procedure VARCHAR_DE_30.st_actualizar_Estado_Publicacion_a_Finalizado
+create procedure CHAR_DE_30.st_actualizar_Estado_Publicacion_a_Finalizado
 @publicacion numeric(10,0),
 @factura numeric(10,0),
 @fecha_operacion datetime
@@ -42,15 +42,15 @@ as begin
  declare @stock int
  
       select @stock= stock
-	  from VARCHAR_DE_30.PUBLICACION
+	  from CHAR_DE_30.PUBLICACION
 	  where id_publicacion = @publicacion
 
 	  if (@stock = 0)
 	  begin
-	   	    update VARCHAR_DE_30.PUBLICACION SET estado_publicacion = 4 -- le cambio el estado finalizado
+	   	    update CHAR_DE_30.PUBLICACION SET estado_publicacion = 4 -- le cambio el estado finalizado
 	        where id_publicacion = @publicacion
 			--cierro la factura   
-		    update VARCHAR_DE_30.FACTURA SET factura_fecha = @fecha_operacion 
+		    update CHAR_DE_30.FACTURA SET factura_fecha = @fecha_operacion 
 	           where id_factura = @factura
 	  end
  
@@ -58,17 +58,17 @@ end
 
 go
 
-create PROCEDURE VARCHAR_DE_30.sp_AgregarOferta(@ofertante numeric(10,0),@publicacion numeric(10,0),
+create PROCEDURE CHAR_DE_30.sp_AgregarOferta(@ofertante numeric(10,0),@publicacion numeric(10,0),
                                   @fecha_oferta datetime,
                                   @monto_ofertado numeric(10,2),@precio_envio int)
 AS BEGIN
 
-		INSERT INTO VARCHAR_DE_30.OFERTA
+		INSERT INTO CHAR_DE_30.OFERTA
 			(ofertante, publicacion, fecha_oferta,concretada, monto_ofertado,precio_envio)
 			VALUES
 			(@ofertante, @publicacion, @fecha_oferta, 0, @monto_ofertado,@precio_envio)
 			
-		update VARCHAR_DE_30.PUBLICACION SET precio = @monto_ofertado
+		update CHAR_DE_30.PUBLICACION SET precio = @monto_ofertado
 	       where id_publicacion = @publicacion
 
 END		
@@ -76,19 +76,19 @@ END
 
 go
 
-	create procedure VARCHAR_DE_30.st_insertarCompraSubasta(@comprador numeric(10,0), 
+	create procedure CHAR_DE_30.st_insertarCompraSubasta(@comprador numeric(10,0), 
 	    @publicacion numeric(10,0), 
 	    @fecha_operacion datetime, @monto numeric(10,2), @cantidad int,
 		@precio_envio int,@factura numeric(10,0))
 	as begin
 	        
-			insert into VARCHAR_DE_30.COMPRA ( comprador, publicacion, fecha_operacion,monto, cantidad )
+			insert into CHAR_DE_30.COMPRA ( comprador, publicacion, fecha_operacion,monto, cantidad )
 	           values (@comprador , @publicacion , @fecha_operacion , @monto ,@cantidad )
 			   
-			insert into VARCHAR_DE_30.ITEM_FACTURA(id_factura,cantidad_vendida ,precio_unitario,precio_envio )
+			insert into CHAR_DE_30.ITEM_FACTURA(id_factura,cantidad_vendida ,precio_unitario,precio_envio )
 			   values (@factura , @cantidad, @monto ,@precio_envio )
 			   
-			exec VARCHAR_DE_30.st_actualizar_Estado_Publicacion_a_Finalizado @publicacion,@factura,@fecha_operacion
+			exec CHAR_DE_30.st_actualizar_Estado_Publicacion_a_Finalizado @publicacion,@factura,@fecha_operacion
 
 			   
 	end
@@ -97,14 +97,14 @@ go
 go
 
 --validaciones
-create function VARCHAR_DE_30.mas_de_tres_sin_calificar(@id_cliente numeric(10,0))
+create function CHAR_DE_30.mas_de_tres_sin_calificar(@id_cliente numeric(10,0))
 returns bit
 as
 begin
 declare @cant int,@bool bit
 
       select @cant= count(isnull (calif_estrellas,1))
-	  from VARCHAR_DE_30.COMPRA inner join VARCHAR_DE_30.CALIFICACION on id_calificacion =calificacion
+	  from CHAR_DE_30.COMPRA inner join CHAR_DE_30.CALIFICACION on id_calificacion =calificacion
 	  where @id_cliente = comprador
 
 
@@ -119,14 +119,14 @@ end
 
 go
 
-create function VARCHAR_DE_30.publicacion_en_estado_pausado(@id_publicacion numeric(10,0))
+create function CHAR_DE_30.publicacion_en_estado_pausado(@id_publicacion numeric(10,0))
 returns bit
 as
 begin
 declare @cant int,@bool bit
 
       select @cant= count(id_publicacion)
-	  from VARCHAR_DE_30.PUBLICACION inner join VARCHAR_DE_30.ESTADO_PUBLICACION on estado_publicacion = id_estado
+	  from CHAR_DE_30.PUBLICACION inner join CHAR_DE_30.ESTADO_PUBLICACION on estado_publicacion = id_estado
 	  where id_publicacion = @id_publicacion and estado_nombre = 'PAUSADA'
 
 	  if (@cant <> 0)
@@ -141,7 +141,7 @@ end
 go
 
 --procedemiento para validar antes de comprar, segun el @tipoError deriba en distintas ventanas de c#
-create procedure VARCHAR_DE_30.st_validacion_de_compra_oferta
+create procedure CHAR_DE_30.st_validacion_de_compra_oferta
 @id_cliente numeric(10,0),
 @usuario_responsable numeric(10,0),
 @id_publicacion numeric(10,0),
@@ -150,9 +150,9 @@ as
 begin
       if(@id_cliente = @usuario_responsable )
 	    set @tipoError = 'i' --error, cliente es el mismo
-	  if(dbo.VARCHAR_DE_30.publicacion_en_estado_pausado(@id_publicacion) =1)
+	  if(dbo.CHAR_DE_30.publicacion_en_estado_pausado(@id_publicacion) =1)
 	    set @tipoError = 'p' --error, publicacion pausada
-	  if(dbo.VARCHAR_DE_30.mas_de_tres_sin_calificar(@id_cliente) =1)
+	  if(dbo.CHAR_DE_30.mas_de_tres_sin_calificar(@id_cliente) =1)
 	   set @tipoError = 'c' --error, el cliente debe calificar sus compras
 	    
 end
@@ -161,9 +161,9 @@ end
 go
 
 -- Procedimientos que usa el tr_insertarCompra
-create procedure VARCHAR_DE_30.st_agregarCalificacion(@id_calificacion numeric(10,0) output )
+create procedure CHAR_DE_30.st_agregarCalificacion(@id_calificacion numeric(10,0) output )
 as begin
-		insert into VARCHAR_DE_30.CALIFICACION (calif_estrellas,calif_detalle)
+		insert into CHAR_DE_30.CALIFICACION (calif_estrellas,calif_detalle)
 		values (null, null)
 		set @id_calificacion = scope_identity()
 end
@@ -171,14 +171,14 @@ go
 
 
 -- Se dispara cada vez q se inserta una compra ( post-migracion)
-create trigger VARCHAR_DE_30.tr_insertarCompra
-	on VARCHAR_DE_30.COMPRA
+create trigger CHAR_DE_30.tr_insertarCompra
+	on CHAR_DE_30.COMPRA
 	instead of insert
 
 	as begin
 	declare @id_calificacion numeric(10,0)
 
-	exec VARCHAR_DE_30.st_agregarCalificacion @id_calificacion output 
+	exec CHAR_DE_30.st_agregarCalificacion @id_calificacion output 
 	
 	declare @id_compra numeric(10,0), @comprador numeric(10,0), @publicacion numeric(10,0), 
 	    @fecha_operacion datetime, @monto numeric(10,2), @cantidad int
@@ -187,11 +187,11 @@ create trigger VARCHAR_DE_30.tr_insertarCompra
 	        @monto=i.monto, @cantidad=i.cantidad
 	from inserted i
 
-	insert into VARCHAR_DE_30.COMPRA ( comprador, publicacion, fecha_operacion,monto, cantidad,calificacion )
+	insert into CHAR_DE_30.COMPRA ( comprador, publicacion, fecha_operacion,monto, cantidad,calificacion )
 	values (  @comprador , @publicacion , @fecha_operacion , @monto ,
 			 @cantidad, @id_calificacion )
 	
-	update VARCHAR_DE_30.PUBLICACION SET stock = stock - @cantidad
+	update CHAR_DE_30.PUBLICACION SET stock = stock - @cantidad
 	 where id_publicacion = @publicacion
 	 	 
 	end
@@ -200,7 +200,7 @@ create trigger VARCHAR_DE_30.tr_insertarCompra
 go
 
 
-create procedure VARCHAR_DE_30.st_buscar_publicaciones_ULTIMA_PAGINA
+create procedure CHAR_DE_30.st_buscar_publicaciones_ULTIMA_PAGINA
 @descripcion nvarchar(255) = null,
 @rubroId nvarchar(255)= null,
 @ultimaPagina int=0 output
@@ -211,11 +211,11 @@ declare @paginas int
  select @paginas=count(publicaciones)
  from(
       select (row_number() over (order by id_publicacion desc) ) as publicaciones
-      from VARCHAR_DE_30.PUBLICACION
-      inner join VARCHAR_DE_30.VISIBILIDAD on id_visibilidad = visibilidad
-      inner join VARCHAR_DE_30.ESTADO_PUBLICACION on id_estado = estado_publicacion
-      inner join VARCHAR_DE_30.TIPO_PUBLICACION on id_tipo = tipo_publicacion
-      inner join VARCHAR_DE_30.RUBRO on id_rubro = rubro
+      from CHAR_DE_30.PUBLICACION
+      inner join CHAR_DE_30.VISIBILIDAD on id_visibilidad = visibilidad
+      inner join CHAR_DE_30.ESTADO_PUBLICACION on id_estado = estado_publicacion
+      inner join CHAR_DE_30.TIPO_PUBLICACION on id_tipo = tipo_publicacion
+      inner join CHAR_DE_30.RUBRO on id_rubro = rubro
       where (descripcion like '%' + @descripcion + '%') and 
       estado_nombre <> 'BORRADOR' and estado_nombre <> 'FINALIZADA' and
       (id_rubro = @rubroId OR @rubroId IS NULL)
@@ -240,36 +240,36 @@ go
 
 -------------- Comienzo de Calificar al vendedor----------------------------------------------------------------------
 
-create procedure VARCHAR_DE_30.st_mostrarPublicacionesSinCalificar(@id_usuario numeric(10,0))
+create procedure CHAR_DE_30.st_mostrarPublicacionesSinCalificar(@id_usuario numeric(10,0))
 as begin  
 	  select  id_publicacion,descripcion,stock,fecha_inicio,
 	          fecha_vencimiento,precio,rubro,visibilidad,estado_publicacion,
 			  usuario_responsable ,tipo_publicacion,envio,factura,id_calificacion
-	  from VARCHAR_DE_30.COMPRA
-	  inner join VARCHAR_DE_30.PUBLICACION on publicacion = id_publicacion
-	  inner join VARCHAR_DE_30.CALIFICACION on id_calificacion =calificacion
+	  from CHAR_DE_30.COMPRA
+	  inner join CHAR_DE_30.PUBLICACION on publicacion = id_publicacion
+	  inner join CHAR_DE_30.CALIFICACION on id_calificacion =calificacion
 	  where comprador = @id_usuario and calif_estrellas is null
 end
 
 go
 
-create procedure VARCHAR_DE_30.st_insertarCalificacion(
+create procedure CHAR_DE_30.st_insertarCalificacion(
 @id_calificacion numeric(10,0),
 @calif_estrellas int,
 @calif_detalle nvarchar(255) )
 as begin  
-        update VARCHAR_DE_30.CALIFICACION set calif_estrellas= @calif_estrellas,calif_detalle =@calif_detalle
+        update CHAR_DE_30.CALIFICACION set calif_estrellas= @calif_estrellas,calif_detalle =@calif_detalle
 		where id_calificacion=@id_calificacion
 end
 
 go
 
-create procedure VARCHAR_DE_30.st_resumenDeEstrellasDadas(@id_usuario numeric(10,0))
+create procedure CHAR_DE_30.st_resumenDeEstrellasDadas(@id_usuario numeric(10,0))
 as begin
 
 select * into #TablaTemporal --Tabla Temporal
-from VARCHAR_DE_30.COMPRA
-inner join VARCHAR_DE_30.CALIFICACION on id_calificacion =calificacion	
+from CHAR_DE_30.COMPRA
+inner join CHAR_DE_30.CALIFICACION on id_calificacion =calificacion	
 where comprador = @id_usuario
 
 select 
@@ -284,12 +284,12 @@ end
 
 go
 
-create procedure VARCHAR_DE_30.st_ultimas5compras(@id_usuario numeric(10,0))
+create procedure CHAR_DE_30.st_ultimas5compras(@id_usuario numeric(10,0))
 as begin  
 	  select top 5 descripcion,calif_estrellas
-	  from VARCHAR_DE_30.COMPRA
-	  inner join VARCHAR_DE_30.PUBLICACION on publicacion = id_publicacion
-	  inner join VARCHAR_DE_30.CALIFICACION on id_calificacion =calificacion
+	  from CHAR_DE_30.COMPRA
+	  inner join CHAR_DE_30.PUBLICACION on publicacion = id_publicacion
+	  inner join CHAR_DE_30.CALIFICACION on id_calificacion =calificacion
 	  where comprador = @id_usuario
 	  order by fecha_operacion desc
 end
@@ -299,18 +299,18 @@ go
 
 -------------- Historial de Cliente ----------------------------------------------------------------------
 
-create procedure VARCHAR_DE_30.st_cantidadDeOperacionesSinCalificar(@id_usuario numeric(10,0))
+create procedure CHAR_DE_30.st_cantidadDeOperacionesSinCalificar(@id_usuario numeric(10,0))
 as begin  
 	  select  count (*) as alexisManco
-	  from VARCHAR_DE_30.COMPRA
-	  inner join VARCHAR_DE_30.PUBLICACION on publicacion = id_publicacion
-	  inner join VARCHAR_DE_30.CALIFICACION on id_calificacion =calificacion
+	  from CHAR_DE_30.COMPRA
+	  inner join CHAR_DE_30.PUBLICACION on publicacion = id_publicacion
+	  inner join CHAR_DE_30.CALIFICACION on id_calificacion =calificacion
 	  where comprador = @id_usuario and calif_estrellas is null
 end
 
 go
 
-create procedure VARCHAR_DE_30.st_subastasDeCliente
+create procedure CHAR_DE_30.st_subastasDeCliente
 @idUsuario numeric(10,0),
 @pagina int
 as
@@ -319,8 +319,8 @@ begin
  from(
        select id_publicacion,descripcion,tipo,monto_ofertado,concretada,fecha_oferta,
 	  (row_number() over (order by id_publicacion desc) ) as publicaciones
-			 from VARCHAR_DE_30.OFERTA o,VARCHAR_DE_30.PUBLICACION
-			 inner join VARCHAR_DE_30.TIPO_PUBLICACION on id_tipo = tipo_publicacion
+			 from CHAR_DE_30.OFERTA o,CHAR_DE_30.PUBLICACION
+			 inner join CHAR_DE_30.TIPO_PUBLICACION on id_tipo = tipo_publicacion
 			 where (o.publicacion=id_publicacion) and
 			 ( o.ofertante=@idUsuario)
       ) gg_vieja
@@ -331,7 +331,7 @@ end
 go
 
 
-create procedure VARCHAR_DE_30.st_comprasDeCliente
+create procedure CHAR_DE_30.st_comprasDeCliente
 @idUsuario numeric(10,0),
 @pagina int
 as
@@ -340,8 +340,8 @@ begin
  from(
       select id_publicacion,descripcion,tipo,cantidad,monto,fecha_operacion,
 	  (row_number() over (order by id_publicacion desc) ) as publicaciones
-			 from VARCHAR_DE_30.COMPRA c,VARCHAR_DE_30.PUBLICACION
-			 inner join VARCHAR_DE_30.TIPO_PUBLICACION on id_tipo = tipo_publicacion
+			 from CHAR_DE_30.COMPRA c,CHAR_DE_30.PUBLICACION
+			 inner join CHAR_DE_30.TIPO_PUBLICACION on id_tipo = tipo_publicacion
 			 where (c.publicacion=id_publicacion) and
 			 (c.comprador=@idUsuario )
       
@@ -351,14 +351,14 @@ end
 
 go
 
-create procedure VARCHAR_DE_30.st_cantidadPaginasSubastasDeCliente
+create procedure CHAR_DE_30.st_cantidadPaginasSubastasDeCliente
 @idUsuario numeric(10,0),
 @ultimaPagina numeric(10,0)=0 out
 as
 begin	
       select @ultimaPagina=count(*)
-			 from VARCHAR_DE_30.OFERTA o,VARCHAR_DE_30.PUBLICACION
-			 inner join VARCHAR_DE_30.TIPO_PUBLICACION on id_tipo = tipo_publicacion
+			 from CHAR_DE_30.OFERTA o,CHAR_DE_30.PUBLICACION
+			 inner join CHAR_DE_30.TIPO_PUBLICACION on id_tipo = tipo_publicacion
 			 where (o.publicacion=id_publicacion) and
 			 ( o.ofertante=@idUsuario)
 
@@ -371,14 +371,14 @@ end
 
 go
 
-create procedure VARCHAR_DE_30.st_cantidadPaginasComprasDeCliente
+create procedure CHAR_DE_30.st_cantidadPaginasComprasDeCliente
 @idUsuario numeric(10,0),
 @ultimaPagina numeric(10,0)=0 out
 as
 begin	
       select @ultimaPagina=count(*)
-		from VARCHAR_DE_30.COMPRA c,VARCHAR_DE_30.PUBLICACION
-		inner join VARCHAR_DE_30.TIPO_PUBLICACION on id_tipo = tipo_publicacion
+		from CHAR_DE_30.COMPRA c,CHAR_DE_30.PUBLICACION
+		inner join CHAR_DE_30.TIPO_PUBLICACION on id_tipo = tipo_publicacion
 		where (c.publicacion=id_publicacion) and
 		(c.comprador=@idUsuario)
 
@@ -402,10 +402,10 @@ go
 --------------------------------------------------COMIENZO ABM VISIBILIDAD----------------------------------------------------------------
 
 go
-CREATE PROCEDURE VARCHAR_DE_30.sp_AgregarVisibilidad
+CREATE PROCEDURE CHAR_DE_30.sp_AgregarVisibilidad
 	(@visibilidad_nombre nvarchar(255), @precio_visibilidad numeric(10,0), @porcentaje_venta  numeric(10,2))
 AS BEGIN
-	INSERT INTO VARCHAR_DE_30.VISIBILIDAD
+	INSERT INTO CHAR_DE_30.VISIBILIDAD
 		(visibilidad_nombre, precio_visibilidad, porcentaje_venta)
 	VALUES
 		(@visibilidad_nombre, @precio_visibilidad, @porcentaje_venta)
@@ -415,11 +415,11 @@ GO
 
 /* SP Editar VISIBILIDAD */
 
-CREATE PROCEDURE VARCHAR_DE_30.sp_EditarVisibilidad
+CREATE PROCEDURE CHAR_DE_30.sp_EditarVisibilidad
 	(@id_visibilidad numeric(10,0), @visibilidad_nombre nvarchar(255), @precio_visibilidad numeric(10,0), 
 		@porcentaje_venta  numeric(10,2))
 AS BEGIN
-	UPDATE VARCHAR_DE_30.VISIBILIDAD 
+	UPDATE CHAR_DE_30.VISIBILIDAD 
 	SET visibilidad_nombre = @visibilidad_nombre, precio_visibilidad = @precio_visibilidad,
 	porcentaje_venta = @porcentaje_venta
 	WHERE id_visibilidad = @id_visibilidad
@@ -428,13 +428,13 @@ GO
 
 /* SP Eliminar VISIBILIDAD */
 
-create PROCEDURE VARCHAR_DE_30.sp_EliminarVisibilidad
+create PROCEDURE CHAR_DE_30.sp_EliminarVisibilidad
 	@id_visibilidad numeric(10,0),
 	@tipoError varchar(50) = 'todo piolaa' out
 AS BEGIN
 
     BEGIN TRY
-	    DELETE FROM VARCHAR_DE_30.VISIBILIDAD WHERE id_visibilidad = @id_visibilidad
+	    DELETE FROM CHAR_DE_30.VISIBILIDAD WHERE id_visibilidad = @id_visibilidad
 	END TRY
 
     BEGIN CATCH
@@ -453,14 +453,14 @@ GO
 
 -------------- GENERAR PUBLICACION----------------------------------------------------------------------
 
-create function VARCHAR_DE_30.fu_nombre_visibilidad(@visibilidad numeric(10,0))
+create function CHAR_DE_30.fu_nombre_visibilidad(@visibilidad numeric(10,0))
 returns nvarchar(255)
 as
 begin
 declare @visibilidad_nombre nvarchar(255)
 
       select @visibilidad_nombre= visibilidad_nombre
-	  from VARCHAR_DE_30.VISIBILIDAD 
+	  from CHAR_DE_30.VISIBILIDAD 
 	  where id_visibilidad = @visibilidad
 
       return @visibilidad_nombre
@@ -469,14 +469,14 @@ end
 
 go
 
-create function VARCHAR_DE_30.fu_precio_visibilidad(@visibilidad numeric(10,0))
+create function CHAR_DE_30.fu_precio_visibilidad(@visibilidad numeric(10,0))
 returns numeric(10,2)
 as
 begin
 declare @precio_visibilidad numeric(10,2)
 
       select @precio_visibilidad= precio_visibilidad
-	  from VARCHAR_DE_30.VISIBILIDAD 
+	  from CHAR_DE_30.VISIBILIDAD 
 	  where id_visibilidad = @visibilidad
 
       return @precio_visibilidad
@@ -485,7 +485,7 @@ end
 
 go
 
-create PROCEDURE VARCHAR_DE_30.sp_AgregarPublicacion
+create PROCEDURE CHAR_DE_30.sp_AgregarPublicacion
 	(@descripcion nvarchar(255),@stock numeric(10,0), @fecha_inicio datetime, 
 	 @fecha_vencimiento datetime,@precio numeric(10,2), @rubro numeric(10,0), 
 	 @visibilidad numeric(10,0), @estado_publicacion numeric(10,0), @usuario_responsable numeric(10,0),
@@ -496,16 +496,16 @@ AS BEGIN
 		
 	   if (@estado_publicacion <> 1)
 	       begin
-		        INSERT INTO VARCHAR_DE_30.FACTURA 
+		        INSERT INTO CHAR_DE_30.FACTURA 
 		          ( tipo_visibilidad,costo_visibilidad)
 			       values
-			      (dbo.fu_nombre_visibilidad(@visibilidad),dbo.VARCHAR_DE_30.fu_precio_visibilidad(@visibilidad))
+			      (dbo.fu_nombre_visibilidad(@visibilidad),dbo.CHAR_DE_30.fu_precio_visibilidad(@visibilidad))
 			    SET @factura = SCOPE_IDENTITY();
 		   end
 		
 
 		
-		INSERT INTO VARCHAR_DE_30.PUBLICACION
+		INSERT INTO CHAR_DE_30.PUBLICACION
 			(descripcion, stock, fecha_inicio,fecha_vencimiento, precio, rubro, visibilidad,
 			 estado_publicacion, usuario_responsable, tipo_publicacion, envio, factura)
 			VALUES
@@ -516,7 +516,7 @@ END
 
 go
 
-create PROCEDURE VARCHAR_DE_30.sp_AgregarPublicacionGratiss
+create PROCEDURE CHAR_DE_30.sp_AgregarPublicacionGratiss
 	(@descripcion nvarchar(255),@stock numeric(10,0), @fecha_inicio datetime, 
 	 @fecha_vencimiento datetime,@precio numeric(10,2), @rubro numeric(10,0), 
 	 @visibilidad numeric(10,0), @estado_publicacion numeric(10,0), @usuario_responsable numeric(10,0),
@@ -527,22 +527,22 @@ AS BEGIN
 		
 	   if (@estado_publicacion <> 1)
 	       begin
-		        INSERT INTO VARCHAR_DE_30.FACTURA 
+		        INSERT INTO CHAR_DE_30.FACTURA 
 		          ( tipo_visibilidad,costo_visibilidad)
 			       values
-			      (dbo.VARCHAR_DE_30.fu_nombre_visibilidad(@visibilidad),0)
+			      (dbo.CHAR_DE_30.fu_nombre_visibilidad(@visibilidad),0)
 			    SET @factura = SCOPE_IDENTITY();
 		   end
 		
 
-		INSERT INTO VARCHAR_DE_30.PUBLICACION
+		INSERT INTO CHAR_DE_30.PUBLICACION
 			(descripcion, stock, fecha_inicio,fecha_vencimiento, precio, rubro, visibilidad,
 			 estado_publicacion, usuario_responsable, tipo_publicacion, envio, factura)
 			VALUES
 			(@descripcion, @stock, @fecha_inicio, @fecha_vencimiento, @precio, @rubro, @visibilidad,
 			 @estado_publicacion, @usuario_responsable, @tipo_publicacion, @envio, @factura)
 
-	update VARCHAR_DE_30.USUARIO set primer_ingreso=0
+	update CHAR_DE_30.USUARIO set primer_ingreso=0
 	where id_usuario=@usuario_responsable
 
 END
@@ -559,7 +559,7 @@ go
 --dicho listado debe filtrarse por grado de visibilidad de la publicación y
 --por mes-año. Primero se deberá ordenar por fecha y luego por visibilidad.
 
-create procedure VARCHAR_DE_30.st_top5_vendedores_menos_venta
+create procedure CHAR_DE_30.st_top5_vendedores_menos_venta
 @mes1 int,
 @mes2 int,
 @mes3 int,
@@ -568,17 +568,17 @@ create procedure VARCHAR_DE_30.st_top5_vendedores_menos_venta
 AS BEGIN
  
 select top 5 nick,mail,count(*) as cant_productos_no_vendidos
-FROM VARCHAR_DE_30.PUBLICACION
-inner join VARCHAR_DE_30.VISIBILIDAD on id_visibilidad = visibilidad
-inner join VARCHAR_DE_30.USUARIO on usuario_responsable = id_usuario
-inner join VARCHAR_DE_30.FACTURA as f on f.id_factura = factura
+FROM CHAR_DE_30.PUBLICACION
+inner join CHAR_DE_30.VISIBILIDAD on id_visibilidad = visibilidad
+inner join CHAR_DE_30.USUARIO on usuario_responsable = id_usuario
+inner join CHAR_DE_30.FACTURA as f on f.id_factura = factura
  where year(f.factura_fecha)= @anio and (
 									month(f.factura_fecha)=@mes1 or 
 									month(f.factura_fecha)=@mes2 or 
 									month(f.factura_fecha)=@mes3
 									) and 
 (@visibilidad=visibilidad or @visibilidad is null) and
-	(select count(*) from VARCHAR_DE_30.ITEM_FACTURA as i
+	(select count(*) from CHAR_DE_30.ITEM_FACTURA as i
 	 where i.id_factura = f.id_factura
 	 )=0
 group by nick,mail
@@ -614,16 +614,16 @@ having 0 =(select count(*) from ITEM_FACTURA
 
  go
  */
- create procedure VARCHAR_DE_30.st_top5_clientes_mas_compras
+ create procedure CHAR_DE_30.st_top5_clientes_mas_compras
 @mes1 int=null,
 @mes2 int=null,
 @mes3 int=null,
 @anio int=null,
 @rubro int=null
 as begin
- select top 5 nick,mail,sum(cantidad) cant_de_productos_comprados from VARCHAR_DE_30.COMPRA
- inner join VARCHAR_DE_30.USUARIO on comprador=id_usuario
- inner join VARCHAR_DE_30.PUBLICACION on id_publicacion=publicacion
+ select top 5 nick,mail,sum(cantidad) cant_de_productos_comprados from CHAR_DE_30.COMPRA
+ inner join CHAR_DE_30.USUARIO on comprador=id_usuario
+ inner join CHAR_DE_30.PUBLICACION on id_publicacion=publicacion
  where year(fecha_operacion)= @anio and (
 									month(fecha_operacion)=@mes1 or 
 									month(fecha_operacion)=@mes2 or 
@@ -665,7 +665,7 @@ go
 
 --Vendedores con mayor cantidad de facturas dentro de un mes y año particular
 
-create procedure VARCHAR_DE_30.st_top5_vendedores_mayor_facturas
+create procedure CHAR_DE_30.st_top5_vendedores_mayor_facturas
 @mes1 int=null,
 @mes2 int=null,
 @mes3 int=null,
@@ -674,9 +674,9 @@ create procedure VARCHAR_DE_30.st_top5_vendedores_mayor_facturas
 AS BEGIN
 
 select top 5 nick,mail,count(*) as cant_de_facturas
-FROM VARCHAR_DE_30.PUBLICACION
-inner join VARCHAR_DE_30.USUARIO on usuario_responsable = id_usuario
-inner join VARCHAR_DE_30.FACTURA on id_factura = factura
+FROM CHAR_DE_30.PUBLICACION
+inner join CHAR_DE_30.USUARIO on usuario_responsable = id_usuario
+inner join CHAR_DE_30.FACTURA on id_factura = factura
  where year(factura_fecha)= @anio and (
 									month(factura_fecha)=@mes1 or 
 									month(factura_fecha)=@mes2 or 
@@ -715,7 +715,7 @@ go*/
 
 --Vendedores con mayor monto facturado dentro de un mes y año particular.
 
-create procedure VARCHAR_DE_30.st_top5_vendedores_mayor_monto_facturado
+create procedure CHAR_DE_30.st_top5_vendedores_mayor_monto_facturado
 
 @mes1 int,
 @mes2 int,
@@ -725,10 +725,10 @@ create procedure VARCHAR_DE_30.st_top5_vendedores_mayor_monto_facturado
 AS BEGIN
 
 select top 5 nick,mail,sum(precio_unitario*cantidad_vendida+precio_envio) as mayor_monto_facturado
-FROM VARCHAR_DE_30.PUBLICACION
-inner join VARCHAR_DE_30.USUARIO on usuario_responsable = id_usuario
-inner join VARCHAR_DE_30.FACTURA on id_factura = factura
-inner join VARCHAR_DE_30.ITEM_FACTURA i on i.id_factura=factura
+FROM CHAR_DE_30.PUBLICACION
+inner join CHAR_DE_30.USUARIO on usuario_responsable = id_usuario
+inner join CHAR_DE_30.FACTURA on id_factura = factura
+inner join CHAR_DE_30.ITEM_FACTURA i on i.id_factura=factura
  where year(factura_fecha)= @anio and (
 									month(factura_fecha)=@mes1 or 
 									month(factura_fecha)=@mes2 or 
@@ -769,7 +769,7 @@ go*/
 
 -------------------------------------ABM CLIENTE---------------------------------------------------------------------------------------
 
-create procedure VARCHAR_DE_30.st_buscar_clientes
+create procedure CHAR_DE_30.st_buscar_clientes
 @nombre nvarchar(255)='',
 @apellido nvarchar(255)='',
 @numeroDocumento nvarchar(255)='',
@@ -777,8 +777,8 @@ create procedure VARCHAR_DE_30.st_buscar_clientes
 as
 begin
 
-	select * from VARCHAR_DE_30.CLIENTE as c
-	inner join VARCHAR_DE_30.USUARIO as u on c.id_usuario=u.id_usuario
+	select * from CHAR_DE_30.CLIENTE as c
+	inner join CHAR_DE_30.USUARIO as u on c.id_usuario=u.id_usuario
 	where (c.nombre=@nombre or @nombre='') and 
 		  (c.apellido=@apellido or @apellido='') and
 		  (c.dni=@numeroDocumento or @numeroDocumento='') and
@@ -787,7 +787,7 @@ end
 
 go
 
-CREATE procedure VARCHAR_DE_30.st_agregar_cliente
+CREATE procedure CHAR_DE_30.st_agregar_cliente
 @nick nvarchar(255),
 @pass nvarchar(255),
 @fechaAltaSistema date,
@@ -815,15 +815,15 @@ declare @idUsuario numeric(10,0)
 	
 	BEGIN TRANSACTION  
      BEGIN TRY 
-	insert into VARCHAR_DE_30.USUARIO(nick,pass,intentos_login,primer_ingreso,baja_logica,fecha_alta_sistema,fecha_nacimiento,
+	insert into CHAR_DE_30.USUARIO(nick,pass,intentos_login,primer_ingreso,baja_logica,fecha_alta_sistema,fecha_nacimiento,
 						mail,telefono,calle,numero_calle,numero_piso,departamento,localidad,codigo_postal
 					   )
 	values (@nick,@pass,0,1,0,@fechaAltaSistema,@fechaNacimiento,@mail,@telefono,@calle,@numeroCalle,
 			@numeroPiso,@departamento,@localidad,@codigoPostal)
 
-       select  @idUsuario =max(id_usuario) from VARCHAR_DE_30.USUARIO
+       select  @idUsuario =max(id_usuario) from CHAR_DE_30.USUARIO
 
-	insert into VARCHAR_DE_30.CLIENTE(id_usuario,nombre,apellido,dni,tipo_documento)
+	insert into CHAR_DE_30.CLIENTE(id_usuario,nombre,apellido,dni,tipo_documento)
 	values (@idUsuario,@nombre,@apellido,@dni,@tipo_documento)
 
 COMMIT TRAN  
@@ -838,7 +838,7 @@ end
 
 go
 
-create procedure VARCHAR_DE_30.st_modificar_cliente
+create procedure CHAR_DE_30.st_modificar_cliente
 @idUsuario numeric(10,0),
 @idCliente numeric(10,0),
 @mail nvarchar(255),
@@ -854,11 +854,11 @@ create procedure VARCHAR_DE_30.st_modificar_cliente
 as
 begin
 	
-	update VARCHAR_DE_30.USUARIO set mail=@mail,telefono=@telefono,calle=@calle,numero_calle=@numeroCalle,numero_piso=@numeroPiso,
+	update CHAR_DE_30.USUARIO set mail=@mail,telefono=@telefono,calle=@calle,numero_calle=@numeroCalle,numero_piso=@numeroPiso,
 					   departamento=@departamento,localidad=@localidad,codigo_postal=@codigoPostal
 	where id_usuario=@idUsuario
 
-	update VARCHAR_DE_30.CLIENTE set nombre=@nombre,apellido=@apellido
+	update CHAR_DE_30.CLIENTE set nombre=@nombre,apellido=@apellido
 	where id_cliente=@idCliente
 
 end
@@ -869,14 +869,14 @@ go
 
 -------------------------------------ABM EMPRESA---------------------------------------------------------------------------------------
 
-create procedure VARCHAR_DE_30.st_buscar_empresas
+create procedure CHAR_DE_30.st_buscar_empresas
 @razonSocial nvarchar(255)='',
 @cuit nvarchar(50)='',
 @mail nvarchar(255)=''
 as
 begin
 
-	select * from VARCHAR_DE_30.EMPRESA as e
+	select * from CHAR_DE_30.EMPRESA as e
 	inner join USUARIO as u on e.id_usuario=u.id_usuario
 	where (e.razon_social=@razonSocial or @razonSocial='') and 
 		  (e.cuit=@cuit or @cuit='') and
@@ -885,7 +885,7 @@ end
 
 go
 
-CREATE procedure VARCHAR_DE_30.st_agregar_empresa
+CREATE procedure CHAR_DE_30.st_agregar_empresa
 @nick nvarchar(255),
 @pass nvarchar(255),
 @fechaAltaSistema date,
@@ -912,15 +912,15 @@ declare @idUsuario numeric(10,0)
 
 	 BEGIN TRANSACTION  
      BEGIN TRY 
-	insert into VARCHAR_DE_30.USUARIO(nick,pass,intentos_login,primer_ingreso,baja_logica,fecha_alta_sistema,fecha_nacimiento,
+	insert into CHAR_DE_30.USUARIO(nick,pass,intentos_login,primer_ingreso,baja_logica,fecha_alta_sistema,fecha_nacimiento,
 						mail,telefono,calle,numero_calle,numero_piso,departamento,localidad,codigo_postal
 					   )
 	values (@nick,@pass,0,1,0,@fechaAltaSistema,@fechaNacimiento,@mail,@telefono,@calle,@numeroCalle,
 			@numeroPiso,@departamento,@localidad,@codigoPostal)
 
-	       select @idUsuario =max(id_usuario) from VARCHAR_DE_30.USUARIO
+	       select @idUsuario =max(id_usuario) from CHAR_DE_30.USUARIO
 
-	insert into VARCHAR_DE_30.EMPRESA(id_usuario,razon_social,cuit,nombre_contacto,ciudad,reputacion,rubro,cantidad_votos)
+	insert into CHAR_DE_30.EMPRESA(id_usuario,razon_social,cuit,nombre_contacto,ciudad,reputacion,rubro,cantidad_votos)
 	values (@idUsuario,@razonSocial,@cuit,@nombreContacto,@ciudad,0,@rubro,0)
 
 COMMIT TRAN  
@@ -935,7 +935,7 @@ end
 
 go
 
-create procedure VARCHAR_DE_30.st_modificar_empresa
+create procedure CHAR_DE_30.st_modificar_empresa
 @idUsuario numeric(10,0),
 @idEmpresa numeric(10,0),
 @mail nvarchar(255),
@@ -952,11 +952,11 @@ create procedure VARCHAR_DE_30.st_modificar_empresa
 as
 begin
 	
-	update VARCHAR_DE_30.USUARIO set mail=@mail,telefono=@telefono,calle=@calle,numero_calle=@numeroCalle,numero_piso=@numeroPiso,
+	update CHAR_DE_30.USUARIO set mail=@mail,telefono=@telefono,calle=@calle,numero_calle=@numeroCalle,numero_piso=@numeroPiso,
 					   departamento=@departamento,localidad=@localidad,codigo_postal=@codigoPostal
 	where id_usuario=@idUsuario
 
-	update VARCHAR_DE_30.EMPRESA set nombre_contacto=@nombreContacto,ciudad=@ciudad,rubro=@rubro
+	update CHAR_DE_30.EMPRESA set nombre_contacto=@nombreContacto,ciudad=@ciudad,rubro=@rubro
 	where id_empresa=@idEmpresa
 
 end
@@ -968,7 +968,7 @@ go
 
 --------------------------COMIENZO FACTURAS VENDEDOR-------------------------------------------------------------------------------------
 
-create procedure VARCHAR_DE_30.st_obtenerFacturasVendedorPorPaginas
+create procedure CHAR_DE_30.st_obtenerFacturasVendedorPorPaginas
 @idUsuario numeric(10,0),
 @pagina int,
 @montoDesde numeric(10,2)=null,
@@ -987,10 +987,10 @@ begin
 			 sum(i.cantidad_vendida*i.precio_unitario*v.porcentaje_venta+i.precio_envio+
 			 	f.costo_visibilidad) as total_facturar,
 			(row_number() over (order by f.id_factura desc) ) as facturas
-      from VARCHAR_DE_30.FACTURA as f
-	  inner join VARCHAR_DE_30.ITEM_FACTURA as i on i.id_factura=f.id_factura
-	  inner join VARCHAR_DE_30.VISIBILIDAD v on f.tipo_visibilidad=v.visibilidad_nombre
-	  inner join VARCHAR_DE_30.PUBLICACION p on f.id_factura =p.factura
+      from CHAR_DE_30.FACTURA as f
+	  inner join CHAR_DE_30.ITEM_FACTURA as i on i.id_factura=f.id_factura
+	  inner join CHAR_DE_30.VISIBILIDAD v on f.tipo_visibilidad=v.visibilidad_nombre
+	  inner join CHAR_DE_30.PUBLICACION p on f.id_factura =p.factura
 	  where (CAST(f.factura_fecha as DATE)>=@fechaDesde or @fechaDesde is null) and
 			(CAST(f.factura_fecha as DATE)<=@fechaHasta or @fechaHasta is null) and
 			p.usuario_responsable=@idUsuario 
@@ -1008,7 +1008,7 @@ end
 
 go
 
-create procedure VARCHAR_DE_30.st_obtenerMaximaPaginaFacturasFiltradas
+create procedure CHAR_DE_30.st_obtenerMaximaPaginaFacturasFiltradas
 @idUsuario numeric(10,0),
 @montoDesde numeric(10,2)=null,
 @montoHasta numeric(10,2)=null,
@@ -1022,10 +1022,10 @@ declare @paginas int
  select @paginas=count(*)
  from(
       select f.id_factura
-      from VARCHAR_DE_30.FACTURA as f
-	  inner join VARCHAR_DE_30.ITEM_FACTURA as i on i.id_factura=f.id_factura
-	  inner join VARCHAR_DE_30.VISIBILIDAD v on f.tipo_visibilidad=v.visibilidad_nombre
-	  inner join VARCHAR_DE_30.PUBLICACION p on f.id_factura =p.factura
+      from CHAR_DE_30.FACTURA as f
+	  inner join CHAR_DE_30.ITEM_FACTURA as i on i.id_factura=f.id_factura
+	  inner join CHAR_DE_30.VISIBILIDAD v on f.tipo_visibilidad=v.visibilidad_nombre
+	  inner join CHAR_DE_30.PUBLICACION p on f.id_factura =p.factura
 	  where (CAST(f.factura_fecha as DATE)>=@fechaDesde or @fechaDesde is null) and
 			(CAST(f.factura_fecha as DATE)<=@fechaHasta or @fechaHasta is null) and
 			p.usuario_responsable=@idUsuario 
@@ -1057,7 +1057,7 @@ go
 --Al iniciar la aplicación se tiene que barrer la base de datos para saber que publicaciones
 --estan vencidas, a las q estan vencidas hay que finalizarlas y cerrar la factura
 --Las subasta vencidas hay q hacer lo mismo, y tambien insertar esa oferta como compra
-create procedure VARCHAR_DE_30.st_actualizar_publicaciones_vencidas
+create procedure CHAR_DE_30.st_actualizar_publicaciones_vencidas
 @fechaDelSistema date
 
 AS BEGIN
@@ -1070,7 +1070,7 @@ set @ofertante =null
 declare miCursor cursor
  for select id_publicacion,tipo_publicacion,
             factura,precio,descripcion 
- FROM VARCHAR_DE_30.PUBLICACION
+ FROM CHAR_DE_30.PUBLICACION
  where  (CAST(fecha_vencimiento as DATE)) < @fechaDelSistema and
  estado_publicacion <> 1 AND --distinto de borrador
  estado_publicacion <> 4     --distinto de finalizado
@@ -1082,11 +1082,11 @@ fetch next from miCursor into @id_publicacion,@tipo_publicacion,@factura,@precio
 
 while @@fetch_status=0
 begin
-       UPDATE VARCHAR_DE_30.PUBLICACION  
+       UPDATE CHAR_DE_30.PUBLICACION  
        SET estado_publicacion = 4 --finalizado
        where id_publicacion= @id_publicacion
        
-       UPDATE VARCHAR_DE_30.FACTURA  
+       UPDATE CHAR_DE_30.FACTURA  
        SET factura_fecha = @fechaDelSistema --cierro la factura
        where id_factura =@factura
 
@@ -1099,7 +1099,7 @@ begin
 
 	       if(@ofertante is not null) --valido que alguien oferto por lo menos una vez
 	       begin
-	            exec VARCHAR_DE_30.st_insertarCompraSubasta @ofertante,@id_publicacion ,@fechaDelSistema, @precio, 
+	            exec CHAR_DE_30.st_insertarCompraSubasta @ofertante,@id_publicacion ,@fechaDelSistema, @precio, 
                               1 ,@precio_envio ,@factura
                 
                   UPDATE OFERTA  
