@@ -1,4 +1,5 @@
 
+
 drop procedure st_buscar_publicaciones
 
 drop procedure st_actualizar_Estado_Publicacion_a_Finalizado
@@ -30,9 +31,10 @@ drop procedure st_ultimas5compras
 
 
 drop procedure st_cantidadDeOperacionesSinCalificar
-drop procedure st_comprasYSubastasDeCliente
-
-drop procedure st_cantidadPaginasDeComprasYSubastasCliente
+drop procedure st_subastasDeCliente
+drop procedure st_comprasDeCliente
+drop procedure st_cantidadPaginasSubastasDeCliente
+drop procedure st_cantidadPaginasComprasDeCliente
 
 
 drop PROCEDURE sp_AgregarVisibilidad
@@ -83,7 +85,6 @@ drop procedure st_obtenerMaximaPaginaFacturasFiltradas
 
 
 drop PROCEDURE st_actualizar_publicaciones_vencidas
-
 
 
 --ASI SE BORRAN LAS COSAS, ANTES DE LA ENTREGA ESTO VA A IR A PARAR EN EL SCRIPT DE CREACION
