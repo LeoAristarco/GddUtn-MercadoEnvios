@@ -301,7 +301,7 @@ go
 
 create procedure st_cantidadDeOperacionesSinCalificar(@id_usuario numeric(10,0))
 as begin  
-	  select  count (*)
+	  select  count (*) as alexisManco
 	  from COMPRA
 	  inner join PUBLICACION on publicacion = id_publicacion
 	  inner join CALIFICACION on id_calificacion =calificacion

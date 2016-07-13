@@ -62,7 +62,8 @@ namespace WindowsFormsApplication1.Historial_Cliente
             estrellas4.Text = calificaciones[3].ToString();
             estrellas5.Text = calificaciones[4].ToString();
 
-            cantOperacionesSinCalificar.Text = repoUsuario.cantidadOpercaionesSinCalificar(usuario).ToString();
+            int cantidadOperaciones = repoUsuario.cantidadOperacionesSinCalificar(usuario);
+            cantOperacionesSinCalificar.Text = cantidadOperaciones.ToString();
         }
 
         private void inicializarDataGridCompra()
@@ -71,14 +72,18 @@ namespace WindowsFormsApplication1.Historial_Cliente
             cDescripcion.HeaderText = "Descripcion";
             cDescripcion.ReadOnly = true;
             tablaCompras.Columns.Add(cDescripcion);
-            DataGridViewTextBoxColumn cConEnvio = new DataGridViewTextBoxColumn();
-            cConEnvio.HeaderText = "Con Envio";
-            cConEnvio.ReadOnly = true;
-            tablaCompras.Columns.Add(cConEnvio);
-            DataGridViewTextBoxColumn cfechaFin = new DataGridViewTextBoxColumn();
-            cfechaFin.HeaderText = "Fecha de Finalizacion";
-            cfechaFin.ReadOnly = true;
-            tablaCompras.Columns.Add(cfechaFin);
+            DataGridViewTextBoxColumn cCantidad = new DataGridViewTextBoxColumn();
+            cCantidad.HeaderText = "Cantidad";
+            cCantidad.ReadOnly = true;
+            tablaCompras.Columns.Add(cCantidad);
+            DataGridViewTextBoxColumn cMonto = new DataGridViewTextBoxColumn();
+            cMonto.HeaderText = "Monto";
+            cMonto.ReadOnly = true;
+            tablaCompras.Columns.Add(cMonto);
+            DataGridViewTextBoxColumn cfechaOperacion = new DataGridViewTextBoxColumn();
+            cfechaOperacion.HeaderText = "Fecha de Operacion";
+            cfechaOperacion.ReadOnly = true;
+            tablaCompras.Columns.Add(cfechaOperacion);
         }
 
         private void inicializarDataGridOferta()
@@ -86,15 +91,19 @@ namespace WindowsFormsApplication1.Historial_Cliente
             DataGridViewTextBoxColumn cDescripcion = new DataGridViewTextBoxColumn();
             cDescripcion.HeaderText = "Descripcion";
             cDescripcion.ReadOnly = true;
-            tablaCompras.Columns.Add(cDescripcion);
-            DataGridViewTextBoxColumn cConEnvio = new DataGridViewTextBoxColumn();
-            cConEnvio.HeaderText = "Con Envio";
-            cConEnvio.ReadOnly = true;
-            tablaCompras.Columns.Add(cConEnvio);
-            DataGridViewTextBoxColumn cfechaFin = new DataGridViewTextBoxColumn();
-            cfechaFin.HeaderText = "Fecha de Finalizacion";
-            cfechaFin.ReadOnly = true;
-            tablaOfertas.Columns.Add(cfechaFin);
+            tablaOfertas.Columns.Add(cDescripcion);
+            DataGridViewTextBoxColumn cMonto = new DataGridViewTextBoxColumn();
+            cMonto.HeaderText = "Monto ofertado";
+            cMonto.ReadOnly = true;
+            tablaOfertas.Columns.Add(cMonto);
+            DataGridViewTextBoxColumn cConcretada = new DataGridViewTextBoxColumn();
+            cConcretada.HeaderText = "Oferta concretada";
+            cConcretada.ReadOnly = true;
+            tablaOfertas.Columns.Add(cConcretada);
+            DataGridViewTextBoxColumn cfechaOperacion = new DataGridViewTextBoxColumn();
+            cfechaOperacion.HeaderText = "Fecha de oferta";
+            cfechaOperacion.ReadOnly = true;
+            tablaOfertas.Columns.Add(cfechaOperacion);
         }
 
         private void buscarPaginaCompra()
@@ -124,21 +133,19 @@ namespace WindowsFormsApplication1.Historial_Cliente
         private void cargarDataGridCompra()
         {
             tablaCompras.Rows.Clear();
-            foreach (Compra publicacion in compras)
+            foreach (Compra compra in compras)
             {
-                //tablaCompras.Rows.Add(publicacion.descripcion, publicacion.hayEnvio, publicacion.fechaVencimiento);
+                tablaCompras.Rows.Add(compra.publicacion.descripcion, compra.cantidad, compra.monto, compra.fechaDeOperacion);
             }
-            //POR AHORA SOLO CARGO ESTO,IGUAL SE DEBERIAN MOSTRAR SOLO 3 O 4 DATOS
         }
 
         private void cargarDataGridOferta()
         {
-            tablaCompras.Rows.Clear();
+            tablaOfertas.Rows.Clear();
             foreach (Oferta oferta in ofertas)
             {
-                //tablaCompras.Rows.Add(publicacion.descripcion, publicacion.hayEnvio, publicacion.fechaVencimiento);
+                tablaOfertas.Rows.Add(oferta.publicacion.descripcion, oferta.montoOfertado, oferta.concretada, oferta.fechaOferta);
             }
-            //POR AHORA SOLO CARGO ESTO,IGUAL SE DEBERIAN MOSTRAR SOLO 3 O 4 DATOS
         }
 
         private void btnPrimerPag_Click(object sender, EventArgs e)

@@ -59,6 +59,7 @@ namespace WindowsFormsApplication1.ComprarOfertar
             publicacion.descripcion = fila["descripcion"].ToString();
             oferta.publicacion = publicacion;
             oferta.fechaOferta = toDate(fila["fecha_oferta"]);
+            oferta.montoOfertado = toDouble(fila["monto_ofertado"]);
             oferta.concretada = toBool(fila["concretada"]);
 
             return oferta;

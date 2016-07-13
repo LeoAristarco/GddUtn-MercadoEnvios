@@ -453,7 +453,7 @@ namespace WindowsFormsApplication1.Clases
             return dictionaryUsersMasCompras;
         }
 
-        public int cantidadOpercaionesSinCalificar(Usuario usuario)
+        public int cantidadOperacionesSinCalificar(Usuario usuario)
         {
             List<SqlParameter> parametros = new List<SqlParameter>();
             db.agregarParametro(parametros, "@id_usuario", usuario.id);
