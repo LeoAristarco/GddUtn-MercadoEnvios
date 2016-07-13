@@ -1063,7 +1063,7 @@ create procedure st_actualizar_publicaciones_vencidas
 AS BEGIN
 declare @id_publicacion numeric(10,0), @tipo_publicacion numeric(10,0), @factura numeric(10,0),@precio numeric(10,2),
 @descripcion nvarchar(255),
-@ofertante numeric(10,0),@precio_envio numeric(10,2)
+@ofertante numeric(10,0),@precio_envio numeric(10,2),@id_oferta numeric(10,0)
 
 set @ofertante =null
 
@@ -1092,7 +1092,7 @@ begin
 
        if(@tipo_publicacion =2) -- si es una subasta
        begin
-	       select @ofertante=ofertante,@precio_envio=precio_envio
+	       select @ofertante=ofertante,@precio_envio=precio_envio,@id_oferta=id_oferta
 	       from OFERTA
 	       where publicacion =@id_publicacion and
 	       monto_ofertado = @precio
@@ -1100,7 +1100,12 @@ begin
 	       if(@ofertante is not null) --valido que alguien oferto por lo menos una vez
 	       begin
 	            exec st_insertarCompraSubasta @ofertante,@id_publicacion ,@fechaDelSistema, @precio, 
-                              1 ,@precio_envio ,@factura  
+                              1 ,@precio_envio ,@factura
+                
+                  UPDATE OFERTA  
+                     SET concretada = 1 --cierro la oferta
+                       where id_oferta =@id_oferta
+
            end
        end
 
