@@ -1,5 +1,4 @@
 
-
 drop procedure CHAR_DE_30.st_buscar_publicaciones
 
 drop procedure CHAR_DE_30.st_actualizar_Estado_Publicacion_a_Finalizado
@@ -89,4 +88,81 @@ drop PROCEDURE CHAR_DE_30.st_actualizar_publicaciones_vencidas
 
 
 
+--ASI SE BORRAN LAS COSAS, ANTES DE LA ENTREGA ESTO VA A IR A PARAR EN EL SCRIPT DE CREACION
+--EN LA PARTE DE BORRADO, SI ROMPE ALGUN BORRADO, ROMPE EL ESQUEMA Y ROMPE EL SCRIPT ENTERO
+--ASI QUE OJO
+------------------------------------------------ LOGUIN----------------------------------------------------------------------
 
+if EXISTS (SELECT * FROM sysobjects WHERE name='OBTENER_FUNCIONALIDADES_POR_ID_ROL') 
+drop procedure CHAR_DE_30.OBTENER_FUNCIONALIDADES_POR_ID_ROL
+
+go
+
+if EXISTS (SELECT * FROM sysobjects WHERE name='OBTENER_ROLES_POR_ID_USUARIO') 
+drop procedure CHAR_DE_30.OBTENER_ROLES_POR_ID_USUARIO
+
+go
+
+------------------------------------------------ SELECCION DE FUNCIONALIDADES----------------------------------------------------------------------
+
+if EXISTS (SELECT * FROM sysobjects WHERE name='OBTENER_FUNCIONALIDADES_DEL_ROL') 
+drop procedure CHAR_DE_30.OBTENER_FUNCIONALIDADES_DEL_ROL
+
+go
+
+if EXISTS (SELECT * FROM sysobjects WHERE name='INSERTAR_NUEVO_ROL') 
+drop procedure CHAR_DE_30.INSERTAR_NUEVO_ROL
+
+go
+
+if EXISTS (SELECT * FROM sysobjects WHERE name='ACTUALIZAR_ROL') 
+drop procedure CHAR_DE_30.ACTUALIZAR_ROL
+
+go
+
+------------------------------------------------ ABM ROL----------------------------------------------------------------------
+if EXISTS (SELECT * FROM sysobjects WHERE name='OBTENER_ROLES_POR_ID_USUARIO') 
+drop procedure CHAR_DE_30.OBTENER_ROLES_POR_ID_USUARIO
+
+go
+
+if EXISTS (SELECT * FROM sysobjects WHERE name='OBTENER_USUARIOS_PARA_ABM_ROL') 
+drop procedure CHAR_DE_30.OBTENER_USUARIOS_PARA_ABM_ROL
+
+go
+
+if EXISTS (SELECT * FROM sysobjects WHERE name='ACTUALIZAR_ROL_POR_USUARIO') 
+drop procedure CHAR_DE_30.ACTUALIZAR_ROL_POR_USUARIO
+
+go
+
+
+
+if EXISTS (SELECT * FROM sysobjects WHERE name='ACTUALIZAR_FUNCIONALIDADES_DE_ROL') 
+drop procedure CHAR_DE_30.ACTUALIZAR_FUNCIONALIDADES_DE_ROL
+
+go 
+
+
+
+if EXISTS (SELECT * FROM sysobjects WHERE name='fn_hashear_pass') 
+drop function CHAR_DE_30.fn_hashear_pass
+
+go
+
+if EXISTS (SELECT * FROM sysobjects WHERE name='sp_actualizarUsuario') 
+drop procedure CHAR_DE_30.sp_actualizarUsuario
+
+
+go
+
+if EXISTS (SELECT * FROM sysobjects WHERE name='sp_darDeBajaLogicaAUsuario') 
+drop procedure CHAR_DE_30.sp_darDeBajaLogicaAUsuario
+
+
+go
+
+if EXISTS (SELECT * FROM sysobjects WHERE name='VERIFICAR_LOGUEO') 
+drop procedure CHAR_DE_30.VERIFICAR_LOGUEO
+
+go
