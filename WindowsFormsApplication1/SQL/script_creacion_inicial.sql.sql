@@ -2680,8 +2680,8 @@ create procedure CHAR_DE_30.st_obtenerFacturasVendedorPorPaginas
 @pagina int,
 @montoDesde numeric(10,2)=null,
 @montoHasta numeric(10,2)=null,
-@fechaDesde datetime=null,
-@fechaHasta datetime=null
+@fechaDesde date=null,
+@fechaHasta date=null
 as
 begin	
 	 select*
@@ -2700,7 +2700,7 @@ begin
 	  inner join CHAR_DE_30.PUBLICACION p on f.id_factura =p.factura
 	  where (CAST(f.factura_fecha as DATE)>=@fechaDesde or @fechaDesde is null) and
 			(CAST(f.factura_fecha as DATE)<=@fechaHasta or @fechaHasta is null) and
-			p.usuario_responsable=@idUsuario 
+			p.usuario_responsable=@idUsuario and p.estado_publicacion=4
 
 	  group by f.id_factura,f.forma_pago,f.tipo_visibilidad,f.costo_visibilidad,f.factura_fecha
 	  having (sum(i.cantidad_vendida*i.precio_unitario*
@@ -2719,8 +2719,8 @@ create procedure CHAR_DE_30.st_obtenerMaximaPaginaFacturasFiltradas
 @idUsuario numeric(10,0),
 @montoDesde numeric(10,2)=null,
 @montoHasta numeric(10,2)=null,
-@fechaDesde datetime=null,
-@fechaHasta datetime=null,
+@fechaDesde date=null,
+@fechaHasta date=null,
 @ultimaPagina numeric(10,0)=0 out
 AS
 begin
@@ -2735,7 +2735,7 @@ declare @paginas int
 	  inner join CHAR_DE_30.PUBLICACION p on f.id_factura =p.factura
 	  where (CAST(f.factura_fecha as DATE)>=@fechaDesde or @fechaDesde is null) and
 			(CAST(f.factura_fecha as DATE)<=@fechaHasta or @fechaHasta is null) and
-			p.usuario_responsable=@idUsuario 
+			p.usuario_responsable=@idUsuario and  p.estado_publicacion=4
 
 	  group by f.id_factura,f.forma_pago,f.tipo_visibilidad,f.costo_visibilidad,f.factura_fecha
 	  having (sum(i.cantidad_vendida*i.precio_unitario*
