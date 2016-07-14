@@ -56,7 +56,10 @@ namespace WindowsFormsApplication1.Clases
 
             while ((line = file.ReadLine()) != null)
             {
-                listaParser.Add(line);
+                if (line!="")
+                {
+                    listaParser.Add(line);
+                }
             }
 
             datosConexion = @"Data Source=localhost\" + listaParser[1].Split('=')[1].Trim() + ";"
