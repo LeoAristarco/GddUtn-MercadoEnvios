@@ -437,12 +437,12 @@ as
 begin
 declare @cant int,@bool bit
 
-      select @cant= count(isnull (calif_estrellas,1))
+      select @cant= count(*)
 	  from CHAR_DE_30.COMPRA inner join CHAR_DE_30.CALIFICACION on id_calificacion =calificacion
-	  where @id_cliente = comprador
+	  where @id_cliente = comprador and calif_estrellas is null
 
 
-	  if (@cant > 3)
+	  if (@cant >= 3)
 	   SET @bool=1
       ELSE
 	   SET @bool=0
