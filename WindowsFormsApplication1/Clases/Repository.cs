@@ -25,6 +25,11 @@ namespace WindowsFormsApplication1.Clases
 
         public DateTime toDate(object e)
         {
+            if (e.ToString() == "")
+            {
+                return Sistema.Instance.getDate();
+            }
+
             return Convert.ToDateTime(e);
         }
 

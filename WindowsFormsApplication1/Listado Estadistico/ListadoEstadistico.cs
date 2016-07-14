@@ -169,6 +169,12 @@ namespace WindowsFormsApplication1.Listado_Estadistico
 
             updateFiltroMeses();
 
+            if (listado==null)
+            {
+                MessageBox.Show("Debe seleccionar un listado");
+                return;
+            }
+
             listado.llenarDataGrid(ref tablaEstadistica, mesesFiltro, Convert.ToInt16(anio.Text));
         }
 
@@ -191,6 +197,10 @@ namespace WindowsFormsApplication1.Listado_Estadistico
 
         private void filtro_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (listado == null)
+            {
+                return;
+            }
             listado.seleccionarFiltro(filtro.SelectedIndex);
         }
 
