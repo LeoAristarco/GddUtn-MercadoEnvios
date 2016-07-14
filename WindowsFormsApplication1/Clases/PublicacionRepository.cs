@@ -205,7 +205,7 @@ namespace WindowsFormsApplication1.Clases
                 update += clave + "=@" + clave + ", ";
             }
 
-            update = update.Remove(update.Length - 1);
+            update = update.Remove(update.Length - 2);
             update += " where id_publicacion = " + publicacion.id.ToString();
 
             db.ejecutarConsulta(update , parametros);
@@ -223,7 +223,7 @@ namespace WindowsFormsApplication1.Clases
         internal List<Publicacion> buscarPublicacionesDe(Usuario usuario)
         {
             string consulta = "select * from CHAR_DE_30.PUBLICACION"
-                             + "inner join CHAR_DE_30.ESTADO_PUBLICACION on id_estado = estado_publicacion"
+                             + " inner join CHAR_DE_30.ESTADO_PUBLICACION on id_estado = estado_publicacion"
                              + " where usuario_responsable=" + usuario.id.ToString() + " and estado_nombre = 'BORRADOR'";
 
             List<Dictionary<string,object>> tabla = db.ejecutarConsulta(consulta);

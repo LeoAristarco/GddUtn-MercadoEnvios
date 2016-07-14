@@ -101,6 +101,8 @@ namespace WindowsFormsApplication1.Facturas
 
         private void btnUltimaPag_Click(object sender, EventArgs e)
         {
+            cantidadMaxDePags = repositorioFactura.cantidadMaximaPaginasFacturasClienteFiltradas(idUsuario, montoMinimo, montoMaximo, filtroMontoActivado.Checked, fechaMinima, fechaMaxima, filtroFechaActivado.Checked);
+
             numeroPagina = cantidadMaxDePags;
 
             buscarButton_Click(new object(), new EventArgs());
@@ -128,6 +130,7 @@ namespace WindowsFormsApplication1.Facturas
         private void btnSiguientePag_Click(object sender, EventArgs e)
         {
             numeroPagina++;
+            cantidadMaxDePags = repositorioFactura.cantidadMaximaPaginasFacturasClienteFiltradas(idUsuario, montoMinimo, montoMaximo, filtroMontoActivado.Checked, fechaMinima, fechaMaxima, filtroFechaActivado.Checked);
 
             if (numeroPagina > cantidadMaxDePags)
             {

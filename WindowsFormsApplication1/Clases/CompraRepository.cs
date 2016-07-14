@@ -80,7 +80,7 @@ namespace WindowsFormsApplication1.Calificar
                     break;
 
                 case "c":
-                    tipoError = "Error, un usuario no puede comprar con mas de 5 compras sin calificar";
+                    tipoError = "Error, un usuario no puede comprar con mas de 3 compras sin calificar";
                     break;
 
                 default:

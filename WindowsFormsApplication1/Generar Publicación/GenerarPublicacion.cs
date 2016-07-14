@@ -132,6 +132,10 @@ namespace WindowsFormsApplication1.Generar_Publicación
             {
                 repositorio.agregarPublicacion(publicacion);
             }
+
+            Hide();
+            formularioAnterior.Show();
+            Close();
         }
 
         private void setPublicacionInformation()
@@ -167,6 +171,10 @@ namespace WindowsFormsApplication1.Generar_Publicación
 
         private void tipo_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (tipo.SelectedIndex<0||tipo.SelectedIndex>=tipos.Count)
+            {
+                return;
+            }
             if (tipos[tipo.SelectedIndex].sosSubasta())
             {
                 stock.Text = "1";

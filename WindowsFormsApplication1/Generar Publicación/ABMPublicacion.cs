@@ -40,5 +40,10 @@ namespace WindowsFormsApplication1.Generar_Publicación
 
             buscarPublicaciones.ShowDialog();
         }
+
+        private void ABMPublicacion_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            formAnterior.Show();
+        }
     }
 }

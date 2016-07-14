@@ -85,6 +85,7 @@
             this.Controls.Add(this.tablaPublicaciones);
             this.Name = "BuscarPublicacionesUser";
             this.Text = "BuscarPublicacionesUser";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.BuscarPublicacionesUser_FormClosing);
             this.Load += new System.EventHandler(this.BuscarPublicacionesUser_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tablaPublicaciones)).EndInit();
             this.ResumeLayout(false);

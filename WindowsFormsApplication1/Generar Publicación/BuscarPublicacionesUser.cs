@@ -107,5 +107,10 @@ namespace WindowsFormsApplication1.Generar_Publicación
 
             Close();
         }
+
+        private void BuscarPublicacionesUser_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            formAnterior.Show();
+        }
     }
 }

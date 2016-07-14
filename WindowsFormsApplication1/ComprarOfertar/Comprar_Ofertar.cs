@@ -118,6 +118,7 @@ namespace WindowsFormsApplication1.ComprarOfertar
 
         private void btnUltimaPag_Click(object sender, EventArgs e)
         {
+            cantidadMaxDePags = repositorio.cantidadDePaginasFiltradas(filtroDescripcion.Text, rubroSeleccionado);
             numeroPagina = cantidadMaxDePags;
             btnBuscar_Click(new object(), new EventArgs());
         }
@@ -125,6 +126,8 @@ namespace WindowsFormsApplication1.ComprarOfertar
         private void btnSiguientePag_Click(object sender, EventArgs e)
         {
             numeroPagina++;
+
+            cantidadMaxDePags = repositorio.cantidadDePaginasFiltradas(filtroDescripcion.Text, rubroSeleccionado);
 
             if (numeroPagina>cantidadMaxDePags)
             {

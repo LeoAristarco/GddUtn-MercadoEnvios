@@ -61,6 +61,7 @@
             this.Controls.Add(this.button1);
             this.Name = "ABMPublicacion";
             this.Text = "ABMPublicacion";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ABMPublicacion_FormClosing);
             this.ResumeLayout(false);
 
         }
