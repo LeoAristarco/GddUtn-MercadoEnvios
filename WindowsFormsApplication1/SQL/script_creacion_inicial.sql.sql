@@ -2700,7 +2700,7 @@ begin
 	  inner join CHAR_DE_30.PUBLICACION p on f.id_factura =p.factura
 	  where (CAST(f.factura_fecha as DATE)>=@fechaDesde or @fechaDesde is null) and
 			(CAST(f.factura_fecha as DATE)<=@fechaHasta or @fechaHasta is null) and
-			p.usuario_responsable=@idUsuario 
+			p.usuario_responsable=@idUsuario and p.estado_publicacion=4
 
 	  group by f.id_factura,f.forma_pago,f.tipo_visibilidad,f.costo_visibilidad,f.factura_fecha
 	  having (sum(i.cantidad_vendida*i.precio_unitario*
@@ -2735,7 +2735,7 @@ declare @paginas int
 	  inner join CHAR_DE_30.PUBLICACION p on f.id_factura =p.factura
 	  where (CAST(f.factura_fecha as DATE)>=@fechaDesde or @fechaDesde is null) and
 			(CAST(f.factura_fecha as DATE)<=@fechaHasta or @fechaHasta is null) and
-			p.usuario_responsable=@idUsuario 
+			p.usuario_responsable=@idUsuario and  p.estado_publicacion=4
 
 	  group by f.id_factura,f.forma_pago,f.tipo_visibilidad,f.costo_visibilidad,f.factura_fecha
 	  having (sum(i.cantidad_vendida*i.precio_unitario*
