@@ -24,6 +24,8 @@
 	END
 	GO
 	
+
+
 	CREATE PROCEDURE CHAR_DE_30.sp_darDeBajaLogicaAUsuario(@id_usuario numeric(10,0))
 	AS BEGIN
 		UPDATE USUARIO SET
