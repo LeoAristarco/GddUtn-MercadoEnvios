@@ -2680,8 +2680,8 @@ create procedure CHAR_DE_30.st_obtenerFacturasVendedorPorPaginas
 @pagina int,
 @montoDesde numeric(10,2)=null,
 @montoHasta numeric(10,2)=null,
-@fechaDesde datetime=null,
-@fechaHasta datetime=null
+@fechaDesde date=null,
+@fechaHasta date=null
 as
 begin	
 	 select*
@@ -2719,8 +2719,8 @@ create procedure CHAR_DE_30.st_obtenerMaximaPaginaFacturasFiltradas
 @idUsuario numeric(10,0),
 @montoDesde numeric(10,2)=null,
 @montoHasta numeric(10,2)=null,
-@fechaDesde datetime=null,
-@fechaHasta datetime=null,
+@fechaDesde date=null,
+@fechaHasta date=null,
 @ultimaPagina numeric(10,0)=0 out
 AS
 begin
