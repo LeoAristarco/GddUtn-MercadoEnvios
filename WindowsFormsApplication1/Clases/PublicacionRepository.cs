@@ -224,7 +224,7 @@ namespace WindowsFormsApplication1.Clases
         {
             string consulta = "select * from CHAR_DE_30.PUBLICACION"
                              + "inner join CHAR_DE_30.ESTADO_PUBLICACION on id_estado = estado_publicacion"
-                             + "where usuario_responsable=" + usuario.id.ToString() + " and estado_nombre = 'BORRADOR'";
+                             + " where usuario_responsable=" + usuario.id.ToString() + " and estado_nombre = 'BORRADOR'";
 
             List<Dictionary<string,object>> tabla = db.ejecutarConsulta(consulta);
 
