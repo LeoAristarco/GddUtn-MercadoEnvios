@@ -244,6 +244,18 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Clases\EstadoPublicacionRepository.cs" />
+    <Compile Include="Generar Publicación\ABMPublicacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Generar Publicación\ABMPublicacion.Designer.cs">
+      <DependentUpon>ABMPublicacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Generar Publicación\BuscarPublicacionesUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Generar Publicación\BuscarPublicacionesUser.Designer.cs">
+      <DependentUpon>BuscarPublicacionesUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Generar Publicación\GenerarPublicacion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -427,6 +439,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Generar Publicación\ABMPublicacion.resx">
+      <DependentUpon>ABMPublicacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Generar Publicación\BuscarPublicacionesUser.resx">
+      <DependentUpon>BuscarPublicacionesUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Generar Publicación\GenerarPublicacion.resx">
       <DependentUpon>GenerarPublicacion.cs</DependentUpon>

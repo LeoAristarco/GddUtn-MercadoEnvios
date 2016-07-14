@@ -148,6 +148,11 @@ namespace WindowsFormsApplication1.ComprarOfertar
 
         private void tablaPublicacionesFiltradas_Click(object sender, EventArgs e)
         {
+            if (tablaPublicacionesFiltradas.CurrentCell.RowIndex>=publicacionesFiltradas.Count)
+            {
+                return;
+            }
+
             publicacionSeleccionada = publicacionesFiltradas[tablaPublicacionesFiltradas.CurrentCell.RowIndex];
         }
 

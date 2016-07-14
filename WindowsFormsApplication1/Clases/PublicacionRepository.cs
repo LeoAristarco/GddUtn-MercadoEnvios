@@ -219,5 +219,21 @@ namespace WindowsFormsApplication1.Clases
 
             return fila;
         }*/
+
+        internal List<Publicacion> buscarPublicacionesDe(Usuario usuario)
+        {
+            string consulta = "select * from CHAR_DE_30.PUBLICACION where usuario_responsable=" + usuario.id.ToString();
+
+            List<Dictionary<string,object>> tabla = db.ejecutarConsulta(consulta);
+
+            List<Publicacion> publicaciones = new List<Publicacion>();
+
+            foreach (Dictionary<string,object> fila in tabla)
+            {
+                publicaciones.Add(deserializarPublicacionConId(fila));
+            }
+
+            return publicaciones;
+        }
     }
 }

@@ -114,7 +114,7 @@ namespace WindowsFormsApplication1.Login
                     break;
 
                 case "GENERAR_PUBLICACION":
-                    proximoForm = new GenerarPublicacion(usuario, this);
+                    proximoForm = new ABMPublicacion(usuario,this);//GenerarPublicacion(usuario, this);
                     break;
 
                 case "COMPRAR/OFERTAR":

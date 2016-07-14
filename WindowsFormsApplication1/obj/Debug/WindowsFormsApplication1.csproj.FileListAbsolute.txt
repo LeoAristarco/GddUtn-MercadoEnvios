@@ -148,3 +148,5 @@ C:\Users\alexiscaspell3\Documents\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desk
 C:\Users\alexiscaspell3\Documents\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\GddUtn-MercadoEnvios\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
 C:\Users\alexiscaspell3\Documents\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
 C:\Users\alexiscaspell3\Documents\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
+C:\Users\Alexis\Downloads\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Generar_Publicación.ABMPublicacion.resources
+C:\Users\Alexis\Downloads\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\GddUtn-MercadoEnvios\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Generar_Publicación.BuscarPublicacionesUser.resources
